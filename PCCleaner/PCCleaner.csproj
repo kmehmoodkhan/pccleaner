@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{440BE25E-9253-4F1B-B2C1-0489982948A8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PCCleaner</RootNamespace>
+    <AssemblyName>PCCleaner</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationSettings.cs" />
+    <Compile Include="Controls\Cleaner\UCCleaner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\UCCleaner.Designer.cs">
+      <DependentUpon>UCCleaner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCAdvanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCAdvanced.Designer.cs">
+      <DependentUpon>UCAdvanced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCEdge.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCEdge.Designer.cs">
+      <DependentUpon>UCEdge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCExplorer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCExplorer.Designer.cs">
+      <DependentUpon>UCExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCIE.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCIE.Designer.cs">
+      <DependentUpon>UCIE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCSystem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Cleaner\Windows\UCSystem.Designer.cs">
+      <DependentUpon>UCSystem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\ListItem.cs" />
+    <Compile Include="Controls\Common\UCAppsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\UCAppsList.Designer.cs">
+      <DependentUpon>UCAppsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\UCImageHeading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\UCImageHeading.Designer.cs">
+      <DependentUpon>UCImageHeading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCOptions.Designer.cs">
+      <DependentUpon>UCOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCRegistry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCRegistry.Designer.cs">
+      <DependentUpon>UCRegistry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCTools.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCTools.Designer.cs">
+      <DependentUpon>UCTools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\Cleaner\UCCleaner.resx">
+      <DependentUpon>UCCleaner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cleaner\Windows\UCAdvanced.resx">
+      <DependentUpon>UCAdvanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cleaner\Windows\UCEdge.resx">
+      <DependentUpon>UCEdge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cleaner\Windows\UCExplorer.resx">
+      <DependentUpon>UCExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cleaner\Windows\UCIE.resx">
+      <DependentUpon>UCIE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Cleaner\Windows\UCSystem.resx">
+      <DependentUpon>UCSystem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\UCAppsList.resx">
+      <DependentUpon>UCAppsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\UCImageHeading.resx">
+      <DependentUpon>UCImageHeading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\App_Icon.ico" />
+    <Content Include="Images\Brush.png" />
+    <None Include="Resources\2993665-20.png" />
+    <None Include="Images\Edge.png" />
+    <Content Include="Images\Explorer.png" />
+    <Content Include="Images\IE.png" />
+    <Content Include="Images\Information.png" />
+    <Content Include="Images\Options.png" />
+    <Content Include="Images\Registry.png" />
+    <Content Include="Images\System.png" />
+    <Content Include="Images\Tools.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\Cleaner\Applications\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -41,9 +41,23 @@
             this.buttonCleaner = new System.Windows.Forms.Button();
             this.panelCleanerComponents = new System.Windows.Forms.Panel();
             this.panelRightInfo = new System.Windows.Forms.Panel();
+            this.panelProgress = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.gboxResult = new System.Windows.Forms.GroupBox();
+            this.listViewResult = new System.Windows.Forms.ListView();
+            this.columnHeaderDetail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderFilesSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderFilesCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.panelActionButtons = new System.Windows.Forms.Panel();
+            this.buttonAnalyze = new System.Windows.Forms.Button();
+            this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
+            this.panelRightInfo.SuspendLayout();
+            this.panelProgress.SuspendLayout();
+            this.gboxResult.SuspendLayout();
+            this.panelActionButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -197,12 +211,105 @@
             // 
             // panelRightInfo
             // 
-            this.panelRightInfo.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panelRightInfo.BackColor = System.Drawing.SystemColors.Control;
+            this.panelRightInfo.Controls.Add(this.gboxResult);
+            this.panelRightInfo.Controls.Add(this.panelProgress);
             this.panelRightInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightInfo.Location = new System.Drawing.Point(409, 109);
             this.panelRightInfo.Name = "panelRightInfo";
             this.panelRightInfo.Size = new System.Drawing.Size(642, 589);
             this.panelRightInfo.TabIndex = 3;
+            // 
+            // panelProgress
+            // 
+            this.panelProgress.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panelProgress.Controls.Add(this.progressBar1);
+            this.panelProgress.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelProgress.Location = new System.Drawing.Point(0, 0);
+            this.panelProgress.Name = "panelProgress";
+            this.panelProgress.Size = new System.Drawing.Size(642, 46);
+            this.panelProgress.TabIndex = 1;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(204)))), ((int)(((byte)(159)))));
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(0, 0);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(642, 46);
+            this.progressBar1.TabIndex = 2;
+            // 
+            // gboxResult
+            // 
+            this.gboxResult.Controls.Add(this.panelActionButtons);
+            this.gboxResult.Controls.Add(this.listViewResult);
+            this.gboxResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gboxResult.Location = new System.Drawing.Point(0, 46);
+            this.gboxResult.Margin = new System.Windows.Forms.Padding(40);
+            this.gboxResult.Name = "gboxResult";
+            this.gboxResult.Size = new System.Drawing.Size(642, 543);
+            this.gboxResult.TabIndex = 2;
+            this.gboxResult.TabStop = false;
+            // 
+            // listViewResult
+            // 
+            this.listViewResult.Alignment = System.Windows.Forms.ListViewAlignment.Default;
+            this.listViewResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderDetail,
+            this.columnHeaderFilesSize,
+            this.columnHeaderFilesCount});
+            this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.listViewResult.Location = new System.Drawing.Point(3, 18);
+            this.listViewResult.Name = "listViewResult";
+            this.listViewResult.Size = new System.Drawing.Size(636, 522);
+            this.listViewResult.TabIndex = 0;
+            this.listViewResult.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeaderDetail
+            // 
+            this.columnHeaderDetail.Width = 250;
+            // 
+            // columnHeaderFilesSize
+            // 
+            this.columnHeaderFilesSize.Width = 50;
+            // 
+            // columnHeaderFilesCount
+            // 
+            this.columnHeaderFilesCount.Width = 150;
+            // 
+            // panelActionButtons
+            // 
+            this.panelActionButtons.Controls.Add(this.buttonCleaner1);
+            this.panelActionButtons.Controls.Add(this.buttonAnalyze);
+            this.panelActionButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelActionButtons.Location = new System.Drawing.Point(3, 473);
+            this.panelActionButtons.Name = "panelActionButtons";
+            this.panelActionButtons.Size = new System.Drawing.Size(636, 67);
+            this.panelActionButtons.TabIndex = 1;
+            // 
+            // buttonAnalyze
+            // 
+            this.buttonAnalyze.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonAnalyze.ForeColor = System.Drawing.Color.White;
+            this.buttonAnalyze.Location = new System.Drawing.Point(15, 14);
+            this.buttonAnalyze.Name = "buttonAnalyze";
+            this.buttonAnalyze.Size = new System.Drawing.Size(153, 38);
+            this.buttonAnalyze.TabIndex = 0;
+            this.buttonAnalyze.Text = "Analyze";
+            this.buttonAnalyze.UseVisualStyleBackColor = false;
+            // 
+            // buttonCleaner1
+            // 
+            this.buttonCleaner1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCleaner1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.buttonCleaner1.ForeColor = System.Drawing.Color.White;
+            this.buttonCleaner1.Location = new System.Drawing.Point(474, 14);
+            this.buttonCleaner1.Name = "buttonCleaner1";
+            this.buttonCleaner1.Size = new System.Drawing.Size(153, 38);
+            this.buttonCleaner1.TabIndex = 1;
+            this.buttonCleaner1.Text = "Cleaner";
+            this.buttonCleaner1.UseVisualStyleBackColor = false;
             // 
             // FrmMain
             // 
@@ -221,6 +328,10 @@
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.panelLeft.ResumeLayout(false);
+            this.panelRightInfo.ResumeLayout(false);
+            this.panelProgress.ResumeLayout(false);
+            this.gboxResult.ResumeLayout(false);
+            this.panelActionButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -240,5 +351,15 @@
 
         private System.Windows.Forms.Panel panelCleanerComponents;
         private System.Windows.Forms.Panel panelRightInfo;
+        private System.Windows.Forms.Panel panelProgress;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.GroupBox gboxResult;
+        private System.Windows.Forms.ListView listViewResult;
+        private System.Windows.Forms.ColumnHeader columnHeaderDetail;
+        private System.Windows.Forms.ColumnHeader columnHeaderFilesSize;
+        private System.Windows.Forms.ColumnHeader columnHeaderFilesCount;
+        private System.Windows.Forms.Panel panelActionButtons;
+        private System.Windows.Forms.Button buttonAnalyze;
+        private System.Windows.Forms.Button buttonCleaner1;
     }
 }

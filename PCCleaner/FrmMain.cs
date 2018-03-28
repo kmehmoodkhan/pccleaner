@@ -24,6 +24,21 @@ namespace PCCleaner
             this.panelCleanerComponents.AutoScroll = false;
             this.panelCleanerComponents.VerticalScroll.Visible = false;
             this.panelCleanerComponents.AutoScroll = true;
+
+            this.progressBar1.Width = this.panelProgress.Width - 100;
+            this.progressBar1.Value = 80;
+
+            this.listViewResult.View = View.Details;
+
+            string[] row = { "Microsoft Internet Explorer", "50kb", "30 files found" };
+            var listViewItem = new ListViewItem(row);
+            this.listViewResult.Items.Add(listViewItem);
+
+            int itemHeight = 20;
+            ImageList imgList = new ImageList();
+            imgList.ImageSize = new Size(1, itemHeight);
+            this.listViewResult.SmallImageList = imgList;
+
         }
 
         private void buttonRegistry_Click(object sender, EventArgs e)

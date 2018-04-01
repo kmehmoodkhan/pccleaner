@@ -1,16 +1,19 @@
 ﻿using Microsoft.Win32;
+using PCCleaner.Controls.Common;
+using PCCleaner.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
-using static PCCleaner.Common.Enum;
 
 namespace PCCleaner.Common
 {
-    public class Navgiators
+    public class Navigators
     {
+
         public static List<Browser> GetBrowsers()
         {
             RegistryKey browserKeys;
@@ -61,6 +64,18 @@ namespace PCCleaner.Common
                 }
             }
             return edgeFound;
+        }
+         
+        public static List<ListItem> GetBrowserFeatures()
+        {
+            List<ListItem> list = new List<ListItem>();
+
+            foreach (BrowserFeatures feature in Enum.GetValues(typeof(BrowserFeatures)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("BrowserFeature_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+            return list;
         }
     }
 

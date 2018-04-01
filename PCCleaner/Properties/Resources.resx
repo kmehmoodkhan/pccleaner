@@ -148,4 +148,118 @@
   <data name="System" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\system.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="BrowserFeature_1" xml:space="preserve">
+    <value>Internet Cache</value>
+  </data>
+  <data name="BrowserFeature_10" xml:space="preserve">
+    <value>Compact Databases</value>
+  </data>
+  <data name="BrowserFeature_2" xml:space="preserve">
+    <value>Internet History</value>
+  </data>
+  <data name="BrowserFeature_3" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="BrowserFeature_4" xml:space="preserve">
+    <value>Download History</value>
+  </data>
+  <data name="BrowserFeature_5" xml:space="preserve">
+    <value>Last Download Location</value>
+  </data>
+  <data name="BrowserFeature_6" xml:space="preserve">
+    <value>Session</value>
+  </data>
+  <data name="BrowserFeature_7" xml:space="preserve">
+    <value>Site Preferences</value>
+  </data>
+  <data name="BrowserFeature_8" xml:space="preserve">
+    <value>Saved Form Information</value>
+  </data>
+  <data name="BrowserFeature_9" xml:space="preserve">
+    <value>Saved Passwords</value>
+  </data>
+  <data name="AdvancedFeature_1" xml:space="preserve">
+    <value>Windows Event Logs </value>
+  </data>
+  <data name="AdvancedFeature_10" xml:space="preserve">
+    <value>Custom Files Folder Path</value>
+  </data>
+  <data name="AdvancedFeature_11" xml:space="preserve">
+    <value>Wipe Free Space </value>
+  </data>
+  <data name="AdvancedFeature_2" xml:space="preserve">
+    <value>Old Prefetched Data </value>
+  </data>
+  <data name="AdvancedFeature_3" xml:space="preserve">
+    <value>Menu Order Cache</value>
+  </data>
+  <data name="AdvancedFeature_4" xml:space="preserve">
+    <value>Tray Notification Cache</value>
+  </data>
+  <data name="AdvancedFeature_5" xml:space="preserve">
+    <value>Window Size/Location Cache</value>
+  </data>
+  <data name="AdvancedFeature_6" xml:space="preserve">
+    <value>Environment Path</value>
+  </data>
+  <data name="AdvancedFeature_7" xml:space="preserve">
+    <value>User Assist History</value>
+  </data>
+  <data name="AdvancedFeature_8" xml:space="preserve">
+    <value>IIS Log Files</value>
+  </data>
+  <data name="AdvancedFeature_9" xml:space="preserve">
+    <value>Old Windows Installation</value>
+  </data>
+  <data name="ExplorerFeature_1" xml:space="preserve">
+    <value>Recent Documents</value>
+  </data>
+  <data name="ExplorerFeature_2" xml:space="preserve">
+    <value>Run (in Start Menu)</value>
+  </data>
+  <data name="ExplorerFeature_3" xml:space="preserve">
+    <value>Other Explorer MRUs</value>
+  </data>
+  <data name="ExplorerFeature_4" xml:space="preserve">
+    <value>Thumbnail Cache</value>
+  </data>
+  <data name="ExplorerFeature_5" xml:space="preserve">
+    <value>Taskbar Jump List</value>
+  </data>
+  <data name="ExplorerFeature_6" xml:space="preserve">
+    <value>Network Passwords</value>
+  </data>
+  <data name="SystemFeature_1" xml:space="preserve">
+    <value>Empty Recycle Bin</value>
+  </data>
+  <data name="SystemFeature_10" xml:space="preserve">
+    <value>Start Menu Shortcuts</value>
+  </data>
+  <data name="SystemFeature_11" xml:space="preserve">
+    <value>Desktop Shortcuts </value>
+  </data>
+  <data name="SystemFeature_2" xml:space="preserve">
+    <value>Temporary Files</value>
+  </data>
+  <data name="SystemFeature_3" xml:space="preserve">
+    <value>Clipboard</value>
+  </data>
+  <data name="SystemFeature_4" xml:space="preserve">
+    <value>Memory Dumps</value>
+  </data>
+  <data name="SystemFeature_5" xml:space="preserve">
+    <value>Chkdsk File Fragments</value>
+  </data>
+  <data name="SystemFeature_6" xml:space="preserve">
+    <value>Windows Log Files</value>
+  </data>
+  <data name="SystemFeature_7" xml:space="preserve">
+    <value>Windows Error Reporting</value>
+  </data>
+  <data name="SystemFeature_8" xml:space="preserve">
+    <value>DNS Cache </value>
+  </data>
+  <data name="SystemFeature_9" xml:space="preserve">
+    <value>Font Cache</value>
+  </data>
 </root>

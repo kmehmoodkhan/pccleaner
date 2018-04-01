@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using PCCleaner.Properties;
 using PCCleaner.Controls.Common;
 using PCCleaner.Common;
-using static PCCleaner.Common.Enum;
 
 namespace PCCleaner.Controls
 {
@@ -19,56 +18,70 @@ namespace PCCleaner.Controls
         public UCCleaner()
         {
             InitializeComponent();
-           AddBrowsers();          
-
+            AddBrowsers();
+            AddExplorerFeature();
+            AddSystemFeature();
+            AddAdvancedFeature();
         }
 
 
         private void AddBrowsers()
         {
-            var browsers = Navgiators.GetBrowsers();
-            
 
-            foreach ( Browser browser in browsers)
+            if (Navigators.IsEdgeBrowserInstalled())
             {
+                UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), "Edge", Resources.Edge);
+                panelWindowApps.Controls.Add(appsList);
+            }
 
-                //List<ListItem> items = new List<ListItem>();
-                //items.Add(new ListItem() { ItemId = 1, ItemText = "Bing News" });
-                //items.Add(new ListItem() { ItemId = 2, ItemText = "Skype Metro App" });
+            var browsers = Navigators.GetBrowsers();
 
-                //string iconPath = browser.IconPath.Split(',')[0];
-                //Icon icon = Icon.ExtractAssociatedIcon(iconPath);
-                //Image image = icon.ToBitmap();
 
-                if ( browser.BrowserType == BrowserType.Microsoft)
+            foreach (Browser browser in browsers)
+            {
+                string iconPath = browser.IconPath.Split(',')[0];
+                Icon icon = Icon.ExtractAssociatedIcon(iconPath);
+                Image image = icon.ToBitmap();
+
+                image = Helper.ResizeImage(image, 20, 20);
+
+                if (browser.BrowserType == BrowserType.Microsoft)
                 {
-                    if(browser.Name == "Internet Explorer")
-                    {
-                        this.ucie2.Visible = true;
-                    }
-                    //UCAppsList appsList = new UCAppsList(items, browser.Name, image);
-                    //panelWindowApps.Controls.Add(appsList);
+                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image);
+                    panelWindowApps.Controls.Add(appsList);
                 }
-                else
+                else if (browser.BrowserType == BrowserType.Others)
                 {
-                    //UCAppsList appsList = new UCAppsList(items, browser.Name, image);
-                    //panelNonWindowsApps.Controls.Add(appsList);
+                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image);
+                    panelNonWindowsApps.Controls.Add(appsList);
                 }
             }
 
-            if(Navgiators.IsEdgeBrowserInstalled())
-            {
-                this.ucEdge1.Visible = true;
-            }
-            else
-            {
-                this.ucEdge1.Visible = false;
-            }
+           
+
+        }
+
+        private void AddExplorerFeature()
+        {
+            UCAppsList explorerList = new UCAppsList(Helper.GetExplorerFeatures(), "Explorer", Resources.Explorer);
+            panelWindowApps.Controls.Add(explorerList);
+        }
+        private void AddSystemFeature()
+        {
+            UCAppsList explorerList = new UCAppsList(Helper.GetSystemFeatures(), "System", Resources.System);
+            panelWindowApps.Controls.Add(explorerList);
+        }
+
+        private void AddAdvancedFeature()
+        {
+            UCAppsList advancedList = new UCAppsList(Helper.GetAdvancedFeatures(), "Advanced", Resources.Information);
+            panelWindowApps.Controls.Add(advancedList);
+
         }
 
         public void AddFirefox()
         {
-            
+
 
             List<ListItem> items = new List<ListItem>();
             items.Add(new ListItem() { ItemId = 1, ItemText = "Bing News" });

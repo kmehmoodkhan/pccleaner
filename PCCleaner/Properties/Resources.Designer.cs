@@ -61,6 +61,195 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Windows Event Logs .
+        /// </summary>
+        internal static string AdvancedFeature_1 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom Files Folder Path.
+        /// </summary>
+        internal static string AdvancedFeature_10 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wipe Free Space .
+        /// </summary>
+        internal static string AdvancedFeature_11 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Prefetched Data .
+        /// </summary>
+        internal static string AdvancedFeature_2 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Order Cache.
+        /// </summary>
+        internal static string AdvancedFeature_3 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tray Notification Cache.
+        /// </summary>
+        internal static string AdvancedFeature_4 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Window Size/Location Cache.
+        /// </summary>
+        internal static string AdvancedFeature_5 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Path.
+        /// </summary>
+        internal static string AdvancedFeature_6 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Assist History.
+        /// </summary>
+        internal static string AdvancedFeature_7 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IIS Log Files.
+        /// </summary>
+        internal static string AdvancedFeature_8 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Old Windows Installation.
+        /// </summary>
+        internal static string AdvancedFeature_9 {
+            get {
+                return ResourceManager.GetString("AdvancedFeature_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet Cache.
+        /// </summary>
+        internal static string BrowserFeature_1 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compact Databases.
+        /// </summary>
+        internal static string BrowserFeature_10 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet History.
+        /// </summary>
+        internal static string BrowserFeature_2 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cookies.
+        /// </summary>
+        internal static string BrowserFeature_3 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download History.
+        /// </summary>
+        internal static string BrowserFeature_4 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Last Download Location.
+        /// </summary>
+        internal static string BrowserFeature_5 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Session.
+        /// </summary>
+        internal static string BrowserFeature_6 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Site Preferences.
+        /// </summary>
+        internal static string BrowserFeature_7 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Form Information.
+        /// </summary>
+        internal static string BrowserFeature_8 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Passwords.
+        /// </summary>
+        internal static string BrowserFeature_9 {
+            get {
+                return ResourceManager.GetString("BrowserFeature_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Brush {
@@ -87,6 +276,60 @@ namespace PCCleaner.Properties {
             get {
                 object obj = ResourceManager.GetObject("Explorer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Recent Documents.
+        /// </summary>
+        internal static string ExplorerFeature_1 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run (in Start Menu).
+        /// </summary>
+        internal static string ExplorerFeature_2 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Other Explorer MRUs.
+        /// </summary>
+        internal static string ExplorerFeature_3 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thumbnail Cache.
+        /// </summary>
+        internal static string ExplorerFeature_4 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taskbar Jump List.
+        /// </summary>
+        internal static string ExplorerFeature_5 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Network Passwords.
+        /// </summary>
+        internal static string ExplorerFeature_6 {
+            get {
+                return ResourceManager.GetString("ExplorerFeature_6", resourceCulture);
             }
         }
         
@@ -147,6 +390,105 @@ namespace PCCleaner.Properties {
             get {
                 object obj = ResourceManager.GetObject("System", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty Recycle Bin.
+        /// </summary>
+        internal static string SystemFeature_1 {
+            get {
+                return ResourceManager.GetString("SystemFeature_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Menu Shortcuts.
+        /// </summary>
+        internal static string SystemFeature_10 {
+            get {
+                return ResourceManager.GetString("SystemFeature_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop Shortcuts .
+        /// </summary>
+        internal static string SystemFeature_11 {
+            get {
+                return ResourceManager.GetString("SystemFeature_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Temporary Files.
+        /// </summary>
+        internal static string SystemFeature_2 {
+            get {
+                return ResourceManager.GetString("SystemFeature_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clipboard.
+        /// </summary>
+        internal static string SystemFeature_3 {
+            get {
+                return ResourceManager.GetString("SystemFeature_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Memory Dumps.
+        /// </summary>
+        internal static string SystemFeature_4 {
+            get {
+                return ResourceManager.GetString("SystemFeature_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chkdsk File Fragments.
+        /// </summary>
+        internal static string SystemFeature_5 {
+            get {
+                return ResourceManager.GetString("SystemFeature_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Log Files.
+        /// </summary>
+        internal static string SystemFeature_6 {
+            get {
+                return ResourceManager.GetString("SystemFeature_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Error Reporting.
+        /// </summary>
+        internal static string SystemFeature_7 {
+            get {
+                return ResourceManager.GetString("SystemFeature_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DNS Cache .
+        /// </summary>
+        internal static string SystemFeature_8 {
+            get {
+                return ResourceManager.GetString("SystemFeature_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font Cache.
+        /// </summary>
+        internal static string SystemFeature_9 {
+            get {
+                return ResourceManager.GetString("SystemFeature_9", resourceCulture);
             }
         }
         

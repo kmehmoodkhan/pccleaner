@@ -43,9 +43,10 @@
             // 
             // pcEdge
             // 
+            this.pcEdge.BackColor = System.Drawing.SystemColors.Control;
             this.pcEdge.Location = new System.Drawing.Point(-2, -3);
             this.pcEdge.Name = "pcEdge";
-            this.pcEdge.Size = new System.Drawing.Size(27, 23);
+            this.pcEdge.Size = new System.Drawing.Size(30, 30);
             this.pcEdge.TabIndex = 3;
             this.pcEdge.TabStop = false;
             this.pcEdge.Click += new System.EventHandler(this.pcEdge_Click);

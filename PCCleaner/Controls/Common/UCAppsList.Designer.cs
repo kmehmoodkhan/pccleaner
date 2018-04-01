@@ -38,7 +38,7 @@
             this.chkListEdge.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chkListEdge.CheckOnClick = true;
             this.chkListEdge.FormattingEnabled = true;
-            this.chkListEdge.Location = new System.Drawing.Point(30, 48);
+            this.chkListEdge.Location = new System.Drawing.Point(30, 32);
             this.chkListEdge.Name = "chkListEdge";
             this.chkListEdge.Size = new System.Drawing.Size(231, 187);
             this.chkListEdge.TabIndex = 8;
@@ -46,7 +46,7 @@
             // EdgeHeading
             // 
             this.EdgeHeading.BackColor = System.Drawing.SystemColors.Control;
-            this.EdgeHeading.Location = new System.Drawing.Point(2, 20);
+            this.EdgeHeading.Location = new System.Drawing.Point(2, 4);
             this.EdgeHeading.Name = "EdgeHeading";
             this.EdgeHeading.Size = new System.Drawing.Size(150, 22);
             this.EdgeHeading.TabIndex = 9;
@@ -55,11 +55,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.EdgeHeading);
             this.Controls.Add(this.chkListEdge);
             this.Name = "UCAppsList";
-            this.Size = new System.Drawing.Size(262, 254);
+            this.Size = new System.Drawing.Size(264, 223);
             this.ResumeLayout(false);
 
         }

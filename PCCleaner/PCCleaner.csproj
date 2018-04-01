@@ -48,42 +48,14 @@
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Common\Enum.cs" />
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Common\IBrowserFeature.cs" />
     <Compile Include="Common\Navgiators.cs" />
     <Compile Include="Controls\Cleaner\UCCleaner.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\Cleaner\UCCleaner.Designer.cs">
       <DependentUpon>UCCleaner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCAdvanced.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCAdvanced.Designer.cs">
-      <DependentUpon>UCAdvanced.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCEdge.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCEdge.Designer.cs">
-      <DependentUpon>UCEdge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCExplorer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCExplorer.Designer.cs">
-      <DependentUpon>UCExplorer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCIE.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCIE.Designer.cs">
-      <DependentUpon>UCIE.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCSystem.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\Cleaner\Windows\UCSystem.Designer.cs">
-      <DependentUpon>UCSystem.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\Common\ListItem.cs" />
     <Compile Include="Controls\Common\UCAppsList.cs">
@@ -126,21 +98,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\Cleaner\UCCleaner.resx">
       <DependentUpon>UCCleaner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cleaner\Windows\UCAdvanced.resx">
-      <DependentUpon>UCAdvanced.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cleaner\Windows\UCEdge.resx">
-      <DependentUpon>UCEdge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cleaner\Windows\UCExplorer.resx">
-      <DependentUpon>UCExplorer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cleaner\Windows\UCIE.resx">
-      <DependentUpon>UCIE.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\Cleaner\Windows\UCSystem.resx">
-      <DependentUpon>UCSystem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Common\UCAppsList.resx">
       <DependentUpon>UCAppsList.cs</DependentUpon>
@@ -190,8 +147,6 @@
     <Content Include="Images\System.png" />
     <Content Include="Images\Tools.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\Cleaner\Applications\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

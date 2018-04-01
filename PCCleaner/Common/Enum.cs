@@ -6,8 +6,59 @@ using System.Threading.Tasks;
 
 namespace PCCleaner.Common
 {
-    public class Enum
+    public enum BrowserType { Others = 0, Microsoft = 1 };
+
+    public enum BrowserFeatures
     {
-        public enum BrowserType {  Microsoft = 1, Others = 2};
+        Cache = 1,
+        InternetHistory = 2,
+        Cookies = 3,
+        DownloadHistory = 4,
+        LastDownloadLocation = 5,
+        Session = 6,
+        SitePreferences = 7,
+        SavedFormInformation = 8,
+        SavedPassword = 9,
+        CompactDatabases = 10
+    }
+
+    public enum ExplorerFeatures
+    {
+        RecentDocuments = 1,
+        Run = 2,
+        MRUs = 3,
+        ThumbnailCache = 4,
+        TaskbarJumpList = 5,
+        NetworkPasswords = 6
+    }
+
+    public enum SystemFeatures
+    {
+        EmptyRecycleBin = 1,
+        TemporaryFiles = 2,
+        Clipboard = 3,
+        MemoryDumps = 4,
+        ChkDskFileFragments = 5,
+        WindowsLogFiles = 6,
+        WindowErrorReporting = 7,
+        DNSCache = 8,
+        FontCache = 9,
+        StartMenuShortCuts = 10,
+        DesktopShortCuts = 11
+    }
+
+    public enum AdvancedFeatures
+    {
+        WindowsEventLogs = 1,
+        OldPrefetchedData = 2,
+        MenuOrderCache=3,
+        TrayNotificationCache=4,
+        WindowSizeLocationCache=5,
+        EnvironmentPath = 6,
+        UserAssistHistory = 7,
+        IISLogFiles = 8,
+        OldWindowsInstallation = 9,
+        CustomFilesFolderPath = 10,
+        WipeFreeSpace = 11
     }
 }

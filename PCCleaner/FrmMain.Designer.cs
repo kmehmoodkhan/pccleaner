@@ -44,13 +44,11 @@
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
-            this.listViewResult = new System.Windows.Forms.ListView();
-            this.columnHeaderDetail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderFilesSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderFilesCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
+            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -58,6 +56,7 @@
             this.gboxResult.SuspendLayout();
             this.panelActionButtons.SuspendLayout();
             this.panelProgress.SuspendLayout();
+            this.panelCleanerComponents.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTop
@@ -213,8 +212,8 @@
             // 
             // gboxResult
             // 
+            this.gboxResult.Controls.Add(this.ucResult);
             this.gboxResult.Controls.Add(this.panelActionButtons);
-            this.gboxResult.Controls.Add(this.listViewResult);
             this.gboxResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gboxResult.Location = new System.Drawing.Point(0, 46);
             this.gboxResult.Margin = new System.Windows.Forms.Padding(40);
@@ -257,33 +256,7 @@
             this.buttonAnalyze.TabIndex = 0;
             this.buttonAnalyze.Text = "Analyze";
             this.buttonAnalyze.UseVisualStyleBackColor = false;
-            // 
-            // listViewResult
-            // 
-            this.listViewResult.Alignment = System.Windows.Forms.ListViewAlignment.Default;
-            this.listViewResult.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderDetail,
-            this.columnHeaderFilesSize,
-            this.columnHeaderFilesCount});
-            this.listViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listViewResult.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listViewResult.Location = new System.Drawing.Point(3, 18);
-            this.listViewResult.Name = "listViewResult";
-            this.listViewResult.Size = new System.Drawing.Size(610, 879);
-            this.listViewResult.TabIndex = 0;
-            this.listViewResult.UseCompatibleStateImageBehavior = false;
-            // 
-            // columnHeaderDetail
-            // 
-            this.columnHeaderDetail.Width = 250;
-            // 
-            // columnHeaderFilesSize
-            // 
-            this.columnHeaderFilesSize.Width = 50;
-            // 
-            // columnHeaderFilesCount
-            // 
-            this.columnHeaderFilesCount.Width = 150;
+            this.buttonAnalyze.Click += new System.EventHandler(this.buttonAnalyze_Click);
             // 
             // panelProgress
             // 
@@ -307,12 +280,29 @@
             // panelCleanerComponents
             // 
             this.panelCleanerComponents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(240)))));
+            this.panelCleanerComponents.Controls.Add(this.ucCleaner1);
             this.panelCleanerComponents.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelCleanerComponents.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.panelCleanerComponents.Location = new System.Drawing.Point(133, 109);
             this.panelCleanerComponents.Name = "panelCleanerComponents";
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 946);
             this.panelCleanerComponents.TabIndex = 2;
+            // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
+            // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(610, 812);
+            this.ucResult.TabIndex = 2;
             // 
             // FrmMain
             // 
@@ -335,6 +325,7 @@
             this.gboxResult.ResumeLayout(false);
             this.panelActionButtons.ResumeLayout(false);
             this.panelProgress.ResumeLayout(false);
+            this.panelCleanerComponents.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -355,13 +346,11 @@
         private System.Windows.Forms.Panel panelProgress;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.GroupBox gboxResult;
-        private System.Windows.Forms.ListView listViewResult;
-        private System.Windows.Forms.ColumnHeader columnHeaderDetail;
-        private System.Windows.Forms.ColumnHeader columnHeaderFilesSize;
-        private System.Windows.Forms.ColumnHeader columnHeaderFilesCount;
         private System.Windows.Forms.Panel panelActionButtons;
         private System.Windows.Forms.Button buttonAnalyze;
         private System.Windows.Forms.Button buttonCleaner1;
         private System.Windows.Forms.FlowLayoutPanel panelCleanerComponents;
+        private Controls.UCCleaner ucCleaner1;
+        private Controls.Common.UCResult ucResult;
     }
 }

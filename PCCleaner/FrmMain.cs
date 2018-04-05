@@ -1,4 +1,5 @@
-﻿using PCCleaner.Controls;
+﻿using PCCleaner.Common;
+using PCCleaner.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
+        //
         public FrmMain()
         {
             InitializeComponent();
+
+            var result = Helper.GetBrowserCachePath(SearchArea.Firefox);
 
             this.panelCleanerComponents.Controls.Add(new UCCleaner());
             this.labelClientInfo.Text = ApplicationSettings.SystemInformation;
@@ -26,18 +30,7 @@ namespace PCCleaner
             this.panelCleanerComponents.AutoScroll = true;
 
             this.progressBar1.Width = this.panelProgress.Width - 100;
-            this.progressBar1.Value = 80;
-
-            this.listViewResult.View = View.Details;
-
-            string[] row = { "Microsoft Internet Explorer", "50kb", "30 files found" };
-            var listViewItem = new ListViewItem(row);
-            this.listViewResult.Items.Add(listViewItem);
-
-            int itemHeight = 20;
-            ImageList imgList = new ImageList();
-            imgList.ImageSize = new Size(1, itemHeight);
-            this.listViewResult.SmallImageList = imgList;
+           // this.progressBar1.Value = 80;
 
         }
 
@@ -73,5 +66,12 @@ namespace PCCleaner
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;            
         }
 
+        private void buttonAnalyze_Click(object sender, EventArgs e)
+        {
+            var items = this.Edge.SelectedItems;
+            var result = Analyzer.GetSearchResults(SearchArea.Edge, items);
+            var overAllResult = Analyzer.GetOverallResult(result);
+            this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+        }
     }
 }

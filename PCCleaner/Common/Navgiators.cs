@@ -13,7 +13,7 @@ namespace PCCleaner.Common
 {
     public class Navigators
     {
-
+        
         public static List<Browser> GetBrowsers()
         {
             RegistryKey browserKeys;

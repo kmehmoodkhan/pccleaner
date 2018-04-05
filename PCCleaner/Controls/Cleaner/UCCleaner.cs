@@ -18,10 +18,13 @@ namespace PCCleaner.Controls
         public UCCleaner()
         {
             InitializeComponent();
+
             AddBrowsers();
             AddExplorerFeature();
             AddSystemFeature();
             AddAdvancedFeature();
+            //AddWindowsApplications();
+            //AddWindowStoreApps();
         }
 
 
@@ -30,7 +33,7 @@ namespace PCCleaner.Controls
 
             if (Navigators.IsEdgeBrowserInstalled())
             {
-                UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), "Edge", Resources.Edge);
+                UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), "Edge", Resources.Edge,"Edge");
                 panelWindowApps.Controls.Add(appsList);
             }
 
@@ -47,12 +50,12 @@ namespace PCCleaner.Controls
 
                 if (browser.BrowserType == BrowserType.Microsoft)
                 {
-                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image);
+                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image,"IE");
                     panelWindowApps.Controls.Add(appsList);
                 }
                 else if (browser.BrowserType == BrowserType.Others)
                 {
-                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image);
+                    UCAppsList appsList = new UCAppsList(Navigators.GetBrowserFeatures(), browser.Name, image,browser.Name);
                     panelNonWindowsApps.Controls.Add(appsList);
                 }
             }
@@ -63,38 +66,35 @@ namespace PCCleaner.Controls
 
         private void AddExplorerFeature()
         {
-            UCAppsList explorerList = new UCAppsList(Helper.GetExplorerFeatures(), "Explorer", Resources.Explorer);
+            UCAppsList explorerList = new UCAppsList(Helper.GetExplorerFeatures(), "Explorer", Resources.Explorer,"Explorer");
             panelWindowApps.Controls.Add(explorerList);
         }
         private void AddSystemFeature()
         {
-            UCAppsList explorerList = new UCAppsList(Helper.GetSystemFeatures(), "System", Resources.System);
+            UCAppsList explorerList = new UCAppsList(Helper.GetSystemFeatures(), "System", Resources.System,"System");
             panelWindowApps.Controls.Add(explorerList);
         }
 
         private void AddAdvancedFeature()
         {
-            UCAppsList advancedList = new UCAppsList(Helper.GetAdvancedFeatures(), "Advanced", Resources.Information);
+            UCAppsList advancedList = new UCAppsList(Helper.GetAdvancedFeatures(), "Advanced", Resources.Information,"Advanced");
             panelWindowApps.Controls.Add(advancedList);
 
         }
 
-        public void AddFirefox()
+        private void AddWindowsApplications()
         {
-
-
-            List<ListItem> items = new List<ListItem>();
-            items.Add(new ListItem() { ItemId = 1, ItemText = "Bing News" });
-            items.Add(new ListItem() { ItemId = 2, ItemText = "Skype Metro App" });
-
-
-            UCAppsList appsList = new UCAppsList(items, "Windows Store", Resources.IE);
-
-            //appsList.HeadingLabel = "Windows Store";
-            //appsList.HeadingImage = Resources.Edge;
-
-            panelNonWindowsApps.Controls.Add(appsList);
-
+            UCAppsList advancedList = new UCAppsList(Helper.GetWindowsApplications(), "Applications", Resources.Information,"Applications");
+            panelWindowApps.Controls.Add(advancedList);
+            
         }
+        //private void AddWindowStoreApps()
+        //{
+        //    //PackageManager packageManager = new PackageManager();
+        //    //IEnumerable<Windows.ApplicationModel.Package> packages = packageManager.FindPackagesForUser("");
+
+        //    UCAppsList advancedList = new UCAppsList(Helper.GetAdvancedFeatures(), "Advanced", Resources.Information);
+        //    panelWindowApps.Controls.Add(advancedList);
+        //}
     }
 }

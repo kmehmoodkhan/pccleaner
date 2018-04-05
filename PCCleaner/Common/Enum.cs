@@ -8,6 +8,17 @@ namespace PCCleaner.Common
 {
     public enum BrowserType { Others = 0, Microsoft = 1 };
 
+    public enum SearchArea
+    {
+        Edge = 0,
+        IE =1,
+        Chrome = 2,
+        Firefox = 3,
+        WindowExplorer=4,
+        System = 5,
+        Advanced = 6
+    };
+
     public enum BrowserFeatures
     {
         Cache = 1,
@@ -60,5 +71,16 @@ namespace PCCleaner.Common
         OldWindowsInstallation = 9,
         CustomFilesFolderPath = 10,
         WipeFreeSpace = 11
+    }
+
+    public enum FeatureArea
+    {
+        Cache = 1
+    }
+
+    public enum ResultView
+    {
+        Overall = 1,
+        Detail = 2
     }
 }

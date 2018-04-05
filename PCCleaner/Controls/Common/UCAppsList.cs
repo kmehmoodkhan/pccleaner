@@ -18,17 +18,36 @@ namespace PCCleaner.Controls.Common
             set;
         }
 
+        public List<ListItem> SelectedItems
+        {
+            get
+            {
+                List<ListItem> selectedItems = new List<ListItem>();
+                foreach (var item in this.chkListEdge.CheckedItems)
+                {
+                    ListItem drv = item as ListItem;
+                    ListItem select = item as ListItem;
+                    
+                    select.ItemId = select.ItemId;
+                    select.ItemText = select.ItemText;
+                    selectedItems.Add(select);
+                }
+
+                return selectedItems;
+            }
+        }
+
        
         public UCAppsList()
         {
             InitializeComponent();
-            this.EdgeHeading.IconClick += EdgeHeading_IconClick;
-            
+            this.EdgeHeading.IconClick += EdgeHeading_IconClick;            
         }
 
 
-        public UCAppsList(List<ListItem> list, string headingTitle, Image headingImage):this()
+        public UCAppsList(List<ListItem> list, string headingTitle, Image headingImage,string controlName):this()
         {
+            this.Name = controlName;
             ItemsList = list;
             ((ListBox)this.chkListEdge).DataSource = list;
             ((ListBox)this.chkListEdge).DisplayMember = "ItemText";

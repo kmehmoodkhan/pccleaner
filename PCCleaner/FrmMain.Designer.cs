@@ -41,15 +41,15 @@
             this.buttonCleaner = new System.Windows.Forms.Button();
             this.panelRightInfo = new System.Windows.Forms.Panel();
             this.gboxResult = new System.Windows.Forms.GroupBox();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
-            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -223,6 +223,15 @@
             this.gboxResult.TabIndex = 2;
             this.gboxResult.TabStop = false;
             // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(610, 812);
+            this.ucResult.TabIndex = 2;
+            // 
             // panelActionButtons
             // 
             this.panelActionButtons.Controls.Add(this.buttonCleaner1);
@@ -291,28 +300,19 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 946);
             this.panelCleanerComponents.TabIndex = 2;
             // 
-            // backgroundWorkerSearch
-            // 
-            this.backgroundWorkerSearch.WorkerReportsProgress = true;
-            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
-            this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
-            this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
-            // 
-            // ucResult
-            // 
-            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucResult.Location = new System.Drawing.Point(3, 18);
-            this.ucResult.Name = "ucResult";
-            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
-            this.ucResult.Size = new System.Drawing.Size(610, 812);
-            this.ucResult.TabIndex = 2;
-            // 
             // ucCleaner1
             // 
             this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
             this.ucCleaner1.Name = "ucCleaner1";
             this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
             this.ucCleaner1.TabIndex = 0;
+            // 
+            // backgroundWorkerSearch
+            // 
+            this.backgroundWorkerSearch.WorkerReportsProgress = true;
+            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
+            this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
+            this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             // 
             // FrmMain
             // 

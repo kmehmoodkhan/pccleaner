@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace PCCleaner
 
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
-            // this.progressBar1.Value = 80;
+            this.ucResult.Visible = false;
 
         }
 
@@ -74,7 +75,11 @@ namespace PCCleaner
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
+            ucResult.Visible = true;
+            Stopwatch stopwatch = Stopwatch.StartNew();
             backgroundWorkerSearch.RunWorkerAsync();
+            stopwatch.Stop();
+            ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
         }
 
         public void ProcessSearch()

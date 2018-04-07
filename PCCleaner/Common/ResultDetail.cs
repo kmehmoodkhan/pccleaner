@@ -26,7 +26,7 @@ namespace PCCleaner.Common
             get;
             set;
         }
-        public FeatureArea Feature
+        public BrowserFeatures Feature
         {
             get;
             set;

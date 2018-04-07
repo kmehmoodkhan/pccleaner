@@ -74,6 +74,7 @@
     <Compile Include="Common\Result.cs" />
     <Compile Include="Common\ResultDetail.cs" />
     <Compile Include="Common\ResultSummary.cs" />
+    <Compile Include="Common\SearchCriteria.cs" />
     <Compile Include="Controls\Cleaner\UCCleaner.cs">
       <SubType>UserControl</SubType>
     </Compile>

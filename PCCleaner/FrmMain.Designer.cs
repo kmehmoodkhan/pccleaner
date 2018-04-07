@@ -47,8 +47,9 @@
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             this.ucResult = new PCCleaner.Controls.Common.UCResult();
+            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -260,7 +261,7 @@
             // 
             // panelProgress
             // 
-            this.panelProgress.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panelProgress.BackColor = System.Drawing.Color.Transparent;
             this.panelProgress.Controls.Add(this.progressBar1);
             this.panelProgress.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelProgress.Location = new System.Drawing.Point(0, 0);
@@ -271,11 +272,13 @@
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(111)))), ((int)(((byte)(204)))), ((int)(((byte)(159)))));
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(0, 0);
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.ForeColor = System.Drawing.Color.Transparent;
+            this.progressBar1.Location = new System.Drawing.Point(0, 21);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(616, 46);
+            this.progressBar1.Size = new System.Drawing.Size(616, 25);
             this.progressBar1.TabIndex = 2;
+            this.progressBar1.Visible = false;
             // 
             // panelCleanerComponents
             // 
@@ -288,12 +291,12 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 946);
             this.panelCleanerComponents.TabIndex = 2;
             // 
-            // ucCleaner1
+            // backgroundWorkerSearch
             // 
-            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
-            this.ucCleaner1.Name = "ucCleaner1";
-            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
-            this.ucCleaner1.TabIndex = 0;
+            this.backgroundWorkerSearch.WorkerReportsProgress = true;
+            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
+            this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
+            this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             // 
             // ucResult
             // 
@@ -303,6 +306,13 @@
             this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
             this.ucResult.Size = new System.Drawing.Size(610, 812);
             this.ucResult.TabIndex = 2;
+            // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -343,7 +353,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panelRightInfo;
-        private System.Windows.Forms.Panel panelProgress;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.GroupBox gboxResult;
         private System.Windows.Forms.Panel panelActionButtons;
@@ -352,5 +361,7 @@
         private System.Windows.Forms.FlowLayoutPanel panelCleanerComponents;
         private Controls.UCCleaner ucCleaner1;
         private Controls.Common.UCResult ucResult;
+        public System.ComponentModel.BackgroundWorker backgroundWorkerSearch;
+        private System.Windows.Forms.Panel panelProgress;
     }
 }

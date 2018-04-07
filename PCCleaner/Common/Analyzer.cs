@@ -2,6 +2,7 @@
 using PCCleaner.Properties;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -11,34 +12,67 @@ namespace PCCleaner.Common
 {
     public static class Analyzer
     {
-        public static List<ResultDetail> GetSearchResults(SearchArea area, List<ListItem> selectedFilters)
+        public  static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria, ref BackgroundWorker backgroundWorker)
         {
             List<ResultDetail> result = new List<ResultDetail>();
             string[] files = null;
             string parentPath = string.Empty;
 
-            switch (area)
+            int i = 0;
+            int totalAreasToSearch = searchCriteria.Count;
+            int areasCompleted = 0;
+
+
+            foreach (SearchCriteria item in searchCriteria)
             {
-                case SearchArea.Edge:
-                    foreach (var item in selectedFilters)
-                    {
-                        BrowserFeatures feature = (BrowserFeatures)item.ItemId;
-                        if (feature == BrowserFeatures.Cache)
+                switch (item.SearchArea)
+                {
+                    case (int)SearchArea.Edge:
+                        BrowserFeatures feature = (BrowserFeatures)item.FeatureId;
+                        switch (feature)
                         {
-                            parentPath = Helper.GetBrowserCachePath(SearchArea.Edge);
-                            files = Directory.GetFiles(parentPath, "*", SearchOption.AllDirectories);
-                            foreach (string fl in files)
-                            {
-                                result.Add(new ResultDetail() { FilePath = fl, FileSize = File.ReadAllBytes(fl).LongLength, SearchArea = SearchArea.Edge, Feature = FeatureArea.Cache });
-                            }
+                            case BrowserFeatures.Cache:
+                               
+                                parentPath = Helper.GetBrowserCachePath(SearchArea.Edge);
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(@"cache")).ToArray();
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = File.ReadAllBytes(fl).LongLength, SearchArea = SearchArea.Edge, Feature = BrowserFeatures.Cache });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted/totalAreasToSearch)*100);
+                                break;
+                            case BrowserFeatures.InternetHistory:
+                               
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Edge);
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.Contains("history")).ToArray(); ;
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = File.ReadAllBytes(fl).LongLength, SearchArea = SearchArea.Edge, Feature = BrowserFeatures.InternetHistory });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.Cookies:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Edge);
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.Contains("history")).ToArray(); ;
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = File.ReadAllBytes(fl).LongLength, SearchArea = SearchArea.Edge, Feature = BrowserFeatures.InternetHistory });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
                         }
-                    }
-                    break;
+                        break;
+                }
             }
+
+
 
             return result;
         }
-
+        
         public static long GetOverallSize(string[] files)
         {
             long size = 0;
@@ -63,7 +97,7 @@ namespace PCCleaner.Common
                               TotalFiles = g.Count(),
                               Icon = Resources.Edge
                           };
-            
+
             summary.DetailResult = selectedFilters;
             summary.OverallResult = results.ToList();
 

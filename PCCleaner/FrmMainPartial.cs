@@ -18,5 +18,23 @@ namespace PCCleaner
                 return (UCAppsList)control;
             }
         }
+
+        private UCAppsList IE
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[0].Controls[0].Controls["IE"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList Chrome
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Google_Chrome"];
+                return (UCAppsList)control;
+            }
+        }
     }
 }

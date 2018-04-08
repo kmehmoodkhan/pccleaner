@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,10 +17,12 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
+
+        private List<ResultDetail> FilesFound = null;
         public FrmMain()
         {
             InitializeComponent();
-
+            FilesFound = new List<ResultDetail>();
             var result = Helper.GetBrowserCachePath(SearchArea.Firefox);
 
             this.panelCleanerComponents.Controls.Add(new UCCleaner());
@@ -93,6 +96,8 @@ namespace PCCleaner
             };
 
             var edgeSelectedItems = this.Edge.SelectedItems;
+            var ieSelectedItems = this.IE.SelectedItems;
+            var chromeSelectedItems = this.Chrome.SelectedItems;
 
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
 
@@ -107,9 +112,28 @@ namespace PCCleaner
                 }
             }
 
+            if (ieSelectedItems != null && ieSelectedItems.Count > 0)
+            {
+                foreach (var item in ieSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.IE, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (chromeSelectedItems != null && chromeSelectedItems.Count > 0)
+            {
+                foreach (var item in chromeSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Chrome, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
             var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
             var overAllResult = Analyzer.GetOverallResult(result);
             this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+            this.FilesFound = result;
         }
 
         private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
@@ -130,5 +154,25 @@ namespace PCCleaner
             }
         }
 
+      
+
+        private void buttonCleaner1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    Parallel.ForEach(FilesFound, file =>
+                    {
+                        File.Delete(file.FilePath);
+                    });
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
     }
 }

@@ -27,10 +27,9 @@ namespace PCCleaner.Common
         DownloadHistory = 4,
         LastDownloadLocation = 5,
         Session = 6,
-        SitePreferences = 7,
-        SavedFormInformation = 8,
-        SavedPassword = 9,
-        CompactDatabases = 10
+        SavedFormInformation = 7,
+        SavedPassword = 8,
+        CompactDatabases = 9
     }
 
     public enum ExplorerFeatures
@@ -75,12 +74,35 @@ namespace PCCleaner.Common
 
     public enum FeatureArea
     {
-        Cache = 1
+        Cache = 1,
+        InternetHistory = 2,
+        Cookies = 3,
+        DownloadHistory = 4,
+        LastDownloadLocation = 5,
+        Session = 6,
+        SavedFormInformation = 7,
+        SavedPassword = 8,
+        CompactDatabases = 9
     }
 
     public enum ResultView
     {
         Overall = 1,
         Detail = 2
+    }
+
+    public enum KnownFolder
+    {
+        Contacts,
+        Desktop,
+        Documents,
+        Downloads,
+        Favorites,
+        Links,
+        Music,
+        Pictures,
+        SavedGames,
+        SavedSearches,
+        Videos
     }
 }

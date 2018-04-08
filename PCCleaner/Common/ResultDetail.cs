@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCCleaner.Common
 {
+    [Serializable]
    public class ResultDetail
     {
         public string FilePath
@@ -26,7 +27,7 @@ namespace PCCleaner.Common
             get;
             set;
         }
-        public BrowserFeatures Feature
+        public FeatureArea FeatureArea
         {
             get;
             set;

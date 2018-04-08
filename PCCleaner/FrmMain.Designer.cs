@@ -254,6 +254,7 @@
             this.buttonCleaner1.TabIndex = 1;
             this.buttonCleaner1.Text = "Run Cleaner";
             this.buttonCleaner1.UseVisualStyleBackColor = false;
+            this.buttonCleaner1.Click += new System.EventHandler(this.buttonCleaner1_Click);
             // 
             // buttonAnalyze
             // 

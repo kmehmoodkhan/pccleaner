@@ -89,7 +89,64 @@ namespace PCCleaner.Common
             return list;
         }
 
+        public static string GetBrowserParentPath(SearchArea browser)
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            switch (browser)
+            {
+                case SearchArea.Edge:
+                    path += "\\Packages\\";
+                    var directories = System.IO.Directory.GetDirectories(path);
+                    foreach (string dir in directories)
+                    {
+                        if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                        {
+                            path = dir + "\\AC";
+                            break;
+                        }
+                    }
+                    break;
+                case SearchArea.IE:
+                    path += "\\Microsoft\\";
+                    directories = System.IO.Directory.GetDirectories(path);
+                    foreach (string dir in directories)
+                    {
+                        if (dir.EndsWith(@"Internet Explorer"))
+                        {
+                            path = dir;
+                            break;
+                        }
+                    }
+                    break;
+                case SearchArea.Chrome:
+                    path += "\\Google\\";
+                    directories = System.IO.Directory.GetDirectories(path);
+                    foreach (string dir in directories)
+                    {
+                        if (dir.EndsWith(@"Chrome"))
+                        {
+                            path = dir;
+                            break;
+                        }
+                    }
+                    break;
+                case SearchArea.Firefox:
+                    path += "\\Mozilla\\";
+                    directories = System.IO.Directory.GetDirectories(path);
+                    foreach (string dir in directories)
+                    {
+                        if (dir.EndsWith(@"Firefox"))
+                        {
+                            path = dir;
+                            break;
+                        }
+                    }
+                    break;
+            }
 
+
+            return path;
+        }
         public static string GetBrowserCachePath(SearchArea browser)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);

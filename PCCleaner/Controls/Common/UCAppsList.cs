@@ -47,6 +47,7 @@ namespace PCCleaner.Controls.Common
 
         public UCAppsList(List<ListItem> list, string headingTitle, Image headingImage,string controlName):this()
         {
+            controlName = controlName.Replace(" ", "_");
             this.Name = controlName;
             ItemsList = list;
             ((ListBox)this.chkListEdge).DataSource = list;

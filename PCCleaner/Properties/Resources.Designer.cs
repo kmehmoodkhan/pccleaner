@@ -169,15 +169,6 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Compact Databases.
-        /// </summary>
-        internal static string BrowserFeature_10 {
-            get {
-                return ResourceManager.GetString("BrowserFeature_10", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Internet History.
         /// </summary>
         internal static string BrowserFeature_2 {
@@ -223,7 +214,7 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Site Preferences.
+        ///   Looks up a localized string similar to Saved Form Information.
         /// </summary>
         internal static string BrowserFeature_7 {
             get {
@@ -232,7 +223,7 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved Form Information.
+        ///   Looks up a localized string similar to Saved Passwords.
         /// </summary>
         internal static string BrowserFeature_8 {
             get {
@@ -241,7 +232,7 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saved Passwords.
+        ///   Looks up a localized string similar to Compact Databases.
         /// </summary>
         internal static string BrowserFeature_9 {
             get {

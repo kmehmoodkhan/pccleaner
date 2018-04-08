@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace PCCleaner.Common
 {
+    [Serializable]
     public class Result
     {
         public string SearchAreaTitle
@@ -36,20 +37,18 @@ namespace PCCleaner.Common
         }
         public string FeatureName
         {
-            get
-            {
-                return "Internet Cache";
-            }
+            get;
+            set;
         }
         
 
-        public double FilesSize
+        public string FilesSize
         {
             get;
             set;
         }
 
-        public int TotalFiles
+        public string TotalFiles
         {
             get;
             set;

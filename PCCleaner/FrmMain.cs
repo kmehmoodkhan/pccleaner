@@ -38,8 +38,7 @@ namespace PCCleaner
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
             this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
 
-            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
-            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+           
             this.ucResult.Visible = false;
 
         }
@@ -87,6 +86,9 @@ namespace PCCleaner
 
         public void ProcessSearch()
         {
+            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+
             if (this.progressBar1.InvokeRequired)
             {
                 this.progressBar1.Invoke(new MethodInvoker(delegate
@@ -98,6 +100,7 @@ namespace PCCleaner
             var edgeSelectedItems = this.Edge.SelectedItems;
             var ieSelectedItems = this.IE.SelectedItems;
             var chromeSelectedItems = this.Chrome.SelectedItems;
+            var firefoxSelectedItems = this.Firefox.SelectedItems;
 
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
 
@@ -126,6 +129,15 @@ namespace PCCleaner
                 foreach (var item in chromeSelectedItems)
                 {
                     SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Chrome, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (firefoxSelectedItems != null && firefoxSelectedItems.Count > 0)
+            {
+                foreach (var item in firefoxSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Firefox, FeatureId = item.ItemId };
                     searchCriteria.Add(criteria);
                 }
             }

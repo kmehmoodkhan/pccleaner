@@ -36,5 +36,14 @@ namespace PCCleaner
                 return (UCAppsList)control;
             }
         }
+
+        private UCAppsList Firefox
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Mozilla_Firefox"];
+                return (UCAppsList)control;
+            }
+        }
     }
 }

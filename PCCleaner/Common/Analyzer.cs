@@ -272,14 +272,8 @@ namespace PCCleaner.Common
                                 files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
                                 foreach (string fl in files)
                                 {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
-                                }
-                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
-                                foreach (string fl in files)
-                                {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
-                                }
-
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Session });
+                                }    
 
                                 parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Chrome);
                                 parentPath += "\\user data\\default\\Extension State";
@@ -287,13 +281,9 @@ namespace PCCleaner.Common
                                 files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
                                 foreach (string fl in files)
                                 {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Session });
                                 }
-                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
-                                foreach (string fl in files)
-                                {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
-                                }
+                               
 
                                 areasCompleted += 1;
                                 backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
@@ -309,6 +299,131 @@ namespace PCCleaner.Common
                                 backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
                                 break;
 
+                        }
+                        break;
+                    #endregion
+
+                    #region Firefox Browser
+                    case (int)SearchArea.Firefox:
+                        BrowserFeatures firefoxFeature = (BrowserFeatures)item.FeatureId;
+                        switch (firefoxFeature)
+                        {
+                            case BrowserFeatures.Cache:
+
+                                parentPath = Helper.GetBrowserCachePath(SearchArea.Firefox);
+                                parentPath += "\\profiles\\";
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p=>p.ToLower().Contains("cache")).ToArray();
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.InternetHistory:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\profiles\\";
+
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("thumbnails")).ToArray();
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.Cookies:
+                                
+
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\profiles\\kmzlampa.default\\";
+                                parentPath = parentPath.Replace("AppData\\Local\\Mozilla", "AppData\\roaming\\Mozilla");
+                                parentPath += "cookies.sqlite";
+                                
+
+
+                                using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
+                                {
+                                    String sql = "SELECT * FROM moz_cookies";
+                                    conn.Open();
+                                    using (SqliteCommand cmd = new SqliteCommand(sql, conn))
+                                    {
+
+                                        using (SqliteDataReader reader = cmd.ExecuteReader())
+                                        {
+                                            while (reader.Read())
+                                            {
+                                                if (result.Where(t => t.FilePath == "Cookie: " + reader.GetString(1)).ToList().Count < 1)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = "Cookie: " + reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cookies });
+                                                }
+                                            }
+                                        }
+                                        conn.Close();
+                                    }
+                                }
+
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.DownloadHistory:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\user data\\default\\DownloadMetadata";
+
+                                result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.DownloadHistory });
+
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.LastDownloadLocation:
+                                parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.LastDownloadLocation });
+                                }
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+                            case BrowserFeatures.Session:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\profiles\\";
+
+                                parentPath = parentPath.Replace("AppData\\Local\\Mozilla", "AppData\\roaming\\Mozilla");
+
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p=>p.ToLower().Contains("session")).ToList().ToArray();
+                                foreach (string fl in files)
+                                {
+                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Session });
+                                }
+                               
+
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+
+                            case BrowserFeatures.SavedFormInformation:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\profiles\\kmzlampa.default\\";
+                                parentPath = parentPath.Replace("AppData\\Local\\Mozilla", "AppData\\roaming\\Mozilla");
+
+                                parentPath += "\\permissions.sqlite";
+
+                                result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
+
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
+
+                            case BrowserFeatures.SavedPassword:
+                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
+                                parentPath += "\\user data\\default\\Login Data";
+
+                                result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
+
+                                areasCompleted += 1;
+                                backgroundWorker.ReportProgress((areasCompleted / totalAreasToSearch) * 100);
+                                break;
                         }
                         break;
                         #endregion

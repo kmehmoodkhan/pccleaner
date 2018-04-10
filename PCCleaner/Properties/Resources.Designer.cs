@@ -420,6 +420,16 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Internet {
+            get {
+                object obj = ResourceManager.GetObject("Internet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Skype.
         /// </summary>
         internal static string Internet_1 {
@@ -443,6 +453,16 @@ namespace PCCleaner.Properties {
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Multimedia {
+            get {
+                object obj = ResourceManager.GetObject("Multimedia", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -741,6 +761,16 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Utilities {
+            get {
+                object obj = ResourceManager.GetObject("Utilities", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 7-zip.
         /// </summary>
         internal static string Utilities_1 {
@@ -764,6 +794,16 @@ namespace PCCleaner.Properties {
         internal static string Utilities_3 {
             get {
                 return ResourceManager.GetString("Utilities_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Windows {
+            get {
+                object obj = ResourceManager.GetObject("Windows", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

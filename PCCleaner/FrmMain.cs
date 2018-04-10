@@ -77,11 +77,25 @@ namespace PCCleaner
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
-            ucResult.Visible = true;
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            backgroundWorkerSearch.RunWorkerAsync();
-            stopwatch.Stop();
-            ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
+            try
+            {
+                ucResult.Visible = true;
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                backgroundWorkerSearch.RunWorkerAsync();
+                stopwatch.Stop();
+                ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
+            }
+            catch(Exception ex)
+            {
+                this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+                this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+
+                ucResult.Visible = true;
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                backgroundWorkerSearch.RunWorkerAsync();
+                stopwatch.Stop();
+                ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
+            }
         }
 
         public void ProcessSearch()

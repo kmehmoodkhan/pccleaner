@@ -299,10 +299,7 @@ namespace PCCleaner.Common
                                             {
                                                 while (reader.Read())
                                                 {
-                                                    //if (result.Where(t => t.FilePath == reader.GetString(1)).ToList().Count < 1)
-                                                    {
-                                                        result.Add(new ResultDetail() { FilePath = reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
-                                                    }
+                                                    result.Add(new ResultDetail() { FilePath = reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
                                                 }
                                             }
                                             conn.Close();
@@ -989,7 +986,7 @@ namespace PCCleaner.Common
 
                                     foreach (string fl in files)
                                     {
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.WindowsEventLogs });
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.AdobeReader });
 
                                     }
                                     Helper.FilesFound.Clear();
@@ -1011,7 +1008,7 @@ namespace PCCleaner.Common
 
                                     foreach (string fl in files)
                                     {
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.WindowsEventLogs });
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.McAFee });
 
                                     }
                                     Helper.FilesFound.Clear();
@@ -1043,7 +1040,7 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.NotepadPlus });
+                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.Office });
                                 }
                                 catch (Exception ex)
                                 {
@@ -1073,7 +1070,7 @@ namespace PCCleaner.Common
                                         try
                                         {
                                             if (fl.Contains(".old"))
-                                                result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.UTorrent });
+                                                result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Internet, FeatureArea = FeatureArea.UTorrent });
                                         }
                                         catch
                                         {
@@ -1092,7 +1089,7 @@ namespace PCCleaner.Common
                         break;
                     #endregion
 
-                    #region Internet
+                    #region Utilities
                     case (int)SearchArea.Utilities:
                         Utilities utilities = (Utilities)item.FeatureId;
                         switch (utilities)
@@ -1114,7 +1111,7 @@ namespace PCCleaner.Common
                                     try
                                     {
                                         if (fl.Contains(".tvc"))
-                                            result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.UTorrent });
+                                            result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Utilities, FeatureArea = FeatureArea.Teamviewer });
                                     }
                                     catch
                                     {
@@ -1141,7 +1138,7 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.UTorrent });
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Utilities, FeatureArea = FeatureArea.WindowsDefender });
 
                                     }
                                     catch
@@ -1178,7 +1175,7 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.UTorrent });
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Windows, FeatureArea = FeatureArea.RemoteDesktop });
                                     }
                                     catch
                                     {

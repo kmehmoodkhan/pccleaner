@@ -194,6 +194,10 @@
     <Content Include="Images\Applications.png" />
     <Content Include="Images\App_Icon.ico" />
     <Content Include="Images\Brush.png" />
+    <Content Include="Images\Internet.png" />
+    <Content Include="Images\Multimedia.png" />
+    <Content Include="Images\Utilities.png" />
+    <Content Include="Images\Windows.png" />
     <Content Include="Images\WindowsStore.png" />
     <None Include="Resources\2993665-20.png" />
     <None Include="Images\Edge.png" />

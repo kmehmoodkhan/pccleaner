@@ -526,6 +526,18 @@ namespace PCCleaner.Common
                 case SearchArea.Applications:
                     icon = Resources.Applications;
                     break;
+                case SearchArea.Utilities:
+                    icon = Resources.Utilities;
+                    break;
+                case SearchArea.Multimedia:
+                    icon = Resources.Multimedia;
+                    break;
+                case SearchArea.Internet:
+                    icon = Resources.Internet;
+                    break;
+                case SearchArea.Windows:
+                    icon = Resources.Windows;
+                    break;
                 default:
                     icon = Resources.Information;
                     break;

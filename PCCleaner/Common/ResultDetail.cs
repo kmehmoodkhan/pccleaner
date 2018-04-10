@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace PCCleaner.Common
         {
             get;
             set;
-        } 
+        }
 
         
         public SearchArea SearchArea
@@ -32,6 +33,13 @@ namespace PCCleaner.Common
             get;
             set;
         }
-       
+        
+        public Image Icon
+        {
+            get
+            {
+                return Helper.GetSearchAreaIcon(SearchArea);
+            }
+        }
     }
 }

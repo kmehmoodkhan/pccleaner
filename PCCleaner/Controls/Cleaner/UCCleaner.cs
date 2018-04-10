@@ -66,20 +66,17 @@ namespace PCCleaner.Controls
             UCAppsList applications = new UCAppsList(Helper.GetApplicationsInstalled(), "Applications", Resources.Applications, "Applications");
             panelNonWindowsApps.Controls.Add(applications);
 
-            UCAppsList internet = new UCAppsList(Helper.GetInternetItems(), "Internet", Resources.Explorer, "Internet");
+            UCAppsList internet = new UCAppsList(Helper.GetInternetItems(), "Internet", Resources.Internet, "Internet");
             panelNonWindowsApps.Controls.Add(internet);
 
-            UCAppsList multimedia = new UCAppsList(Helper.GetMultimediaItems(), "Multimedia", Resources.Explorer, "Multimedia");
+            UCAppsList multimedia = new UCAppsList(Helper.GetMultimediaItems(), "Multimedia", Resources.Multimedia, "Multimedia");
             panelNonWindowsApps.Controls.Add(multimedia);
 
-            UCAppsList Utilities = new UCAppsList(Helper.GetUtilitiesItems(), "Utilities", Resources.Explorer, "Utilities");
+            UCAppsList Utilities = new UCAppsList(Helper.GetUtilitiesItems(), "Utilities", Resources.Utilities, "Utilities");
             panelNonWindowsApps.Controls.Add(Utilities);
 
-            UCAppsList Windows = new UCAppsList(Helper.GetWindowsItems(), "Windows", Resources.Explorer, "Windows");
+            UCAppsList Windows = new UCAppsList(Helper.GetWindowsItems(), "Windows", Resources.Windows, "Windows");
             panelNonWindowsApps.Controls.Add(Windows);
-
-            UCAppsList Internet = new UCAppsList(Helper.GetInternetItems(), "Internet", Resources.Explorer, "Internet");
-            panelNonWindowsApps.Controls.Add(Internet);
             
         }
 

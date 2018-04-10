@@ -125,7 +125,16 @@ namespace PCCleaner.Common
         NotepadPlus = 42,
         Office = 43,
         Skype=44,
-        UTorrent = 45
+        UTorrent = 45,
+        SevenZip = 46,
+        Teamviewer = 47,
+        WindowsDefender = 48,
+        GameExplorer = 49,
+        ManagementConsole = 50,
+        Paint = 51,
+        Search = 52,
+        RegEdit = 53,
+        RemoteDesktop = 54
     }
 
     public enum WindowStore

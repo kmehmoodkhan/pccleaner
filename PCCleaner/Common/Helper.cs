@@ -9,6 +9,7 @@ using System.Linq;
 using System.Management;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace PCCleaner.Common
 {
@@ -96,50 +97,78 @@ namespace PCCleaner.Common
             {
                 case SearchArea.Edge:
                     path += "\\Packages\\";
-                    var directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                        var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir + "\\AC";
-                            break;
+                            if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                            {
+                                path = dir + "\\AC";
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.IE:
                     path += "\\Microsoft\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Internet Explorer"))
+                       var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Internet Explorer"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Chrome:
                     path += "\\Google\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Chrome"))
+                       var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Chrome"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Firefox:
                     path += "\\Mozilla\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Firefox"))
+                        var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Firefox"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
             }
@@ -154,50 +183,78 @@ namespace PCCleaner.Common
             {
                 case SearchArea.Edge:
                     path += "\\Packages\\";
-                    var directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                        string[] directoriesTemp = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directoriesTemp)
                         {
-                            path = dir+"\\AC";
-                            break;
+                            if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                            {
+                                path = dir + "\\AC";
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.IE:
                     path += "\\Microsoft\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Internet Explorer"))
+                        var directoriesTemp = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directoriesTemp)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Internet Explorer"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Chrome:
                     path += "\\Google\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Chrome"))
+                        var directoriesTemp = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directoriesTemp)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Chrome"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Firefox:
                     path += "\\Mozilla\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Firefox"))
+                        var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Firefox"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
             }
@@ -213,50 +270,78 @@ namespace PCCleaner.Common
             {
                 case SearchArea.Edge:
                     path += "\\Packages\\";
-                    var directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                        var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir + "\\AC";
-                            break;
+                            if (dir.Contains("Microsoft.MicrosoftEdge_"))
+                            {
+                                path = dir + "\\AC";
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.IE:
                     path += "\\Microsoft\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Internet Explorer"))
+                        var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Internet Explorer"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Chrome:
                     path += "\\Google\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Chrome"))
+                       var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Chrome"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
                 case SearchArea.Firefox:
                     path += "\\Mozilla\\";
-                    directories = System.IO.Directory.GetDirectories(path);
-                    foreach (string dir in directories)
+                    try
                     {
-                        if (dir.EndsWith(@"Firefox"))
+                       var directories = System.IO.Directory.GetDirectories(path);
+                        foreach (string dir in directories)
                         {
-                            path = dir;
-                            break;
+                            if (dir.EndsWith(@"Firefox"))
+                            {
+                                path = dir;
+                                break;
+                            }
                         }
+                    }
+                    catch
+                    {
+                        ;
                     }
                     break;
             }
@@ -298,6 +383,154 @@ namespace PCCleaner.Common
         public static double ToKb(long totalBytes)
         {
             return (totalBytes / 1000);
+        }
+
+        public static List<ListItem> GetWindowStoreItems()
+        {
+            List<ListItem> list = new List<ListItem>();
+
+            foreach (WindowStore feature in Enum.GetValues(typeof(WindowStore)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("WindowStore_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+            return list;
+        }
+
+        public static List<ListItem> GetApplicationsInstalled()
+        {
+            List<ListItem> list = new List<ListItem>();
+            foreach (Applications feature in Enum.GetValues(typeof(Applications)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("Applications_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public static List<ListItem> GetInternetItems()
+        {
+            List<ListItem> list = new List<ListItem>();
+            foreach (Internet feature in Enum.GetValues(typeof(Internet)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("Internet_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public static List<ListItem> GetMultimediaItems()
+        {
+            List<ListItem> list = new List<ListItem>();
+            foreach (Multimedia feature in Enum.GetValues(typeof(Multimedia)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("Multimedia_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public static List<ListItem> GetUtilitiesItems()
+        {
+            List<ListItem> list = new List<ListItem>();
+            foreach (Utilities feature in Enum.GetValues(typeof(Utilities)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("Utilities_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        public static List<ListItem> GetWindowsItems()
+        {
+            List<ListItem> list = new List<ListItem>();
+            foreach (Windows feature in Enum.GetValues(typeof(Windows)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("Windows_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+
+            return list;
+        }
+
+        
+
+        public static List<String> FilesFound = new List<string>();
+        public static  void DirSearch(string sDir,string searchCriteria)
+        {
+            try
+            {
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    foreach (string f in Directory.GetFiles(d, "*.*"))
+                    {
+                        if (f.ToLower().Contains(searchCriteria))
+                        {
+                            FilesFound.Add(f);
+                        }
+                    }
+                    DirSearch(d,searchCriteria);
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                Console.WriteLine(excpt.Message);
+            }
+        }
+
+        public static int CompletionPercentage(int areasCompleted, int totalAreasToSearch)
+        {
+            decimal decCompletionPercentage = 0;
+            decimal decAreaCompleted = 0;
+            decimal decTotalAreasToSearch = 0;
+
+            decAreaCompleted = decimal.Parse(areasCompleted.ToString());
+            decTotalAreasToSearch = decimal.Parse(totalAreasToSearch.ToString());
+            decCompletionPercentage = (decAreaCompleted / decTotalAreasToSearch) * 100;
+            return (int)Math.Round(decCompletionPercentage, 0);
+        }
+
+        public static Image GetSearchAreaIcon(SearchArea area)
+        {
+            Image icon = null;
+            switch (area)
+            {
+                case SearchArea.Edge:
+                    icon = Resources.Edge;
+                    break;
+                case SearchArea.IE:
+                    icon = Resources.IE;
+                    break;
+                case SearchArea.WindowExplorer:
+                    icon = Resources.Explorer;
+                    break;
+                case SearchArea.System:
+                    icon = Resources.System;
+                    break;
+                case SearchArea.Advanced:
+                    icon = Resources.Information;
+                    break;
+                case SearchArea.Firefox:
+                    icon = Resources.Firefox;
+                    break;
+                case SearchArea.Chrome:
+                    icon = Resources.Chrome;
+                    break;
+                case SearchArea.WindowsStore:
+                    icon = Resources.WindowsStore;
+                    break;
+                case SearchArea.Applications:
+                    icon = Resources.Applications;
+                    break;
+                default:
+                    icon = Resources.Information;
+                    break;
+            }
+            return icon;
         }
     }
 }

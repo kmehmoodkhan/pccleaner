@@ -132,7 +132,7 @@ namespace PCCleaner.Controls.Common
 
         public void ShowExecutionTimke(double milliseconds)
         {
-            double time = (milliseconds / 1000);
+            double time = (milliseconds);
             this.labelTimeTaken.Text = " ( " + time + " seconds )";
         }
 

@@ -262,4 +262,118 @@
   <data name="Tick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Tick.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Applications_1" xml:space="preserve">
+    <value>Adobe Reader</value>
+  </data>
+  <data name="Applications_3" xml:space="preserve">
+    <value>Microsoft Office Picture Manager</value>
+  </data>
+  <data name="Applications_4" xml:space="preserve">
+    <value>Notepad++</value>
+  </data>
+  <data name="Applications_5" xml:space="preserve">
+    <value>Microsoft Office</value>
+  </data>
+  <data name="Internet_1" xml:space="preserve">
+    <value>Skype</value>
+  </data>
+  <data name="Internet_2" xml:space="preserve">
+    <value>uTorrent</value>
+  </data>
+  <data name="Multimedia_1" xml:space="preserve">
+    <value>Adobe Flash Player</value>
+  </data>
+  <data name="Multimedia_2" xml:space="preserve">
+    <value>Microsoft Silverlight</value>
+  </data>
+  <data name="Multimedia_3" xml:space="preserve">
+    <value>Windows Media Player</value>
+  </data>
+  <data name="Utilities_1" xml:space="preserve">
+    <value>7-zip</value>
+  </data>
+  <data name="Utilities_2" xml:space="preserve">
+    <value>Teamviewer</value>
+  </data>
+  <data name="Utilities_3" xml:space="preserve">
+    <value>Windows Defender</value>
+  </data>
+  <data name="WindowStore_1" xml:space="preserve">
+    <value>Bing News</value>
+  </data>
+  <data name="WindowStore_2" xml:space="preserve">
+    <value>Skype Metro News</value>
+  </data>
+  <data name="Windows_1" xml:space="preserve">
+    <value>Game Explorer</value>
+  </data>
+  <data name="Windows_2" xml:space="preserve">
+    <value>MS Management Console</value>
+  </data>
+  <data name="Windows_3" xml:space="preserve">
+    <value>MS Paint</value>
+  </data>
+  <data name="Windows_4" xml:space="preserve">
+    <value>MS Search</value>
+  </data>
+  <data name="Windows_5" xml:space="preserve">
+    <value>RegEdit</value>
+  </data>
+  <data name="Windows_6" xml:space="preserve">
+    <value>Remote Desktop</value>
+  </data>
+  <data name="Applications_2" xml:space="preserve">
+    <value>McAfee Antivirus</value>
+  </data>
+  <data name="Applications" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\applications.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Chrome" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\chrome.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Firefox" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\firefox.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SearchArea_0" xml:space="preserve">
+    <value>Edge</value>
+  </data>
+  <data name="SearchArea_1" xml:space="preserve">
+    <value>IE</value>
+  </data>
+  <data name="SearchArea_10" xml:space="preserve">
+    <value>Multimedia</value>
+  </data>
+  <data name="SearchArea_11" xml:space="preserve">
+    <value>Utilities</value>
+  </data>
+  <data name="SearchArea_12" xml:space="preserve">
+    <value>Windows</value>
+  </data>
+  <data name="SearchArea_2" xml:space="preserve">
+    <value>Chrome</value>
+  </data>
+  <data name="SearchArea_3" xml:space="preserve">
+    <value>Firefox</value>
+  </data>
+  <data name="SearchArea_4" xml:space="preserve">
+    <value>Windows Explorer</value>
+  </data>
+  <data name="SearchArea_5" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="SearchArea_6" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="SearchArea_7" xml:space="preserve">
+    <value>Windows Store</value>
+  </data>
+  <data name="SearchArea_8" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="SearchArea_9" xml:space="preserve">
+    <value>Internet</value>
+  </data>
+  <data name="WindowsStore" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\windowsstore.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

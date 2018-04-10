@@ -44,7 +44,8 @@
             // pcEdge
             // 
             this.pcEdge.BackColor = System.Drawing.SystemColors.Control;
-            this.pcEdge.Location = new System.Drawing.Point(-2, -3);
+            this.pcEdge.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pcEdge.Location = new System.Drawing.Point(0, 0);
             this.pcEdge.Name = "pcEdge";
             this.pcEdge.Size = new System.Drawing.Size(30, 30);
             this.pcEdge.TabIndex = 3;
@@ -55,10 +56,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.lblEdge);
             this.Controls.Add(this.pcEdge);
             this.Name = "UCImageHeading";
-            this.Size = new System.Drawing.Size(144, 22);
+            this.Size = new System.Drawing.Size(144, 30);
             ((System.ComponentModel.ISupportInitialize)(this.pcEdge)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

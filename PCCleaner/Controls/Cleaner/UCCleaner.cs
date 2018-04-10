@@ -60,8 +60,27 @@ namespace PCCleaner.Controls
                 }
             }
 
-           
+            UCAppsList windowStore = new UCAppsList(Helper.GetWindowStoreItems(), "WindowsStore", Resources.WindowsStore, "WindowsStore");
+            panelNonWindowsApps.Controls.Add(windowStore);
 
+            UCAppsList applications = new UCAppsList(Helper.GetApplicationsInstalled(), "Applications", Resources.Applications, "Applications");
+            panelNonWindowsApps.Controls.Add(applications);
+
+            UCAppsList internet = new UCAppsList(Helper.GetInternetItems(), "Internet", Resources.Explorer, "Internet");
+            panelNonWindowsApps.Controls.Add(internet);
+
+            UCAppsList multimedia = new UCAppsList(Helper.GetMultimediaItems(), "Multimedia", Resources.Explorer, "Multimedia");
+            panelNonWindowsApps.Controls.Add(multimedia);
+
+            UCAppsList Utilities = new UCAppsList(Helper.GetUtilitiesItems(), "Utilities", Resources.Explorer, "Utilities");
+            panelNonWindowsApps.Controls.Add(Utilities);
+
+            UCAppsList Windows = new UCAppsList(Helper.GetWindowsItems(), "Windows", Resources.Explorer, "Windows");
+            panelNonWindowsApps.Controls.Add(Windows);
+
+            UCAppsList Internet = new UCAppsList(Helper.GetInternetItems(), "Internet", Resources.Explorer, "Internet");
+            panelNonWindowsApps.Controls.Add(Internet);
+            
         }
 
         private void AddExplorerFeature()

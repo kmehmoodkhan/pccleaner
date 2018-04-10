@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCCleaner.Properties;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -10,17 +11,28 @@ namespace PCCleaner.Common
     [Serializable]
     public class Result
     {
+        string searchAreaTitle = string.Empty;
         public string SearchAreaTitle
         {
             get
             {
-                return "Edge";
+                return searchAreaTitle;
             }
         }
+
+
+        SearchArea searchArea;
         public SearchArea SearchArea
         {
-            get;
-            set;
+            get
+            {
+                return searchArea;
+            }
+            set
+            {
+                searchArea = value;
+                searchAreaTitle =  Resources.ResourceManager.GetString("SearchArea_" + Convert.ToInt32(searchArea));
+            }
         }
 
         Image icon = null;

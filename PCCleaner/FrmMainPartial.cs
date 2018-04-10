@@ -45,5 +45,75 @@ namespace PCCleaner
                 return (UCAppsList)control;
             }
         }
+
+        private UCAppsList WindowExplorer
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[0].Controls[0].Controls["Explorer"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList SystemArea
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[0].Controls[0].Controls["System"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList Advanced
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[0].Controls[0].Controls["Advanced"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList WindowsStore
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["WindowsStore"];
+                return (UCAppsList)control;
+            }
+        }
+        private UCAppsList Applications
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Applications"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList Internet
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Internet"];
+                return (UCAppsList)control;
+            }
+        }
+
+        private UCAppsList Utilities
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Utilities"];
+                return (UCAppsList)control;
+            }
+        }
+        private UCAppsList Windows
+        {
+            get
+            {
+                var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Windows"];
+                return (UCAppsList)control;
+            }
+        }
     }
 }

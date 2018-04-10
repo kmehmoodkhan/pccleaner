@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.labelTimeTaken = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -122,6 +122,7 @@
             this.buttonBack.TabIndex = 10;
             this.buttonBack.Text = "View Summary Results";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Visible = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // lineTop
@@ -149,12 +150,13 @@
             this.labelNotes.Size = new System.Drawing.Size(476, 16);
             this.labelNotes.TabIndex = 6;
             this.labelNotes.Text = "Detail of files to be deleted ( Note: No files have been deleted yet )";
+            this.labelNotes.Visible = false;
             // 
             // dataGridViewOverall
             // 
             this.dataGridViewOverall.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOverall.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewOverall.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewOverall.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -215,12 +217,14 @@
             this.SearchArea.DataPropertyName = "SearchArea";
             this.SearchArea.HeaderText = "SearchArea";
             this.SearchArea.Name = "SearchArea";
+            this.SearchArea.Visible = false;
             // 
             // SearchFeature
             // 
             this.SearchFeature.DataPropertyName = "FeatureName";
             this.SearchFeature.HeaderText = "SearchFeature";
             this.SearchFeature.Name = "SearchFeature";
+            this.SearchFeature.Visible = false;
             // 
             // contextMenuStripResult
             // 

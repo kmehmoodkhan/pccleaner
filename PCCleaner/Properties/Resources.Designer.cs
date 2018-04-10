@@ -160,6 +160,61 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Applications {
+            get {
+                object obj = ResourceManager.GetObject("Applications", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adobe Reader.
+        /// </summary>
+        internal static string Applications_1 {
+            get {
+                return ResourceManager.GetString("Applications_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to McAfee Antivirus.
+        /// </summary>
+        internal static string Applications_2 {
+            get {
+                return ResourceManager.GetString("Applications_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft Office Picture Manager.
+        /// </summary>
+        internal static string Applications_3 {
+            get {
+                return ResourceManager.GetString("Applications_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notepad++.
+        /// </summary>
+        internal static string Applications_4 {
+            get {
+                return ResourceManager.GetString("Applications_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft Office.
+        /// </summary>
+        internal static string Applications_5 {
+            get {
+                return ResourceManager.GetString("Applications_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internet Cache.
         /// </summary>
         internal static string BrowserFeature_1 {
@@ -253,6 +308,16 @@ namespace PCCleaner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Chrome {
+            get {
+                object obj = ResourceManager.GetObject("Chrome", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Edge {
             get {
                 object obj = ResourceManager.GetObject("Edge", resourceCulture);
@@ -327,6 +392,16 @@ namespace PCCleaner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Firefox {
+            get {
+                object obj = ResourceManager.GetObject("Firefox", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IE {
             get {
                 object obj = ResourceManager.GetObject("IE", resourceCulture);
@@ -345,12 +420,57 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skype.
+        /// </summary>
+        internal static string Internet_1 {
+            get {
+                return ResourceManager.GetString("Internet_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to uTorrent.
+        /// </summary>
+        internal static string Internet_2 {
+            get {
+                return ResourceManager.GetString("Internet_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {
             get {
                 object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Adobe Flash Player.
+        /// </summary>
+        internal static string Multimedia_1 {
+            get {
+                return ResourceManager.GetString("Multimedia_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Microsoft Silverlight.
+        /// </summary>
+        internal static string Multimedia_2 {
+            get {
+                return ResourceManager.GetString("Multimedia_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Media Player.
+        /// </summary>
+        internal static string Multimedia_3 {
+            get {
+                return ResourceManager.GetString("Multimedia_3", resourceCulture);
             }
         }
         
@@ -371,6 +491,123 @@ namespace PCCleaner.Properties {
             get {
                 object obj = ResourceManager.GetObject("Registry", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edge.
+        /// </summary>
+        internal static string SearchArea_0 {
+            get {
+                return ResourceManager.GetString("SearchArea_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IE.
+        /// </summary>
+        internal static string SearchArea_1 {
+            get {
+                return ResourceManager.GetString("SearchArea_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multimedia.
+        /// </summary>
+        internal static string SearchArea_10 {
+            get {
+                return ResourceManager.GetString("SearchArea_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utilities.
+        /// </summary>
+        internal static string SearchArea_11 {
+            get {
+                return ResourceManager.GetString("SearchArea_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows.
+        /// </summary>
+        internal static string SearchArea_12 {
+            get {
+                return ResourceManager.GetString("SearchArea_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chrome.
+        /// </summary>
+        internal static string SearchArea_2 {
+            get {
+                return ResourceManager.GetString("SearchArea_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firefox.
+        /// </summary>
+        internal static string SearchArea_3 {
+            get {
+                return ResourceManager.GetString("SearchArea_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Explorer.
+        /// </summary>
+        internal static string SearchArea_4 {
+            get {
+                return ResourceManager.GetString("SearchArea_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string SearchArea_5 {
+            get {
+                return ResourceManager.GetString("SearchArea_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        internal static string SearchArea_6 {
+            get {
+                return ResourceManager.GetString("SearchArea_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Store.
+        /// </summary>
+        internal static string SearchArea_7 {
+            get {
+                return ResourceManager.GetString("SearchArea_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applications.
+        /// </summary>
+        internal static string SearchArea_8 {
+            get {
+                return ResourceManager.GetString("SearchArea_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Internet.
+        /// </summary>
+        internal static string SearchArea_9 {
+            get {
+                return ResourceManager.GetString("SearchArea_9", resourceCulture);
             }
         }
         
@@ -500,6 +737,115 @@ namespace PCCleaner.Properties {
             get {
                 object obj = ResourceManager.GetObject("Tools", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7-zip.
+        /// </summary>
+        internal static string Utilities_1 {
+            get {
+                return ResourceManager.GetString("Utilities_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teamviewer.
+        /// </summary>
+        internal static string Utilities_2 {
+            get {
+                return ResourceManager.GetString("Utilities_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Defender.
+        /// </summary>
+        internal static string Utilities_3 {
+            get {
+                return ResourceManager.GetString("Utilities_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Game Explorer.
+        /// </summary>
+        internal static string Windows_1 {
+            get {
+                return ResourceManager.GetString("Windows_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS Management Console.
+        /// </summary>
+        internal static string Windows_2 {
+            get {
+                return ResourceManager.GetString("Windows_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS Paint.
+        /// </summary>
+        internal static string Windows_3 {
+            get {
+                return ResourceManager.GetString("Windows_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MS Search.
+        /// </summary>
+        internal static string Windows_4 {
+            get {
+                return ResourceManager.GetString("Windows_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RegEdit.
+        /// </summary>
+        internal static string Windows_5 {
+            get {
+                return ResourceManager.GetString("Windows_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remote Desktop.
+        /// </summary>
+        internal static string Windows_6 {
+            get {
+                return ResourceManager.GetString("Windows_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WindowsStore {
+            get {
+                object obj = ResourceManager.GetObject("WindowsStore", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bing News.
+        /// </summary>
+        internal static string WindowStore_1 {
+            get {
+                return ResourceManager.GetString("WindowStore_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skype Metro News.
+        /// </summary>
+        internal static string WindowStore_2 {
+            get {
+                return ResourceManager.GetString("WindowStore_2", resourceCulture);
             }
         }
     }

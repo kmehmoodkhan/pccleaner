@@ -84,15 +84,19 @@ namespace PCCleaner
         {
             get
             {
+
+                ManagementObjectSearcher searcher =
+                   new ManagementObjectSearcher("root\\CIMV2",
+                   "SELECT TotalPhysicalMemory FROM Win32_ComputerSystem");
+
                 string ramSize = string.Empty;
-                string Query = "SELECT MaxCapacity FROM Win32_PhysicalMemoryArray";
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher(Query);
-                foreach (ManagementObject WniPART in searcher.Get())
+                foreach (ManagementObject queryObj in searcher.Get())
                 {
-                    UInt32 SizeinKB = Convert.ToUInt32(WniPART.Properties["MaxCapacity"].Value);
-                    UInt32 SizeinMB = SizeinKB / 1024;
-                    UInt32 SizeinGB = SizeinMB / 1024;
-                    ramSize = SizeinGB.ToString() + ".0GB RAM";
+                    double dblMemory;
+                    if (double.TryParse(Convert.ToString(queryObj["TotalPhysicalMemory"]), out dblMemory))
+                    {
+                        ramSize = Math.Ceiling(dblMemory / (1024 * 1024 * 1024)).ToString()+".0GB RAM";
+                    }
                 }
                 return ramSize;
             }

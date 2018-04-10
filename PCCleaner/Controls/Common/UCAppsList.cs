@@ -72,6 +72,30 @@ namespace PCCleaner.Controls.Common
                 this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 30;
                 //this.Height = this.chkListEdge.PreferredHeight + this.EdgeHeading.Height + 40;
             }
+            else if (headingTitle == "WindowsStore")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
+            else if (headingTitle == "Applications")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
+            else if (headingTitle == "Multimedia")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
+            else if (headingTitle == "Internet")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
+            else if (headingTitle == "Utilities")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
+            else if (headingTitle == "Windows")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
         }
 
         bool _checkAll = false;
@@ -107,5 +131,7 @@ namespace PCCleaner.Controls.Common
                 }
             }
         }
+
+     
     }
 }

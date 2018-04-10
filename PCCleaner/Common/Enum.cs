@@ -16,7 +16,13 @@ namespace PCCleaner.Common
         Firefox = 3,
         WindowExplorer=4,
         System = 5,
-        Advanced = 6
+        Advanced = 6,
+        WindowsStore = 7,
+        Applications = 8,
+        Internet = 9,
+        Multimedia = 10,
+        Utilities = 11,
+        Windows = 12
     };
 
     public enum BrowserFeatures
@@ -82,13 +88,94 @@ namespace PCCleaner.Common
         Session = 6,
         SavedFormInformation = 7,
         SavedPassword = 8,
-        CompactDatabases = 9
+        CompactDatabases = 9,
+        RecentDocuments = 10,
+        Run = 11,
+        MRUs = 12,
+        ThumbnailCache = 13,
+        TaskbarJumpList = 14,
+        NetworkPasswords = 15,
+        EmptyRecycleBin = 16,
+        TemporaryFiles = 17,
+        Clipboard = 18,
+        MemoryDumps = 19,
+        ChkDskFileFragments = 20,
+        WindowsLogFiles = 21,
+        WindowErrorReporting = 22,
+        DNSCache = 23,
+        FontCache = 24,
+        StartMenuShortCuts = 25,
+        DesktopShortCuts = 26,
+        WindowsEventLogs = 27,
+        OldPrefetchedData = 28,
+        MenuOrderCache = 29,
+        TrayNotificationCache = 29,
+        WindowSizeLocationCache = 30,
+        EnvironmentPath = 31,
+        UserAssistHistory = 32,
+        IISLogFiles = 33,
+        OldWindowsInstallation = 34,
+        CustomFilesFolderPath = 35,
+        WipeFreeSpace = 36,
+        BingNews = 37,
+        SkypeMetro = 38,
+        AdobeReader = 39,
+        McAFee = 40,
+        PictureManager = 41,
+        NotepadPlus = 42,
+        Office = 43,
+        Skype=44,
+        UTorrent = 45
+    }
+
+    public enum WindowStore
+    {
+        BingNews = 1,
+        SkypeMetro =2 
+    }
+
+    public enum Applications
+    {
+        AdobeReader = 1,
+        McAFee = 2,
+        PictureManager = 3,
+        NotepadPlus = 4,
+        Office = 5
+    }
+
+    public enum Internet
+    {
+        Skype = 1,
+        UTorrent = 2
+    }
+
+    public enum Multimedia
+    {
+        AdobeFlashPlayer = 1,
+        Silverlight = 2,
+        MediaPlayer = 3
     }
 
     public enum ResultView
     {
         Overall = 1,
         Detail = 2
+    }
+
+    public enum Utilities
+    {
+        SevenZip = 1,
+        Teamviewer= 2,
+        WindowsDefender = 3
+    }
+    public enum Windows
+    {
+        GameExplorer = 1,
+        ManagementConsole = 2,
+        Paint=3,
+        Search = 4,
+        RegEdit = 5,
+        RemoteDesktop = 6
     }
 
     public enum KnownFolder

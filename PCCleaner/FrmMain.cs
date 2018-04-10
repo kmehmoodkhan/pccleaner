@@ -38,7 +38,7 @@ namespace PCCleaner
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
             this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
 
-           
+
             this.ucResult.Visible = false;
 
         }
@@ -97,10 +97,35 @@ namespace PCCleaner
                 }));
             };
 
+            List<SearchCriteria> searchCriteria = GetSearchCriteria();
+            var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+            var overAllResult = Analyzer.GetOverallResult(result);
+            this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+            this.FilesFound = result;
+
+            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+        }
+
+        private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ProcessSearch();
+        }
+
+        private List<SearchCriteria> GetSearchCriteria()
+        {
             var edgeSelectedItems = this.Edge.SelectedItems;
             var ieSelectedItems = this.IE.SelectedItems;
             var chromeSelectedItems = this.Chrome.SelectedItems;
             var firefoxSelectedItems = this.Firefox.SelectedItems;
+            var windowExplorerSelectedItems = this.WindowExplorer.SelectedItems;
+            var systemSelectedItems = this.SystemArea.SelectedItems;
+            var advancedSelectedItems = this.Advanced.SelectedItems;
+            var windowStoreItems = this.WindowsStore.SelectedItems;
+            var applicationItems = this.Applications.SelectedItems;
+            var internetItems = this.Internet.SelectedItems;
+            var teamViewerItems = this.Utilities.SelectedItems;
+            var windowsItems = this.Windows.SelectedItems;
 
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
 
@@ -142,15 +167,79 @@ namespace PCCleaner
                 }
             }
 
-            var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
-            var overAllResult = Analyzer.GetOverallResult(result);
-            this.ucResult.ShowResult(ResultView.Overall, overAllResult);
-            this.FilesFound = result;
-        }
+            if (windowExplorerSelectedItems != null && windowExplorerSelectedItems.Count > 0)
+            {
+                foreach (var item in windowExplorerSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowExplorer, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
 
-        private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
-        {
-            ProcessSearch();
+            if (systemSelectedItems != null && systemSelectedItems.Count > 0)
+            {
+                foreach (var item in systemSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.System, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (advancedSelectedItems != null && advancedSelectedItems.Count > 0)
+            {
+                foreach (var item in advancedSelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Advanced, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (windowStoreItems != null && windowStoreItems.Count > 0)
+            {
+                foreach (var item in windowStoreItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowsStore, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (applicationItems != null && applicationItems.Count > 0)
+            {
+                foreach (var item in applicationItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Applications, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (internetItems != null && internetItems.Count > 0)
+            {
+                foreach (var item in internetItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Internet, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+
+            if (teamViewerItems != null && teamViewerItems.Count > 0)
+            {
+                foreach (var item in teamViewerItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Utilities, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+
+            if (windowsItems != null && windowsItems.Count > 0)
+            {
+                foreach (var item in windowsItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Windows, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+            return searchCriteria;
         }
 
         private void backgroundWorkerSearch_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -166,7 +255,7 @@ namespace PCCleaner
             }
         }
 
-      
+
 
         private void buttonCleaner1_Click(object sender, EventArgs e)
         {
@@ -175,12 +264,11 @@ namespace PCCleaner
             {
                 try
                 {
-                    Parallel.ForEach(FilesFound, file =>
-                    {
-                        File.Delete(file.FilePath);
-                    });
+                    var searchCriteria = GetSearchCriteria();
+                    var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                    Cleaner.CleanUpSystem(searchCriteria, filesFound, ref this.backgroundWorkerSearch);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }

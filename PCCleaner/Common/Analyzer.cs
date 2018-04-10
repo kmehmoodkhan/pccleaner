@@ -25,8 +25,7 @@ namespace PCCleaner.Common
             int i = 0;
             int totalAreasToSearch = searchCriteria.Count;
             int areasCompleted = 0;
-
-
+            
             foreach (SearchCriteria item in searchCriteria)
             {
                 switch (item.SearchArea)
@@ -39,7 +38,7 @@ namespace PCCleaner.Common
                             case BrowserFeatures.Cache:
 
                                 parentPath = Helper.GetBrowserCachePath(SearchArea.Edge);
-                                MessageBox.Show("Edge"+parentPath);
+
                                 try
                                 {
                                     files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(@"cache")).ToArray();
@@ -51,7 +50,7 @@ namespace PCCleaner.Common
                                 }
                                 catch (Exception ex)
                                 {
-                                    MessageBox.Show(ex.Message);
+                                    ;
                                 }
                                 break;
                             case BrowserFeatures.InternetHistory:

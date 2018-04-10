@@ -1,5 +1,6 @@
 ﻿using PCCleaner.Common;
 using PCCleaner.Controls;
+using PCCleaner.Controls.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,6 @@ namespace PCCleaner
         {
             InitializeComponent();
             FilesFound = new List<ResultDetail>();
-            var result = Helper.GetBrowserCachePath(SearchArea.Firefox);
 
             this.panelCleanerComponents.Controls.Add(new UCCleaner());
             this.labelClientInfo.Text = ApplicationSettings.SystemInformation;
@@ -102,6 +102,7 @@ namespace PCCleaner
         {
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+            
 
             if (this.progressBar1.InvokeRequired)
             {
@@ -112,6 +113,7 @@ namespace PCCleaner
             };
 
             List<SearchCriteria> searchCriteria = GetSearchCriteria();
+
             var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
             var overAllResult = Analyzer.GetOverallResult(result);
             this.ucResult.ShowResult(ResultView.Overall, overAllResult);
@@ -129,22 +131,129 @@ namespace PCCleaner
         private List<SearchCriteria> GetSearchCriteria()
         {
             var edgeSelectedItems = this.Edge.SelectedItems;
-            var ieSelectedItems = this.IE.SelectedItems;
-            var chromeSelectedItems = this.Chrome.SelectedItems;
-            var firefoxSelectedItems = this.Firefox.SelectedItems;
-            var windowExplorerSelectedItems = this.WindowExplorer.SelectedItems;
-            var systemSelectedItems = this.SystemArea.SelectedItems;
-            var advancedSelectedItems = this.Advanced.SelectedItems;
-            var windowStoreItems = this.WindowsStore.SelectedItems;
-            var applicationItems = this.Applications.SelectedItems;
-            var internetItems = this.Internet.SelectedItems;
-            var teamViewerItems = this.Utilities.SelectedItems;
-            var windowsItems = this.Windows.SelectedItems;
+
+            List<ListItem> ieSelectedItems = null;
+            try
+            {
+                ieSelectedItems = this.IE.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+            List<ListItem> chromeSelectedItems = null;
+            try
+            {
+                chromeSelectedItems = this.Chrome.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> firefoxSelectedItems = null;
+            try
+            {
+                firefoxSelectedItems = this.Firefox.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+            List<ListItem> windowExplorerSelectedItems = null;
+            try
+            {
+                windowExplorerSelectedItems = this.WindowExplorer.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> systemSelectedItems = null;
+            try
+            {
+                systemSelectedItems = this.SystemArea.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> advancedSelectedItems = null;
+            try
+            {
+                advancedSelectedItems = this.Advanced.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> windowStoreItems = null;
+            try
+            {
+                windowStoreItems = this.WindowsStore.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> applicationItems = null;
+            try
+            {
+                applicationItems = this.Applications.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> internetItems = null;
+            try
+            {
+                internetItems = this.Internet.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> teamViewerItems = null;
+            try
+            {
+                teamViewerItems = this.Utilities.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
+
+            List<ListItem> windowsItems = null;
+            try
+            {
+                windowsItems = this.Windows.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+            
 
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
 
-
-
+            
             if (edgeSelectedItems != null && edgeSelectedItems.Count > 0)
             {
                 foreach (var item in edgeSelectedItems)

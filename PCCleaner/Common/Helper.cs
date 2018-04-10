@@ -179,6 +179,8 @@ namespace PCCleaner.Common
         public static string GetBrowserCachePath(SearchArea browser)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            
+
             switch (browser)
             {
                 case SearchArea.Edge:
@@ -194,6 +196,7 @@ namespace PCCleaner.Common
                                 break;
                             }
                         }
+                        
                     }
                     catch
                     {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using PCCleaner.Controls.Common;
 using PCCleaner.Properties;
 using Shell32;
 using System;
@@ -16,7 +17,7 @@ namespace PCCleaner.Common
 {
     public static class Analyzer
     {
-        public static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria, ref BackgroundWorker backgroundWorker)
+        public static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria, ref BackgroundWorker backgroundWorker, bool isCleanerCall = false)
         {
             List<ResultDetail> result = new List<ResultDetail>();
             string[] files = null;
@@ -1187,16 +1188,19 @@ namespace PCCleaner.Common
                                 break;
                         }
                         break;
-                        #endregion                      
+                        #endregion
+
+                    
                 }
 
-
-                if (areasCompleted < totalAreasToSearch)
+                if (!isCleanerCall)
                 {
-                    areasCompleted += 1;
+                    if (areasCompleted < totalAreasToSearch)
+                    {
+                        areasCompleted += 1;
+                    }
+                    backgroundWorker.ReportProgress(Helper.CompletionPercentage(areasCompleted, totalAreasToSearch));
                 }
-
-                backgroundWorker.ReportProgress(Helper.CompletionPercentage(areasCompleted, totalAreasToSearch));
             }
 
 
@@ -1234,6 +1238,50 @@ namespace PCCleaner.Common
             summary.OverallResult = results.ToList();
 
             return summary;
+        }
+
+        public static List<ResultDetail> GetRegistryResult(List<ListItem> searchCriteria, ref BackgroundWorker backgroundWorker)
+        {
+            List<ResultDetail> searchResult = new List<ResultDetail>();
+
+            foreach (ListItem critiera in searchCriteria)
+            {
+                RegistryOptions option = (RegistryOptions)critiera.ItemId;
+                switch (option)
+                {
+                    case RegistryOptions.MissingSharedDlls:
+                        break;
+                    case RegistryOptions.UnUsedFileExtensions:
+                        break;
+                    case RegistryOptions.ActivexAndClassIssues:
+                        break;
+                    case RegistryOptions.TypeLibraries:
+                        break;
+                    case RegistryOptions.Applications:
+                        break;
+                    case RegistryOptions.Fonts:
+                        break;
+                    case RegistryOptions.ApplicationPaths:
+                        break;
+                    case RegistryOptions.HelpFiles:
+                        break;
+                    case RegistryOptions.Installer:
+                        break;
+                    case RegistryOptions.ObsoleteSoftware:
+                        break;
+                    case RegistryOptions.RunAtStartup:
+                        break;
+                    case RegistryOptions.StartMenuOrdering:
+                        break;
+                    case RegistryOptions.MUICache:
+                        break;
+                    case RegistryOptions.SoundEvents:
+                        break;
+                    case RegistryOptions.WindowsServices:
+                        break;
+                }
+            }
+            return searchResult;
         }
     }
 }

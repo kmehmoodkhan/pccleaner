@@ -515,6 +515,141 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing Shared Dlls.
+        /// </summary>
+        internal static string RegistryOptions_1 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Obsolete Software.
+        /// </summary>
+        internal static string RegistryOptions_10 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run at Startup.
+        /// </summary>
+        internal static string RegistryOptions_11 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start Menu Ordering.
+        /// </summary>
+        internal static string RegistryOptions_12 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MUI Cache.
+        /// </summary>
+        internal static string RegistryOptions_13 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sound Events.
+        /// </summary>
+        internal static string RegistryOptions_14 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Services.
+        /// </summary>
+        internal static string RegistryOptions_15 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unused File Extensions.
+        /// </summary>
+        internal static string RegistryOptions_2 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ActiveX and Class Issues.
+        /// </summary>
+        internal static string RegistryOptions_3 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type Libraries.
+        /// </summary>
+        internal static string RegistryOptions_4 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applications.
+        /// </summary>
+        internal static string RegistryOptions_5 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fonts .
+        /// </summary>
+        internal static string RegistryOptions_6 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Paths.
+        /// </summary>
+        internal static string RegistryOptions_7 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help Files.
+        /// </summary>
+        internal static string RegistryOptions_8 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Installer.
+        /// </summary>
+        internal static string RegistryOptions_9 {
+            get {
+                return ResourceManager.GetString("RegistryOptions_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edge.
         /// </summary>
         internal static string SearchArea_0 {

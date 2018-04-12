@@ -388,4 +388,49 @@
   <data name="Windows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\windows.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="RegistryOptions_1" xml:space="preserve">
+    <value>Missing Shared Dlls</value>
+  </data>
+  <data name="RegistryOptions_10" xml:space="preserve">
+    <value>Obsolete Software</value>
+  </data>
+  <data name="RegistryOptions_11" xml:space="preserve">
+    <value>Run at Startup</value>
+  </data>
+  <data name="RegistryOptions_12" xml:space="preserve">
+    <value>Start Menu Ordering</value>
+  </data>
+  <data name="RegistryOptions_13" xml:space="preserve">
+    <value>MUI Cache</value>
+  </data>
+  <data name="RegistryOptions_14" xml:space="preserve">
+    <value>Sound Events</value>
+  </data>
+  <data name="RegistryOptions_15" xml:space="preserve">
+    <value>Windows Services</value>
+  </data>
+  <data name="RegistryOptions_2" xml:space="preserve">
+    <value>Unused File Extensions</value>
+  </data>
+  <data name="RegistryOptions_3" xml:space="preserve">
+    <value>ActiveX and Class Issues</value>
+  </data>
+  <data name="RegistryOptions_4" xml:space="preserve">
+    <value>Type Libraries</value>
+  </data>
+  <data name="RegistryOptions_5" xml:space="preserve">
+    <value>Applications</value>
+  </data>
+  <data name="RegistryOptions_6" xml:space="preserve">
+    <value>Fonts </value>
+  </data>
+  <data name="RegistryOptions_7" xml:space="preserve">
+    <value>Application Paths</value>
+  </data>
+  <data name="RegistryOptions_8" xml:space="preserve">
+    <value>Help Files</value>
+  </data>
+  <data name="RegistryOptions_9" xml:space="preserve">
+    <value>Installer</value>
+  </data>
 </root>

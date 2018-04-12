@@ -96,6 +96,15 @@ namespace PCCleaner.Controls.Common
             {
                 this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
             }
+            else if (controlName == "Registry")
+            {
+                this.Height = this.Height + 200;
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 400;
+            }
+            else
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
+            }
         }
 
         bool _checkAll = false;

@@ -28,10 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.flowLayoutPanelRegistry = new System.Windows.Forms.FlowLayoutPanel();
+            this.SuspendLayout();
+            // 
+            // flowLayoutPanelRegistry
+            // 
+            this.flowLayoutPanelRegistry.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelRegistry.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanelRegistry.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelRegistry.Name = "flowLayoutPanelRegistry";
+            this.flowLayoutPanelRegistry.Size = new System.Drawing.Size(264, 524);
+            this.flowLayoutPanelRegistry.TabIndex = 0;
+            // 
+            // UCRegistry
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.flowLayoutPanelRegistry);
+            this.Name = "UCRegistry";
+            this.Size = new System.Drawing.Size(264, 524);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelRegistry;
     }
 }

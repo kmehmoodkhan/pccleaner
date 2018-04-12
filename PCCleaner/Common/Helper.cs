@@ -10,6 +10,7 @@ using System.Management;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
+using System.Runtime.InteropServices;
 
 namespace PCCleaner.Common
 {
@@ -79,7 +80,7 @@ namespace PCCleaner.Common
         public static List<ListItem> GetWindowsApplications()
         {
             List<ListItem> list = new List<ListItem>();
-            
+
 
             ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT * FROM Win32_Product");
             foreach (ManagementObject mo in mos.Get())
@@ -118,7 +119,7 @@ namespace PCCleaner.Common
                     path += "\\Microsoft\\";
                     try
                     {
-                       var directories = System.IO.Directory.GetDirectories(path);
+                        var directories = System.IO.Directory.GetDirectories(path);
                         foreach (string dir in directories)
                         {
                             if (dir.EndsWith(@"Internet Explorer"))
@@ -137,7 +138,7 @@ namespace PCCleaner.Common
                     path += "\\Google\\";
                     try
                     {
-                       var directories = System.IO.Directory.GetDirectories(path);
+                        var directories = System.IO.Directory.GetDirectories(path);
                         foreach (string dir in directories)
                         {
                             if (dir.EndsWith(@"Chrome"))
@@ -179,7 +180,7 @@ namespace PCCleaner.Common
         public static string GetBrowserCachePath(SearchArea browser)
         {
             var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            
+
 
             switch (browser)
             {
@@ -196,7 +197,7 @@ namespace PCCleaner.Common
                                 break;
                             }
                         }
-                        
+
                     }
                     catch
                     {
@@ -262,7 +263,7 @@ namespace PCCleaner.Common
                     break;
             }
 
-            
+
             return path;
         }
 
@@ -313,7 +314,7 @@ namespace PCCleaner.Common
                     path += "\\Google\\";
                     try
                     {
-                       var directories = System.IO.Directory.GetDirectories(path);
+                        var directories = System.IO.Directory.GetDirectories(path);
                         foreach (string dir in directories)
                         {
                             if (dir.EndsWith(@"Chrome"))
@@ -332,7 +333,7 @@ namespace PCCleaner.Common
                     path += "\\Mozilla\\";
                     try
                     {
-                       var directories = System.IO.Directory.GetDirectories(path);
+                        var directories = System.IO.Directory.GetDirectories(path);
                         foreach (string dir in directories)
                         {
                             if (dir.EndsWith(@"Firefox"))
@@ -356,31 +357,31 @@ namespace PCCleaner.Common
         public static void BindResult(ref ListView listview, List<Result> result)
         {
             int i = 0;
-           // var imageList1 = new ImageList();
+            // var imageList1 = new ImageList();
             foreach (Result file in result)
             {
                 ImageList imageList = new ImageList();
                 imageList.Images.Add(Resources.Edge);
-                string[] row = new string[] {file.SearchArea.ToString(), file.FilesSize.ToString()+" KB", file.TotalFiles.ToString()+" files" };
+                string[] row = new string[] { file.SearchArea.ToString(), file.FilesSize.ToString() + " KB", file.TotalFiles.ToString() + " files" };
                 var listViewItem = new ListViewItem(row);
                 listview.Items.Add(listViewItem);
-               
+
                 listview.SmallImageList = imageList;
                 listview.Items[i].ImageIndex = 0;
                 i++;
             }
         }
-        public static void BindListView(ref ListView listview,string[] files)
+        public static void BindListView(ref ListView listview, string[] files)
         {
-           //  = new string[files.Count]; //{ "Microsoft Internet Explorer", "50kb", "30 files found" };
-            foreach( string file in files)
+            //  = new string[files.Count]; //{ "Microsoft Internet Explorer", "50kb", "30 files found" };
+            foreach (string file in files)
             {
                 string[] row = new string[] { file, "10KB", files.Length.ToString() + " files found" };
                 //row = { file,"10Kb",files.Count.ToString()+"files found"};
                 var listViewItem = new ListViewItem(row);
                 listview.Items.Add(listViewItem);
             }
-            
+
         }
 
         public static double ToKb(long totalBytes)
@@ -460,10 +461,10 @@ namespace PCCleaner.Common
             return list;
         }
 
-        
+
 
         public static List<String> FilesFound = new List<string>();
-        public static  void DirSearch(string sDir,string searchCriteria)
+        public static void DirSearch(string sDir, string searchCriteria)
         {
             try
             {
@@ -476,7 +477,7 @@ namespace PCCleaner.Common
                             FilesFound.Add(f);
                         }
                     }
-                    DirSearch(d,searchCriteria);
+                    DirSearch(d, searchCriteria);
                 }
             }
             catch (System.Exception excpt)
@@ -546,6 +547,71 @@ namespace PCCleaner.Common
                     break;
             }
             return icon;
+        }
+
+        [DllImport("shell32.dll")]
+        static extern int SHEmptyRecycleBin(IntPtr hWnd,string pszRootPath, uint dwFlags);
+
+        [Flags]
+        private enum RecycleFlags : uint
+        {
+            SHERB_NOCONFIRMATION = 0x1,
+            SHERB_NOPROGRESSUI = 0x2,
+            SHERB_NOSOUND = 0x4
+        }
+        public static void EmptyWastebasket(bool show_progress,
+            bool play_sound, bool confirm)
+        {
+            RecycleFlags options = 0;
+            if (!show_progress) options =
+                options | RecycleFlags.SHERB_NOPROGRESSUI;
+            if (!play_sound) options =
+             options | RecycleFlags.SHERB_NOSOUND;
+            if (!confirm) options =
+          options | RecycleFlags.SHERB_NOCONFIRMATION;
+
+            try
+            {
+                SHEmptyRecycleBin(IntPtr.Zero, null, (uint)options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error emptying wastebasket.\n" +
+                    ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        public static void EmptyRecycleBin()
+        {
+            RecycleFlags options = 0;
+           options = RecycleFlags.SHERB_NOPROGRESSUI;
+            options = RecycleFlags.SHERB_NOSOUND;
+
+          options = RecycleFlags.SHERB_NOCONFIRMATION;
+
+            try
+            {
+                SHEmptyRecycleBin(IntPtr.Zero, null, (uint)options);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error emptying wastebasket.\n" +
+                    ex.Message, "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        public static List<ListItem> GetRegistryFeaturesList()
+        {
+            List<ListItem> list = new List<ListItem>();
+
+            foreach (RegistryOptions feature in Enum.GetValues(typeof(RegistryOptions)))
+            {
+                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("RegistryOptions_" + Convert.ToInt32(feature)) };
+                list.Add(item);
+            }
+            return list;
         }
     }
 }

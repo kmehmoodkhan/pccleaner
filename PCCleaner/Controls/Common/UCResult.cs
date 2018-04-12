@@ -42,18 +42,17 @@ namespace PCCleaner.Controls.Common
         public UCResult()
         {
             InitializeComponent();
+            resultSummary = new ResultSummary();
         }
 
 
 
         public void ShowResult(ResultView view, ResultSummary summary)
         {
-            if (resultSummary == null)
-            {
-                resultSummary = summary;
-            }
+          
             if (view == ResultView.Detail)
             {
+
                 this.dataGridViewDetail.Visible = true;
                 this.dataGridViewOverall.Visible = false;
 
@@ -70,7 +69,6 @@ namespace PCCleaner.Controls.Common
                 this.buttonBack.Visible = true;
                 this.lineBottom.Visible = false;
                 this.lineTop.Visible = false;
-
             }
             else
             {
@@ -119,8 +117,9 @@ namespace PCCleaner.Controls.Common
                 FeatureArea SelectedFeature = (PCCleaner.Common.FeatureArea)Enum.Parse(typeof(PCCleaner.Common.FeatureArea), featureArea);
 
 
-                var filteredData = this.ResultSummary.DetailResult.Where(t => (int)t.SearchArea == (int)SelectedSearchArea && (int)t.FeatureArea == (int)SelectedFeature).ToList();
-                
+                var filteredData = CleanerApplicationContext.ResultSummary.DetailResult.Where(t => (int)t.SearchArea == (int)SelectedSearchArea && (int)t.FeatureArea == (int)SelectedFeature).ToList();
+
+                this.ResultSummary.OverallResult = CleanerApplicationContext.ResultSummary.OverallResult;
 
                 ResultSummary summary = new ResultSummary(this.ResultSummary.OverallResult, filteredData);
 

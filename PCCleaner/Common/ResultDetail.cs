@@ -41,5 +41,23 @@ namespace PCCleaner.Common
                 return Helper.GetSearchAreaIcon(SearchArea);
             }
         }
+
+        public RegistryOptions RegistryProblem
+        {
+            get;
+            set;
+        }
+
+        public string Data
+        {
+            get;
+            set;
+        }
+
+        public string RegistryKey
+        {
+            get;
+            set;
+        }
     }
 }

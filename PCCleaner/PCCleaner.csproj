@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Common\Analyzer.cs" />
+    <Compile Include="Common\CleanerApplicationContext.cs" />
     <Compile Include="Common\Cleaner.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Common\Helper.cs" />
@@ -159,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Common\UCResult.resx">
       <DependentUpon>UCResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCRegistry.resx">
+      <DependentUpon>UCRegistry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>

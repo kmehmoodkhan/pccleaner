@@ -201,4 +201,31 @@ namespace PCCleaner.Common
         SavedSearches,
         Videos
     }
+
+    public enum RegistryOptions
+    {
+        MissingSharedDlls = 1,
+        UnUsedFileExtensions = 2,
+        ActivexAndClassIssues = 3,
+        TypeLibraries = 4,
+        Applications = 5,
+        Fonts = 6,
+        ApplicationPaths = 7,
+        HelpFiles = 8,
+        Installer = 9,
+        ObsoleteSoftware = 10,
+        RunAtStartup = 11,
+        StartMenuOrdering = 12,
+        MUICache = 13,
+        SoundEvents = 14,
+        WindowsServices = 15
+    }
+
+    public enum ApplicationItem
+    {
+        Cleaner = 1,
+        Registry = 2,
+        Tools = 3,
+        Options = 4
+    }
 }

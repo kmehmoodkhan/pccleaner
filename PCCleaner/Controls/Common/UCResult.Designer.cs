@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.labelTimeTaken = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -51,10 +51,10 @@
             this.toolStripMenuItemViewDetail = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemSaveTo = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewDetail = new System.Windows.Forms.DataGridView();
-            this.contextMenuStripDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AreaIcon = new System.Windows.Forms.DataGridViewImageColumn();
             this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStripDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panelStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             this.panel1.SuspendLayout();
@@ -156,8 +156,8 @@
             // dataGridViewOverall
             // 
             this.dataGridViewOverall.AllowUserToAddRows = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOverall.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewOverall.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewOverall.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -266,12 +266,6 @@
             this.dataGridViewDetail.Size = new System.Drawing.Size(614, 262);
             this.dataGridViewDetail.TabIndex = 3;
             // 
-            // contextMenuStripDetail
-            // 
-            this.contextMenuStripDetail.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStripDetail.Name = "contextMenuStripDetail";
-            this.contextMenuStripDetail.Size = new System.Drawing.Size(61, 4);
-            // 
             // AreaIcon
             // 
             this.AreaIcon.DataPropertyName = "Icon";
@@ -292,6 +286,12 @@
             this.Col_Size.DataPropertyName = "FileSize";
             this.Col_Size.HeaderText = "Size";
             this.Col_Size.Name = "Col_Size";
+            // 
+            // contextMenuStripDetail
+            // 
+            this.contextMenuStripDetail.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStripDetail.Name = "contextMenuStripDetail";
+            this.contextMenuStripDetail.Size = new System.Drawing.Size(61, 4);
             // 
             // UCResult
             // 

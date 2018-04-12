@@ -18,14 +18,21 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
+       
 
+        bool IsCleanerCall = false;
+        public ApplicationItem SelectedItem
+        {
+            get;
+            set;
+        }
         private List<ResultDetail> FilesFound = null;
         public FrmMain()
         {
             InitializeComponent();
             FilesFound = new List<ResultDetail>();
 
-            this.panelCleanerComponents.Controls.Add(new UCCleaner());
+            //this.panelCleanerComponents.Controls.Add(new UCCleaner());
             this.labelClientInfo.Text = ApplicationSettings.SystemInformation;
 
             this.panelCleanerComponents.HorizontalScroll.Maximum = 0;
@@ -38,6 +45,7 @@ namespace PCCleaner
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
             this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
 
+            SelectedItem = ApplicationItem.Cleaner;
 
             this.ucResult.Visible = false;
 
@@ -49,6 +57,13 @@ namespace PCCleaner
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
+
+            this.ucCleaner1.Visible = false;
+
+            UCRegistry uCRegistry = new UCRegistry();
+            uCRegistry.Name = "Registry";
+            panelCleanerComponents.Controls.Add(uCRegistry);
+            SelectedItem = ApplicationItem.Registry;
         }
 
         private void buttonCleaner_Click(object sender, EventArgs e)
@@ -57,6 +72,13 @@ namespace PCCleaner
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
+
+            this.ucCleaner1.Visible = true;
+
+            UCRegistry registry =panelCleanerComponents.Controls.Find("Registry",false)[0] as UCRegistry;
+            registry.Hide();
+
+            SelectedItem = ApplicationItem.Cleaner;
         }
 
         private void buttonTools_Click(object sender, EventArgs e)
@@ -77,6 +99,7 @@ namespace PCCleaner
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
+            IsCleanerCall = false;
             try
             {
                 ucResult.Visible = true;
@@ -100,6 +123,7 @@ namespace PCCleaner
 
         public void ProcessSearch()
         {
+
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
             
@@ -112,12 +136,33 @@ namespace PCCleaner
                 }));
             };
 
-            List<SearchCriteria> searchCriteria = GetSearchCriteria();
+            if (SelectedItem == ApplicationItem.Cleaner)
+            {
+                List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
-            var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
-            var overAllResult = Analyzer.GetOverallResult(result);
-            this.ucResult.ShowResult(ResultView.Overall, overAllResult);
-            this.FilesFound = result;
+                var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                
+                var overAllResult = Analyzer.GetOverallResult(result);
+
+                CleanerApplicationContext.ResultSummary = overAllResult;
+
+                this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+                this.FilesFound = result;
+            }
+            else if( SelectedItem == ApplicationItem.Registry)
+            {
+                UCRegistry registry = this.panelCleanerComponents.Controls.Find("Registry",false)[0] as UCRegistry;
+
+                List<ListItem> registrySelectedItems = null;
+                try
+                {
+                    registrySelectedItems = registry.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+            }
 
             this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
@@ -125,7 +170,12 @@ namespace PCCleaner
 
         private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
         {
-            ProcessSearch();
+            if(!IsCleanerCall)
+             ProcessSearch();
+            else
+            {
+                CleanupSystem();
+            }
         }
 
         private List<SearchCriteria> GetSearchCriteria()
@@ -367,13 +417,30 @@ namespace PCCleaner
 
         private void backgroundWorkerSearch_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            progressBar1.Value = e.ProgressPercentage;
-            if (e.ProgressPercentage == 100)
+            if (this.progressBar1.InvokeRequired)
             {
-                if (this.panelProgress.Controls.Find("lblCompletion", true).Count() < 1)
+                this.progressBar1.Invoke(new MethodInvoker(delegate
                 {
-                    int i = 2;
-                    //this.panelProgress.Controls.Add(new Label() { Text = "100%", Name = "lblCompletion" });
+                    progressBar1.Value = e.ProgressPercentage;
+                    if (e.ProgressPercentage == 100)
+                    {
+                        if (this.panelProgress.Controls.Find("lblCompletion", true).Count() < 1)
+                        {
+                            int i = 2;
+                            //this.panelProgress.Controls.Add(new Label() { Text = "100%", Name = "lblCompletion" });
+                        }
+                    }
+                }));
+            }
+            else{
+                progressBar1.Value = e.ProgressPercentage;
+                if (e.ProgressPercentage == 100)
+                {
+                    if (this.panelProgress.Controls.Find("lblCompletion", true).Count() < 1)
+                    {
+                        int i = 2;
+                        //this.panelProgress.Controls.Add(new Label() { Text = "100%", Name = "lblCompletion" });
+                    }
                 }
             }
         }
@@ -382,20 +449,60 @@ namespace PCCleaner
 
         private void buttonCleaner1_Click(object sender, EventArgs e)
         {
+            IsCleanerCall = true;
             DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    var searchCriteria = GetSearchCriteria();
-                    var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
-                    Cleaner.CleanUpSystem(searchCriteria, filesFound, ref this.backgroundWorkerSearch);
+                    ucResult.Visible = true;
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    backgroundWorkerSearch.RunWorkerAsync();
+                    stopwatch.Stop();
+                    ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+                    this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+
+                    ucResult.Visible = true;
+                    Stopwatch stopwatch = Stopwatch.StartNew();
+                    backgroundWorkerSearch.RunWorkerAsync();
+                    stopwatch.Stop();
+                    ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
             }
+        }
+
+        private void CleanupSystem()
+        {
+            if (this.progressBar1.InvokeRequired)
+            {
+                this.progressBar1.Invoke(new MethodInvoker(delegate
+                {
+                    this.progressBar1.Visible = true;
+                }));
+            };
+
+            this.backgroundWorkerSearch = new BackgroundWorker();
+            this.backgroundWorkerSearch.WorkerReportsProgress = true;
+            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
+
+            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+
+            var searchCriteria = GetSearchCriteria();
+            var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch, true);
+            Cleaner.CleanUpSystem(searchCriteria, filesFound, ref this.backgroundWorkerSearch);
+
+            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+        }
+
+        private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            backgroundWorkerSearch.Dispose();
         }
     }
 }

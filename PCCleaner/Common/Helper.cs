@@ -542,6 +542,9 @@ namespace PCCleaner.Common
                 case SearchArea.Windows:
                     icon = Resources.Windows;
                     break;
+                case SearchArea.Registry:
+                    icon = Resources.Registry;
+                    break;
                 default:
                     icon = Resources.Information;
                     break;

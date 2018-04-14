@@ -433,4 +433,7 @@
   <data name="RegistryOptions_9" xml:space="preserve">
     <value>Installer</value>
   </data>
+  <data name="Registry_Left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\registry_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

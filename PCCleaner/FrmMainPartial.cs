@@ -1,4 +1,5 @@
-﻿using PCCleaner.Controls.Common;
+﻿using PCCleaner.Controls;
+using PCCleaner.Controls.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,6 +114,14 @@ namespace PCCleaner
             {
                 var control = this.ucCleaner1.Controls[0].Controls[1].Controls[0].Controls["Windows"];
                 return (UCAppsList)control;
+            }
+        }
+        private UCRegistry Registry
+        {
+            get
+            {
+                var control = panelCleanerComponents.Controls.Find("Registry",false)[0];
+                return (UCRegistry)control;
             }
         }
     }

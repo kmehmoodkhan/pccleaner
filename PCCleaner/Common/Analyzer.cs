@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.Win32;
 using PCCleaner.Controls.Common;
 using PCCleaner.Properties;
 using Shell32;
@@ -26,7 +27,7 @@ namespace PCCleaner.Common
             int i = 0;
             int totalAreasToSearch = searchCriteria.Count;
             int areasCompleted = 0;
-            
+
             foreach (SearchCriteria item in searchCriteria)
             {
                 switch (item.SearchArea)
@@ -1188,9 +1189,35 @@ namespace PCCleaner.Common
                                 break;
                         }
                         break;
-                        #endregion
+                    #endregion
 
-                    
+                    #region Registry
+                    case (int)SearchArea.Registry:
+                        RegistryOptions registry = (RegistryOptions)item.FeatureId;
+                        switch (registry)
+                        {
+                            case RegistryOptions.MissingSharedDlls:
+
+                                RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDLLs");
+                                foreach (var v in key.GetValueNames())
+                                {
+                                    try
+                                    {
+                                        FileInfo file = new FileInfo(v);
+                                        if (!file.Exists)
+                                        {
+                                            result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.MissingSharedDlls, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDLLs" });
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        ;
+                                    }
+                                }
+                                break;
+                        }
+                        break;
+                        #endregion
                 }
 
                 if (!isCleanerCall)

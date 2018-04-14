@@ -101,10 +101,6 @@ namespace PCCleaner.Controls.Common
                 this.Height = this.Height + 200;
                 this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 400;
             }
-            else
-            {
-                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 13;
-            }
         }
 
         bool _checkAll = false;

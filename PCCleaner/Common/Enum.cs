@@ -22,7 +22,8 @@ namespace PCCleaner.Common
         Internet = 9,
         Multimedia = 10,
         Utilities = 11,
-        Windows = 12
+        Windows = 12,
+        Registry = 13
     };
 
     public enum BrowserFeatures
@@ -134,7 +135,22 @@ namespace PCCleaner.Common
         Paint = 51,
         Search = 52,
         RegEdit = 53,
-        RemoteDesktop = 54
+        RemoteDesktop = 54,
+        MissingSharedDlls = 55,
+        UnUsedFileExtensions = 56,
+        ActivexAndClassIssues = 57,
+        TypeLibraries = 58,
+        Applications = 59,
+        Fonts = 60,
+        ApplicationPaths = 61,
+        HelpFiles =62,
+        Installer = 63,
+        ObsoleteSoftware = 64,
+        RunAtStartup = 65,
+        StartMenuOrdering = 66,
+        MUICache = 67,
+        SoundEvents = 68,
+        WindowsServices = 69
     }
 
     public enum WindowStore

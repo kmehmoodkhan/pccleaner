@@ -138,10 +138,22 @@ namespace PCCleaner
 
             if (SelectedItem == ApplicationItem.Cleaner)
             {
+                if (this.ucResult.InvokeRequired)
+                {
+                    this.ucResult.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.Visible = true;
+                    }));
+                }
+                else
+                {
+                    this.ucResult.Visible = true;
+                }
+
                 List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
                 var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
-                
+
                 var overAllResult = Analyzer.GetOverallResult(result);
 
                 CleanerApplicationContext.ResultSummary = overAllResult;
@@ -149,22 +161,42 @@ namespace PCCleaner
                 this.ucResult.ShowResult(ResultView.Overall, overAllResult);
                 this.FilesFound = result;
             }
-            else if( SelectedItem == ApplicationItem.Registry)
+            else if (SelectedItem == ApplicationItem.Registry)
             {
-                UCRegistry registry = this.panelCleanerComponents.Controls.Find("Registry",false)[0] as UCRegistry;
+                if (this.ucResult.InvokeRequired)
+                {
+                    this.ucResult.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.Visible = false;
+                    }));
+                }
+                else{
+                    this.ucResult.Visible = false;
+                }               
 
-                List<ListItem> registrySelectedItems = null;
-                try
+
+                List<SearchCriteria> searchCriteria = GetSearchCriteria();
+                var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                var overAllResult = Analyzer.GetOverallResult(result);
+
+                UCResultRegistry registryControl = new UCResultRegistry();
+                registryControl.Dock = DockStyle.Fill;
+                registryControl.ShowResult(ResultView.Detail, overAllResult);
+
+                if (this.gboxResult.InvokeRequired)
                 {
-                    registrySelectedItems = registry.SelectedItems;
+                    this.gboxResult.Invoke(new MethodInvoker(delegate
+                    {
+                        this.gboxResult.Controls.Add(registryControl);
+                    }));
                 }
-                catch
+                else
                 {
-                    ;
-                }
+                    this.gboxResult.Controls.Add(registryControl);
+                }              
             }
 
-            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+                this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
         }
 
@@ -301,6 +333,16 @@ namespace PCCleaner
             }
             
 
+            List<ListItem> registrySelectedItems = null;
+            try
+            {
+                registrySelectedItems = this.Registry.SelectedItems;
+            }
+            catch
+            {
+                ;
+            }
+
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
 
             
@@ -412,6 +454,16 @@ namespace PCCleaner
                     searchCriteria.Add(criteria);
                 }
             }
+
+            if (registrySelectedItems != null && registrySelectedItems.Count > 0)
+            {
+                foreach (var item in registrySelectedItems)
+                {
+                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Registry, FeatureId = item.ItemId };
+                    searchCriteria.Add(criteria);
+                }
+            }
+            
             return searchCriteria;
         }
 
@@ -451,6 +503,10 @@ namespace PCCleaner
         {
             IsCleanerCall = true;
             DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
+
+            ///////////////////////////////
+            IsCleanerCall = false;
+           
             if (result == DialogResult.Yes)
             {
                 try

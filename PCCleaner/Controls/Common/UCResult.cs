@@ -49,40 +49,53 @@ namespace PCCleaner.Controls.Common
 
         public void ShowResult(ResultView view, ResultSummary summary)
         {
-          
-            if (view == ResultView.Detail)
+            var registryItemExists = false;
+
+            if( summary.OverallResult.Exists(t=>t.SearchArea == PCCleaner.Common.SearchArea.Registry))
             {
-
-                this.dataGridViewDetail.Visible = true;
-                this.dataGridViewOverall.Visible = false;
-
-                var bindingList = new BindingList<ResultDetail>(summary.DetailResult);
-                var source = new BindingSource(bindingList, null);
-                this.dataGridViewDetail.AutoGenerateColumns = false;
-                this.dataGridViewDetail.DataSource = source;
-                this.dataGridViewDetail.RowHeadersVisible = false;
-                this.dataGridViewDetail.ColumnHeadersVisible = false;
-                this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-                this.panelStatus.Visible = false;
-                this.labelNotes.Visible = false;
-                this.buttonBack.Visible = true;
-                this.lineBottom.Visible = false;
-                this.lineTop.Visible = false;
+                registryItemExists = true;
             }
-            else
+
+            if (!registryItemExists)
             {
-                if (this.dataGridViewOverall.InvokeRequired)
+                if (view == ResultView.Detail)
                 {
-                    this.dataGridViewOverall.Invoke(new MethodInvoker(delegate
-                   {
-                       ShowOverallResult(summary);
-                   }));
+
+                    this.dataGridViewDetail.Visible = true;
+                    this.dataGridViewOverall.Visible = false;
+
+                    var bindingList = new BindingList<ResultDetail>(summary.DetailResult);
+                    var source = new BindingSource(bindingList, null);
+                    this.dataGridViewDetail.AutoGenerateColumns = false;
+                    this.dataGridViewDetail.DataSource = source;
+                    this.dataGridViewDetail.RowHeadersVisible = false;
+                    this.dataGridViewDetail.ColumnHeadersVisible = false;
+                    this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                    this.panelStatus.Visible = false;
+                    this.labelNotes.Visible = false;
+                    this.buttonBack.Visible = true;
+                    this.lineBottom.Visible = false;
+                    this.lineTop.Visible = false;
                 }
                 else
                 {
-                    ShowOverallResult(summary);
+                    if (this.dataGridViewOverall.InvokeRequired)
+                    {
+                        this.dataGridViewOverall.Invoke(new MethodInvoker(delegate
+                       {
+                           ShowOverallResult(summary);
+                       }));
+                    }
+                    else
+                    {
+                        ShowOverallResult(summary);
+                    }
                 }
+            }
+            else
+            {
+
             }
         }
 

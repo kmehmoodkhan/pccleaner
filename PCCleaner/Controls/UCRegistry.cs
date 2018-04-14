@@ -31,9 +31,8 @@ namespace PCCleaner.Controls
         }
         private void AddRegistryOptions()
         {
-            UCAppsList registryOptions = new UCAppsList(Helper.GetRegistryFeaturesList(), "Registry Cleaner", Resources.Explorer, "Registry");
+            UCAppsList registryOptions = new UCAppsList(Helper.GetRegistryFeaturesList(), "Registry Cleaner", Resources.Registry, "Registry");
             flowLayoutPanelRegistry.Controls.Add(registryOptions);
-
         }
     }
 }

@@ -515,6 +515,16 @@ namespace PCCleaner.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Registry_Left {
+            get {
+                object obj = ResourceManager.GetObject("Registry_Left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing Shared Dlls.
         /// </summary>
         internal static string RegistryOptions_1 {

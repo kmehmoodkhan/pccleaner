@@ -59,5 +59,12 @@ namespace PCCleaner.Common
             get;
             set;
         }
+        public string Problem
+        {
+            get
+            {
+                return "Missing Shared Dll";
+            }
+        }
     }
 }

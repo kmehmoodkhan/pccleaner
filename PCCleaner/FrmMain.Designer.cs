@@ -41,15 +41,15 @@
             this.buttonCleaner = new System.Windows.Forms.Button();
             this.panelRightInfo = new System.Windows.Forms.Panel();
             this.gboxResult = new System.Windows.Forms.GroupBox();
-            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
             this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
+            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -172,7 +172,7 @@
             this.buttonRegistry.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonRegistry.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonRegistry.ForeColor = System.Drawing.Color.White;
-            this.buttonRegistry.Image = global::PCCleaner.Properties.Resources.Registry;
+            this.buttonRegistry.Image = global::PCCleaner.Properties.Resources.Registry_Left;
             this.buttonRegistry.Location = new System.Drawing.Point(0, 100);
             this.buttonRegistry.Name = "buttonRegistry";
             this.buttonRegistry.Size = new System.Drawing.Size(133, 100);
@@ -213,6 +213,7 @@
             // 
             // gboxResult
             // 
+            this.gboxResult.BackColor = System.Drawing.SystemColors.Control;
             this.gboxResult.Controls.Add(this.ucResult);
             this.gboxResult.Controls.Add(this.panelActionButtons);
             this.gboxResult.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -222,15 +223,6 @@
             this.gboxResult.Size = new System.Drawing.Size(616, 900);
             this.gboxResult.TabIndex = 2;
             this.gboxResult.TabStop = false;
-            // 
-            // ucResult
-            // 
-            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucResult.Location = new System.Drawing.Point(3, 18);
-            this.ucResult.Name = "ucResult";
-            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
-            this.ucResult.Size = new System.Drawing.Size(610, 812);
-            this.ucResult.TabIndex = 2;
             // 
             // panelActionButtons
             // 
@@ -301,13 +293,6 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 946);
             this.panelCleanerComponents.TabIndex = 2;
             // 
-            // ucCleaner1
-            // 
-            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
-            this.ucCleaner1.Name = "ucCleaner1";
-            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
-            this.ucCleaner1.TabIndex = 0;
-            // 
             // backgroundWorkerSearch
             // 
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
@@ -315,6 +300,22 @@
             this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
             this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
+            // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(610, 812);
+            this.ucResult.TabIndex = 2;
+            // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -362,8 +363,8 @@
         private System.Windows.Forms.Button buttonCleaner1;
         private System.Windows.Forms.FlowLayoutPanel panelCleanerComponents;
         private Controls.UCCleaner ucCleaner1;
-        private Controls.Common.UCResult ucResult;
         public System.ComponentModel.BackgroundWorker backgroundWorkerSearch;
         private System.Windows.Forms.Panel panelProgress;
+        private Controls.Common.UCResult ucResult;
     }
 }

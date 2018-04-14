@@ -120,6 +120,12 @@
     <Compile Include="Controls\Common\UCResult.Designer.cs">
       <DependentUpon>UCResult.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Common\UCResultRegistry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\UCResultRegistry.Designer.cs">
+      <DependentUpon>UCResultRegistry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UCOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     <EmbeddedResource Include="Controls\Common\UCResult.resx">
       <DependentUpon>UCResult.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\UCResultRegistry.resx">
+      <DependentUpon>UCResultRegistry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCRegistry.resx">
       <DependentUpon>UCRegistry.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +209,7 @@
     <Content Include="Images\Brush.png" />
     <Content Include="Images\Internet.png" />
     <Content Include="Images\Multimedia.png" />
+    <Content Include="Images\Registry_Left.png" />
     <Content Include="Images\Utilities.png" />
     <Content Include="Images\Windows.png" />
     <Content Include="Images\WindowsStore.png" />

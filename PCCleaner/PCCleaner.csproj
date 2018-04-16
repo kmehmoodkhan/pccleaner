@@ -91,6 +91,7 @@
     <Compile Include="Common\IBrowserFeature.cs" />
     <Compile Include="Common\KeyFolders.cs" />
     <Compile Include="Common\Navgiators.cs" />
+    <Compile Include="Common\Program.cs" />
     <Compile Include="Common\Result.cs" />
     <Compile Include="Common\ResultDetail.cs" />
     <Compile Include="Common\ResultSummary.cs" />
@@ -126,6 +127,12 @@
     <Compile Include="Controls\Common\UCResultRegistry.Designer.cs">
       <DependentUpon>UCResultRegistry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UCTools.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCTools.Designer.cs">
+      <DependentUpon>UCTools.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UCOptions.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,11 +145,11 @@
     <Compile Include="Controls\UCRegistry.Designer.cs">
       <DependentUpon>UCRegistry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\UCTools.cs">
+    <Compile Include="Controls\UCUninstall.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\UCTools.Designer.cs">
-      <DependentUpon>UCTools.cs</DependentUpon>
+    <Compile Include="Controls\UCUninstall.Designer.cs">
+      <DependentUpon>UCUninstall.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -170,8 +177,14 @@
     <EmbeddedResource Include="Controls\Common\UCResultRegistry.resx">
       <DependentUpon>UCResultRegistry.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCTools.resx">
+      <DependentUpon>UCTools.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCRegistry.resx">
       <DependentUpon>UCRegistry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCUninstall.resx">
+      <DependentUpon>UCUninstall.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
@@ -207,6 +220,7 @@
     <Content Include="Images\Applications.png" />
     <Content Include="Images\App_Icon.ico" />
     <Content Include="Images\Brush.png" />
+    <Content Include="Images\Exe.png" />
     <Content Include="Images\Internet.png" />
     <Content Include="Images\Multimedia.png" />
     <Content Include="Images\Registry_Left.png" />

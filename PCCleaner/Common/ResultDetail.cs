@@ -59,11 +59,15 @@ namespace PCCleaner.Common
             get;
             set;
         }
+
+
+        string problem = "";
         public string Problem
         {
             get
             {
-                return "Missing Shared Dll";
+
+                return Helper.GetProblem(FeatureArea);
             }
         }
     }

@@ -1215,6 +1215,281 @@ namespace PCCleaner.Common
                                     }
                                 }
                                 break;
+
+                            case RegistryOptions.UnUsedFileExtensions:
+                                RegistryKey unused = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts");
+                                var subkeysFileExtensions = unused.GetSubKeyNames();
+
+                                foreach (string subkey in subkeysFileExtensions)
+                                {
+                                    int length = 0;
+                                    RegistryKey fileKey = unused.OpenSubKey(subkey);
+                                    string[] subKeyNames = fileKey.GetSubKeyNames();
+                                    string[] temp = fileKey.GetValueNames();
+
+                                    foreach (string subKey in subKeyNames)
+                                    {
+                                        string[] names = fileKey.OpenSubKey(subKey).GetValueNames();
+                                        if (names.Length > 0)
+                                        {
+                                            length += 1;
+                                        }
+                                    }
+
+                                    if (length < 1)
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = subkey, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.UnUsedFileExtensions, RegistryKey = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts" });
+                                    }
+                                }
+                                break;
+                            case RegistryOptions.ActivexAndClassIssues:
+                                {
+                                    string[] subKeyNames = Registry.ClassesRoot.GetSubKeyNames();
+                                    //string[] fontsAvailable = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "*.*");
+                                    //var keys1 = key1.GetValueNames();
+                                    //Parallel.ForEach(keys1, v =>
+                                    //{
+                                    //    try
+                                    //    {
+
+                                    //        string fontfile = key1.GetValue(v).ToString();
+
+                                    //        if (fontsAvailable.Where(t => Path.GetFileName(t.ToLower()) == fontfile.ToLower()).Count() < 1)
+                                    //        {
+                                    //            if (!new FileInfo(fontfile).Exists)
+                                    //                result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Fonts, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" });
+                                    //        }
+                                    //    }
+                                    //    catch (Exception ex)
+                                    //    {
+                                    //        ;
+                                    //    }
+                                    //});
+                                }
+                                break;
+                            case RegistryOptions.TypeLibraries:
+                                {
+                                    RegistryKey key1 = Registry.ClassesRoot.OpenSubKey("TypeLib");
+                                    var keys1 = key1.GetSubKeyNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+                                            RegistryKey regkey;
+                                            string tempPath = string.Format(@"TypeLib\{0}", v);
+                                            regkey = Registry.ClassesRoot.OpenSubKey(tempPath);
+                                            var subKeys = regkey.GetSubKeyNames();
+
+                                            tempPath += "\\" + subKeys[0];
+
+                                            RegistryKey MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                            subKeys = MyReg.GetSubKeyNames();
+
+                                            tempPath += "\\" + subKeys[0];
+
+                                            MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                            subKeys = MyReg.GetSubKeyNames();
+
+                                            tempPath += "\\" + subKeys[1];
+
+                                            MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                            string filePath = MyReg.GetValue("").ToString();
+
+
+                                            if (!string.IsNullOrEmpty(filePath))
+                                            {
+                                                bool isFileExists = false;
+                                                bool isDirectoryExists = false;
+                                                try
+                                                {
+                                                    if (Path.HasExtension(filePath))
+                                                    {
+                                                        FileInfo file = new FileInfo(filePath);
+                                                        if (file.Exists)
+                                                        {
+                                                            isFileExists = true;
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
+                                                }
+
+                                                try
+                                                {
+                                                    if (!Path.HasExtension(filePath))
+                                                    {
+                                                        DirectoryInfo dirInfo = new DirectoryInfo(filePath);
+                                                        if (dirInfo.Exists)
+                                                        {
+                                                            isDirectoryExists = true;
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
+                                                }
+
+                                                if (!isFileExists && isDirectoryExists)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = tempPath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.TypeLibraries, RegistryKey = filePath });
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    }
+                                    );
+                                }
+                                break;
+                            case RegistryOptions.Fonts:
+                                {
+                                    RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts");
+                                    string[] fontsAvailable = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "*.*");
+                                    var keys1 = key1.GetValueNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+
+                                            string fontfile = key1.GetValue(v).ToString();
+
+                                            if (fontsAvailable.Where(t => Path.GetFileName(t.ToLower()) == fontfile.ToLower()).Count() < 1)
+                                            {
+                                                if (!new FileInfo(fontfile).Exists)
+                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Fonts, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" });
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    });
+                                }
+                                break;
+                            case RegistryOptions.ApplicationPaths:
+                                {
+                                    RegistryKey key1 = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store");
+                                    var keys1 = key1.GetValueNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+                                            if (!v.StartsWith("\\"))
+                                            {
+                                                FileInfo file = new FileInfo(v);
+                                                if (!file.Exists)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.ApplicationPaths, RegistryKey = @"HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store" });
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    }
+                                    );
+                                }
+                                break;
+                           
+                            case RegistryOptions.Installer:
+                                {
+                                    RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders");
+                                    var keys1 = key1.GetValueNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+                                            if (!v.StartsWith("\\"))
+                                            {
+                                                DirectoryInfo file = new DirectoryInfo(v);
+                                                if (!file.Exists)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    }
+                                    );
+                                }
+                                break;
+                            case RegistryOptions.SoundEvents:
+                                {
+                                    RegistryKey key1 = Registry.CurrentUser.OpenSubKey(@"AppEvents\Schemes\Apps\.Default");
+                                    var keys1 = key1.GetSubKeyNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+                                            RegistryKey regkey;
+                                            regkey = Registry.CurrentUser.OpenSubKey(string.Format(@"AppEvents\Schemes\Apps\.Default\{0}", v));
+
+                                            string[] subKeys = regkey.GetSubKeyNames();
+
+                                            string filePath = regkey.OpenSubKey(".Current").GetValue("").ToString();
+
+                                            if (!string.IsNullOrEmpty(filePath))
+                                            {
+                                                FileInfo file = new FileInfo(filePath);
+                                                if (!file.Exists)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = filePath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.SoundEvents, RegistryKey = @"HKCU\AppEvents\Schemes\Apps\.Default" });
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    }
+                                    );
+                                }
+                                break;
+
+                            case RegistryOptions.WindowsServices:
+                                {
+                                    RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\services");
+                                    var keys1 = key1.GetSubKeyNames();
+                                    Parallel.ForEach(keys1, v =>
+                                    {
+                                        try
+                                        {
+                                            RegistryKey regkey;
+                                            regkey = Registry.LocalMachine.OpenSubKey(string.Format(@"SYSTEM\CurrentControlSet\services\{0}", v));
+
+                                            string[] subKeys = regkey.GetSubKeyNames();
+
+                                            if (subKeys.Contains("ImagePath") && regkey != null && regkey.GetValue("ImagePath") == null)
+                                            {
+                                                DirectoryInfo file = new DirectoryInfo(v);
+                                                if (!file.Exists)
+                                                {
+                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                }
+                                            }
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            ;
+                                        }
+                                    }
+                                    );
+                                }
+                                break;
+
+
                         }
                         break;
                         #endregion

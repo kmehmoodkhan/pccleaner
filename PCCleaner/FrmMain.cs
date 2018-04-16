@@ -64,6 +64,7 @@ namespace PCCleaner
             uCRegistry.Name = "Registry";
             panelCleanerComponents.Controls.Add(uCRegistry);
             SelectedItem = ApplicationItem.Registry;
+            ShowHideControls(ApplicationItem.Registry);
         }
 
         private void buttonCleaner_Click(object sender, EventArgs e)
@@ -74,9 +75,16 @@ namespace PCCleaner
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
 
             this.ucCleaner1.Visible = true;
+            this.panelCleanerComponents.Visible = true;
+            this.gboxResult.Visible = true;
+            this.panelProgress.Visible = true;
 
-            UCRegistry registry =panelCleanerComponents.Controls.Find("Registry",false)[0] as UCRegistry;
-            registry.Hide();
+            if (panelCleanerComponents.Controls.Find("Registry", false).Count() > 0)
+            {
+                UCRegistry registry = panelCleanerComponents.Controls.Find("Registry", false)[0] as UCRegistry;
+                registry.Hide();
+            }
+            ShowHideControls(ApplicationItem.Cleaner);
 
             SelectedItem = ApplicationItem.Cleaner;
         }
@@ -87,6 +95,47 @@ namespace PCCleaner
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
+
+            UCTools tools = new UCTools();
+            tools.Name = "Tools";
+            tools.Dock = DockStyle.Fill;
+            this.gboxResult.Controls.Add(tools);
+
+            ShowHideControls(ApplicationItem.Tools);
+        }
+
+        private void ShowHideControls(ApplicationItem item)
+        {
+            if( item == ApplicationItem.Tools)
+            {
+                
+                this.panelProgress.Visible = false;
+                this.panelCleanerComponents.Visible = false;
+                this.ucCleaner1.Visible = false;
+                this.panelActionButtons.Visible = false;
+            }
+            else if (item == ApplicationItem.Registry)
+            {
+                this.panelCleanerComponents.Visible = true;
+                this.ucCleaner1.Visible = false;
+                this.panelActionButtons.Visible = true;
+                if (this.gboxResult.Controls.Find("Tools", false).Count() > 0)
+                {
+                    var ctrl = this.gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                    ctrl.Dispose();
+                }
+            }
+            else
+            {
+                this.panelCleanerComponents.Visible = true ;
+                this.ucCleaner1.Visible = true;
+                this.panelActionButtons.Visible = true;
+                if (this.gboxResult.Controls.Find("Tools", false).Count() > 0)
+                {
+                    var ctrl = this.gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                    ctrl.Dispose();
+                }
+            }
         }
 
         private void buttonOptions_Click(object sender, EventArgs e)

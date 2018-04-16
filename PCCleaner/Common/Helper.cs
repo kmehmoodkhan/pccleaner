@@ -616,5 +616,68 @@ namespace PCCleaner.Common
             }
             return list;
         }
+
+        public static string GetProblem(FeatureArea feature)
+        {
+            string problem = string.Empty;
+            switch (feature)
+            {
+                case FeatureArea.MissingSharedDlls:
+                    problem = "Missing Shared Dll";
+                    break;
+                case FeatureArea.UnUsedFileExtensions:
+                    problem = "Unused File Extensions";
+                    break;
+                case FeatureArea.ApplicationPaths:
+                    problem = "Application Path Issue";
+                    break;
+            }
+            return problem;
+        }
+
+        public static bool IsApplictionInstalled(string p_name)
+        {
+            string displayName;
+            RegistryKey key;
+
+            // search in: CurrentUser
+            key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    return true;
+                }
+            }
+
+            // search in: LocalMachine_32
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    return true;
+                }
+            }
+
+            // search in: LocalMachine_64
+            key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall");
+            foreach (String keyName in key.GetSubKeyNames())
+            {
+                RegistryKey subkey = key.OpenSubKey(keyName);
+                displayName = subkey.GetValue("DisplayName") as string;
+                if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
+                {
+                    return true;
+                }
+            }
+
+            // NOT FOUND
+            return false;
+        }
     }
 }

@@ -328,6 +328,16 @@ namespace PCCleaner.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Exe {
+            get {
+                object obj = ResourceManager.GetObject("Exe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Explorer {
             get {
                 object obj = ResourceManager.GetObject("Explorer", resourceCulture);

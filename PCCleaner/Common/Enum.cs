@@ -244,4 +244,15 @@ namespace PCCleaner.Common
         Tools = 3,
         Options = 4
     }
+
+    public enum FileTypes
+    {
+        Pictures = 1,
+        Music = 2,
+        Documents = 3,
+        Video = 4,
+        Compressed = 5,
+        Email = 6,
+        Everything = 7
+    }
 }

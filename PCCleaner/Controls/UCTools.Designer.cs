@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.flowLayoutPanelTools = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonStartup = new System.Windows.Forms.Button();
             this.buttonUninstall = new System.Windows.Forms.Button();
+            this.buttonStartup = new System.Windows.Forms.Button();
             this.buttonPlugins = new System.Windows.Forms.Button();
             this.buttonDisk = new System.Windows.Forms.Button();
             this.buttonDuplicate = new System.Windows.Forms.Button();
@@ -62,15 +62,6 @@
             this.flowLayoutPanelTools.Size = new System.Drawing.Size(215, 354);
             this.flowLayoutPanelTools.TabIndex = 0;
             // 
-            // buttonStartup
-            // 
-            this.buttonStartup.Location = new System.Drawing.Point(3, 54);
-            this.buttonStartup.Name = "buttonStartup";
-            this.buttonStartup.Size = new System.Drawing.Size(205, 45);
-            this.buttonStartup.TabIndex = 1;
-            this.buttonStartup.Text = "Startup";
-            this.buttonStartup.UseVisualStyleBackColor = true;
-            // 
             // buttonUninstall
             // 
             this.buttonUninstall.Location = new System.Drawing.Point(3, 3);
@@ -81,6 +72,16 @@
             this.buttonUninstall.UseVisualStyleBackColor = true;
             this.buttonUninstall.Click += new System.EventHandler(this.buttonUninstall_Click);
             // 
+            // buttonStartup
+            // 
+            this.buttonStartup.Location = new System.Drawing.Point(3, 54);
+            this.buttonStartup.Name = "buttonStartup";
+            this.buttonStartup.Size = new System.Drawing.Size(205, 45);
+            this.buttonStartup.TabIndex = 1;
+            this.buttonStartup.Text = "Startup";
+            this.buttonStartup.UseVisualStyleBackColor = true;
+            this.buttonStartup.Click += new System.EventHandler(this.buttonStartup_Click);
+            // 
             // buttonPlugins
             // 
             this.buttonPlugins.Location = new System.Drawing.Point(3, 105);
@@ -89,6 +90,7 @@
             this.buttonPlugins.TabIndex = 2;
             this.buttonPlugins.Text = "Plugins";
             this.buttonPlugins.UseVisualStyleBackColor = true;
+            this.buttonPlugins.Click += new System.EventHandler(this.buttonPlugins_Click);
             // 
             // buttonDisk
             // 
@@ -98,6 +100,7 @@
             this.buttonDisk.TabIndex = 3;
             this.buttonDisk.Text = "Disk Analyzer";
             this.buttonDisk.UseVisualStyleBackColor = true;
+            this.buttonDisk.Click += new System.EventHandler(this.buttonDisk_Click);
             // 
             // buttonDuplicate
             // 
@@ -116,6 +119,7 @@
             this.buttonSystemRestore.TabIndex = 5;
             this.buttonSystemRestore.Text = "System Restore";
             this.buttonSystemRestore.UseVisualStyleBackColor = true;
+            this.buttonSystemRestore.Click += new System.EventHandler(this.buttonSystemRestore_Click);
             // 
             // buttonDriveWiper
             // 
@@ -125,6 +129,7 @@
             this.buttonDriveWiper.TabIndex = 6;
             this.buttonDriveWiper.Text = "Drive Wiper";
             this.buttonDriveWiper.UseVisualStyleBackColor = true;
+            this.buttonDriveWiper.Click += new System.EventHandler(this.buttonDriveWiper_Click);
             // 
             // panelInfoBar
             // 
@@ -170,6 +175,7 @@
             this.panelToolsMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelToolsMain.Location = new System.Drawing.Point(215, 45);
             this.panelToolsMain.Name = "panelToolsMain";
+            this.panelToolsMain.Padding = new System.Windows.Forms.Padding(10);
             this.panelToolsMain.Size = new System.Drawing.Size(842, 309);
             this.panelToolsMain.TabIndex = 2;
             // 

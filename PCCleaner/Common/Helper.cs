@@ -11,6 +11,8 @@ using System.IO;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace PCCleaner.Common
 {
@@ -679,5 +681,27 @@ namespace PCCleaner.Common
             // NOT FOUND
             return false;
         }
+
+
+        public static List<DriveInfo> GetSystemDrives()
+        {
+            var dirveInfo = DriveInfo.GetDrives();
+            return dirveInfo.Where(d => d.DriveType != DriveType.CDRom).ToList();
+        }
+
+        public static bool IsValidImage(byte[] bytes)
+        {
+            try
+            {
+                using (MemoryStream ms = new MemoryStream(bytes))
+                    Image.FromStream(ms);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }

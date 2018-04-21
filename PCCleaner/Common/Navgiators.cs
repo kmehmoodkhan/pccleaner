@@ -1,9 +1,11 @@
 ﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using PCCleaner.Controls.Common;
 using PCCleaner.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Text;
@@ -13,7 +15,7 @@ namespace PCCleaner.Common
 {
     public class Navigators
     {
-        
+
         public static List<Browser> GetBrowsers()
         {
             RegistryKey browserKeys;
@@ -29,7 +31,8 @@ namespace PCCleaner.Common
                 RegistryKey browserKey = browserKeys.OpenSubKey(browserNames[i]);
                 browser.Name = (string)browserKey.GetValue(null);
 
-                if (browser.Name.Contains("Internet Explorer") || (browser.Name.Contains("Edge"))) {
+                if (browser.Name.Contains("Internet Explorer") || (browser.Name.Contains("Edge")))
+                {
                     browser.BrowserType = BrowserType.Microsoft;
                 }
 
@@ -65,7 +68,7 @@ namespace PCCleaner.Common
             }
             return edgeFound;
         }
-         
+
         public static List<ListItem> GetBrowserFeatures()
         {
             List<ListItem> list = new List<ListItem>();
@@ -77,9 +80,134 @@ namespace PCCleaner.Common
             }
             return list;
         }
+
+        public static List<BrowserExtension> GetIEPlugins()
+        {
+            List<BrowserExtension> extensions = new List<BrowserExtension>();
+
+            string machineLevelAddOns = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects";
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(machineLevelAddOns);
+            var list = key.GetSubKeyNames();
+
+            foreach (string keyValue in list)
+            {
+                RegistryKey childKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Classes\\CLSID\\" + keyValue + "\\InprocServer32");
+                var path = childKey.GetValue("");
+                BrowserExtension extension = new BrowserExtension();
+
+                extension.FilePath = path.ToString();
+                extension.Key = "Helper";
+
+
+
+                string publisher = string.Empty;
+                ///////////////////////////////////////////////////
+                string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
+                RegistryKey programKey = Registry.LocalMachine.OpenSubKey(registryKey);
+                if (key != null)
+                {
+                    foreach (RegistryKey subkey in programKey.GetSubKeyNames().Select(keyName => programKey.OpenSubKey(keyName)))
+                    {
+                        if (subkey.GetValue("DisplayName") as string == keyValue)
+                        {
+                            publisher = subkey.GetValue("Publisher") as string;
+                        }
+                    }
+                    childKey.Close();
+                }
+
+                extensions.Add(extension);
+
+                ///////////////////////////////////////////////////
+            }
+            key.Close();
+            return extensions;
+        }
+
+        public static List<BrowserExtension> GetChromePlugins()
+        {
+            List<BrowserExtension> list = new List<BrowserExtension>();
+            string extensionsPath = string.Empty;
+
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            path += @"\Google\Chrome\User Data\Default\Extensions\";
+
+            var dirs = Directory.GetDirectories(path, "*.*", SearchOption.TopDirectoryOnly);
+
+            foreach (string dir in dirs)
+            {
+                BrowserExtension extension = new BrowserExtension();
+                DirectoryInfo dirInfo = new DirectoryInfo(dir);
+                var versionDirectory = dirInfo.GetDirectories().ToList().ElementAt(0);
+
+                var jsonFilePath = versionDirectory.FullName + "\\_locales\\en_US\\messages.json";
+
+                if (new FileInfo(jsonFilePath).Exists)
+                {
+                    var file = File.ReadAllText(jsonFilePath);
+
+                    dynamic parsed = JsonConvert.DeserializeObject<dynamic>(file);
+
+                    try
+                    {
+                        string appName = ((Newtonsoft.Json.Linq.JValue)((Newtonsoft.Json.Linq.JProperty)((Newtonsoft.Json.Linq.JContainer)parsed.appName).Last).Value).Value.ToString();
+
+                        extension.Program = appName;
+                        extension.FilePath = versionDirectory.FullName;
+                        extension.Key = "Extension";
+                        list.Add(extension);
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
+        public static List<BrowserExtension> GetFirefoxExtensions()
+        {
+            List<BrowserExtension> list = new List<BrowserExtension>();
+            string extensionsPath = string.Empty;
+
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            path += @"\Mozilla Firefox\browser\features\";
+
+            var files = Directory.GetFiles(path, "*.xpi", SearchOption.TopDirectoryOnly);
+
+            BrowserExtension extension = new BrowserExtension();
+
+            foreach (string file in files.ToList())
+                if (new FileInfo(file).Exists)
+                {
+                    var fileContent = File.ReadAllText(file);
+
+
+
+                    try
+                    {
+                        //dynamic parsed = JsonConvert.DeserializeObject<dynamic>(fileContent);
+                        //string appName = ((Newtonsoft.Json.Linq.JValue)((Newtonsoft.Json.Linq.JProperty)((Newtonsoft.Json.Linq.JContainer)parsed.appName).Last).Value).Value.ToString();
+
+                        extension.Program = Path.GetFileName(file);
+                        extension.FilePath = file;
+                        extension.Key = "Extension";
+                        list.Add(extension);
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+                }
+
+            return list;
+        }
     }
 
-    public  static class Extensions
+    public static class Extensions
     {
         internal static String StripQuotes(this String s)
         {
@@ -95,7 +223,7 @@ namespace PCCleaner.Common
     }
 
 
-    public  class Browser
+    public class Browser
     {
         public string Name { get; set; }
         public string Path { get; set; }

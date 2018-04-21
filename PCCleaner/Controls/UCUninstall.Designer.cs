@@ -120,8 +120,10 @@
             // dataGridViewDetail
             // 
             this.dataGridViewDetail.AllowUserToAddRows = false;
+            this.dataGridViewDetail.AllowUserToDeleteRows = false;
             this.dataGridViewDetail.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProgramIcon,
             this.Program,
@@ -131,10 +133,13 @@
             this.Version});
             this.dataGridViewDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewDetail.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewDetail.MultiSelect = false;
             this.dataGridViewDetail.Name = "dataGridViewDetail";
+            this.dataGridViewDetail.ReadOnly = true;
             this.dataGridViewDetail.RowTemplate.Height = 24;
             this.dataGridViewDetail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewDetail.ShowEditingIcon = false;
             this.dataGridViewDetail.Size = new System.Drawing.Size(891, 328);
             this.dataGridViewDetail.TabIndex = 10;
             this.dataGridViewDetail.SelectionChanged += new System.EventHandler(this.dataGridViewDetail_SelectionChanged);
@@ -144,12 +149,14 @@
             this.ProgramIcon.DataPropertyName = "Icon";
             this.ProgramIcon.HeaderText = "";
             this.ProgramIcon.Name = "ProgramIcon";
+            this.ProgramIcon.ReadOnly = true;
             // 
             // Program
             // 
             this.Program.DataPropertyName = "ProgramName";
             this.Program.HeaderText = "Programs to Remove";
             this.Program.Name = "Program";
+            this.Program.ReadOnly = true;
             this.Program.Width = 600;
             // 
             // Publisher
@@ -157,24 +164,28 @@
             this.Publisher.DataPropertyName = "Publisher";
             this.Publisher.HeaderText = "Publisher";
             this.Publisher.Name = "Publisher";
+            this.Publisher.ReadOnly = true;
             // 
             // InstallDate
             // 
             this.InstallDate.DataPropertyName = "InstallDate";
             this.InstallDate.HeaderText = "Install Date";
             this.InstallDate.Name = "InstallDate";
+            this.InstallDate.ReadOnly = true;
             // 
             // ProgramSize
             // 
             this.ProgramSize.DataPropertyName = "Size";
             this.ProgramSize.HeaderText = "Size";
             this.ProgramSize.Name = "ProgramSize";
+            this.ProgramSize.ReadOnly = true;
             // 
             // Version
             // 
             this.Version.DataPropertyName = "Version";
             this.Version.HeaderText = "Version";
             this.Version.Name = "Version";
+            this.Version.ReadOnly = true;
             // 
             // UCUninstall
             // 

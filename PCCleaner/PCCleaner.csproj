@@ -56,6 +56,9 @@
       <HintPath>..\packages\Microsoft.Data.Sqlite.Core.2.0.1\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="SQLitePCLRaw.batteries_green, Version=1.0.0.0, Culture=neutral, PublicKeyToken=a84b7dcfb1391f7f, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLitePCLRaw.bundle_green.1.1.7\lib\net45\SQLitePCLRaw.batteries_green.dll</HintPath>
     </Reference>
@@ -71,21 +74,24 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Common\Analyzer.cs" />
+    <Compile Include="Common\BrowserExtension.cs" />
     <Compile Include="Common\CleanerApplicationContext.cs" />
     <Compile Include="Common\Cleaner.cs" />
+    <Compile Include="Common\CleanerRegistry.cs" />
+    <Compile Include="Common\ComputerProgram.cs" />
     <Compile Include="Common\Enum.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Common\IBrowserFeature.cs" />
@@ -95,6 +101,7 @@
     <Compile Include="Common\Result.cs" />
     <Compile Include="Common\ResultDetail.cs" />
     <Compile Include="Common\ResultSummary.cs" />
+    <Compile Include="Common\ScheduledTask.cs" />
     <Compile Include="Common\SearchCriteria.cs" />
     <Compile Include="Controls\Cleaner\UCCleaner.cs">
       <SubType>UserControl</SubType>
@@ -126,6 +133,72 @@
     </Compile>
     <Compile Include="Controls\Common\UCResultRegistry.Designer.cs">
       <DependentUpon>UCResultRegistry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Common\UCSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Common\UCSearch.Designer.cs">
+      <DependentUpon>UCSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Options\UCAdvanced.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Options\UCAdvanced.Designer.cs">
+      <DependentUpon>UCAdvanced.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Options\UCCookies.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Options\UCCookies.Designer.cs">
+      <DependentUpon>UCCookies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Options\UCIncludeExclude.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Options\UCIncludeExclude.Designer.cs">
+      <DependentUpon>UCIncludeExclude.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Options\UCSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Options\UCSettings.Designer.cs">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCBrowserPlugins.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCBrowserPlugins.Designer.cs">
+      <DependentUpon>UCBrowserPlugins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCDiskAnalyzer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCDiskAnalyzer.Designer.cs">
+      <DependentUpon>UCDiskAnalyzer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCDiskResult.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCDiskResult.Designer.cs">
+      <DependentUpon>UCDiskResult.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCDriveWiper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCDriveWiper.Designer.cs">
+      <DependentUpon>UCDriveWiper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCStartup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCStartup.Designer.cs">
+      <DependentUpon>UCStartup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCSystemRestore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCSystemRestore.Designer.cs">
+      <DependentUpon>UCSystemRestore.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UCTools.cs">
       <SubType>UserControl</SubType>
@@ -162,6 +235,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\DiskFileInfo.cs" />
+    <Compile Include="Tools\ToolsLibrary.cs" />
     <EmbeddedResource Include="Controls\Cleaner\UCCleaner.resx">
       <DependentUpon>UCCleaner.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +251,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Common\UCResultRegistry.resx">
       <DependentUpon>UCResultRegistry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Common\UCSearch.resx">
+      <DependentUpon>UCSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\UCAdvanced.resx">
+      <DependentUpon>UCAdvanced.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\UCCookies.resx">
+      <DependentUpon>UCCookies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\UCIncludeExclude.resx">
+      <DependentUpon>UCIncludeExclude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\UCSettings.resx">
+      <DependentUpon>UCSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCBrowserPlugins.resx">
+      <DependentUpon>UCBrowserPlugins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCDiskAnalyzer.resx">
+      <DependentUpon>UCDiskAnalyzer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCDiskResult.resx">
+      <DependentUpon>UCDiskResult.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCDriveWiper.resx">
+      <DependentUpon>UCDriveWiper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCOptions.resx">
+      <DependentUpon>UCOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCStartup.resx">
+      <DependentUpon>UCStartup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCSystemRestore.resx">
+      <DependentUpon>UCSystemRestore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCTools.resx">
       <DependentUpon>UCTools.cs</DependentUpon>
@@ -224,9 +335,11 @@
     <Content Include="Images\Internet.png" />
     <Content Include="Images\Multimedia.png" />
     <Content Include="Images\Registry_Left.png" />
+    <Content Include="Images\Search.png" />
     <Content Include="Images\Utilities.png" />
     <Content Include="Images\Windows.png" />
     <Content Include="Images\WindowsStore.png" />
+    <Content Include="bin\Debug\regjump.exe" />
     <None Include="Resources\2993665-20.png" />
     <None Include="Images\Edge.png" />
     <Content Include="Images\Chrome.png" />
@@ -262,6 +375,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Process\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.7\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.7\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />

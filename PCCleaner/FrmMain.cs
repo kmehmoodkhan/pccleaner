@@ -53,28 +53,51 @@ namespace PCCleaner
 
         private void buttonRegistry_Click(object sender, EventArgs e)
         {
+            panelActionButtons.Show();
+            this.panelProgress.Visible = true;
             buttonRegistry.BackColor = ApplicationSettings.SelectedButtonColor;
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
 
             this.ucCleaner1.Visible = false;
+            this.ucResult.Visible = false;
 
-            UCRegistry uCRegistry = new UCRegistry();
-            uCRegistry.Name = "Registry";
-            panelCleanerComponents.Controls.Add(uCRegistry);
+
+
+            if (panelCleanerComponents.Controls.Find("Registry", false).Count() > 0)
+            {
+                UCRegistry registry = panelCleanerComponents.Controls.Find("Registry", false)[0] as UCRegistry;
+                registry.Show();
+            }
+            else
+            {
+                UCRegistry uCRegistry = new UCRegistry();
+                uCRegistry.Name = "Registry";
+                panelCleanerComponents.Controls.Add(uCRegistry);
+            }
+
+            if (gboxResult.Controls.Find("Tools", false).Count() > 0)
+            {
+                UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                registry.Hide();
+            }
+
             SelectedItem = ApplicationItem.Registry;
             ShowHideControls(ApplicationItem.Registry);
         }
 
         private void buttonCleaner_Click(object sender, EventArgs e)
         {
+            panelActionButtons.Show();
+            this.panelProgress.Visible = true;
             buttonCleaner.BackColor = ApplicationSettings.SelectedButtonColor;
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
 
             this.ucCleaner1.Visible = true;
+            this.ucResult.Visible = false;
             this.panelCleanerComponents.Visible = true;
             this.gboxResult.Visible = true;
             this.panelProgress.Visible = true;
@@ -84,74 +107,188 @@ namespace PCCleaner
                 UCRegistry registry = panelCleanerComponents.Controls.Find("Registry", false)[0] as UCRegistry;
                 registry.Hide();
             }
+
+
+            if (panelCleanerComponents.Controls.Find("ucCleaner1", false).Count() > 0)
+            {
+                UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
+                registry.Show();
+                
+            }
+
+
+            if (gboxResult.Controls.Find("Tools", false).Count() > 0)
+            {
+                UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                registry.Hide();
+            }
+
+            if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() >0)
+            {
+                UCResultRegistry result = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
+                result.Visible = false;
+            }
+
             ShowHideControls(ApplicationItem.Cleaner);
 
             SelectedItem = ApplicationItem.Cleaner;
+
+            //ucResult.ResetView();
         }
 
         private void buttonTools_Click(object sender, EventArgs e)
         {
+            this.panelProgress.Visible = false;
+
             buttonTools.BackColor = ApplicationSettings.SelectedButtonColor;
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
+            
 
-            UCTools tools = new UCTools();
-            tools.Name = "Tools";
-            tools.Dock = DockStyle.Fill;
-            this.gboxResult.Controls.Add(tools);
+            if (panelCleanerComponents.Controls.Find("Registry", false).Count() > 0)
+            {
+                UCRegistry registry = panelCleanerComponents.Controls.Find("Registry", false)[0] as UCRegistry;
+                registry.Hide();
+            }
 
+
+            if (panelCleanerComponents.Controls.Find("ucCleaner1", false).Count() > 0)
+            {
+                UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
+                registry.Hide();
+            }
+
+            if (gboxResult.Controls.Find("Tools", false).Count() > 0)
+            {
+                foreach (Control ctrl in this.gboxResult.Controls)
+                {
+                    ctrl.Visible = false;
+                }
+                UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                registry.Visible = true;
+                
+            }
+            else
+            {
+                UCTools tools = new UCTools();
+                tools.Name = "Tools";
+                tools.Dock = DockStyle.Fill;
+                foreach(Control ctrl in this.gboxResult.Controls)
+                {
+                    ctrl.Visible = false;
+                }
+                this.gboxResult.Controls.Add(tools);
+            }
+            
             ShowHideControls(ApplicationItem.Tools);
+
+            SelectedItem = ApplicationItem.Tools;
+
+            this.panelActionButtons.Hide();
         }
 
         private void ShowHideControls(ApplicationItem item)
         {
-            if( item == ApplicationItem.Tools)
+            this.progressBar1.Value = 0;
+            this.progressBar1.Equals(0);
+            this.progressBar1.Visible = false;
+
+            if ( item == ApplicationItem.Tools)
             {
-                
-                this.panelProgress.Visible = false;
                 this.panelCleanerComponents.Visible = false;
                 this.ucCleaner1.Visible = false;
-                this.panelActionButtons.Visible = false;
+                this.panelActionButtons.Visible = true;
             }
             else if (item == ApplicationItem.Registry)
             {
                 this.panelCleanerComponents.Visible = true;
                 this.ucCleaner1.Visible = false;
                 this.panelActionButtons.Visible = true;
-                if (this.gboxResult.Controls.Find("Tools", false).Count() > 0)
-                {
-                    var ctrl = this.gboxResult.Controls.Find("Tools", false)[0] as UCTools;
-                    ctrl.Dispose();
-                }
+            }
+            else if ( item == ApplicationItem.Options)
+            {
+                this.panelCleanerComponents.Visible = false;
+                this.ucCleaner1.Visible = false;
+                this.panelActionButtons.Visible = true;
             }
             else
             {
                 this.panelCleanerComponents.Visible = true ;
                 this.ucCleaner1.Visible = true;
                 this.panelActionButtons.Visible = true;
-                if (this.gboxResult.Controls.Find("Tools", false).Count() > 0)
-                {
-                    var ctrl = this.gboxResult.Controls.Find("Tools", false)[0] as UCTools;
-                    ctrl.Dispose();
-                }
             }
         }
 
         private void buttonOptions_Click(object sender, EventArgs e)
         {
-            buttonOptions.BackColor = ApplicationSettings.SelectedButtonColor;
+            this.panelProgress.Visible = false;
+            this.panelActionButtons.Hide();
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
+            buttonOptions.BackColor = ApplicationSettings.SelectedButtonColor;
+
+
+            if (panelCleanerComponents.Controls.Find("Registry", false).Count() > 0)
+            {
+                UCRegistry registry = panelCleanerComponents.Controls.Find("Registry", false)[0] as UCRegistry;
+                registry.Hide();
+            }
+
+
+            if (panelCleanerComponents.Controls.Find("ucCleaner1", false).Count() > 0)
+            {
+                UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
+                registry.Hide();
+            }
+
+            if (gboxResult.Controls.Find("Tools", false).Count() > 0)
+            {
+                foreach (Control ctrl in this.gboxResult.Controls)
+                {
+                    ctrl.Hide();
+                }
+                UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
+                registry.Hide();
+
+            }
+
+            if (gboxResult.Controls.Find("Options", false).Count() > 0)
+            {
+                foreach (Control ctrl in this.gboxResult.Controls)
+                {
+                    ctrl.Hide();
+                }
+                UCOptions options = gboxResult.Controls.Find("Options", false)[0] as UCOptions;
+                options.Show();
+
+            }
+            else
+            {
+                UCOptions tools = new UCOptions();
+                tools.Name = "Options";
+                tools.Dock = DockStyle.Fill;
+                foreach (Control ctrl in this.gboxResult.Controls)
+                {
+                    ctrl.Visible = false;
+                }
+                this.gboxResult.Controls.Add(tools);
+            }
+
+            ShowHideControls(ApplicationItem.Options);
+
+            SelectedItem = ApplicationItem.Options;
+
+            this.panelActionButtons.Hide();
         }
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
+            this.progressBar1.Visible = true;
             IsCleanerCall = false;
             try
             {
-                ucResult.Visible = true;
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 backgroundWorkerSearch.RunWorkerAsync();
                 stopwatch.Stop();
@@ -161,10 +298,9 @@ namespace PCCleaner
             {
                 this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
                 this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
-
-                ucResult.Visible = true;
+                
                 Stopwatch stopwatch = Stopwatch.StartNew();
-                backgroundWorkerSearch.RunWorkerAsync();
+                backgroundWorkerSearch.CancelAsync();
                 stopwatch.Stop();
                 ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
             }
@@ -187,6 +323,32 @@ namespace PCCleaner
 
             if (SelectedItem == ApplicationItem.Cleaner)
             {
+                if (this.gboxResult.InvokeRequired)
+                {
+                    this.gboxResult.Invoke(new MethodInvoker(delegate
+                    {
+                        this.gboxResult.Visible = true;
+                        if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() > 0)
+                        {
+                            this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
+                        }
+                        //foreach( Control ctrl in this.gboxResult.Controls)
+                        //{
+                        //    ctrl.Visible = true;
+                        //}
+                    }));
+                }
+                else
+                {
+                    this.gboxResult.Visible = true;
+                    this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
+                    //foreach (Control ctrl in this.gboxResult.Controls)
+                    //{
+                    //    ctrl.Visible = true;
+                    //}
+                }
+
+
                 if (this.ucResult.InvokeRequired)
                 {
                     this.ucResult.Invoke(new MethodInvoker(delegate
@@ -228,20 +390,48 @@ namespace PCCleaner
                 var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
                 var overAllResult = Analyzer.GetOverallResult(result);
 
-                UCResultRegistry registryControl = new UCResultRegistry();
-                registryControl.Dock = DockStyle.Fill;
-                registryControl.ShowResult(ResultView.Detail, overAllResult);
+                UCResultRegistry registryControl = null;
+                if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() < 1)
+                {
+                    registryControl = new UCResultRegistry();
+                    registryControl.Name = "UCResultRegistry";
+                    registryControl.Dock = DockStyle.Fill;
+                    //registryControl.ShowResult(ResultView.Detail, overAllResult);
+                }
+                else
+                {
+                    registryControl = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
+                    
+
+                    if (registryControl.InvokeRequired)
+                    {
+                        registryControl.Invoke(new MethodInvoker(delegate
+                        {
+                            registryControl.Visible = true;
+                        }));
+                    }
+                    else
+                    {
+                        registryControl.Visible = false;
+                    }
+                }
 
                 if (this.gboxResult.InvokeRequired)
                 {
                     this.gboxResult.Invoke(new MethodInvoker(delegate
                     {
-                        this.gboxResult.Controls.Add(registryControl);
+                        if(this.gboxResult.Controls.Find("UCResultRegistry",true).Count()< 1)
+                            this.gboxResult.Controls.Add(registryControl);
+
+                        registryControl.ShowResult(ResultView.Detail, overAllResult);
                     }));
                 }
                 else
                 {
-                    this.gboxResult.Controls.Add(registryControl);
+                    if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() < 1)
+                        this.gboxResult.Controls.Add(registryControl);
+
+                    registryControl.ShowResult(ResultView.Detail, overAllResult);
                 }              
             }
 
@@ -261,255 +451,264 @@ namespace PCCleaner
 
         private List<SearchCriteria> GetSearchCriteria()
         {
-            var edgeSelectedItems = this.Edge.SelectedItems;
-
-            List<ListItem> ieSelectedItems = null;
-            try
-            {
-                ieSelectedItems = this.IE.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-            List<ListItem> chromeSelectedItems = null;
-            try
-            {
-                chromeSelectedItems = this.Chrome.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> firefoxSelectedItems = null;
-            try
-            {
-                firefoxSelectedItems = this.Firefox.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-            List<ListItem> windowExplorerSelectedItems = null;
-            try
-            {
-                windowExplorerSelectedItems = this.WindowExplorer.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> systemSelectedItems = null;
-            try
-            {
-                systemSelectedItems = this.SystemArea.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> advancedSelectedItems = null;
-            try
-            {
-                advancedSelectedItems = this.Advanced.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> windowStoreItems = null;
-            try
-            {
-                windowStoreItems = this.WindowsStore.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> applicationItems = null;
-            try
-            {
-                applicationItems = this.Applications.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> internetItems = null;
-            try
-            {
-                internetItems = this.Internet.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> teamViewerItems = null;
-            try
-            {
-                teamViewerItems = this.Utilities.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
-
-            List<ListItem> windowsItems = null;
-            try
-            {
-                windowsItems = this.Windows.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-            
-
-            List<ListItem> registrySelectedItems = null;
-            try
-            {
-                registrySelectedItems = this.Registry.SelectedItems;
-            }
-            catch
-            {
-                ;
-            }
-
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
-
-            
-            if (edgeSelectedItems != null && edgeSelectedItems.Count > 0)
+            if (SelectedItem == ApplicationItem.Cleaner)
             {
-                foreach (var item in edgeSelectedItems)
+                searchCriteria.Clear();
+                var edgeSelectedItems = this.Edge.SelectedItems;
+
+                List<ListItem> ieSelectedItems = null;
+                try
                 {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Edge, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
+                    ieSelectedItems = this.IE.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+                List<ListItem> chromeSelectedItems = null;
+                try
+                {
+                    chromeSelectedItems = this.Chrome.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> firefoxSelectedItems = null;
+                try
+                {
+                    firefoxSelectedItems = this.Firefox.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+                List<ListItem> windowExplorerSelectedItems = null;
+                try
+                {
+                    windowExplorerSelectedItems = this.WindowExplorer.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> systemSelectedItems = null;
+                try
+                {
+                    systemSelectedItems = this.SystemArea.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> advancedSelectedItems = null;
+                try
+                {
+                    advancedSelectedItems = this.Advanced.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> windowStoreItems = null;
+                try
+                {
+                    windowStoreItems = this.WindowsStore.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> applicationItems = null;
+                try
+                {
+                    applicationItems = this.Applications.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> internetItems = null;
+                try
+                {
+                    internetItems = this.Internet.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> teamViewerItems = null;
+                try
+                {
+                    teamViewerItems = this.Utilities.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+                List<ListItem> windowsItems = null;
+                try
+                {
+                    windowsItems = this.Windows.SelectedItems;
+                }
+                catch
+                {
+                    ;
+                }
+
+
+               
+
+                
+
+
+                if (edgeSelectedItems != null && edgeSelectedItems.Count > 0)
+                {
+                    foreach (var item in edgeSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Edge, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (ieSelectedItems != null && ieSelectedItems.Count > 0)
+                {
+                    foreach (var item in ieSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.IE, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (chromeSelectedItems != null && chromeSelectedItems.Count > 0)
+                {
+                    foreach (var item in chromeSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Chrome, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (firefoxSelectedItems != null && firefoxSelectedItems.Count > 0)
+                {
+                    foreach (var item in firefoxSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Firefox, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (windowExplorerSelectedItems != null && windowExplorerSelectedItems.Count > 0)
+                {
+                    foreach (var item in windowExplorerSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowExplorer, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (systemSelectedItems != null && systemSelectedItems.Count > 0)
+                {
+                    foreach (var item in systemSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.System, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (advancedSelectedItems != null && advancedSelectedItems.Count > 0)
+                {
+                    foreach (var item in advancedSelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Advanced, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (windowStoreItems != null && windowStoreItems.Count > 0)
+                {
+                    foreach (var item in windowStoreItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowsStore, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (applicationItems != null && applicationItems.Count > 0)
+                {
+                    foreach (var item in applicationItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Applications, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (internetItems != null && internetItems.Count > 0)
+                {
+                    foreach (var item in internetItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Internet, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+
+                if (teamViewerItems != null && teamViewerItems.Count > 0)
+                {
+                    foreach (var item in teamViewerItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Utilities, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
+                }
+
+                if (windowsItems != null && windowsItems.Count > 0)
+                {
+                    foreach (var item in windowsItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Windows, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
                 }
             }
-
-            if (ieSelectedItems != null && ieSelectedItems.Count > 0)
+            if (SelectedItem == ApplicationItem.Registry)
             {
-                foreach (var item in ieSelectedItems)
+                List<ListItem> registrySelectedItems = null;
+                try
                 {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.IE, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
+                    registrySelectedItems = this.Registry.SelectedItems;
                 }
-            }
-
-            if (chromeSelectedItems != null && chromeSelectedItems.Count > 0)
-            {
-                foreach (var item in chromeSelectedItems)
+                catch
                 {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Chrome, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
+                    ;
                 }
-            }
-
-            if (firefoxSelectedItems != null && firefoxSelectedItems.Count > 0)
-            {
-                foreach (var item in firefoxSelectedItems)
+                if (registrySelectedItems != null && registrySelectedItems.Count > 0)
                 {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Firefox, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (windowExplorerSelectedItems != null && windowExplorerSelectedItems.Count > 0)
-            {
-                foreach (var item in windowExplorerSelectedItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowExplorer, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (systemSelectedItems != null && systemSelectedItems.Count > 0)
-            {
-                foreach (var item in systemSelectedItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.System, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (advancedSelectedItems != null && advancedSelectedItems.Count > 0)
-            {
-                foreach (var item in advancedSelectedItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Advanced, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (windowStoreItems != null && windowStoreItems.Count > 0)
-            {
-                foreach (var item in windowStoreItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.WindowsStore, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (applicationItems != null && applicationItems.Count > 0)
-            {
-                foreach (var item in applicationItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Applications, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (internetItems != null && internetItems.Count > 0)
-            {
-                foreach (var item in internetItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Internet, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-
-            if (teamViewerItems != null && teamViewerItems.Count > 0)
-            {
-                foreach (var item in teamViewerItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Utilities, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (windowsItems != null && windowsItems.Count > 0)
-            {
-                foreach (var item in windowsItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Windows, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
-                }
-            }
-
-            if (registrySelectedItems != null && registrySelectedItems.Count > 0)
-            {
-                foreach (var item in registrySelectedItems)
-                {
-                    SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Registry, FeatureId = item.ItemId };
-                    searchCriteria.Add(criteria);
+                    searchCriteria.Clear();
+                    foreach (var item in registrySelectedItems)
+                    {
+                        SearchCriteria criteria = new SearchCriteria() { SearchArea = (int)SearchArea.Registry, FeatureId = item.ItemId };
+                        searchCriteria.Add(criteria);
+                    }
                 }
             }
             

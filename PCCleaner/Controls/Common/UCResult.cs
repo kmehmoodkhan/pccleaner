@@ -45,7 +45,11 @@ namespace PCCleaner.Controls.Common
             resultSummary = new ResultSummary();
         }
 
-
+        public void ResetView()
+        {
+            this.dataGridViewDetail.DataSource = null;
+            this.dataGridViewOverall.DataSource = null;
+        }
 
         public void ShowResult(ResultView view, ResultSummary summary)
         {
@@ -69,7 +73,7 @@ namespace PCCleaner.Controls.Common
                     this.dataGridViewDetail.AutoGenerateColumns = false;
                     this.dataGridViewDetail.DataSource = source;
                     this.dataGridViewDetail.RowHeadersVisible = false;
-                    this.dataGridViewDetail.ColumnHeadersVisible = false;
+                    this.dataGridViewDetail.ColumnHeadersVisible = true;
                     this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
                     this.panelStatus.Visible = false;
@@ -109,7 +113,7 @@ namespace PCCleaner.Controls.Common
             this.dataGridViewOverall.AutoGenerateColumns = false;
             this.dataGridViewOverall.DataSource = source;
             this.dataGridViewOverall.RowHeadersVisible = false;
-            this.dataGridViewOverall.ColumnHeadersVisible = false;
+            this.dataGridViewOverall.ColumnHeadersVisible = true;
             this.dataGridViewOverall.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
             this.panelStatus.Visible = true;

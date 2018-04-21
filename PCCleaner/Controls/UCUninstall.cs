@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using PCCleaner.Common;
 using PCCleaner.Properties;
+using System.IO;
 
 namespace PCCleaner.Controls
 {
@@ -31,114 +32,122 @@ namespace PCCleaner.Controls
                 {
                     using (RegistryKey subkey = key.OpenSubKey(subkey_name))
                     {
+                        if (subkey.GetValue("DisplayIcon") != null) { 
                         PCCleaner.Common.Program program = new PCCleaner.Common.Program();
 
-                        if (subkey.GetValue("DisplayName") != null)
-                        {
-                            try
+                            if (subkey.GetValue("DisplayName") != null)
                             {
-                                program.ProgramName = subkey.GetValue("DisplayName").ToString();
-                            }
-                            catch(Exception ex)
-                            {
-                                ;
-                            }
-
-                            try
-                            {
-                                program.Version = subkey.GetValue("DisplayVersion").ToString();
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
-
-                            try
-                            {
-                                program.Publisher = subkey.GetValue("Publisher").ToString();
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
-
-
-                            try
-                            {
-                                var tempSize= subkey.GetValue("EstimatedSize").ToString();
-
-                                if(!string.IsNullOrEmpty(tempSize))
-                                {
-                                    if (Convert.ToInt32(tempSize) > 1000)
-                                    {
-                                        tempSize = Math.Round((Convert.ToDouble(tempSize)/1000),2).ToString();
-                                    }
-                                    else
-                                    {
-                                        tempSize = Convert.ToInt32(tempSize).ToString();
-                                    }
-                                }
-                                program.Size = tempSize;
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
-
-                            try
-                            {
-                                program.Version = subkey.GetValue("DisplayVersion").ToString();
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
-
-                            try
-                            {
-                                program.LauncherPath = subkey.GetValue("DisplayIcon").ToString();
-                                
                                 try
                                 {
-                                    program.Icon = System.Drawing.Icon.ExtractAssociatedIcon(program.LauncherPath).ToBitmap();
-                                    if (program.Icon == null)
+                                    program.ProgramName = subkey.GetValue("DisplayName").ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+                                try
+                                {
+                                    program.Version = subkey.GetValue("DisplayVersion").ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+                                try
+                                {
+                                    program.Publisher = subkey.GetValue("Publisher").ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+
+                                try
+                                {
+                                    var tempSize = subkey.GetValue("EstimatedSize").ToString();
+
+                                    if (!string.IsNullOrEmpty(tempSize))
+                                    {
+                                        if (Convert.ToInt32(tempSize) > 1000)
+                                        {
+                                            tempSize = Math.Round((Convert.ToDouble(tempSize) / 1000), 2).ToString();
+                                        }
+                                        else
+                                        {
+                                            tempSize = Convert.ToInt32(tempSize).ToString();
+                                        }
+                                    }
+                                    program.Size = tempSize;
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+                                try
+                                {
+                                    program.Version = subkey.GetValue("DisplayVersion").ToString();
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+                                try
+                                {
+
+                                    program.LauncherPath = subkey.GetValue("DisplayIcon").ToString();
+
+                                    try
+                                    {
+                                        program.Icon = System.Drawing.Icon.ExtractAssociatedIcon(program.LauncherPath).ToBitmap();
+
+                                        MemoryStream ms = new MemoryStream();
+                                        program.Icon.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+                                        var imageArray = ms.ToArray();
+
+                                        if (program.Icon == null || !Helper.IsValidImage(imageArray))
+                                        {
+                                            program.Icon = Resources.Exe;
+                                        }
+                                        else
+                                        {
+                                            program.Icon = Helper.ResizeImage(program.Icon, 20, 20);
+                                        }
+                                    }
+                                    catch (Exception ex)
                                     {
                                         program.Icon = Resources.Exe;
-                                    }
-                                    else
-                                    {
-                                        program.Icon = Helper.ResizeImage(program.Icon, 20, 20);
                                     }
                                 }
                                 catch (Exception ex)
                                 {
-                                    program.Icon = Resources.Exe;
+                                    ;
                                 }
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
 
-                            try
-                            {
-                                program.UninstallString = subkey.GetValue("UninstallString").ToString();
-                            }
-                            catch (Exception ex)
-                            {
-                                ;
-                            }
-
-                            try
-                            {
-                                if( Helper.IsApplictionInstalled(program.ProgramName))
+                                try
                                 {
-                                    prog.Add(program);
+                                    program.UninstallString = subkey.GetValue("UninstallString").ToString();
                                 }
-                            }
-                            catch(Exception ex)
-                            {
-                                ;
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
+
+                                try
+                                {
+                                    if (Helper.IsApplictionInstalled(program.ProgramName) && prog.Where(t => t.ProgramName.ToLower() == program.ProgramName.ToLower()).Count() < 1)
+                                    {
+                                        prog.Add(program);
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    ;
+                                }
                             }
                         }
                     }
@@ -150,7 +159,7 @@ namespace PCCleaner.Controls
             this.dataGridViewDetail.AutoGenerateColumns = false;
             this.dataGridViewDetail.DataSource = source;
             this.dataGridViewDetail.RowHeadersVisible = false;
-            this.dataGridViewDetail.ColumnHeadersVisible = false;
+            this.dataGridViewDetail.ColumnHeadersVisible = true;
             this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
         }
 

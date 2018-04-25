@@ -29,41 +29,149 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBoxEnableWindowJumpList = new System.Windows.Forms.CheckBox();
+            this.checkBoxSkipUserControlWarning = new System.Windows.Forms.CheckBox();
+            this.checkBoxSaveToINIFile = new System.Windows.Forms.CheckBox();
+            this.checkBoxMinimizeToSystemTray = new System.Windows.Forms.CheckBox();
+            this.checkBoxShowPromptBackupRegistry = new System.Windows.Forms.CheckBox();
+            this.checkBoxShutdowAfterCleaning = new System.Windows.Forms.CheckBox();
+            this.checkBoxCloseProgramOnCleaning = new System.Windows.Forms.CheckBox();
+            this.checkBoxHideWarning = new System.Windows.Forms.CheckBox();
+            this.checkBoxDeleteRecycleBin = new System.Windows.Forms.CheckBox();
+            this.checkBoxDeleteTempFiles = new System.Windows.Forms.CheckBox();
             this.checkBoxShowResultDetail = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.checkBox11);
-            this.panel1.Controls.Add(this.checkBox10);
-            this.panel1.Controls.Add(this.checkBox9);
-            this.panel1.Controls.Add(this.checkBox8);
-            this.panel1.Controls.Add(this.checkBox7);
-            this.panel1.Controls.Add(this.checkBox6);
-            this.panel1.Controls.Add(this.checkBox5);
-            this.panel1.Controls.Add(this.checkBox4);
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.checkBoxEnableWindowJumpList);
+            this.panel1.Controls.Add(this.checkBoxSkipUserControlWarning);
+            this.panel1.Controls.Add(this.checkBoxSaveToINIFile);
+            this.panel1.Controls.Add(this.checkBoxMinimizeToSystemTray);
+            this.panel1.Controls.Add(this.checkBoxShowPromptBackupRegistry);
+            this.panel1.Controls.Add(this.checkBoxShutdowAfterCleaning);
+            this.panel1.Controls.Add(this.checkBoxCloseProgramOnCleaning);
+            this.panel1.Controls.Add(this.checkBoxHideWarning);
+            this.panel1.Controls.Add(this.checkBoxDeleteRecycleBin);
+            this.panel1.Controls.Add(this.checkBoxDeleteTempFiles);
             this.panel1.Controls.Add(this.checkBoxShowResultDetail);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(781, 525);
             this.panel1.TabIndex = 0;
+            // 
+            // checkBoxEnableWindowJumpList
+            // 
+            this.checkBoxEnableWindowJumpList.AutoSize = true;
+            this.checkBoxEnableWindowJumpList.Location = new System.Drawing.Point(23, 423);
+            this.checkBoxEnableWindowJumpList.Name = "checkBoxEnableWindowJumpList";
+            this.checkBoxEnableWindowJumpList.Size = new System.Drawing.Size(233, 21);
+            this.checkBoxEnableWindowJumpList.TabIndex = 27;
+            this.checkBoxEnableWindowJumpList.Text = "Enable Window Jump List Tasks";
+            this.checkBoxEnableWindowJumpList.UseVisualStyleBackColor = true;
+            this.checkBoxEnableWindowJumpList.CheckedChanged += new System.EventHandler(this.checkBoxEnableWindowJumpList_CheckedChanged);
+            // 
+            // checkBoxSkipUserControlWarning
+            // 
+            this.checkBoxSkipUserControlWarning.AutoSize = true;
+            this.checkBoxSkipUserControlWarning.Location = new System.Drawing.Point(23, 383);
+            this.checkBoxSkipUserControlWarning.Name = "checkBoxSkipUserControlWarning";
+            this.checkBoxSkipUserControlWarning.Size = new System.Drawing.Size(197, 21);
+            this.checkBoxSkipUserControlWarning.TabIndex = 26;
+            this.checkBoxSkipUserControlWarning.Text = "Skip User Control warning ";
+            this.checkBoxSkipUserControlWarning.UseVisualStyleBackColor = true;
+            this.checkBoxSkipUserControlWarning.CheckedChanged += new System.EventHandler(this.checkBoxSkipUserControlWarning_CheckedChanged);
+            // 
+            // checkBoxSaveToINIFile
+            // 
+            this.checkBoxSaveToINIFile.AutoSize = true;
+            this.checkBoxSaveToINIFile.Location = new System.Drawing.Point(23, 343);
+            this.checkBoxSaveToINIFile.Name = "checkBoxSaveToINIFile";
+            this.checkBoxSaveToINIFile.Size = new System.Drawing.Size(191, 21);
+            this.checkBoxSaveToINIFile.TabIndex = 25;
+            this.checkBoxSaveToINIFile.Text = "Save all settings to INI file";
+            this.checkBoxSaveToINIFile.UseVisualStyleBackColor = true;
+            this.checkBoxSaveToINIFile.CheckedChanged += new System.EventHandler(this.checkBoxSaveToINIFile_CheckedChanged);
+            // 
+            // checkBoxMinimizeToSystemTray
+            // 
+            this.checkBoxMinimizeToSystemTray.AutoSize = true;
+            this.checkBoxMinimizeToSystemTray.Location = new System.Drawing.Point(23, 303);
+            this.checkBoxMinimizeToSystemTray.Name = "checkBoxMinimizeToSystemTray";
+            this.checkBoxMinimizeToSystemTray.Size = new System.Drawing.Size(183, 21);
+            this.checkBoxMinimizeToSystemTray.TabIndex = 24;
+            this.checkBoxMinimizeToSystemTray.Text = "Minimize to System Tray";
+            this.checkBoxMinimizeToSystemTray.UseVisualStyleBackColor = true;
+            this.checkBoxMinimizeToSystemTray.CheckedChanged += new System.EventHandler(this.checkBoxMinimizeToSystemTray_CheckedChanged);
+            // 
+            // checkBoxShowPromptBackupRegistry
+            // 
+            this.checkBoxShowPromptBackupRegistry.AutoSize = true;
+            this.checkBoxShowPromptBackupRegistry.Location = new System.Drawing.Point(23, 263);
+            this.checkBoxShowPromptBackupRegistry.Name = "checkBoxShowPromptBackupRegistry";
+            this.checkBoxShowPromptBackupRegistry.Size = new System.Drawing.Size(273, 21);
+            this.checkBoxShowPromptBackupRegistry.TabIndex = 23;
+            this.checkBoxShowPromptBackupRegistry.Text = "Show prompt to backup registry issues";
+            this.checkBoxShowPromptBackupRegistry.UseVisualStyleBackColor = true;
+            this.checkBoxShowPromptBackupRegistry.CheckedChanged += new System.EventHandler(this.checkBoxShowPromptBackupRegistry_CheckedChanged);
+            // 
+            // checkBoxShutdowAfterCleaning
+            // 
+            this.checkBoxShutdowAfterCleaning.AutoSize = true;
+            this.checkBoxShutdowAfterCleaning.Location = new System.Drawing.Point(23, 223);
+            this.checkBoxShutdowAfterCleaning.Name = "checkBoxShutdowAfterCleaning";
+            this.checkBoxShutdowAfterCleaning.Size = new System.Drawing.Size(182, 21);
+            this.checkBoxShutdowAfterCleaning.TabIndex = 22;
+            this.checkBoxShutdowAfterCleaning.Text = "Shutdown after cleaning";
+            this.checkBoxShutdowAfterCleaning.UseVisualStyleBackColor = true;
+            this.checkBoxShutdowAfterCleaning.CheckedChanged += new System.EventHandler(this.checkBoxShutdowAfterCleaning_CheckedChanged);
+            // 
+            // checkBoxCloseProgramOnCleaning
+            // 
+            this.checkBoxCloseProgramOnCleaning.AutoSize = true;
+            this.checkBoxCloseProgramOnCleaning.Location = new System.Drawing.Point(23, 183);
+            this.checkBoxCloseProgramOnCleaning.Name = "checkBoxCloseProgramOnCleaning";
+            this.checkBoxCloseProgramOnCleaning.Size = new System.Drawing.Size(212, 21);
+            this.checkBoxCloseProgramOnCleaning.TabIndex = 21;
+            this.checkBoxCloseProgramOnCleaning.Text = "Close program after cleaning";
+            this.checkBoxCloseProgramOnCleaning.UseVisualStyleBackColor = true;
+            this.checkBoxCloseProgramOnCleaning.CheckedChanged += new System.EventHandler(this.checkBoxCloseProgramOnCleaning_CheckedChanged);
+            // 
+            // checkBoxHideWarning
+            // 
+            this.checkBoxHideWarning.AutoSize = true;
+            this.checkBoxHideWarning.Location = new System.Drawing.Point(23, 143);
+            this.checkBoxHideWarning.Name = "checkBoxHideWarning";
+            this.checkBoxHideWarning.Size = new System.Drawing.Size(180, 21);
+            this.checkBoxHideWarning.TabIndex = 20;
+            this.checkBoxHideWarning.Text = "Hide warning messages";
+            this.checkBoxHideWarning.UseVisualStyleBackColor = true;
+            this.checkBoxHideWarning.CheckedChanged += new System.EventHandler(this.checkBoxHideWarning_CheckedChanged);
+            // 
+            // checkBoxDeleteRecycleBin
+            // 
+            this.checkBoxDeleteRecycleBin.AutoSize = true;
+            this.checkBoxDeleteRecycleBin.Location = new System.Drawing.Point(23, 103);
+            this.checkBoxDeleteRecycleBin.Name = "checkBoxDeleteRecycleBin";
+            this.checkBoxDeleteRecycleBin.Size = new System.Drawing.Size(352, 21);
+            this.checkBoxDeleteRecycleBin.TabIndex = 19;
+            this.checkBoxDeleteRecycleBin.Text = "Only delete files in Recycle Bin older than 24 hours";
+            this.checkBoxDeleteRecycleBin.UseVisualStyleBackColor = true;
+            this.checkBoxDeleteRecycleBin.CheckedChanged += new System.EventHandler(this.checkBoxDeleteRecycleBin_CheckedChanged);
+            // 
+            // checkBoxDeleteTempFiles
+            // 
+            this.checkBoxDeleteTempFiles.AutoSize = true;
+            this.checkBoxDeleteTempFiles.Location = new System.Drawing.Point(23, 63);
+            this.checkBoxDeleteTempFiles.Name = "checkBoxDeleteTempFiles";
+            this.checkBoxDeleteTempFiles.Size = new System.Drawing.Size(317, 21);
+            this.checkBoxDeleteTempFiles.TabIndex = 18;
+            this.checkBoxDeleteTempFiles.Text = "Only delete files in temp folder older 24 hours";
+            this.checkBoxDeleteTempFiles.UseVisualStyleBackColor = true;
+            this.checkBoxDeleteTempFiles.CheckedChanged += new System.EventHandler(this.checkBoxDeleteTempFiles_CheckedChanged);
             // 
             // checkBoxShowResultDetail
             // 
@@ -74,116 +182,7 @@
             this.checkBoxShowResultDetail.TabIndex = 17;
             this.checkBoxShowResultDetail.Text = "Show results in detailed view";
             this.checkBoxShowResultDetail.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(23, 63);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(317, 21);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Only delete files in temp folder older 24 hours";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(23, 103);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(352, 21);
-            this.checkBox2.TabIndex = 19;
-            this.checkBox2.Text = "Only delete files in Recycle Bin older than 24 hours";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(23, 143);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(180, 21);
-            this.checkBox3.TabIndex = 20;
-            this.checkBox3.Text = "Hide warning messages";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(23, 183);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(212, 21);
-            this.checkBox4.TabIndex = 21;
-            this.checkBox4.Text = "Close program after cleaning";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Location = new System.Drawing.Point(23, 223);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(182, 21);
-            this.checkBox5.TabIndex = 22;
-            this.checkBox5.Text = "Shutdown after cleaning";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(23, 263);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(273, 21);
-            this.checkBox6.TabIndex = 23;
-            this.checkBox6.Text = "Show prompt to backup registry issues";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Location = new System.Drawing.Point(23, 303);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(183, 21);
-            this.checkBox7.TabIndex = 24;
-            this.checkBox7.Text = "Minimize to System Tray";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(23, 343);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(191, 21);
-            this.checkBox8.TabIndex = 25;
-            this.checkBox8.Text = "Save all settings to INI file";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Location = new System.Drawing.Point(23, 383);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(197, 21);
-            this.checkBox9.TabIndex = 26;
-            this.checkBox9.Text = "Skip User Control warning ";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Location = new System.Drawing.Point(23, 423);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(233, 21);
-            this.checkBox10.TabIndex = 27;
-            this.checkBox10.Text = "Enable Window Jump List Tasks";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(23, 463);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(184, 21);
-            this.checkBox11.TabIndex = 28;
-            this.checkBox11.Text = "Restore Default Settings";
-            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBoxShowResultDetail.CheckedChanged += new System.EventHandler(this.checkBoxShowResultDetail_CheckedChanged);
             // 
             // UCAdvanced
             // 
@@ -202,17 +201,16 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxSaveToINIFile;
+        private System.Windows.Forms.CheckBox checkBoxMinimizeToSystemTray;
+        private System.Windows.Forms.CheckBox checkBoxShowPromptBackupRegistry;
+        private System.Windows.Forms.CheckBox checkBoxShutdowAfterCleaning;
+        private System.Windows.Forms.CheckBox checkBoxCloseProgramOnCleaning;
+        private System.Windows.Forms.CheckBox checkBoxHideWarning;
+        private System.Windows.Forms.CheckBox checkBoxDeleteRecycleBin;
+        private System.Windows.Forms.CheckBox checkBoxDeleteTempFiles;
         private System.Windows.Forms.CheckBox checkBoxShowResultDetail;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBoxEnableWindowJumpList;
+        private System.Windows.Forms.CheckBox checkBoxSkipUserControlWarning;
     }
 }

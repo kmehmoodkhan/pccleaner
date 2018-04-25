@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="ApplicationSettings.cs" />
     <Compile Include="Common\Analyzer.cs" />
+    <Compile Include="Common\CleanerApplicationSettings.cs" />
     <Compile Include="Common\BrowserExtension.cs" />
     <Compile Include="Common\CleanerApplicationContext.cs" />
     <Compile Include="Common\Cleaner.cs" />
@@ -240,7 +241,11 @@
     <Compile Include="Controls\UCUninstall.Designer.cs">
       <DependentUpon>UCUninstall.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\CookiesSettings.cs" />
+    <Compile Include="DataAccess\OptionsSetting.cs" />
+    <Compile Include="DataAccess\OptionsAdvanceSetting.cs" />
     <Compile Include="DataAccess\DBAccess.cs" />
+    <Compile Include="DataLayer\ApplicationData.cs" />
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +332,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="DB\CleanerDB.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

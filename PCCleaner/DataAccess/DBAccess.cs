@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PCCleaner.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
@@ -16,7 +17,7 @@ namespace PCCleaner.DataAccess
         {
             get
             {
-                return "Data Source=CleanerDatabase.sqlite;Version=3;";
+                return $@"Data Source={CleanerApplicationSettings.ApplicationBasePath}DB\CleanerDB.db;Version=3;";
             }
         }
 
@@ -24,7 +25,7 @@ namespace PCCleaner.DataAccess
         {
             get
             {
-                return "CleanerDatabase.sqlite";
+                return "CleanerDB.db";
             }
         }
         public bool ExecuteNonQuery(string query)
@@ -35,21 +36,13 @@ namespace PCCleaner.DataAccess
                 if(! new FileInfo(DBFileName).Exists)
                 {
                     SQLiteConnection.CreateFile(DBFileName);
-                }
-                
+                }                
 
                 SQLiteConnection m_dbConnection = new SQLiteConnection(ConnectionString);
                 m_dbConnection.Open();
 
-                //string sql = "create table highscores (name varchar(20), score int)";
-
                 SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
                 command.ExecuteNonQuery();
-
-                //sql = "insert into highscores (name, score) values ('Me', 9001)";
-
-                //command = new SQLiteCommand(sql, m_dbConnection);
-                //command.ExecuteNonQuery();
 
                 m_dbConnection.Close();
             }
@@ -61,24 +54,27 @@ namespace PCCleaner.DataAccess
             return isSuccess;
         }
 
-        //public DataSet GetData(string Query)
-        //{
-        //    SQLiteConnection m_dbConnection = new SQLiteConnection(ConnectionString);
-        //    m_dbConnection.Open();
+        public DataSet GetDataSet(string Query)
+        {
+            DataSet dataSet = new DataSet();
+            try
+            {
+                SQLiteConnection connection = new SQLiteConnection(ConnectionString);
+                connection.Open();
 
-        //    //string sql = "create table highscores (name varchar(20), score int)";
+                var command = connection.CreateCommand();
 
-        //    new SQLiteDataAdapter(CommandText, sql_con);
+                var adapter = new SQLiteDataAdapter(Query, connection);                
 
-        //    SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
-        //    command.ExecuteNonQuery();
+                adapter.Fill(dataSet);
 
-        //    //sql = "insert into highscores (name, score) values ('Me', 9001)";
-
-        //    //command = new SQLiteCommand(sql, m_dbConnection);
-        //    //command.ExecuteNonQuery();
-
-        //    m_dbConnection.Close();
-        //}  
+                connection.Close();
+            }
+            catch(Exception ex)
+            {
+                ;
+            }
+            return dataSet;
+        }
     }
 }

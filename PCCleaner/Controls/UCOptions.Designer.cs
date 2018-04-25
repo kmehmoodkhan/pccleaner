@@ -33,8 +33,6 @@
             this.buttonCookies = new System.Windows.Forms.Button();
             this.buttonInclude = new System.Windows.Forms.Button();
             this.buttonExclude = new System.Windows.Forms.Button();
-            this.buttonScheduling = new System.Windows.Forms.Button();
-            this.buttonMonitoring = new System.Windows.Forms.Button();
             this.buttonAdvanced = new System.Windows.Forms.Button();
             this.panelToolsMain = new System.Windows.Forms.Panel();
             this.panelInfoBar = new System.Windows.Forms.Panel();
@@ -50,8 +48,6 @@
             this.flowLayoutPanelTools.Controls.Add(this.buttonCookies);
             this.flowLayoutPanelTools.Controls.Add(this.buttonInclude);
             this.flowLayoutPanelTools.Controls.Add(this.buttonExclude);
-            this.flowLayoutPanelTools.Controls.Add(this.buttonScheduling);
-            this.flowLayoutPanelTools.Controls.Add(this.buttonMonitoring);
             this.flowLayoutPanelTools.Controls.Add(this.buttonAdvanced);
             this.flowLayoutPanelTools.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanelTools.Location = new System.Drawing.Point(0, 0);
@@ -99,27 +95,9 @@
             this.buttonExclude.UseVisualStyleBackColor = true;
             this.buttonExclude.Click += new System.EventHandler(this.buttonExclude_Click);
             // 
-            // buttonScheduling
-            // 
-            this.buttonScheduling.Location = new System.Drawing.Point(3, 207);
-            this.buttonScheduling.Name = "buttonScheduling";
-            this.buttonScheduling.Size = new System.Drawing.Size(205, 45);
-            this.buttonScheduling.TabIndex = 4;
-            this.buttonScheduling.Text = "Scheduling";
-            this.buttonScheduling.UseVisualStyleBackColor = true;
-            // 
-            // buttonMonitoring
-            // 
-            this.buttonMonitoring.Location = new System.Drawing.Point(3, 258);
-            this.buttonMonitoring.Name = "buttonMonitoring";
-            this.buttonMonitoring.Size = new System.Drawing.Size(205, 45);
-            this.buttonMonitoring.TabIndex = 5;
-            this.buttonMonitoring.Text = "Monitoring";
-            this.buttonMonitoring.UseVisualStyleBackColor = true;
-            // 
             // buttonAdvanced
             // 
-            this.buttonAdvanced.Location = new System.Drawing.Point(3, 309);
+            this.buttonAdvanced.Location = new System.Drawing.Point(3, 207);
             this.buttonAdvanced.Name = "buttonAdvanced";
             this.buttonAdvanced.Size = new System.Drawing.Size(205, 45);
             this.buttonAdvanced.TabIndex = 6;
@@ -179,8 +157,6 @@
         private System.Windows.Forms.Button buttonCookies;
         private System.Windows.Forms.Button buttonInclude;
         private System.Windows.Forms.Button buttonExclude;
-        private System.Windows.Forms.Button buttonScheduling;
-        private System.Windows.Forms.Button buttonMonitoring;
         private System.Windows.Forms.Button buttonAdvanced;
         private System.Windows.Forms.Panel panelToolsMain;
         private System.Windows.Forms.Panel panelInfoBar;

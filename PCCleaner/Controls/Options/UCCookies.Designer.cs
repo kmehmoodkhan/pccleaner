@@ -34,10 +34,10 @@
             this.buttonRemove = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.listBoxCookiesToKeep = new System.Windows.Forms.ListBox();
+            this.listBoxAvailableCookies = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.listBoxCookiesToRemove = new System.Windows.Forms.ListBox();
+            this.listBoxCookiesToKeep = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,6 +96,7 @@
             this.buttonRemove.TabIndex = 1;
             this.buttonRemove.Text = "<-";
             this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // buttonAdd
             // 
@@ -106,10 +107,11 @@
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "->";
             this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.listBoxCookiesToKeep);
+            this.panel3.Controls.Add(this.listBoxAvailableCookies);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 40);
@@ -119,16 +121,16 @@
             this.panel3.Size = new System.Drawing.Size(289, 366);
             this.panel3.TabIndex = 3;
             // 
-            // listBoxCookiesToKeep
+            // listBoxAvailableCookies
             // 
-            this.listBoxCookiesToKeep.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxCookiesToKeep.FormattingEnabled = true;
-            this.listBoxCookiesToKeep.ItemHeight = 16;
-            this.listBoxCookiesToKeep.Location = new System.Drawing.Point(3, 30);
-            this.listBoxCookiesToKeep.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
-            this.listBoxCookiesToKeep.Name = "listBoxCookiesToKeep";
-            this.listBoxCookiesToKeep.Size = new System.Drawing.Size(283, 333);
-            this.listBoxCookiesToKeep.TabIndex = 3;
+            this.listBoxAvailableCookies.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxAvailableCookies.FormattingEnabled = true;
+            this.listBoxAvailableCookies.ItemHeight = 16;
+            this.listBoxAvailableCookies.Location = new System.Drawing.Point(3, 30);
+            this.listBoxAvailableCookies.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.listBoxAvailableCookies.Name = "listBoxAvailableCookies";
+            this.listBoxAvailableCookies.Size = new System.Drawing.Size(283, 333);
+            this.listBoxAvailableCookies.TabIndex = 4;
             // 
             // label1
             // 
@@ -144,7 +146,7 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.listBoxCookiesToRemove);
+            this.panel4.Controls.Add(this.listBoxCookiesToKeep);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(329, 40);
@@ -154,15 +156,16 @@
             this.panel4.Size = new System.Drawing.Size(291, 366);
             this.panel4.TabIndex = 4;
             // 
-            // listBoxCookiesToRemove
+            // listBoxCookiesToKeep
             // 
-            this.listBoxCookiesToRemove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxCookiesToRemove.FormattingEnabled = true;
-            this.listBoxCookiesToRemove.ItemHeight = 16;
-            this.listBoxCookiesToRemove.Location = new System.Drawing.Point(3, 30);
-            this.listBoxCookiesToRemove.Name = "listBoxCookiesToRemove";
-            this.listBoxCookiesToRemove.Size = new System.Drawing.Size(285, 333);
-            this.listBoxCookiesToRemove.TabIndex = 1;
+            this.listBoxCookiesToKeep.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxCookiesToKeep.FormattingEnabled = true;
+            this.listBoxCookiesToKeep.ItemHeight = 16;
+            this.listBoxCookiesToKeep.Location = new System.Drawing.Point(3, 30);
+            this.listBoxCookiesToKeep.Margin = new System.Windows.Forms.Padding(3, 10, 3, 3);
+            this.listBoxCookiesToKeep.Name = "listBoxCookiesToKeep";
+            this.listBoxCookiesToKeep.Size = new System.Drawing.Size(285, 333);
+            this.listBoxCookiesToKeep.TabIndex = 4;
             // 
             // label2
             // 
@@ -202,10 +205,10 @@
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ListBox listBoxCookiesToKeep;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.ListBox listBoxCookiesToRemove;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBoxAvailableCookies;
+        private System.Windows.Forms.ListBox listBoxCookiesToKeep;
     }
 }

@@ -16,10 +16,27 @@ namespace PCCleaner.Controls
         public UCOptions()
         {
             InitializeComponent();
+            buttonSettings.BackColor = ApplicationSettings.SelectedButtonColor;
+            buttonSettings.ForeColor = Color.White;
+
+            UCSettings settings = null;
+            if (panelToolsMain.Controls.Find("Settings", false).Count() < 1)
+            {
+                settings = new UCSettings();
+                settings.Name = "Settings";
+                settings.Dock = DockStyle.Fill;
+                panelToolsMain.Controls.Add(settings);
+            }
+            else
+            {
+                settings = panelToolsMain.Controls.Find("Settings", false)[0] as UCSettings;
+                settings.Show();
+            }
         }
 
         private void buttonCookies_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonCookies.Name);
             HideAllControls();
             UCCookies cookies = null;
             if (panelToolsMain.Controls.Find("Cookies",false).Count()<1)
@@ -39,6 +56,7 @@ namespace PCCleaner.Controls
 
         private void buttonSettings_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonSettings.Name);
             HideAllControls();
             UCSettings settings = null;
             if (panelToolsMain.Controls.Find("Settings", false).Count() < 1)
@@ -65,6 +83,7 @@ namespace PCCleaner.Controls
 
         private void buttonInclude_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonInclude.Name);
             HideAllControls();
             UCIncludeExclude Include = null;
             if (panelToolsMain.Controls.Find("Include", false).Count() < 1)
@@ -83,6 +102,7 @@ namespace PCCleaner.Controls
 
         private void buttonExclude_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonExclude.Name);
             HideAllControls();
             UCIncludeExclude Exclude = null;
             if (panelToolsMain.Controls.Find("Exclude", false).Count() < 1)
@@ -101,6 +121,7 @@ namespace PCCleaner.Controls
 
         private void buttonAdvanced_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonAdvanced.Name);
             HideAllControls();
             UCAdvanced Advanced = null;
             if (panelToolsMain.Controls.Find("Advanced", false).Count() < 1)
@@ -114,6 +135,23 @@ namespace PCCleaner.Controls
             {
                 Advanced = panelToolsMain.Controls.Find("Advanced", false)[0] as UCAdvanced;
                 Advanced.Show();
+            }
+        }
+
+        private void ChangeButtonColor(string buttonName)
+        {
+            foreach(Control ctrl in this.flowLayoutPanelTools.Controls)
+            {
+                if(ctrl.GetType() == typeof(Button) && ctrl.Name == buttonName)
+                {
+                    ctrl.BackColor = ApplicationSettings.SelectedButtonColor;
+                    ctrl.ForeColor = Color.White;
+                }
+                else
+                {
+                    ctrl.BackColor = Control.DefaultBackColor;
+                    ctrl.ForeColor = Color.Black;
+                }
             }
         }
     }

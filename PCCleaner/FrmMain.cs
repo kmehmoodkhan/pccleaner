@@ -1,6 +1,7 @@
 ﻿using PCCleaner.Common;
 using PCCleaner.Controls;
 using PCCleaner.Controls.Common;
+using PCCleaner.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,7 @@ namespace PCCleaner
         public FrmMain()
         {
             InitializeComponent();
+
             FilesFound = new List<ResultDetail>();
 
             //this.panelCleanerComponents.Controls.Add(new UCCleaner());
@@ -49,6 +51,14 @@ namespace PCCleaner
 
             this.ucResult.Visible = false;
 
+            try
+            {
+                OptionsAdvanceSetting.IsSubscriptionValid(this);
+            }
+            catch(Exception ex)
+            {
+                ;
+            }
         }
 
         private void buttonRegistry_Click(object sender, EventArgs e)
@@ -81,6 +91,12 @@ namespace PCCleaner
             {
                 UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
                 registry.Hide();
+            }
+
+            if (gboxResult.Controls.Find("Options", false).Count() > 0)
+            {
+                UCOptions result = this.gboxResult.Controls.Find("Options", true)[0] as UCOptions;
+                result.Visible = false;
             }
 
             SelectedItem = ApplicationItem.Registry;
@@ -129,6 +145,13 @@ namespace PCCleaner
                 result.Visible = false;
             }
 
+            if (gboxResult.Controls.Find("Options", false).Count() > 0)
+            {
+                UCOptions result = this.gboxResult.Controls.Find("Options", true)[0] as UCOptions;
+                result.Visible = false;
+            }
+                
+
             ShowHideControls(ApplicationItem.Cleaner);
 
             SelectedItem = ApplicationItem.Cleaner;
@@ -157,6 +180,12 @@ namespace PCCleaner
             {
                 UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
                 registry.Hide();
+            }
+
+            if (gboxResult.Controls.Find("Options", false).Count() > 0)
+            {
+                UCOptions result = this.gboxResult.Controls.Find("Options", true)[0] as UCOptions;
+                result.Visible = false;
             }
 
             if (gboxResult.Controls.Find("Tools", false).Count() > 0)

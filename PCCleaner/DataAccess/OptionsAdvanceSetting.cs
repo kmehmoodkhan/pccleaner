@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PCCleaner.DataAccess
 {
@@ -43,6 +46,105 @@ namespace PCCleaner.DataAccess
             string query = "UPDATE ApplicationSettings SET value='" + newValue + "' where isDefault=0 AND setting='" + attributeName + "'";
             DBAccess access = new DBAccess();
             access.ExecuteNonQuery(query);
+        }
+
+        public static void AddSubscriptionInfo(string fullName,string emailAddress,string activationCode,string macAddress)
+        {
+            string createdOn = DateTime.Now.ToString();
+            string query = "INSERT INTO Subscription(FullName,EmailAddress,ActivationCode,MacAddress,CreatedOn) VALUES('"+fullName+"','"+emailAddress+"','"+activationCode +"','"+macAddress+"','" + createdOn+"')";
+            DBAccess access = new DBAccess();
+            access.ExecuteNonQuery(query);
+        }
+
+        public static DataTable GetSubscriptionInfo()
+        {
+            string query = "Select FullName,EmailAddress,ActivationCode,MacAddress FROM Subscription";
+            DBAccess access = new DBAccess();
+            DataSet ds = access.GetDataSet(query);
+            if(ds.Tables.Count > 0)
+            {
+                return ds.Tables[0];
+            }
+            return null;
+        }
+
+        public static async void IsSubscriptionValid(Form form) 
+        {
+            bool isValidSub = false;
+            DataTable dataTable = GetSubscriptionInfo();
+
+            string clientFullName = string.Empty;
+            string clientEmailAddress = string.Empty;
+            string clientActivationCode = string.Empty;
+            string clientMacAddress = string.Empty;
+
+            if (dataTable != null)
+            {
+                clientFullName = dataTable.Rows[0]["FullName"].ToString();
+                clientEmailAddress = dataTable.Rows[0]["EmailAddress"].ToString();
+                clientActivationCode = dataTable.Rows[0]["ActivationCode"].ToString();
+                clientMacAddress = dataTable.Rows[0]["MacAddress"].ToString();
+            }
+
+            string currentMacId = Helper.GetMacId();
+
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                UseDefaultCredentials = true
+            };
+
+            string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/isvalidsubscription?";
+
+
+            HttpClient httpClientSubApi = new HttpClient(handler);
+            httpClientSubApi.BaseAddress = new Uri(CleanerApplicationSettings.SubscriptionURL);
+
+            subscriptionUrl += "FullName=" + clientFullName;
+            subscriptionUrl += "&EmailAddress=" + clientEmailAddress;
+            subscriptionUrl += "&MacId=" + currentMacId;
+            subscriptionUrl += "&activationCode=" + clientActivationCode;
+
+
+            httpClientSubApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage response = await httpClientSubApi.GetAsync(subscriptionUrl);
+
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonResult = await response.Content.ReadAsStringAsync();
+
+                if (jsonResult == "200")
+                {
+                    form.Controls.Find("labelProductActivation", true)[0].Visible = false;
+                    isValidSub = true;
+                }
+            }
+            if (!isValidSub)
+            {
+                var messageBox = new SubscriptionMessage();
+                messageBox.ShowDialog();
+            }
+                
+        }
+
+        public static void AddSubscriptionRequest(string firstName,string lastName,string EmailAddress,string macId)
+        {
+            string query = "INSERT INTO UserSubscriptionRequest(FirstName,LastName,EmailAddress,MacId,CreatedOn) values('"+firstName+"','"+lastName+"','"+EmailAddress+"','"+macId+"','"+DateTime.Now.ToString()+"')";
+            DBAccess access = new DBAccess();
+            access.ExecuteNonQuery(query);
+        }
+
+        public static DataTable GetRequestUserInfo()
+        {
+            string fullName = string.Empty;
+            string query = "Select FirstName,LastName,EmailAddress from UserSubscriptionRequest";
+            DBAccess access = new DBAccess();
+            DataSet ds = access.GetDataSet(query);
+            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count>0)
+            {
+                return ds.Tables[0];
+            }
+            return null;
         }
 
         public static bool ShowInitialResultsView

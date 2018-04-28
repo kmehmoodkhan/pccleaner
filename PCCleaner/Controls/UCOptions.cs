@@ -90,6 +90,7 @@ namespace PCCleaner.Controls
             {
                 Include = new UCIncludeExclude();
                 Include.Name = "Include";
+                Include.IsInclude = true;
                 Include.Dock = DockStyle.Fill;
                 panelToolsMain.Controls.Add(Include);
             }
@@ -108,6 +109,7 @@ namespace PCCleaner.Controls
             if (panelToolsMain.Controls.Find("Exclude", false).Count() < 1)
             {
                 Exclude = new UCIncludeExclude();
+                Exclude.IsInclude = false;
                 Exclude.Name = "Include";
                 Exclude.Dock = DockStyle.Fill;
                 panelToolsMain.Controls.Add(Exclude);
@@ -152,6 +154,45 @@ namespace PCCleaner.Controls
                     ctrl.BackColor = Control.DefaultBackColor;
                     ctrl.ForeColor = Color.Black;
                 }
+            }
+        }
+
+        private void buttonSubscription_Click(object sender, EventArgs e)
+        {
+            ChangeButtonColor(buttonSubscription.Name);
+            HideAllControls();
+            UCSubsciption UCSubsciption = null;
+            if (panelToolsMain.Controls.Find("UCSubsciption", false).Count() < 1)
+            {
+                UCSubsciption = new UCSubsciption();
+                UCSubsciption.Name = "UCSubsciption";
+                UCSubsciption.Dock = DockStyle.Fill;
+                panelToolsMain.Controls.Add(UCSubsciption);
+            }
+            else
+            {
+                UCSubsciption = panelToolsMain.Controls.Find("UCSubsciption", false)[0] as UCSubsciption;
+                UCSubsciption.Show();
+            }
+        }
+
+        private void buttonAboutUs_Click(object sender, EventArgs e)
+        {
+            this.panelInfoBar.Visible = false;
+            ChangeButtonColor(buttonAboutUs.Name);
+            HideAllControls();
+            UCAbout UCAbout = null;
+            if (panelToolsMain.Controls.Find("UCAbout", false).Count() < 1)
+            {
+                UCAbout = new UCAbout();
+                UCAbout.Name = "UCAbout";
+                UCAbout.Dock = DockStyle.Fill;
+                panelToolsMain.Controls.Add(UCAbout);
+            }
+            else
+            {
+                UCAbout = panelToolsMain.Controls.Find("UCAbout", false)[0] as UCAbout;
+                UCAbout.Show();
             }
         }
     }

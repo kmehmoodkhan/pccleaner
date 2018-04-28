@@ -29,14 +29,18 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBoxSelections = new System.Windows.Forms.ListBox();
+            this.listBoxSelections = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.flowLayoutPanelTools = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonUninstall = new System.Windows.Forms.Button();
-            this.buttonStartup = new System.Windows.Forms.Button();
-            this.buttonPlugins = new System.Windows.Forms.Button();
+            this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
+            this.Path = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxSelections)).BeginInit();
             this.panel2.SuspendLayout();
             this.flowLayoutPanelTools.SuspendLayout();
             this.SuspendLayout();
@@ -54,11 +58,17 @@
             // 
             // listBoxSelections
             // 
+            this.listBoxSelections.AllowUserToResizeRows = false;
+            this.listBoxSelections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Path,
+            this.ItemType,
+            this.Id});
             this.listBoxSelections.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxSelections.FormattingEnabled = true;
-            this.listBoxSelections.ItemHeight = 16;
             this.listBoxSelections.Location = new System.Drawing.Point(0, 27);
             this.listBoxSelections.Name = "listBoxSelections";
+            this.listBoxSelections.RowHeadersVisible = false;
+            this.listBoxSelections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.listBoxSelections.ShowRowErrors = false;
             this.listBoxSelections.Size = new System.Drawing.Size(704, 517);
             this.listBoxSelections.TabIndex = 1;
             // 
@@ -85,41 +95,62 @@
             // flowLayoutPanelTools
             // 
             this.flowLayoutPanelTools.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanelTools.Controls.Add(this.buttonUninstall);
-            this.flowLayoutPanelTools.Controls.Add(this.buttonStartup);
-            this.flowLayoutPanelTools.Controls.Add(this.buttonPlugins);
+            this.flowLayoutPanelTools.Controls.Add(this.buttonAdd);
+            this.flowLayoutPanelTools.Controls.Add(this.buttonEdit);
+            this.flowLayoutPanelTools.Controls.Add(this.buttonRemove);
             this.flowLayoutPanelTools.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanelTools.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelTools.Name = "flowLayoutPanelTools";
             this.flowLayoutPanelTools.Size = new System.Drawing.Size(196, 546);
             this.flowLayoutPanelTools.TabIndex = 1;
             // 
-            // buttonUninstall
+            // buttonAdd
             // 
-            this.buttonUninstall.Location = new System.Drawing.Point(3, 3);
-            this.buttonUninstall.Name = "buttonUninstall";
-            this.buttonUninstall.Size = new System.Drawing.Size(205, 45);
-            this.buttonUninstall.TabIndex = 0;
-            this.buttonUninstall.Text = "Uninstall";
-            this.buttonUninstall.UseVisualStyleBackColor = true;
+            this.buttonAdd.Location = new System.Drawing.Point(3, 3);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(205, 45);
+            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.UseVisualStyleBackColor = true;
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
-            // buttonStartup
+            // buttonEdit
             // 
-            this.buttonStartup.Location = new System.Drawing.Point(3, 54);
-            this.buttonStartup.Name = "buttonStartup";
-            this.buttonStartup.Size = new System.Drawing.Size(205, 45);
-            this.buttonStartup.TabIndex = 1;
-            this.buttonStartup.Text = "Startup";
-            this.buttonStartup.UseVisualStyleBackColor = true;
+            this.buttonEdit.Location = new System.Drawing.Point(3, 54);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(205, 45);
+            this.buttonEdit.TabIndex = 1;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
-            // buttonPlugins
+            // buttonRemove
             // 
-            this.buttonPlugins.Location = new System.Drawing.Point(3, 105);
-            this.buttonPlugins.Name = "buttonPlugins";
-            this.buttonPlugins.Size = new System.Drawing.Size(205, 45);
-            this.buttonPlugins.TabIndex = 2;
-            this.buttonPlugins.Text = "Plugins";
-            this.buttonPlugins.UseVisualStyleBackColor = true;
+            this.buttonRemove.Location = new System.Drawing.Point(3, 105);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(205, 45);
+            this.buttonRemove.TabIndex = 2;
+            this.buttonRemove.Text = "Remove";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // Path
+            // 
+            this.Path.HeaderText = "Path";
+            this.Path.Name = "Path";
+            this.Path.Width = 900;
+            // 
+            // ItemType
+            // 
+            this.ItemType.HeaderText = "ItemType";
+            this.ItemType.Name = "ItemType";
+            this.ItemType.Visible = false;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // UCIncludeExclude
             // 
@@ -132,6 +163,7 @@
             this.Size = new System.Drawing.Size(712, 552);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.listBoxSelections)).EndInit();
             this.panel2.ResumeLayout(false);
             this.flowLayoutPanelTools.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -143,10 +175,13 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTools;
-        private System.Windows.Forms.Button buttonUninstall;
-        private System.Windows.Forms.Button buttonStartup;
-        private System.Windows.Forms.Button buttonPlugins;
+        private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBoxSelections;
+        private System.Windows.Forms.DataGridView listBoxSelections;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Path;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
     }
 }

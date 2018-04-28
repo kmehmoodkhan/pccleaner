@@ -13,6 +13,7 @@ using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Net.NetworkInformation;
 
 namespace PCCleaner.Common
 {
@@ -703,5 +704,19 @@ namespace PCCleaner.Common
             return true;
         }
 
+        public static string GetMacId()
+        {
+            string macAddresses = "";
+
+            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (nic.OperationalStatus == OperationalStatus.Up)
+                {
+                    macAddresses += nic.GetPhysicalAddress().ToString();
+                    break;
+                }
+            }
+            return macAddresses;
+        }
     }
 }

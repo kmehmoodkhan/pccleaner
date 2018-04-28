@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCCleaner", "PCCleaner\PCCl
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupPCCleaner", "SetupPCCleaner\SetupPCCleaner.vdproj", "{61A55346-A248-4995-B4E4-FF2C61FE9D74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanerService", "CleanerService\CleanerService.csproj", "{8C5E5B4D-2F15-4118-A64E-240B9489F825}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{440BE25E-9253-4F1B-B2C1-0489982948A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{61A55346-A248-4995-B4E4-FF2C61FE9D74}.Debug|Any CPU.ActiveCfg = Debug
 		{61A55346-A248-4995-B4E4-FF2C61FE9D74}.Release|Any CPU.ActiveCfg = Release
+		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

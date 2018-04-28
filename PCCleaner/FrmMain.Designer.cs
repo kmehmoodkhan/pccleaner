@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.labelProductActivation = new System.Windows.Forms.Label();
             this.labelClientInfo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,15 +42,15 @@
             this.buttonCleaner = new System.Windows.Forms.Button();
             this.panelRightInfo = new System.Windows.Forms.Panel();
             this.gboxResult = new System.Windows.Forms.GroupBox();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
-            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -63,6 +64,7 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.panelTop.Controls.Add(this.labelProductActivation);
             this.panelTop.Controls.Add(this.labelClientInfo);
             this.panelTop.Controls.Add(this.label2);
             this.panelTop.Controls.Add(this.label1);
@@ -72,6 +74,19 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1051, 109);
             this.panelTop.TabIndex = 0;
+            // 
+            // labelProductActivation
+            // 
+            this.labelProductActivation.AutoSize = true;
+            this.labelProductActivation.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelProductActivation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductActivation.ForeColor = System.Drawing.Color.White;
+            this.labelProductActivation.Location = new System.Drawing.Point(783, 0);
+            this.labelProductActivation.Name = "labelProductActivation";
+            this.labelProductActivation.Padding = new System.Windows.Forms.Padding(0, 40, 5, 0);
+            this.labelProductActivation.Size = new System.Drawing.Size(268, 65);
+            this.labelProductActivation.TabIndex = 4;
+            this.labelProductActivation.Text = "[The product is not activated]";
             // 
             // labelClientInfo
             // 
@@ -224,6 +239,15 @@
             this.gboxResult.TabIndex = 2;
             this.gboxResult.TabStop = false;
             // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(610, 812);
+            this.ucResult.TabIndex = 2;
+            // 
             // panelActionButtons
             // 
             this.panelActionButtons.Controls.Add(this.buttonCleaner1);
@@ -293,6 +317,13 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 946);
             this.panelCleanerComponents.TabIndex = 2;
             // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
+            // 
             // backgroundWorkerSearch
             // 
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
@@ -300,22 +331,6 @@
             this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
             this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
-            // 
-            // ucResult
-            // 
-            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucResult.Location = new System.Drawing.Point(3, 18);
-            this.ucResult.Name = "ucResult";
-            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
-            this.ucResult.Size = new System.Drawing.Size(610, 812);
-            this.ucResult.TabIndex = 2;
-            // 
-            // ucCleaner1
-            // 
-            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
-            this.ucCleaner1.Name = "ucCleaner1";
-            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
-            this.ucCleaner1.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -366,5 +381,6 @@
         public System.ComponentModel.BackgroundWorker backgroundWorkerSearch;
         private System.Windows.Forms.Panel panelProgress;
         private Controls.Common.UCResult ucResult;
+        private System.Windows.Forms.Label labelProductActivation;
     }
 }

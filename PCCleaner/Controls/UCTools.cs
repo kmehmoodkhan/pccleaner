@@ -12,6 +12,7 @@ namespace PCCleaner.Controls.Common
 {
     public partial class UCTools : UserControl
     {
+
         private UCUninstall _Uninstall = null;
         public UCUninstall Uninstall
         {
@@ -91,13 +92,37 @@ namespace PCCleaner.Controls.Common
 
             _Uninstall = new UCUninstall();
             _Uninstall.Dock = DockStyle.Fill;
+
+            _Uninstall.ShowInstalledPrograms();
+
+            ShowHideControls(_Uninstall);
+
+            ChangeButtonColor(buttonUninstall.Name);
+
             panelToolsMain.Controls.Add(_Uninstall);
             this.labelInformation.Text = "Select a program from the list you want to remove from the computer";
         }
 
+        private void ChangeButtonColor(string buttonName)
+        {
+            foreach (Control ctrl in this.flowLayoutPanelTools.Controls)
+            {
+                if (ctrl.GetType() == typeof(Button) && ctrl.Name == buttonName)
+                {
+                    ctrl.BackColor = ApplicationSettings.SelectedButtonColor;
+                    ctrl.ForeColor = Color.White;
+                }
+                else
+                {
+                    ctrl.BackColor = Control.DefaultBackColor;
+                    ctrl.ForeColor = Color.Black;
+                }
+            }
+        }
+
         private void buttonUninstall_Click(object sender, EventArgs e)
         {
-           
+            ChangeButtonColor(buttonUninstall.Name);
             Uninstall.ShowInstalledPrograms();
 
             ShowHideControls(Uninstall);
@@ -105,6 +130,7 @@ namespace PCCleaner.Controls.Common
 
         private void buttonStartup_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonStartup.Name);
             _UCStartup = new UCStartup();
             _UCStartup.Dock = DockStyle.Fill;
             panelToolsMain.Controls.Add(UCStartup);
@@ -115,6 +141,7 @@ namespace PCCleaner.Controls.Common
 
         private void buttonPlugins_Click(object sender, EventArgs e)
         {
+            ChangeButtonColor(buttonPlugins.Name);
             _UCBrowserPlugins = new UCBrowserPlugins();
             _UCBrowserPlugins.Dock = DockStyle.Fill;
             panelToolsMain.Controls.Add(UCBrowserPlugins);
@@ -125,7 +152,7 @@ namespace PCCleaner.Controls.Common
         private void buttonDisk_Click(object sender, EventArgs e)
         {
 
-
+            ChangeButtonColor(buttonDisk.Name);
             _UCDiskAnalyzer = new UCDiskAnalyzer();
             _UCDiskAnalyzer.Dock = DockStyle.Fill;
             panelToolsMain.Controls.Add(_UCDiskAnalyzer);
@@ -135,7 +162,8 @@ namespace PCCleaner.Controls.Common
 
         private void buttonSystemRestore_Click(object sender, EventArgs e)
         {
-           
+
+            ChangeButtonColor(buttonSystemRestore.Name);
 
             _UCSystemRestore = new UCSystemRestore();
             _UCSystemRestore.Dock = DockStyle.Fill;
@@ -147,7 +175,7 @@ namespace PCCleaner.Controls.Common
 
         private void buttonDriveWiper_Click(object sender, EventArgs e)
         {
-            
+            ChangeButtonColor(buttonDriveWiper.Name);
 
             _UCDriveWiper = new UCDriveWiper();
             _UCDriveWiper.Dock = DockStyle.Fill;

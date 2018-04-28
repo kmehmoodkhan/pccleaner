@@ -37,19 +37,10 @@ namespace PCCleaner.Tools
 
                                         string[] extensions = { "*.jpeg", "*.png", "*.gif", "*.png", "*.tiff" };
 
-                                        //DirectoryInfo dirInfo = new DirectoryInfo(drive);
-                                        //FileInfo[] oldFiles =
-                                        //        dirInfo.EnumerateFiles("*.*", SearchOption.AllDirectories)
-                                        //               .AsParallel()
-                                        //               .Where(fi => fi.Extension.ToLower() == ".jpg").ToArray();
+                                        List<string> searchResult = new List<string>();
+                                        searchResult = DirSearch(drive,extensions);
 
-
-                                        var result = EnumerateFiles(drive, "*.jpeg", SearchOption.AllDirectories);
-
-
-                                        //var result = EnumerateFiles(drive, "*.jpeg", SearchOption.AllDirectories);
-
-                                        foreach (var file in result.ToList())
+                                        foreach (var file in searchResult)
                                         {
                                             DiskFileInfo fileDetail = new DiskFileInfo();
                                             fileDetail.FileName = Path.GetFileName(file);
@@ -63,11 +54,6 @@ namespace PCCleaner.Tools
                                                 files.Add(fileDetail);
                                             }
                                         }
-
-                                        //var result = Directory.EnumerateFiles(drive, "*.jpeg", SearchOption.AllDirectories);
-
-                                        //var list= SearchAccessibleFiles(drive, pictureExtensions, FileTypes.Pictures.ToString());                                        
-
 
                                     }
                                     break;
@@ -113,40 +99,36 @@ namespace PCCleaner.Tools
 
 
 
-        public IEnumerable<string> EnumerateDirectories(string parentDirectory, string searchPattern, SearchOption searchOpt)
+        static List<string> result = new List<string>();
+        static List<string> DirSearch(string sDir, string[] extensions)
         {
-            try
-            {
-                var directories = Enumerable.Empty<string>();
-                if (searchOpt == SearchOption.AllDirectories)
-                {
-                    directories = Directory.EnumerateDirectories(parentDirectory)
-                        .SelectMany(x => EnumerateDirectories(x, searchPattern, searchOpt)).AsParallel();
-                }
-                return directories.Concat(Directory.EnumerateDirectories(parentDirectory, searchPattern));
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Enumerable.Empty<string>();
-            }
-        }
 
-        public IEnumerable<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOpt)
-        {
             try
             {
-                var dirFiles = Enumerable.Empty<string>();
-                if (searchOpt == SearchOption.AllDirectories)
+                var dirList = Directory.GetDirectories(sDir);
+                Parallel.ForEach(dirList, (d) =>
                 {
-                    dirFiles = Directory.EnumerateDirectories(path)
-                                        .SelectMany(x => EnumerateFiles(x, searchPattern, searchOpt)).AsParallel();
-                }
-                return dirFiles.Concat(Directory.EnumerateFiles(path, searchPattern).AsParallel());
+                    try
+                    {
+                        var files = Directory.GetFiles(d).ToList();
+                        Parallel.ForEach(files, (f) =>
+                        {
+                            if (extensions.Contains(Path.GetExtension(f).ToLower()))
+                                result.Add(f);
+                        });
+                        DirSearch(d,extensions);
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+                });
             }
-            catch (UnauthorizedAccessException ex)
+            catch (System.Exception excpt)
             {
-                return Enumerable.Empty<string>();
+                Console.WriteLine(excpt.Message);
             }
+            return result;
         }
 
 

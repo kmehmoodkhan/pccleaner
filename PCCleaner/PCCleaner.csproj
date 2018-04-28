@@ -157,6 +157,12 @@
     <Compile Include="Controls\Common\UCSearch.Designer.cs">
       <DependentUpon>UCSearch.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Options\FrmAddItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Options\FrmAddItem.Designer.cs">
+      <DependentUpon>FrmAddItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Options\UCAdvanced.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +186,12 @@
     </Compile>
     <Compile Include="Controls\Options\UCSettings.Designer.cs">
       <DependentUpon>UCSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCAbout.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCAbout.Designer.cs">
+      <DependentUpon>UCAbout.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UCBrowserPlugins.cs">
       <SubType>UserControl</SubType>
@@ -210,6 +222,12 @@
     </Compile>
     <Compile Include="Controls\UCStartup.Designer.cs">
       <DependentUpon>UCStartup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UCSubsciption.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\UCSubsciption.Designer.cs">
+      <DependentUpon>UCSubsciption.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\UCSystemRestore.cs">
       <SubType>UserControl</SubType>
@@ -242,6 +260,7 @@
       <DependentUpon>UCUninstall.cs</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\CookiesSettings.cs" />
+    <Compile Include="DataAccess\ExcludedItems.cs" />
     <Compile Include="DataAccess\OptionsSetting.cs" />
     <Compile Include="DataAccess\OptionsAdvanceSetting.cs" />
     <Compile Include="DataAccess\DBAccess.cs" />
@@ -257,6 +276,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubscriptionMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubscriptionMessage.Designer.cs">
+      <DependentUpon>SubscriptionMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\DiskFileInfo.cs" />
     <Compile Include="Tools\ToolsLibrary.cs" />
     <EmbeddedResource Include="Controls\Cleaner\UCCleaner.resx">
@@ -277,6 +302,9 @@
     <EmbeddedResource Include="Controls\Common\UCSearch.resx">
       <DependentUpon>UCSearch.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Options\FrmAddItem.resx">
+      <DependentUpon>FrmAddItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Options\UCAdvanced.resx">
       <DependentUpon>UCAdvanced.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Options\UCSettings.resx">
       <DependentUpon>UCSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCAbout.resx">
+      <DependentUpon>UCAbout.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCBrowserPlugins.resx">
       <DependentUpon>UCBrowserPlugins.cs</DependentUpon>
@@ -306,6 +337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCStartup.resx">
       <DependentUpon>UCStartup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UCSubsciption.resx">
+      <DependentUpon>UCSubsciption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UCSystemRestore.resx">
       <DependentUpon>UCSystemRestore.cs</DependentUpon>
@@ -332,6 +366,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SubscriptionMessage.resx">
+      <DependentUpon>SubscriptionMessage.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="DB\CleanerDB.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -37,6 +37,8 @@
             this.panelToolsMain = new System.Windows.Forms.Panel();
             this.panelInfoBar = new System.Windows.Forms.Panel();
             this.labelNotice = new System.Windows.Forms.Label();
+            this.buttonSubscription = new System.Windows.Forms.Button();
+            this.buttonAboutUs = new System.Windows.Forms.Button();
             this.flowLayoutPanelTools.SuspendLayout();
             this.panelInfoBar.SuspendLayout();
             this.SuspendLayout();
@@ -49,6 +51,8 @@
             this.flowLayoutPanelTools.Controls.Add(this.buttonInclude);
             this.flowLayoutPanelTools.Controls.Add(this.buttonExclude);
             this.flowLayoutPanelTools.Controls.Add(this.buttonAdvanced);
+            this.flowLayoutPanelTools.Controls.Add(this.buttonSubscription);
+            this.flowLayoutPanelTools.Controls.Add(this.buttonAboutUs);
             this.flowLayoutPanelTools.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanelTools.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanelTools.Name = "flowLayoutPanelTools";
@@ -134,6 +138,26 @@
             this.labelNotice.TabIndex = 0;
             this.labelNotice.Text = "Select a program from the list you want to remove from the computer";
             // 
+            // buttonSubscription
+            // 
+            this.buttonSubscription.Location = new System.Drawing.Point(3, 258);
+            this.buttonSubscription.Name = "buttonSubscription";
+            this.buttonSubscription.Size = new System.Drawing.Size(205, 45);
+            this.buttonSubscription.TabIndex = 7;
+            this.buttonSubscription.Text = "Subscription";
+            this.buttonSubscription.UseVisualStyleBackColor = true;
+            this.buttonSubscription.Click += new System.EventHandler(this.buttonSubscription_Click);
+            // 
+            // buttonAboutUs
+            // 
+            this.buttonAboutUs.Location = new System.Drawing.Point(3, 309);
+            this.buttonAboutUs.Name = "buttonAboutUs";
+            this.buttonAboutUs.Size = new System.Drawing.Size(205, 45);
+            this.buttonAboutUs.TabIndex = 8;
+            this.buttonAboutUs.Text = "About";
+            this.buttonAboutUs.UseVisualStyleBackColor = true;
+            this.buttonAboutUs.Click += new System.EventHandler(this.buttonAboutUs_Click);
+            // 
             // UCOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,5 +185,7 @@
         private System.Windows.Forms.Panel panelToolsMain;
         private System.Windows.Forms.Panel panelInfoBar;
         private System.Windows.Forms.Label labelNotice;
+        private System.Windows.Forms.Button buttonSubscription;
+        private System.Windows.Forms.Button buttonAboutUs;
     }
 }

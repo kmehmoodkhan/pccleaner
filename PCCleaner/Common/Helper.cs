@@ -357,6 +357,30 @@ namespace PCCleaner.Common
             return path;
         }
 
+        public static string GetCookiesPath(SearchArea browser)
+        {
+            var path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData).Replace(@"AppData\Local", @"AppData\LocalLow");
+            try
+            {
+                var directories = System.IO.Directory.GetDirectories(path,"*.*", SearchOption.AllDirectories);
+                foreach (string dir in directories)
+                {
+                    if (dir.EndsWith(@"Internet Explorer"))
+                    {
+                        path = dir;
+                        break;
+                    }
+                }
+
+                path += "\\DomStore";
+            }
+            catch
+            {
+                ;
+            }
+            return path;
+        }
+
         public static void BindResult(ref ListView listview, List<Result> result)
         {
             int i = 0;

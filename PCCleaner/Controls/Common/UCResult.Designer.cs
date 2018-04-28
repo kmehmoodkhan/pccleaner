@@ -172,8 +172,10 @@
             this.dataGridViewOverall.ContextMenuStrip = this.contextMenuStripResult;
             this.dataGridViewOverall.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOverall.Location = new System.Drawing.Point(0, 123);
+            this.dataGridViewOverall.MultiSelect = false;
             this.dataGridViewOverall.Name = "dataGridViewOverall";
             this.dataGridViewOverall.RowTemplate.Height = 24;
+            this.dataGridViewOverall.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewOverall.Size = new System.Drawing.Size(614, 262);
             this.dataGridViewOverall.TabIndex = 2;
             this.dataGridViewOverall.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewOverall_CellMouseEnter);
@@ -261,8 +263,10 @@
             this.Col_Size});
             this.dataGridViewDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewDetail.Location = new System.Drawing.Point(0, 123);
+            this.dataGridViewDetail.MultiSelect = false;
             this.dataGridViewDetail.Name = "dataGridViewDetail";
             this.dataGridViewDetail.RowTemplate.Height = 24;
+            this.dataGridViewDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDetail.Size = new System.Drawing.Size(614, 262);
             this.dataGridViewDetail.TabIndex = 3;
             // 

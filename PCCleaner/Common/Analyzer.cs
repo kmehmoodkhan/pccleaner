@@ -20,6 +20,7 @@ namespace PCCleaner.Common
     {
         public static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria, ref BackgroundWorker backgroundWorker, bool isCleanerCall = false)
         {
+
             List<ResultDetail> result = new List<ResultDetail>();
             string[] files = null;
             string parentPath = string.Empty;
@@ -43,9 +44,13 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(@"cache")).ToArray();
+                                    string[] tempDirs = { "#!001", "#!002", "temp" };
+
+                                    var tempFiles = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(t2 => tempDirs.Any(t1 => t2.Contains(t1)));
+                                    files = tempFiles.Where(p => p.ToLower().Contains(@"cache")).ToArray();
                                     foreach (string fl in files)
                                     {
+                                        if( !fl.ToLower().Contains("cryptnet"))
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cache });
                                     }
 
@@ -187,7 +192,7 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.Cookies:
-                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                parentPath = Helper.GetCookiesPath(SearchArea.IE);
                                 try
                                 {
                                     files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(".xml")).ToArray();
@@ -611,7 +616,7 @@ namespace PCCleaner.Common
                         {
                             case ExplorerFeatures.RecentDocuments:
                                 parentPath = Environment.GetFolderPath(Environment.SpecialFolder.Recent);
-                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => !p.Contains(@"\AutomaticDestinations") && !p.Contains(@"\CustomDestinations")).ToArray();
                                 foreach (string fl in files)
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowExplorer, FeatureArea = FeatureArea.RecentDocuments });
@@ -635,8 +640,11 @@ namespace PCCleaner.Common
 
                                 Folder recycleBin = shell.NameSpace(10);
 
+                               
+
                                 try
-                                {
+                                {                                   
+                                    var items = recycleBin.Items();
                                     foreach (FolderItem2 recfile in recycleBin.Items())
                                     {
                                         result.Add(new ResultDetail() { FilePath = recfile.Name, FileSize = 1, SearchArea = SearchArea.System, FeatureArea = FeatureArea.EmptyRecycleBin });

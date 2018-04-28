@@ -337,7 +337,6 @@ namespace PCCleaner
 
         public void ProcessSearch()
         {
-
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
             
@@ -352,6 +351,8 @@ namespace PCCleaner
 
             if (SelectedItem == ApplicationItem.Cleaner)
             {
+                
+
                 if (this.gboxResult.InvokeRequired)
                 {
                     this.gboxResult.Invoke(new MethodInvoker(delegate
@@ -389,7 +390,7 @@ namespace PCCleaner
                 {
                     this.ucResult.Visible = true;
                 }
-
+                
                 List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
                 var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
@@ -481,10 +482,21 @@ namespace PCCleaner
         private List<SearchCriteria> GetSearchCriteria()
         {
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
+            
+
             if (SelectedItem == ApplicationItem.Cleaner)
             {
                 searchCriteria.Clear();
-                var edgeSelectedItems = this.Edge.SelectedItems;
+
+                List<ListItem> edgeSelectedItems = null;
+                try
+                {
+                   edgeSelectedItems = this.Edge.SelectedItems;
+                }
+                catch (Exception ex)
+                {
+                    ;
+                }
 
                 List<ListItem> ieSelectedItems = null;
                 try
@@ -531,6 +543,7 @@ namespace PCCleaner
                 List<ListItem> systemSelectedItems = null;
                 try
                 {
+
                     systemSelectedItems = this.SystemArea.SelectedItems;
                 }
                 catch

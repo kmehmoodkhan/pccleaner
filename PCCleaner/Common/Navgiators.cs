@@ -45,7 +45,10 @@ namespace PCCleaner.Common
                     browser.Version = FileVersionInfo.GetVersionInfo(browser.Path).FileVersion;
                 else
                     browser.Version = "unknown";
+
+                browserKey.Close();
             }
+            browserKeys.Close();
             return browsers;
         }
 
@@ -60,6 +63,7 @@ namespace PCCleaner.Common
                     {
                         if (subkey.StartsWith("Microsoft.MicrosoftEdge_"))
                         {
+                            key.Close();
                             edgeFound = true;
                             break;
                         }
@@ -115,6 +119,8 @@ namespace PCCleaner.Common
                     }
                     childKey.Close();
                 }
+
+                programKey.Close();
 
                 extensions.Add(extension);
 

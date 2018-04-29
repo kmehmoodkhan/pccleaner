@@ -18,7 +18,7 @@ namespace PCCleaner.Common
             {
                 string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToLower();
 
-                path = path.Replace("\\bin\\debug", "");
+                path = path.Replace("\\bin\\debug", "\\");
 
                 return path;
                 //return @"C:\Users\kausar\source\repos\PCCleaner\PCCleaner\";

@@ -658,6 +658,9 @@ namespace PCCleaner.Common
                 case FeatureArea.ApplicationPaths:
                     problem = "Application Path Issue";
                     break;
+                case FeatureArea.Installer:
+                    problem = "Installer Reference Issue";
+                    break;
             }
             return problem;
         }
@@ -675,8 +678,10 @@ namespace PCCleaner.Common
                 displayName = subkey.GetValue("DisplayName") as string;
                 if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
                 {
+                    subkey.Close();
                     return true;
                 }
+                subkey.Close();
             }
 
             // search in: LocalMachine_32
@@ -687,8 +692,10 @@ namespace PCCleaner.Common
                 displayName = subkey.GetValue("DisplayName") as string;
                 if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
                 {
+                    subkey.Close();
                     return true;
                 }
+                subkey.Close();
             }
 
             // search in: LocalMachine_64
@@ -699,9 +706,13 @@ namespace PCCleaner.Common
                 displayName = subkey.GetValue("DisplayName") as string;
                 if (p_name.Equals(displayName, StringComparison.OrdinalIgnoreCase) == true)
                 {
+                    subkey.Close();
                     return true;
                 }
+
+                subkey.Close();
             }
+            key.Close();
 
             // NOT FOUND
             return false;

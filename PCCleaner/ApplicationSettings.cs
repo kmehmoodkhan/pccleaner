@@ -40,6 +40,8 @@ namespace PCCleaner
                 productName += ", " + RamSize;
                 productName += ", " + GraphicsInfo;
 
+                reg.Close();
+
                 return productName;
             }
         }

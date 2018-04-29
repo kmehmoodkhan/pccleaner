@@ -32,8 +32,9 @@ namespace PCCleaner.Controls
                 {
                     using (RegistryKey subkey = key.OpenSubKey(subkey_name))
                     {
-                        if (subkey.GetValue("DisplayIcon") != null) { 
-                        PCCleaner.Common.Program program = new PCCleaner.Common.Program();
+                        if (subkey.GetValue("DisplayIcon") != null)
+                        {
+                            PCCleaner.Common.Program program = new PCCleaner.Common.Program();
 
                             if (subkey.GetValue("DisplayName") != null)
                             {
@@ -150,8 +151,11 @@ namespace PCCleaner.Controls
                                 }
                             }
                         }
+                        subkey.Close();
                     }
                 }
+
+                key.Close();
             }
 
             var bindingList = new BindingList<PCCleaner.Common.Program>(prog.OrderBy(t=>t.ProgramName).ToList());

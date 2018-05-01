@@ -82,12 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
-        "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
         "OwnerKey" = "8:_D27C9435D5ED8B60F33C16E72479A0DA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -569,6 +563,12 @@
         {
         "MsmKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
         "OwnerKey" = "8:_7B2D79234F621E93DEB5B341C3303ACC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
+        "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1503,6 +1503,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EABB46163A964FBBB91EA37E2AFB417E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_EDBC07255ABF0A2954D9482490E8CB31"
         "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
         "MsmSig" = "8:_UNDEFINED"
@@ -1792,12 +1798,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_DBEAE809A9193BABFDC4A7AD532D675B"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2071,6 +2071,12 @@
         "OwnerKey" = "8:_A8C79FE53BB270478FA34704D418829A"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_107BB4D053445F29A0022EE8F71A7E51"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -2089,6 +2095,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -2105,6 +2119,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -6815,6 +6837,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EABB46163A964FBBB91EA37E2AFB417E"
+            {
+            "SourcePath" = "8:..\\PCCleaner\\DB\\CleanerDB.db"
+            "TargetName" = "8:CleanerDB.db"
+            "Tag" = "8:"
+            "Folder" = "8:_21DA093269094A8FBCC0CEB78390F920"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EDBC07255ABF0A2954D9482490E8CB31"
             {
             "AssemblyRegister" = "3:1"
@@ -7225,6 +7267,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_21DA093269094A8FBCC0CEB78390F920"
+                    {
+                    "Name" = "8:DB"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_8D0C79AB415548988ADDD014C5D86F72"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }

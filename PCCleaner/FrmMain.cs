@@ -19,7 +19,7 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
-       
+
 
         bool IsCleanerCall = false;
         public ApplicationItem SelectedItem
@@ -55,7 +55,7 @@ namespace PCCleaner
             {
                 OptionsAdvanceSetting.IsSubscriptionValid(this);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ;
             }
@@ -129,7 +129,7 @@ namespace PCCleaner
             {
                 UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
                 registry.Show();
-                
+
             }
 
 
@@ -139,7 +139,7 @@ namespace PCCleaner
                 registry.Hide();
             }
 
-            if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() >0)
+            if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() > 0)
             {
                 UCResultRegistry result = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
                 result.Visible = false;
@@ -150,7 +150,7 @@ namespace PCCleaner
                 UCOptions result = this.gboxResult.Controls.Find("Options", true)[0] as UCOptions;
                 result.Visible = false;
             }
-                
+
 
             ShowHideControls(ApplicationItem.Cleaner);
 
@@ -167,7 +167,7 @@ namespace PCCleaner
             buttonCleaner.BackColor = ApplicationSettings.NormalButtonColor;
             buttonRegistry.BackColor = ApplicationSettings.NormalButtonColor;
             buttonOptions.BackColor = ApplicationSettings.NormalButtonColor;
-            
+
 
             if (panelCleanerComponents.Controls.Find("Registry", false).Count() > 0)
             {
@@ -196,20 +196,20 @@ namespace PCCleaner
                 }
                 UCTools registry = gboxResult.Controls.Find("Tools", false)[0] as UCTools;
                 registry.Visible = true;
-                
+
             }
             else
             {
                 UCTools tools = new UCTools();
                 tools.Name = "Tools";
                 tools.Dock = DockStyle.Fill;
-                foreach(Control ctrl in this.gboxResult.Controls)
+                foreach (Control ctrl in this.gboxResult.Controls)
                 {
                     ctrl.Visible = false;
                 }
                 this.gboxResult.Controls.Add(tools);
             }
-            
+
             ShowHideControls(ApplicationItem.Tools);
 
             SelectedItem = ApplicationItem.Tools;
@@ -223,7 +223,7 @@ namespace PCCleaner
             this.progressBar1.Equals(0);
             this.progressBar1.Visible = false;
 
-            if ( item == ApplicationItem.Tools)
+            if (item == ApplicationItem.Tools)
             {
                 this.panelCleanerComponents.Visible = false;
                 this.ucCleaner1.Visible = false;
@@ -235,7 +235,7 @@ namespace PCCleaner
                 this.ucCleaner1.Visible = false;
                 this.panelActionButtons.Visible = true;
             }
-            else if ( item == ApplicationItem.Options)
+            else if (item == ApplicationItem.Options)
             {
                 this.panelCleanerComponents.Visible = false;
                 this.ucCleaner1.Visible = false;
@@ -243,7 +243,7 @@ namespace PCCleaner
             }
             else
             {
-                this.panelCleanerComponents.Visible = true ;
+                this.panelCleanerComponents.Visible = true;
                 this.ucCleaner1.Visible = true;
                 this.panelActionButtons.Visible = true;
             }
@@ -314,6 +314,10 @@ namespace PCCleaner
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
+            if(SearchResult!=null && SearchResult.Count > 0)
+            {
+                SearchResult.Clear();
+            }
             this.progressBar1.Visible = true;
             IsCleanerCall = false;
             try
@@ -323,11 +327,11 @@ namespace PCCleaner
                 stopwatch.Stop();
                 ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
                 this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
-                
+
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 backgroundWorkerSearch.CancelAsync();
                 stopwatch.Stop();
@@ -335,11 +339,13 @@ namespace PCCleaner
             }
         }
 
+
+        public List<ResultDetail> SearchResult = null;
         public void ProcessSearch()
         {
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
-            
+
 
             if (this.progressBar1.InvokeRequired)
             {
@@ -351,7 +357,7 @@ namespace PCCleaner
 
             if (SelectedItem == ApplicationItem.Cleaner)
             {
-                
+
 
                 if (this.gboxResult.InvokeRequired)
                 {
@@ -362,20 +368,12 @@ namespace PCCleaner
                         {
                             this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
                         }
-                        //foreach( Control ctrl in this.gboxResult.Controls)
-                        //{
-                        //    ctrl.Visible = true;
-                        //}
                     }));
                 }
                 else
                 {
                     this.gboxResult.Visible = true;
                     this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
-                    //foreach (Control ctrl in this.gboxResult.Controls)
-                    //{
-                    //    ctrl.Visible = true;
-                    //}
                 }
 
 
@@ -390,17 +388,26 @@ namespace PCCleaner
                 {
                     this.ucResult.Visible = true;
                 }
-                
-                List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
-                var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
 
-                var overAllResult = Analyzer.GetOverallResult(result);
+                try
+                {
+                    List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
-                CleanerApplicationContext.ResultSummary = overAllResult;
 
-                this.ucResult.ShowResult(ResultView.Overall, overAllResult);
-                this.FilesFound = result;
+                    SearchResult = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+
+                    var overAllResult = Analyzer.GetOverallResult(SearchResult);
+
+                    CleanerApplicationContext.ResultSummary = overAllResult;
+
+                    this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+                    this.FilesFound = SearchResult;
+                }
+                catch (Exception ex)
+                {
+                    ;
+                }
             }
             else if (SelectedItem == ApplicationItem.Registry)
             {
@@ -411,14 +418,15 @@ namespace PCCleaner
                         this.ucResult.Visible = false;
                     }));
                 }
-                else{
+                else
+                {
                     this.ucResult.Visible = false;
-                }               
+                }
 
 
                 List<SearchCriteria> searchCriteria = GetSearchCriteria();
-                var result = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
-                var overAllResult = Analyzer.GetOverallResult(result);
+                SearchResult = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                var overAllResult = Analyzer.GetOverallResult(SearchResult);
 
                 UCResultRegistry registryControl = null;
                 if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() < 1)
@@ -431,7 +439,7 @@ namespace PCCleaner
                 else
                 {
                     registryControl = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
-                    
+
 
                     if (registryControl.InvokeRequired)
                     {
@@ -450,7 +458,7 @@ namespace PCCleaner
                 {
                     this.gboxResult.Invoke(new MethodInvoker(delegate
                     {
-                        if(this.gboxResult.Controls.Find("UCResultRegistry",true).Count()< 1)
+                        if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() < 1)
                             this.gboxResult.Controls.Add(registryControl);
 
                         registryControl.ShowResult(ResultView.Detail, overAllResult);
@@ -462,17 +470,17 @@ namespace PCCleaner
                         this.gboxResult.Controls.Add(registryControl);
 
                     registryControl.ShowResult(ResultView.Detail, overAllResult);
-                }              
+                }
             }
 
-                this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
         }
 
         private void backgroundWorkerSearch_DoWork(object sender, DoWorkEventArgs e)
         {
-            if(!IsCleanerCall)
-             ProcessSearch();
+            if (!IsCleanerCall)
+                ProcessSearch();
             else
             {
                 CleanupSystem();
@@ -482,7 +490,7 @@ namespace PCCleaner
         private List<SearchCriteria> GetSearchCriteria()
         {
             List<SearchCriteria> searchCriteria = new List<SearchCriteria>();
-            
+
 
             if (SelectedItem == ApplicationItem.Cleaner)
             {
@@ -491,7 +499,7 @@ namespace PCCleaner
                 List<ListItem> edgeSelectedItems = null;
                 try
                 {
-                   edgeSelectedItems = this.Edge.SelectedItems;
+                    edgeSelectedItems = this.Edge.SelectedItems;
                 }
                 catch (Exception ex)
                 {
@@ -618,9 +626,9 @@ namespace PCCleaner
                 }
 
 
-               
 
-                
+
+
 
 
                 if (edgeSelectedItems != null && edgeSelectedItems.Count > 0)
@@ -753,7 +761,6 @@ namespace PCCleaner
                     }
                 }
             }
-            
             return searchCriteria;
         }
 
@@ -774,7 +781,8 @@ namespace PCCleaner
                     }
                 }));
             }
-            else{
+            else
+            {
                 progressBar1.Value = e.ProgressPercentage;
                 if (e.ProgressPercentage == 100)
                 {
@@ -792,19 +800,26 @@ namespace PCCleaner
         private void buttonCleaner1_Click(object sender, EventArgs e)
         {
             IsCleanerCall = true;
-            DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
+
 
             ///////////////////////////////
-            IsCleanerCall = false;
+
            
+
+            DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
+
             if (result == DialogResult.Yes)
             {
                 try
                 {
+
                     ucResult.Visible = true;
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     backgroundWorkerSearch.RunWorkerAsync();
+                    
+
                     stopwatch.Stop();
+
                     ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
                 catch (Exception ex)
@@ -818,6 +833,11 @@ namespace PCCleaner
                     stopwatch.Stop();
                     ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
+            }
+
+            if (SearchResult != null && SearchResult.Count > 0)
+            {
+                SearchResult.Clear();
             }
         }
 
@@ -840,7 +860,8 @@ namespace PCCleaner
 
             var searchCriteria = GetSearchCriteria();
             var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch, true);
-            Cleaner.CleanUpSystem(searchCriteria, filesFound, ref this.backgroundWorkerSearch);
+            
+            Cleaner.CleanUpSystem(searchCriteria, filesFound,SelectedItem, ref this.backgroundWorkerSearch);
 
             this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;

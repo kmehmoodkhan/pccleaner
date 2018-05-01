@@ -12,7 +12,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Linq;
 
 namespace PCCleaner.Common
 {
@@ -40,20 +40,29 @@ namespace PCCleaner.Common
                         {
                             case BrowserFeatures.Cache:
 
-                                parentPath = Helper.GetBrowserCachePath(SearchArea.Edge);
+                                
 
                                 try
                                 {
+                                    parentPath = Helper.GetBrowserCachePath(SearchArea.Edge);
                                     string[] tempDirs = { "#!001", "#!002", "temp" };
 
-                                    var tempFiles = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(t2 => tempDirs.Any(t1 => t2.Contains(t1)));
-                                    files = tempFiles.Where(p => p.ToLower().Contains(@"cache")).ToArray();
-                                    foreach (string fl in files)
+                                    if (new DirectoryInfo(parentPath).Exists)
                                     {
-                                        if( !fl.ToLower().Contains("cryptnet"))
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cache });
+                                        var tempFiles = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(t2 => tempDirs.Any(t1 => t2.Contains(t1)));
+                                        if (tempFiles != null && tempFiles.Count() > 0)
+                                        {
+                                            files = tempFiles.Where(p => p.ToLower().Contains(@"cache")).ToArray();
+                                            if (files != null)
+                                            {
+                                                foreach (string fl in files)
+                                                {
+                                                    if (!fl.ToLower().Contains("cryptnet"))
+                                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cache });
+                                                }
+                                            }
+                                        }
                                     }
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -61,10 +70,10 @@ namespace PCCleaner.Common
                                 }
                                 break;
                             case BrowserFeatures.InternetHistory:
-
-                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Edge);
+                               
                                 try
                                 {
+                                    parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Edge);
                                     files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("history")).ToArray();
                                 }
                                 catch (Exception ex)
@@ -156,69 +165,94 @@ namespace PCCleaner.Common
                         switch (featureIE)
                         {
                             case BrowserFeatures.Cache:
-                                parentPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
-                                parentPath += "\\IE\\";
+                                
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    parentPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
+                                    parentPath += "\\IE\\";
+                                    
+
+                                    if( new DirectoryInfo(parentPath).Exists)
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+
+                                if (files != null)
                                 {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cache });
+                                    foreach (string fl in files)
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cache });
+                                    }
                                 }
-
-
                                 break;
                             case BrowserFeatures.InternetHistory:
 
-                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                               
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("recovery")).ToArray();
+                                    parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("recovery")).ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                if (files != null)
                                 {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.InternetHistory });
+                                    foreach (string fl in files)
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.InternetHistory });
+                                    }
                                 }
-
-
                                 break;
                             case BrowserFeatures.Cookies:
-                                parentPath = Helper.GetCookiesPath(SearchArea.IE);
+                                
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(".xml")).ToArray();
+                                    parentPath = Helper.GetCookiesPath(SearchArea.IE);
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains(".xml")).ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
-                                {
-                                    result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cookies });
-                                }
 
+                                if (files != null)
+                                {
+                                    foreach (string fl in files)
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cookies });
+                                    }
+                                }
 
                                 break;
                             case BrowserFeatures.DownloadHistory:
-                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("downloadhistory")).ToArray();
+                                    parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                    if( Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("downloadhistory")).ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                
+                               foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.DownloadHistory });
                                 }
@@ -226,16 +260,20 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.LastDownloadLocation:
-                                parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
+                                
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
+                                    if(Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.LastDownloadLocation });
                                 }
@@ -243,16 +281,20 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.Session:
-                                parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("active")).ToArray();
+                                    parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("active")).ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Session });
                                 }

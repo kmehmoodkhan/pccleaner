@@ -11,56 +11,66 @@ namespace PCCleaner.Common
 {
     public class Cleaner
     {
-        public static void CleanUpSystem(List<SearchCriteria> searchCriteria, List<ResultDetail> files, ref BackgroundWorker backgroundWorker)
+        public static void CleanUpSystem(List<SearchCriteria> searchCriteria, List<ResultDetail> files,ApplicationItem item, ref BackgroundWorker backgroundWorker)
         {
-            int totalAreasToSearch = files.Count;
-            int areasCompleted = 0;
-
-
-            if (searchCriteria.Any(t=>t.SearchArea == (int) SearchArea.System && t.FeatureId == (int)SystemFeatures.EmptyRecycleBin))
+            if (item == ApplicationItem.Cleaner && searchCriteria.Any(t => t.SearchArea == (int)SearchArea.System && t.FeatureId == (int)SystemFeatures.EmptyRecycleBin))
             {
-                Task.Run(() => Helper.EmptyRecycleBin());                
+                Task.Run(() => Helper.EmptyRecycleBin());
             }
-            
 
-            /*
-            Parallel.ForEach(files, file =>
+            if (files.Count > 0 && item == ApplicationItem.Cleaner)
             {
-                try
-                {
+                int totalAreasToSearch = files.Count;
+                int areasCompleted = 0;
+               
 
+                foreach (var file in files)
+                {
                     if (areasCompleted < totalAreasToSearch)
                     {
                         areasCompleted += 1;
                     }
-                    DeleteFile(file);
-                    var progress=Helper.CompletionPercentage(areasCompleted, totalAreasToSearch);
+                    try
+                    {
+                        DeleteFile(file);
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+                    var progress = Helper.CompletionPercentage(areasCompleted, totalAreasToSearch);
+                    backgroundWorker.ReportProgress(progress);
                 }
-                catch (Exception ex)
-                {
-                    ;
-                }
-            });
-            */
-
-            foreach( var file in files)
-            {
-                if (areasCompleted < totalAreasToSearch)
-                {
-                    areasCompleted += 1;
-                }
-                try
-                {
-                    DeleteFile(file);
-                }
-                catch(Exception ex)
-                {
-                    ;
-                }
-                var progress = Helper.CompletionPercentage(areasCompleted, totalAreasToSearch);
-                backgroundWorker.ReportProgress(progress);
             }
+            else if( item == ApplicationItem.Registry)
+            {
+                int totalAreasToSearch = files.Count;
+                int areasCompleted = 0;
 
+                foreach (var file in files)
+                {
+                    if (areasCompleted < totalAreasToSearch)
+                    {
+                        areasCompleted += 1;
+                    }
+                    try
+                    {
+                        if( file.RegistryKey.StartsWith(@"HKLM\"))
+                        {
+                            var path = file.RegistryKey.Replace("HKLM\\","");
+                            var registryKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(path,true);
+                            registryKey.DeleteValue(file.FilePath);
+                            registryKey.Close();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        ;
+                    }
+                    var progress = Helper.CompletionPercentage(areasCompleted, totalAreasToSearch);
+                    backgroundWorker.ReportProgress(progress);
+                }
+            }
             
         }
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelActivated = new System.Windows.Forms.Label();
             this.groupBoxSubscripton = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxActKey = new System.Windows.Forms.TextBox();
@@ -36,6 +37,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBoxRequest = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonCancel = new System.Windows.Forms.Button();
@@ -44,10 +48,6 @@
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelActivated = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBoxLastName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBoxSubscripton.SuspendLayout();
             this.groupBoxRequest.SuspendLayout();
@@ -65,6 +65,19 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(3);
             this.panel1.Size = new System.Drawing.Size(592, 500);
             this.panel1.TabIndex = 0;
+            // 
+            // labelActivated
+            // 
+            this.labelActivated.AutoSize = true;
+            this.labelActivated.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelActivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelActivated.Location = new System.Drawing.Point(3, 417);
+            this.labelActivated.Name = "labelActivated";
+            this.labelActivated.Padding = new System.Windows.Forms.Padding(10, 20, 0, 0);
+            this.labelActivated.Size = new System.Drawing.Size(237, 45);
+            this.labelActivated.TabIndex = 2;
+            this.labelActivated.Text = "This product is activated.";
+            this.labelActivated.Visible = false;
             // 
             // groupBoxSubscripton
             // 
@@ -148,6 +161,33 @@
             this.groupBoxRequest.TabStop = false;
             this.groupBoxRequest.Text = "Request Activation Key";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(138, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(15, 20);
+            this.label2.TabIndex = 23;
+            this.label2.Text = "*";
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Location = new System.Drawing.Point(165, 90);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(212, 22);
+            this.textBoxLastName.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(65, 88);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 17);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Last Name";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -220,46 +260,6 @@
             this.label1.Size = new System.Drawing.Size(76, 17);
             this.label1.TabIndex = 13;
             this.label1.Text = "First Name";
-            // 
-            // labelActivated
-            // 
-            this.labelActivated.AutoSize = true;
-            this.labelActivated.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelActivated.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelActivated.Location = new System.Drawing.Point(3, 417);
-            this.labelActivated.Name = "labelActivated";
-            this.labelActivated.Padding = new System.Windows.Forms.Padding(10, 20, 0, 0);
-            this.labelActivated.Size = new System.Drawing.Size(237, 45);
-            this.labelActivated.TabIndex = 2;
-            this.labelActivated.Text = "This product is activated.";
-            this.labelActivated.Visible = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(138, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(15, 20);
-            this.label2.TabIndex = 23;
-            this.label2.Text = "*";
-            // 
-            // textBoxLastName
-            // 
-            this.textBoxLastName.Location = new System.Drawing.Point(165, 90);
-            this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(212, 22);
-            this.textBoxLastName.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(65, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 17);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Last Name";
             // 
             // UCSubsciption
             // 

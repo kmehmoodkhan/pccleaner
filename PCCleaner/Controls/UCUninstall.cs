@@ -68,20 +68,23 @@ namespace PCCleaner.Controls
 
                                 try
                                 {
-                                    var tempSize = subkey.GetValue("EstimatedSize").ToString();
-
-                                    if (!string.IsNullOrEmpty(tempSize))
+                                    if (subkey.GetValue("EstimatedSize") != null)
                                     {
-                                        if (Convert.ToInt32(tempSize) > 1000)
+                                        var tempSize = subkey.GetValue("EstimatedSize").ToString();
+
+                                        if (!string.IsNullOrEmpty(tempSize))
                                         {
-                                            tempSize = Math.Round((Convert.ToDouble(tempSize) / 1000), 2).ToString();
+                                            if (Convert.ToInt32(tempSize) > 1000)
+                                            {
+                                                tempSize = Math.Round((Convert.ToDouble(tempSize) / 1000), 2).ToString();
+                                            }
+                                            else
+                                            {
+                                                tempSize = Convert.ToInt32(tempSize).ToString();
+                                            }
                                         }
-                                        else
-                                        {
-                                            tempSize = Convert.ToInt32(tempSize).ToString();
-                                        }
+                                        program.Size = tempSize;
                                     }
-                                    program.Size = tempSize;
                                 }
                                 catch (Exception ex)
                                 {

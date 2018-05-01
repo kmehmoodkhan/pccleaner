@@ -13,12 +13,12 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using PCCleaner.DataAccess;
+using RestSharp;
 
 namespace PCCleaner.Controls
 {
     public partial class UCSubsciption : UserControl
     {
-        private static HttpClient httpClientSubApi;
         public UCSubsciption()
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace PCCleaner.Controls
         }
 
 
-        private async void buttonSave_Click(object sender, EventArgs e)
+        private void buttonSave_Click(object sender, EventArgs e)
         {
             bool isValid = false;
 
@@ -58,38 +58,41 @@ namespace PCCleaner.Controls
             if (isValid)
             {
                 OptionsAdvanceSetting.AddSubscriptionRequest(this.textBoxFirstName.Text, this.textBoxLastName.Text, this.textBoxEmail.Text, Helper.GetMacId());
-                HttpClientHandler handler = new HttpClientHandler()
+                
+                string fullName = this.textBoxFirstName.Text+" "+ this.textBoxLastName.Text;
+
+                string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=create";
+                
+
+                var client = new RestClient(subscriptionUrl);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("cache-control", "no-cache");
+                request.AddHeader("accept", "application/json");
+
+                request.AddParameter("FullName", fullName);
+                request.AddParameter("EmailAddress", this.textBoxEmail.Text);
+                request.AddParameter("MacId", Helper.GetMacId());
+
+                try
                 {
-                    UseDefaultCredentials = true
-                };
-
-                string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/requestactivation?";
-
-                httpClientSubApi = new HttpClient(handler);
-                httpClientSubApi.BaseAddress = new Uri(CleanerApplicationSettings.SubscriptionURL);
-
-                subscriptionUrl += "FullName=" + this.textBoxFirstName.Text + " " + this.textBoxLastName.Text;
-                subscriptionUrl += "&EmailAddress=" + this.textBoxEmail.Text;
-                subscriptionUrl += "&MacId=" + Helper.GetMacId();
+                    IRestResponse response = client.Execute(request);
 
 
-                httpClientSubApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    if (response.IsSuccessful)
+                    {
+                        string jsonResult = response.Content;
 
-                HttpResponseMessage response = await httpClientSubApi.GetAsync(subscriptionUrl);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
-
-                    jsonResult = jsonResult.TrimStart('\"');
-                    jsonResult = jsonResult.TrimEnd('\"');
-                    jsonResult = jsonResult.Replace("\\", "");
-
-                   
-
-                    MessageBox.Show("Request sent successfully. You will receive activation code email shortly.");
+                        jsonResult = jsonResult.TrimStart('\"');
+                        jsonResult = jsonResult.TrimEnd('\"');
+                        jsonResult = jsonResult.Replace("\\", "");
+                        this.groupBoxRequest.Hide();
+                        MessageBox.Show("Request sent successfully. You will receive activation code email shortly.");
+                    }
                 }
-                this.groupBoxRequest.Hide();
+                catch(Exception ex)
+                {
+                    MessageBox.Show("Application failed to connect to Subscription service, please try later on.");
+                }                
             }
         }
 
@@ -106,39 +109,36 @@ namespace PCCleaner.Controls
 
             if (isValid)
             {
-                HttpClientHandler handler = new HttpClientHandler()
-                {
-                    UseDefaultCredentials = true
-                };
 
                 DataTable dt = OptionsAdvanceSetting.GetRequestUserInfo();
 
-                string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/addsubscription?";
-
-                httpClientSubApi = new HttpClient(handler);
-                httpClientSubApi.BaseAddress = new Uri(CleanerApplicationSettings.SubscriptionURL);
+                string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=create";
 
                 string firstName = dt.Rows[0]["FirstName"].ToString();
                 string lastName = dt.Rows[0]["LastName"].ToString();
                 string emailAddress = dt.Rows[0]["EmailAddress"].ToString();
-                string activationKey = this.textBoxActKey.Text;
-                string macId = Helper.GetMacId();
 
-                subscriptionUrl += "FullName=" + firstName + " "+ lastName;
-                subscriptionUrl += "&EmailAddress=" + emailAddress;
-                subscriptionUrl += "&ActivationCode=" + activationKey;
-                subscriptionUrl += "&MacId=" + macId;
+                string activationCode = this.textBoxActKey.Text;
 
+                var client = new RestClient(subscriptionUrl);
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("cache-control", "no-cache");
+                request.AddHeader("accept", "application/json");
+                
 
-                httpClientSubApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                request.AddParameter("EmailAddress", emailAddress);
+                request.AddParameter("MacId", Helper.GetMacId());
+                request.AddParameter("ActivationCode", activationCode);
 
-                HttpResponseMessage response = await httpClientSubApi.GetAsync(subscriptionUrl);
+                 IRestResponse response = client.Execute(request);
 
-                if (response.IsSuccessStatusCode)
+                
+
+                if (response.IsSuccessful)
                 {
-                    string jsonResult = await response.Content.ReadAsStringAsync();
+                    string jsonResult = response.Content;
 
-                    OptionsAdvanceSetting.AddSubscriptionInfo(firstName+" "+lastName, emailAddress, activationKey,macId);
+                    OptionsAdvanceSetting.AddSubscriptionInfo(firstName+" "+lastName, emailAddress, activationCode, Helper.GetMacId());
 
                     MessageBox.Show("Product is activated successfully.");
                 }

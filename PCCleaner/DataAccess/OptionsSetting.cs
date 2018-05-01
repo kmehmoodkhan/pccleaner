@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PCCleaner.Common;
+using System.Windows.Forms;
 
 namespace PCCleaner.DataAccess
 {
@@ -13,10 +14,17 @@ namespace PCCleaner.DataAccess
         static DataView DVOptionSettings = null;
         static OptionsSetting()
         {
-            DataSet dataSet = CleanerApplicationSettings.GetApplicationSettings();
-            DataView defaultView = dataSet.Tables[0].DefaultView;
-            defaultView.RowFilter = "IsDefault=0";
-            DVOptionSettings = defaultView;
+            try
+            {
+                DataSet dataSet = CleanerApplicationSettings.GetApplicationSettings();
+                DataView defaultView = dataSet.Tables[0].DefaultView;
+                defaultView.RowFilter = "IsDefault=0";
+                DVOptionSettings = defaultView;
+            }
+            catch(Exception ex)
+            {
+                ;
+            }
 
         }
 

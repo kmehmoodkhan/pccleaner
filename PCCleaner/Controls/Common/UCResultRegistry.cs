@@ -26,6 +26,7 @@ namespace PCCleaner.Controls.Common
             if (view == ResultView.Detail)
             {
                 this.dataGridViewDetail.Rows.Clear();
+                this.dataGridViewDetail.DataBindings.Clear();
 
                 this.dataGridViewDetail.Visible = true;
 

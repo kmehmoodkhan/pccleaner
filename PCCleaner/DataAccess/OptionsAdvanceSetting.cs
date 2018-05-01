@@ -1,4 +1,7 @@
-﻿using PCCleaner.Common;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PCCleaner.Common;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +14,14 @@ using System.Windows.Forms;
 
 namespace PCCleaner.DataAccess
 {
+    public class SubscriptionStatus
+    {
+        public string status
+        {
+            get;
+            set;
+        }
+    }
     public static class OptionsAdvanceSetting
     {
         static DataView DVOptionSettings = null;
@@ -68,7 +79,7 @@ namespace PCCleaner.DataAccess
             return null;
         }
 
-        public static async void IsSubscriptionValid(Form form) 
+        public static void IsSubscriptionValid(Form form) 
         {
             bool isValidSub = false;
             DataTable dataTable = GetSubscriptionInfo();
@@ -86,34 +97,22 @@ namespace PCCleaner.DataAccess
                 clientMacAddress = dataTable.Rows[0]["MacAddress"].ToString();
             }
 
-            string currentMacId = Helper.GetMacId();
+            string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=list";
+            //&MacId=FA15E410742F
+            var client = new RestClient(subscriptionUrl);
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+            request.AddHeader("accept", "application/json");
+            request.AddParameter("MacId", clientMacAddress);
+            IRestResponse response = client.Execute(request);
+        
 
-            HttpClientHandler handler = new HttpClientHandler()
+            if (response.IsSuccessful)
             {
-                UseDefaultCredentials = true
-            };
+                string jsonResult = response.Content;
+                jsonResult = jsonResult.Replace(@"\","");
 
-            string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/isvalidsubscription?";
-
-
-            HttpClient httpClientSubApi = new HttpClient(handler);
-            httpClientSubApi.BaseAddress = new Uri(CleanerApplicationSettings.SubscriptionURL);
-
-            subscriptionUrl += "FullName=" + clientFullName;
-            subscriptionUrl += "&EmailAddress=" + clientEmailAddress;
-            subscriptionUrl += "&MacId=" + currentMacId;
-            subscriptionUrl += "&activationCode=" + clientActivationCode;
-
-
-            httpClientSubApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            HttpResponseMessage response = await httpClientSubApi.GetAsync(subscriptionUrl);
-
-            if (response.IsSuccessStatusCode)
-            {
-                string jsonResult = await response.Content.ReadAsStringAsync();
-
-                if (jsonResult == "200")
+                if (jsonResult.Contains("1"))
                 {
                     form.Controls.Find("labelProductActivation", true)[0].Visible = false;
                     isValidSub = true;

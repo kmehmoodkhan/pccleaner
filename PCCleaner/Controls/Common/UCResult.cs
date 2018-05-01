@@ -64,6 +64,7 @@ namespace PCCleaner.Controls.Common
             {
                 if (view == ResultView.Detail)
                 {
+                    this.dataGridViewDetail.DataBindings.Clear();
 
                     this.dataGridViewDetail.Visible = true;
                     this.dataGridViewOverall.Visible = false;
@@ -105,6 +106,7 @@ namespace PCCleaner.Controls.Common
 
         private void ShowOverallResult(ResultSummary summary)
         {
+            this.dataGridViewOverall.DataBindings.Clear();
             this.dataGridViewDetail.Visible = false;
             this.dataGridViewOverall.Visible = true;
 

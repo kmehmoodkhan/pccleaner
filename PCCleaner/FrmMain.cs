@@ -53,7 +53,7 @@ namespace PCCleaner
 
             try
             {
-                OptionsAdvanceSetting.IsSubscriptionValid(this);
+               OptionsAdvanceSetting.IsSubscriptionValid(this);
             }
             catch (Exception ex)
             {
@@ -314,7 +314,13 @@ namespace PCCleaner
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
         {
-            if(SearchResult!=null && SearchResult.Count > 0)
+            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+
+            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+
+            if (SearchResult!=null && SearchResult.Count > 0)
             {
                 SearchResult.Clear();
             }
@@ -373,7 +379,10 @@ namespace PCCleaner
                 else
                 {
                     this.gboxResult.Visible = true;
-                    this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
+                    if (this.gboxResult.Controls.Find("UCResultRegistry", true).Count() > 0)
+                    {
+                        this.gboxResult.Controls.Find("UCResultRegistry", true)[0].Visible = false;
+                    }
                 }
 
 
@@ -803,16 +812,13 @@ namespace PCCleaner
 
 
             ///////////////////////////////
-
-           
-
+            
             DialogResult result = MessageBox.Show("The selected files will be deleted from you PC.\n Do you wish to continue", "Confirmation", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-
                     ucResult.Visible = true;
                     Stopwatch stopwatch = Stopwatch.StartNew();
                     backgroundWorkerSearch.RunWorkerAsync();
@@ -833,12 +839,16 @@ namespace PCCleaner
                     stopwatch.Stop();
                     ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
+                finally
+                {
+
+                    if (SearchResult != null && SearchResult.Count > 0)
+                    {
+                        SearchResult.Clear();
+                    }
+                }
             }
 
-            if (SearchResult != null && SearchResult.Count > 0)
-            {
-                SearchResult.Clear();
-            }
         }
 
         private void CleanupSystem()
@@ -869,7 +879,12 @@ namespace PCCleaner
 
         private void backgroundWorkerSearch_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            backgroundWorkerSearch.Dispose();
+            if(IsCleanerCall)
+            {
+                backgroundWorkerSearch.Dispose();
+                IsCleanerCall = false;
+                ProcessSearch();
+            }
         }
     }
 }

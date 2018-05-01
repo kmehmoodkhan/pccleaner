@@ -40,7 +40,7 @@ namespace PCCleaner.Common
                         {
                             case BrowserFeatures.Cache:
 
-                                
+
 
                                 try
                                 {
@@ -55,7 +55,7 @@ namespace PCCleaner.Common
                                             files = tempFiles.Where(p => p.ToLower().Contains(@"cache")).ToArray();
                                             if (files != null)
                                             {
-                                                foreach (string fl in files)
+                                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                                 {
                                                     if (!fl.ToLower().Contains("cryptnet"))
                                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cache });
@@ -70,7 +70,7 @@ namespace PCCleaner.Common
                                 }
                                 break;
                             case BrowserFeatures.InternetHistory:
-                               
+
                                 try
                                 {
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Edge);
@@ -80,7 +80,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.InternetHistory });
                                 }
@@ -96,7 +96,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cookies });
                                 }
@@ -113,7 +113,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.DownloadHistory });
                                 }
@@ -130,7 +130,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.LastDownloadLocation });
                                 }
@@ -147,7 +147,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Session });
                                 }
@@ -165,14 +165,14 @@ namespace PCCleaner.Common
                         switch (featureIE)
                         {
                             case BrowserFeatures.Cache:
-                                
+
                                 try
                                 {
                                     parentPath = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
                                     parentPath += "\\IE\\";
-                                    
 
-                                    if( new DirectoryInfo(parentPath).Exists)
+
+                                    if (new DirectoryInfo(parentPath).Exists)
                                     {
                                         files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                     }
@@ -184,7 +184,7 @@ namespace PCCleaner.Common
 
                                 if (files != null)
                                 {
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cache });
                                     }
@@ -192,7 +192,7 @@ namespace PCCleaner.Common
                                 break;
                             case BrowserFeatures.InternetHistory:
 
-                               
+
                                 try
                                 {
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
@@ -207,14 +207,14 @@ namespace PCCleaner.Common
                                 }
                                 if (files != null)
                                 {
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.InternetHistory });
                                     }
                                 }
                                 break;
                             case BrowserFeatures.Cookies:
-                                
+
                                 try
                                 {
                                     parentPath = Helper.GetCookiesPath(SearchArea.IE);
@@ -230,7 +230,7 @@ namespace PCCleaner.Common
 
                                 if (files != null)
                                 {
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cookies });
                                     }
@@ -238,11 +238,11 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.DownloadHistory:
-                                
+
                                 try
                                 {
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
-                                    if( Directory.Exists(parentPath))
+                                    if (Directory.Exists(parentPath))
                                     {
                                         files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("downloadhistory")).ToArray();
                                     }
@@ -251,8 +251,8 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                
-                               foreach (var fl in files ?? Enumerable.Empty<string>())
+
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.DownloadHistory });
                                 }
@@ -260,11 +260,11 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.LastDownloadLocation:
-                                
+
                                 try
                                 {
                                     parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
-                                    if(Directory.Exists(parentPath))
+                                    if (Directory.Exists(parentPath))
                                     {
                                         files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
                                     }
@@ -281,7 +281,7 @@ namespace PCCleaner.Common
 
                                 break;
                             case BrowserFeatures.Session:
-                                
+
                                 try
                                 {
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.IE);
@@ -317,13 +317,16 @@ namespace PCCleaner.Common
                                 parentPath += "\\user data\\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
                                 }
@@ -336,21 +339,24 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
+                                    if (Directory.Exists(parentPath))
                                     {
-                                        String sql = "Select * From urls";
-                                        conn.Open();
-                                        using (SqliteCommand cmd = new SqliteCommand(sql, conn))
+                                        using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
                                         {
-
-                                            using (SqliteDataReader reader = cmd.ExecuteReader())
+                                            String sql = "Select * From urls";
+                                            conn.Open();
+                                            using (SqliteCommand cmd = new SqliteCommand(sql, conn))
                                             {
-                                                while (reader.Read())
+
+                                                using (SqliteDataReader reader = cmd.ExecuteReader())
                                                 {
-                                                    result.Add(new ResultDetail() { FilePath = reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
+                                                    while (reader.Read())
+                                                    {
+                                                        result.Add(new ResultDetail() { FilePath = reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
+                                                    }
                                                 }
+                                                conn.Close();
                                             }
-                                            conn.Close();
                                         }
                                     }
 
@@ -367,27 +373,29 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
+                                    if (Directory.Exists(parentPath))
                                     {
-                                        String sql = "SELECT * FROM cookies";
-                                        conn.Open();
-                                        using (SqliteCommand cmd = new SqliteCommand(sql, conn))
+                                        using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
                                         {
-
-                                            using (SqliteDataReader reader = cmd.ExecuteReader())
+                                            String sql = "SELECT * FROM cookies";
+                                            conn.Open();
+                                            using (SqliteCommand cmd = new SqliteCommand(sql, conn))
                                             {
-                                                while (reader.Read())
+
+                                                using (SqliteDataReader reader = cmd.ExecuteReader())
                                                 {
-                                                    if (result.Where(t => t.FilePath == "Cookie: " + reader.GetString(1)).ToList().Count < 1)
+                                                    while (reader.Read())
                                                     {
-                                                        result.Add(new ResultDetail() { FilePath = "Cookie: " + reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
+                                                        if (result.Where(t => t.FilePath == "Cookie: " + reader.GetString(1)).ToList().Count < 1)
+                                                        {
+                                                            result.Add(new ResultDetail() { FilePath = "Cookie: " + reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cookies });
+                                                        }
                                                     }
                                                 }
+                                                conn.Close();
                                             }
-                                            conn.Close();
                                         }
                                     }
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -401,7 +409,10 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.DownloadHistory });
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.DownloadHistory });
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
@@ -412,12 +423,14 @@ namespace PCCleaner.Common
                                 parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
-                                    foreach (string fl in files)
+                                    if (Directory.Exists(parentPath))
                                     {
-                                        result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.LastDownloadLocation });
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                        foreach (var fl in files ?? Enumerable.Empty<string>())
+                                        {
+                                            result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.LastDownloadLocation });
+                                        }
                                     }
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -430,13 +443,16 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Session });
                                 }
@@ -446,13 +462,16 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Session });
                                 }
@@ -468,7 +487,10 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.SavedPassword });
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.SavedPassword });
+                                    }
 
                                 }
                                 catch (Exception ex)
@@ -493,13 +515,14 @@ namespace PCCleaner.Common
                                 parentPath += "\\profiles\\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("cache")).ToArray();
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("cache")).ToArray();
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
                                 }
@@ -512,13 +535,14 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("thumbnails")).ToArray();
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().Where(p => p.ToLower().Contains("thumbnails")).ToArray();
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
                                 }
@@ -536,27 +560,29 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
+                                    if (File.Exists(parentPath))
                                     {
-                                        String sql = "SELECT * FROM moz_cookies";
-                                        conn.Open();
-                                        using (SqliteCommand cmd = new SqliteCommand(sql, conn))
+                                        using (SqliteConnection conn = new SqliteConnection("Data Source=" + parentPath))
                                         {
-
-                                            using (SqliteDataReader reader = cmd.ExecuteReader())
+                                            String sql = "SELECT * FROM moz_cookies";
+                                            conn.Open();
+                                            using (SqliteCommand cmd = new SqliteCommand(sql, conn))
                                             {
-                                                while (reader.Read())
+
+                                                using (SqliteDataReader reader = cmd.ExecuteReader())
                                                 {
-                                                    if (result.Where(t => t.FilePath == "Cookie: " + reader.GetString(1)).ToList().Count < 1)
+                                                    while (reader.Read())
                                                     {
-                                                        result.Add(new ResultDetail() { FilePath = "Cookie: " + reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cookies });
+                                                        if (result.Where(t => t.FilePath == "Cookie: " + reader.GetString(1)).ToList().Count < 1)
+                                                        {
+                                                            result.Add(new ResultDetail() { FilePath = "Cookie: " + reader.GetString(1), FileSize = 1, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cookies });
+                                                        }
                                                     }
                                                 }
+                                                conn.Close();
                                             }
-                                            conn.Close();
                                         }
                                     }
-
                                 }
                                 catch (Exception ex)
                                 {
@@ -570,7 +596,8 @@ namespace PCCleaner.Common
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
                                     parentPath += "\\user data\\default\\DownloadMetadata";
 
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.DownloadHistory });
+                                    if (Directory.Exists(parentPath))
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.DownloadHistory });
                                 }
                                 catch (Exception ex)
                                 {
@@ -581,8 +608,10 @@ namespace PCCleaner.Common
                                 parentPath = KnownFolders.GetPath(KnownFolder.Downloads);
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
-                                    foreach (string fl in files)
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
+
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.LastDownloadLocation });
                                     }
@@ -600,8 +629,9 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => p.ToLower().Contains("session")).ToList().ToArray();
-                                    foreach (string fl in files)
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => p.ToLower().Contains("session")).ToList().ToArray();
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Session });
                                     }
@@ -623,7 +653,8 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
+                                    if (File.Exists(parentPath))
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
 
                                 }
                                 catch (Exception ex)
@@ -639,7 +670,8 @@ namespace PCCleaner.Common
                                     parentPath = Helper.GetBrowserInternetHistoryPath(SearchArea.Firefox);
                                     parentPath += "\\user data\\default\\Login Data";
 
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
+                                    if (Directory.Exists(parentPath))
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.SavedPassword });
                                 }
                                 catch
                                 {
@@ -658,8 +690,11 @@ namespace PCCleaner.Common
                         {
                             case ExplorerFeatures.RecentDocuments:
                                 parentPath = Environment.GetFolderPath(Environment.SpecialFolder.Recent);
-                                files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => !p.Contains(@"\AutomaticDestinations") && !p.Contains(@"\CustomDestinations")).ToArray();
-                                foreach (string fl in files)
+
+                                if (Directory.Exists(parentPath))
+                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => !p.Contains(@"\AutomaticDestinations") && !p.Contains(@"\CustomDestinations")).ToArray();
+
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowExplorer, FeatureArea = FeatureArea.RecentDocuments });
                                 }
@@ -682,10 +717,10 @@ namespace PCCleaner.Common
 
                                 Folder recycleBin = shell.NameSpace(10);
 
-                               
+
 
                                 try
-                                {                                   
+                                {
                                     var items = recycleBin.Items();
                                     foreach (FolderItem2 recfile in recycleBin.Items())
                                     {
@@ -706,7 +741,8 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\Windows\Temp";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
 
                                 }
                                 catch (Exception ex)
@@ -714,7 +750,7 @@ namespace PCCleaner.Common
                                     ;
                                 }
 
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.TemporaryFiles });
                                 }
@@ -722,7 +758,9 @@ namespace PCCleaner.Common
                                 try
                                 {
                                     parentPath = Path.GetTempPath();
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
 
                                 }
                                 catch (Exception ex)
@@ -730,7 +768,7 @@ namespace PCCleaner.Common
                                     ;
                                 }
 
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.TemporaryFiles });
                                 }
@@ -742,14 +780,19 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\Windows\LiveKernelReports\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(dm => dm.ToLower().Contains(".dmp")).ToArray();
+                                    if (Directory.Exists(parentPath))
+                                    {
+                                        var tempFiles = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(dm => dm.ToLower().Contains(".dmp"));
+                                        if (tempFiles != null)
+                                            files = tempFiles.ToArray();
+                                    }
 
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.MemoryDumps });
                                 }
@@ -760,13 +803,14 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\windows\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.log", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.log", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -784,13 +828,14 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\ProgramData\Microsoft\Windows\WER\ReportArchive\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -809,7 +854,8 @@ namespace PCCleaner.Common
                                 try
                                 {
                                     parentPath = @"C:\Windows\System32\FNTCACHE.DAT";
-                                    result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.FontCache });
+                                    if (File.Exists(parentPath))
+                                        result.Add(new ResultDetail() { FilePath = parentPath, FileSize = new FileInfo(parentPath).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.FontCache });
                                 }
                                 catch (Exception ex)
                                 {
@@ -823,13 +869,14 @@ namespace PCCleaner.Common
 
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -847,13 +894,14 @@ namespace PCCleaner.Common
                                 parentPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -882,13 +930,14 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
-                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                        if (Directory.Exists(parentPath))
+                                            files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                     }
                                     catch (Exception ex)
                                     {
                                         ;
                                     }
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.WindowsEventLogs });
                                     }
@@ -905,13 +954,14 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\Windows\prefetch\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.OldPrefetchedData });
                                 }
@@ -924,13 +974,14 @@ namespace PCCleaner.Common
                                 parentPath = @"C:\inetpub\logs\LogFiles\W3SVC2\";
                                 try
                                 {
-                                    files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
+                                    if (Directory.Exists(parentPath))
+                                        files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
                                 }
                                 catch (Exception ex)
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.IISLogFiles });
                                 }
@@ -949,7 +1000,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.OldWindowsInstallation });
                                 }
@@ -978,7 +1029,7 @@ namespace PCCleaner.Common
                                     {
                                         ;
                                     }
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowsStore, FeatureArea = FeatureArea.WindowsEventLogs });
                                     }
@@ -1003,7 +1054,7 @@ namespace PCCleaner.Common
                                     foreach (var dir in contentDir)
                                     {
                                         files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories);
-                                        foreach (string fl in files)
+                                        foreach (var fl in files ?? Enumerable.Empty<string>())
                                         {
                                             result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowsStore, FeatureArea = FeatureArea.WindowsEventLogs });
                                         }
@@ -1035,7 +1086,7 @@ namespace PCCleaner.Common
                                     Helper.DirSearch(parentPath, "adobe");
                                     files = Helper.FilesFound.ToArray();
 
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.AdobeReader });
 
@@ -1057,7 +1108,7 @@ namespace PCCleaner.Common
                                     Helper.DirSearch(parentPath, "mcafee");
                                     files = Helper.FilesFound.ToArray();
 
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.McAFee });
 
@@ -1116,7 +1167,7 @@ namespace PCCleaner.Common
                                 try
                                 {
                                     files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories);
-                                    foreach (string fl in files)
+                                    foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
                                         try
                                         {
@@ -1157,7 +1208,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -1185,7 +1236,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -1222,7 +1273,7 @@ namespace PCCleaner.Common
                                 {
                                     ;
                                 }
-                                foreach (string fl in files)
+                                foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
                                     try
                                     {
@@ -1320,222 +1371,274 @@ namespace PCCleaner.Common
                             case RegistryOptions.TypeLibraries:
                                 {
                                     RegistryKey key1 = Registry.ClassesRoot.OpenSubKey("TypeLib");
-                                    var keys1 = key1.GetSubKeyNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        var keys1 = key1.GetSubKeyNames();
+                                        if (keys1.Length > 0)
                                         {
-                                            RegistryKey regkey;
-                                            string tempPath = string.Format(@"TypeLib\{0}", v);
-                                            regkey = Registry.ClassesRoot.OpenSubKey(tempPath);
-                                            var subKeys = regkey.GetSubKeyNames();
-
-                                            tempPath += "\\" + subKeys[0];
-
-                                            RegistryKey MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
-
-                                            subKeys = MyReg.GetSubKeyNames();
-
-                                            tempPath += "\\" + subKeys[0];
-
-                                            MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
-
-                                            subKeys = MyReg.GetSubKeyNames();
-
-                                            tempPath += "\\" + subKeys[1];
-
-                                            MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
-
-                                            string filePath = MyReg.GetValue("").ToString();
-
-
-                                            if (!string.IsNullOrEmpty(filePath))
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                bool isFileExists = false;
-                                                bool isDirectoryExists = false;
                                                 try
                                                 {
-                                                    if (Path.HasExtension(filePath))
+                                                    RegistryKey regkey;
+                                                    string tempPath = string.Format(@"TypeLib\{0}", v);
+                                                    regkey = Registry.ClassesRoot.OpenSubKey(tempPath);
+                                                    var subKeys = regkey.GetSubKeyNames();
+
+                                                    if (subKeys.Length > 0)
                                                     {
-                                                        FileInfo file = new FileInfo(filePath);
-                                                        if (file.Exists)
+                                                        tempPath += "\\" + subKeys[0];
+
+                                                        RegistryKey MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                                        subKeys = MyReg.GetSubKeyNames();
+
+                                                        if (subKeys.Length > 0)
                                                         {
-                                                            isFileExists = true;
+                                                            tempPath += "\\" + subKeys[0];
+
+                                                            MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                                            subKeys = MyReg.GetSubKeyNames();
+
+                                                            if (subKeys.Length > 1)
+                                                            {
+                                                                tempPath += "\\" + subKeys[1];
+
+                                                                MyReg = Registry.ClassesRoot.OpenSubKey(tempPath);
+
+                                                                string filePath = MyReg.GetValue("").ToString();
+
+
+                                                                if (!string.IsNullOrEmpty(filePath))
+                                                                {
+                                                                    bool isFileExists = false;
+                                                                    bool isDirectoryExists = false;
+                                                                    try
+                                                                    {
+                                                                        if (Path.HasExtension(filePath))
+                                                                        {
+                                                                            FileInfo file = new FileInfo(filePath);
+                                                                            if (file.Exists)
+                                                                            {
+                                                                                isFileExists = true;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    catch (Exception ex)
+                                                                    {
+                                                                        ;
+                                                                    }
+
+                                                                    try
+                                                                    {
+                                                                        if (!Path.HasExtension(filePath))
+                                                                        {
+                                                                            DirectoryInfo dirInfo = new DirectoryInfo(filePath);
+                                                                            if (dirInfo.Exists)
+                                                                            {
+                                                                                isDirectoryExists = true;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                    catch (Exception ex)
+                                                                    {
+                                                                        ;
+                                                                    }
+
+                                                                    if (!isFileExists && isDirectoryExists)
+                                                                    {
+                                                                        result.Add(new ResultDetail() { FilePath = tempPath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.TypeLibraries, RegistryKey = filePath });
+                                                                    }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }
                                                 catch (Exception ex)
                                                 {
                                                     ;
-                                                }
-
-                                                try
-                                                {
-                                                    if (!Path.HasExtension(filePath))
-                                                    {
-                                                        DirectoryInfo dirInfo = new DirectoryInfo(filePath);
-                                                        if (dirInfo.Exists)
-                                                        {
-                                                            isDirectoryExists = true;
-                                                        }
-                                                    }
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    ;
-                                                }
-
-                                                if (!isFileExists && isDirectoryExists)
-                                                {
-                                                    result.Add(new ResultDetail() { FilePath = tempPath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.TypeLibraries, RegistryKey = filePath });
                                                 }
                                             }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ;
+                                        );
                                         }
                                     }
-                                    );
                                 }
                                 break;
                             case RegistryOptions.Fonts:
                                 {
                                     RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts");
-                                    string[] fontsAvailable = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "*.*");
-                                    var keys1 = key1.GetValueNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        string[] fontsAvailable = Directory.GetFiles(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "*.*");
+                                        var keys1 = key1.GetValueNames();
+
+                                        if (keys1 != null && keys1.Length > 0 && fontsAvailable.Length > 0)
                                         {
-
-                                            string fontfile = key1.GetValue(v).ToString();
-
-                                            if (fontsAvailable.Where(t => Path.GetFileName(t.ToLower()) == fontfile.ToLower()).Count() < 1)
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                if (!new FileInfo(fontfile).Exists)
-                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Fonts, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" });
-                                            }
+                                                try
+                                                {
+
+                                                    string fontfile = key1.GetValue(v).ToString();
+
+                                                    if (!string.IsNullOrEmpty(fontfile))
+                                                    {
+                                                        if (fontsAvailable.Where(t => Path.GetFileName(t.ToLower()) == fontfile.ToLower()).Count() < 1)
+                                                        {
+                                                            if (!new FileInfo(fontfile).Exists)
+                                                                result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Fonts, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts" });
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
+                                                }
+                                            });
                                         }
-                                        catch (Exception ex)
-                                        {
-                                            ;
-                                        }
-                                    });
+                                    }
                                 }
                                 break;
                             case RegistryOptions.ApplicationPaths:
                                 {
                                     RegistryKey key1 = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store");
-                                    var keys1 = key1.GetValueNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        var keys1 = key1.GetValueNames();
+                                        if (keys1.Length > 0)
                                         {
-                                            if (!v.StartsWith("\\"))
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                FileInfo file = new FileInfo(v);
-                                                if (!file.Exists)
+                                                try
                                                 {
-                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.ApplicationPaths, RegistryKey = @"HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store" });
+                                                    if (!v.StartsWith("\\"))
+                                                    {
+                                                        FileInfo file = new FileInfo(v);
+                                                        if (!file.Exists)
+                                                        {
+                                                            result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.ApplicationPaths, RegistryKey = @"HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store" });
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
                                                 }
                                             }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ;
+                                            );
                                         }
                                     }
-                                    );
                                 }
                                 break;
-                           
+
                             case RegistryOptions.Installer:
                                 {
                                     RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders");
-                                    var keys1 = key1.GetValueNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        var keys1 = key1.GetValueNames();
+                                        if (keys1.Length > 0)
                                         {
-                                            if (!v.StartsWith("\\"))
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                DirectoryInfo file = new DirectoryInfo(v);
-                                                if (!file.Exists)
+                                                try
                                                 {
-                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                    if (!v.StartsWith("\\"))
+                                                    {
+                                                        DirectoryInfo file = new DirectoryInfo(v);
+                                                        if (!file.Exists)
+                                                        {
+                                                            result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
                                                 }
                                             }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ;
+                                            );
                                         }
                                     }
-                                    );
                                 }
                                 break;
                             case RegistryOptions.SoundEvents:
                                 {
                                     RegistryKey key1 = Registry.CurrentUser.OpenSubKey(@"AppEvents\Schemes\Apps\.Default");
-                                    var keys1 = key1.GetSubKeyNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        var keys1 = key1.GetSubKeyNames();
+                                        if (keys1.Length > 0)
                                         {
-                                            RegistryKey regkey;
-                                            regkey = Registry.CurrentUser.OpenSubKey(string.Format(@"AppEvents\Schemes\Apps\.Default\{0}", v));
-
-                                            string[] subKeys = regkey.GetSubKeyNames();
-
-                                            string filePath = regkey.OpenSubKey(".Current").GetValue("").ToString();
-
-                                            if (!string.IsNullOrEmpty(filePath))
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                FileInfo file = new FileInfo(filePath);
-                                                if (!file.Exists)
+                                                try
                                                 {
-                                                    result.Add(new ResultDetail() { FilePath = filePath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.SoundEvents, RegistryKey = @"HKCU\AppEvents\Schemes\Apps\.Default" });
+                                                    RegistryKey regkey;
+                                                    regkey = Registry.CurrentUser.OpenSubKey(string.Format(@"AppEvents\Schemes\Apps\.Default\{0}", v));
+
+                                                    string[] subKeys = regkey.GetSubKeyNames();
+
+                                                    if (regkey.OpenSubKey(".Current").GetValue("") != null)
+                                                    {
+                                                        string filePath = regkey.OpenSubKey(".Current").GetValue("").ToString();
+
+                                                        if (!string.IsNullOrEmpty(filePath))
+                                                        {
+                                                            FileInfo file = new FileInfo(filePath);
+                                                            if (!file.Exists)
+                                                            {
+                                                                result.Add(new ResultDetail() { FilePath = filePath, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.SoundEvents, RegistryKey = @"HKCU\AppEvents\Schemes\Apps\.Default" });
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
                                                 }
                                             }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ;
+                                            );
                                         }
                                     }
-                                    );
                                 }
                                 break;
 
                             case RegistryOptions.WindowsServices:
                                 {
                                     RegistryKey key1 = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\services");
-                                    var keys1 = key1.GetSubKeyNames();
-                                    Parallel.ForEach(keys1, v =>
+                                    if (key1 != null)
                                     {
-                                        try
+                                        var keys1 = key1.GetSubKeyNames();
+                                        if (keys1.Length > 0)
                                         {
-                                            RegistryKey regkey;
-                                            regkey = Registry.LocalMachine.OpenSubKey(string.Format(@"SYSTEM\CurrentControlSet\services\{0}", v));
-
-                                            string[] subKeys = regkey.GetSubKeyNames();
-
-                                            if (subKeys.Contains("ImagePath") && regkey != null && regkey.GetValue("ImagePath") == null)
+                                            Parallel.ForEach(keys1, v =>
                                             {
-                                                DirectoryInfo file = new DirectoryInfo(v);
-                                                if (!file.Exists)
+                                                try
                                                 {
-                                                    result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                    RegistryKey regkey;
+                                                    regkey = Registry.LocalMachine.OpenSubKey(string.Format(@"SYSTEM\CurrentControlSet\services\{0}", v));
+
+                                                    string[] subKeys = regkey.GetSubKeyNames();
+
+                                                    if (subKeys.Contains("ImagePath") && regkey != null && regkey.GetValue("ImagePath") == null)
+                                                    {
+                                                        DirectoryInfo file = new DirectoryInfo(v);
+                                                        if (!file.Exists)
+                                                        {
+                                                            result.Add(new ResultDetail() { FilePath = v, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.Installer, RegistryKey = @"HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders" });
+                                                        }
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    ;
                                                 }
                                             }
-                                        }
-                                        catch (Exception ex)
-                                        {
-                                            ;
+                                            );
                                         }
                                     }
-                                    );
                                 }
                                 break;
 

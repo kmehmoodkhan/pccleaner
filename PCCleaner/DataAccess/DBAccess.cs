@@ -17,7 +17,12 @@ namespace PCCleaner.DataAccess
         {
             get
             {
-                return $@"Data Source={CleanerApplicationSettings.ApplicationBasePath}DB\CleanerDB.db;Version=3;";
+                string appBasePath = CleanerApplicationSettings.ApplicationBasePath;
+                if(!appBasePath.EndsWith("\\"))
+                {
+                    appBasePath += "\\";
+                }
+                return $@"Data Source={appBasePath}DB\CleanerDB.db;Version=3;";
             }
         }
 
@@ -49,7 +54,6 @@ namespace PCCleaner.DataAccess
             catch(Exception ex)
             {
                 isSuccess = false;
-                MessageBox.Show(ex.Message);
             }
             return isSuccess;
         }

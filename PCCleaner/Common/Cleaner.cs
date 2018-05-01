@@ -76,9 +76,11 @@ namespace PCCleaner.Common
 
         private static void DeleteFile(ResultDetail file)
         {
-            File.SetAttributes(file.FilePath, FileAttributes.Normal);
-            File.Delete(file.FilePath);  
-            
+            if (File.Exists(file.FilePath))
+            {
+                File.SetAttributes(file.FilePath, FileAttributes.Normal);
+                File.Delete(file.FilePath);
+            }
         }
 
         private static void UpdateProgress(ref BackgroundWorker backgroundWorker,int progress)

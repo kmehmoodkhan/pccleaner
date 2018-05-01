@@ -633,6 +633,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_148A8116B8054D55BA515FC4DC23EC42"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1ECC9ABB76A98529B1655322EEDD2887"
         "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
         "MsmSig" = "8:_UNDEFINED"
@@ -869,6 +875,12 @@
         {
         "MsmKey" = "8:_519C293754CB0064C3BDEDAC50C4C7A1"
         "OwnerKey" = "8:_DBEAE809A9193BABFDC4A7AD532D675B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_58698C4E01084B8CB63905006BE57D82"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1371,6 +1383,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C7F8EE4A37D14F8597BA42F3658C1233"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CA311094E289862A0D6FF92E13D97067"
         "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
         "MsmSig" = "8:_UNDEFINED"
@@ -1433,6 +1451,12 @@
         {
         "MsmKey" = "8:_D6F42B8B749E560EBD4CA9FD2361E4C4"
         "OwnerKey" = "8:_9689230355CA4143BABDAD7E9E7E09DF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D7C9B99E385F428FBD9301A3965CF1C9"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2102,6 +2126,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
             }
         }
         "Release"
@@ -2712,6 +2744,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_148A8116B8054D55BA515FC4DC23EC42"
+            {
+            "SourcePath" = "8:..\\PCCleaner\\bin\\Debug\\x86\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9CEDCF7133844194B2FCC9BC122709AE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1ECC9ABB76A98529B1655322EEDD2887"
@@ -3828,6 +3880,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_58698C4E01084B8CB63905006BE57D82"
+            {
+            "SourcePath" = "8:..\\PCCleaner\\bin\\Debug\\x86\\e_sqlite3.dll"
+            "TargetName" = "8:e_sqlite3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_9CEDCF7133844194B2FCC9BC122709AE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_58BE099B3AE2C214F0110DDDA2A0B727"
@@ -6155,6 +6227,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C7F8EE4A37D14F8597BA42F3658C1233"
+            {
+            "SourcePath" = "8:..\\PCCleaner\\bin\\Debug\\x64\\SQLite.Interop.dll"
+            "TargetName" = "8:SQLite.Interop.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_3335A653A29E49D78A3303857290A289"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CA311094E289862A0D6FF92E13D97067"
             {
             "AssemblyRegister" = "3:1"
@@ -6494,6 +6586,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7C9B99E385F428FBD9301A3965CF1C9"
+            {
+            "SourcePath" = "8:..\\PCCleaner\\bin\\Debug\\x64\\e_sqlite3.dll"
+            "TargetName" = "8:e_sqlite3.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_3335A653A29E49D78A3303857290A289"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D892C50E9CD5A5689B37E55B9A9BB2F2"
@@ -7278,6 +7390,28 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_3335A653A29E49D78A3303857290A289"
+                    {
+                    "Name" = "8:x64"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_D0B20187533843958BBA3F3D307FE2B8"
+                        "Folders"
+                        {
+                        }
+                    }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9CEDCF7133844194B2FCC9BC122709AE"
+                    {
+                    "Name" = "8:x86"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_AE07CEA3C8384C67B74FFCA6B0833C1E"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -7297,7 +7431,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PCCleaner"
         "ProductCode" = "8:{106C5DCE-144C-4B00-BEFB-A7F2D82E9F30}"
-        "PackageCode" = "8:{E8673AA4-8BDF-470B-864C-6D0AEC72879F}"
+        "PackageCode" = "8:{EB208683-FFE7-40CC-B0EF-CE7A38396759}"
         "UpgradeCode" = "8:{63FD9E39-D895-4DCE-A1F1-4B9FA33579A4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

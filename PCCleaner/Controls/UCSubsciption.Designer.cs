@@ -110,7 +110,7 @@
             this.textBoxActKey.Location = new System.Drawing.Point(165, 34);
             this.textBoxActKey.Name = "textBoxActKey";
             this.textBoxActKey.Size = new System.Drawing.Size(212, 22);
-            this.textBoxActKey.TabIndex = 0;
+            this.textBoxActKey.TabIndex = 4;
             // 
             // label10
             // 
@@ -177,7 +177,7 @@
             this.textBoxLastName.Location = new System.Drawing.Point(165, 90);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(212, 22);
-            this.textBoxLastName.TabIndex = 0;
+            this.textBoxLastName.TabIndex = 2;
             // 
             // label5
             // 
@@ -234,14 +234,14 @@
             this.textBoxEmail.Location = new System.Drawing.Point(165, 131);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(212, 22);
-            this.textBoxEmail.TabIndex = 0;
+            this.textBoxEmail.TabIndex = 3;
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Location = new System.Drawing.Point(165, 49);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(212, 22);
-            this.textBoxFirstName.TabIndex = 0;
+            this.textBoxFirstName.TabIndex = 1;
             // 
             // label3
             // 

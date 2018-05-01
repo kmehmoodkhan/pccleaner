@@ -98,7 +98,7 @@ namespace PCCleaner.DataAccess
             }
 
             string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=list";
-            //&MacId=FA15E410742F
+
             var client = new RestClient(subscriptionUrl);
             var request = new RestRequest(Method.GET);
             request.AddHeader("cache-control", "no-cache");

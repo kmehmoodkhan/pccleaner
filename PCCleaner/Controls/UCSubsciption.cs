@@ -22,7 +22,7 @@ namespace PCCleaner.Controls
         public UCSubsciption()
         {
             InitializeComponent();
-            CheckSubscriptionRequest();
+            //CheckSubscriptionRequest();
         }
 
         private void CheckSubscriptionRequest()

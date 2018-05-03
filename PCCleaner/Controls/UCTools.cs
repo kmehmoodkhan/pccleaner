@@ -93,7 +93,7 @@ namespace PCCleaner.Controls.Common
             _Uninstall = new UCUninstall();
             _Uninstall.Dock = DockStyle.Fill;
 
-            _Uninstall.ShowInstalledPrograms();
+            Task.Factory.StartNew(() => _Uninstall.ShowInstalledPrograms());
 
             ShowHideControls(_Uninstall);
 
@@ -123,6 +123,7 @@ namespace PCCleaner.Controls.Common
         private void buttonUninstall_Click(object sender, EventArgs e)
         {
             ChangeButtonColor(buttonUninstall.Name);
+
             Uninstall.ShowInstalledPrograms();
 
             ShowHideControls(Uninstall);

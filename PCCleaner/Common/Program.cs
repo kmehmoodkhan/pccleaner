@@ -51,5 +51,10 @@ namespace PCCleaner.Common
             get;
             set;
         }
+        public string RegistryEntry
+        {
+            get;
+            set;
+        }
     }
 }

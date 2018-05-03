@@ -51,8 +51,36 @@ namespace PCCleaner.Controls.Common
             this.dataGridViewOverall.DataSource = null;
         }
 
-        public void ShowResult(ResultView view, ResultSummary summary)
+        public void ShowResult(ResultView view, ResultSummary summary,bool afterSearch=false)
         {
+            if( afterSearch)
+            {
+                if (this.labelResultHeading.InvokeRequired)
+                {
+                    this.labelResultHeading.Invoke(new MethodInvoker(delegate
+                    {
+                        labelResultHeading.Text = "Cleanup Completed";
+                    }));
+                }
+                else
+                {
+                    labelResultHeading.Text = "Cleanup Completed";
+                }
+            }
+            else
+            {
+                if (this.labelResultHeading.InvokeRequired)
+                {
+                    this.labelResultHeading.Invoke(new MethodInvoker(delegate
+                    {
+                        labelResultHeading.Text = "Analysis Complete";
+                    }));
+                }
+                else
+                {
+                    labelResultHeading.Text = "Analysis Complete";
+                }
+            }
             var registryItemExists = false;
 
             if( summary.OverallResult.Exists(t=>t.SearchArea == PCCleaner.Common.SearchArea.Registry))
@@ -89,12 +117,12 @@ namespace PCCleaner.Controls.Common
                     {
                         this.dataGridViewOverall.Invoke(new MethodInvoker(delegate
                        {
-                           ShowOverallResult(summary);
+                           ShowOverallResult(summary,afterSearch);
                        }));
                     }
                     else
                     {
-                        ShowOverallResult(summary);
+                        ShowOverallResult(summary, afterSearch);
                     }
                 }
             }
@@ -104,11 +132,41 @@ namespace PCCleaner.Controls.Common
             }
         }
 
-        private void ShowOverallResult(ResultSummary summary)
+        private void ShowOverallResult(ResultSummary summary,bool afterSearch=false)
         {
+            if (afterSearch)
+            {
+                if (this.labelResultHeading.InvokeRequired)
+                {
+                    this.labelResultHeading.Invoke(new MethodInvoker(delegate
+                    {
+                        labelResultHeading.Text = "Cleanup Completed";
+                    }));
+                }
+                else
+                {
+                    labelResultHeading.Text = "Cleanup Completed";
+                }
+            }
+            else
+            {
+                if (this.labelResultHeading.InvokeRequired)
+                {
+                    this.labelResultHeading.Invoke(new MethodInvoker(delegate
+                    {
+                        labelResultHeading.Text = "Analysis Complete";
+                    }));
+                }
+                else
+                {
+                    labelResultHeading.Text = "Analysis Complete";
+                }
+            }
+
             this.dataGridViewOverall.DataBindings.Clear();
             this.dataGridViewDetail.Visible = false;
             this.dataGridViewOverall.Visible = true;
+            
 
             var bindingList = new BindingList<Result>(summary.OverallResult);
             var source = new BindingSource(bindingList, null);

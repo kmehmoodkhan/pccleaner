@@ -70,5 +70,19 @@ namespace PCCleaner.Common
                 return Helper.GetProblem(FeatureArea);
             }
         }
+
+
+        private bool _IsSelected = true;
+        public bool IsSelected
+        {
+            get
+            {
+                return _IsSelected;
+            }
+            set
+            {
+                _IsSelected = value;
+            }
+        }
     }
 }

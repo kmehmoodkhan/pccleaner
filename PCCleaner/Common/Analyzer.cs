@@ -1679,6 +1679,7 @@ namespace PCCleaner.Common
             List<Result> result = new List<Result>();
 
             var results = from line in selectedFilters
+                          where line !=null
                           group line by new { line.SearchArea, line.FeatureArea } into g
                           select new Result
                           {

@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelStatus = new System.Windows.Forms.Panel();
             this.labelTimeTaken = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelResultHeading = new System.Windows.Forms.Label();
             this.pictureBoxResult = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonBack = new System.Windows.Forms.Button();
@@ -66,7 +66,7 @@
             // panelStatus
             // 
             this.panelStatus.Controls.Add(this.labelTimeTaken);
-            this.panelStatus.Controls.Add(this.label1);
+            this.panelStatus.Controls.Add(this.labelResultHeading);
             this.panelStatus.Controls.Add(this.pictureBoxResult);
             this.panelStatus.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelStatus.Location = new System.Drawing.Point(0, 0);
@@ -84,15 +84,15 @@
             this.labelTimeTaken.TabIndex = 2;
             this.labelTimeTaken.Text = "[Time Taken]";
             // 
-            // label1
+            // labelResultHeading
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(145, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Analysis Complete -";
+            this.labelResultHeading.AutoSize = true;
+            this.labelResultHeading.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResultHeading.Location = new System.Drawing.Point(39, 10);
+            this.labelResultHeading.Name = "labelResultHeading";
+            this.labelResultHeading.Size = new System.Drawing.Size(145, 16);
+            this.labelResultHeading.TabIndex = 1;
+            this.labelResultHeading.Text = "Analysis Complete -";
             // 
             // pictureBoxResult
             // 
@@ -114,6 +114,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 79);
             this.panel1.TabIndex = 1;
+            this.panel1.Visible = false;
             // 
             // buttonBack
             // 
@@ -323,7 +324,7 @@
 
         private System.Windows.Forms.Panel panelStatus;
         private System.Windows.Forms.PictureBox pictureBoxResult;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelResultHeading;
         private System.Windows.Forms.Label labelTimeTaken;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridViewOverall;

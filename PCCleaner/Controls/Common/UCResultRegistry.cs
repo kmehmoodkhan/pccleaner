@@ -18,25 +18,69 @@ namespace PCCleaner.Controls.Common
         public UCResultRegistry()
         {
             InitializeComponent();
+            selectedRegistryItems = new List<ResultDetail>();
         }
 
+        private List<ResultDetail> selectedRegistryItems = null;
+
+        public List<ResultDetail> SelectedRegistryItems
+        {
+            get
+            {
+                foreach(DataGridViewRow row in this.dataGridViewDetail.Rows )
+                {
+                    DataGridViewCheckBoxCell cell = row.Cells[0] as DataGridViewCheckBoxCell;
+
+                    //We don't want a null exception!
+                    if (cell.Value != null)
+                    {
+                        if (Convert.ToBoolean(cell.Value)== true)
+                        {
+                            DataGridViewTextBoxCell data = row.Cells[2] as DataGridViewTextBoxCell;
+                            DataGridViewTextBoxCell regKey = row.Cells[3] as DataGridViewTextBoxCell;
+
+                            ///////////////////////////////////
+                       
+
+                            ResultDetail detail = new ResultDetail();
+
+                            if(data.Value!=null)
+                                detail.Data = data.Value.ToString();
+
+                            if (regKey.Value != null)
+                                detail.RegistryKey = regKey.Value.ToString();
+
+                            selectedRegistryItems.Add(detail);
+                        }
+                    }
+                }
+                return selectedRegistryItems;
+            }
+        }
         public void ShowResult(ResultView view, ResultSummary summary)
         {
+            var tempSummary = summary;
 
             if (view == ResultView.Detail)
             {
-                this.dataGridViewDetail.Rows.Clear();
-                this.dataGridViewDetail.DataBindings.Clear();
+                //this.dataGridViewDetail.Rows.Clear();
+                //this.dataGridViewDetail.DataBindings.Clear();
+                
 
-                this.dataGridViewDetail.Visible = true;
-
-                var bindingList = new BindingList<ResultDetail>(summary.DetailResult);
-                var source = new BindingSource(bindingList, null);
                 this.dataGridViewDetail.AutoGenerateColumns = false;
-                this.dataGridViewDetail.DataSource = source;
                 this.dataGridViewDetail.RowHeadersVisible = false;
                 this.dataGridViewDetail.ColumnHeadersVisible = true;
                 this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                //BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(summary.DetailResult);
+                //BindingSource source = new BindingSource(bindingList, null);
+                
+                this.dataGridViewDetail.DataSource = tempSummary.DetailResult;
+
+                //DataGridViewCheckBoxColumn colCB = new DataGridViewCheckBoxColumn();
+                //DataGridViewCheckBoxHeaderCell cbHeader = new DatagridViewCheckBoxHeaderCell();
+                //colCB.HeaderCell = cbHeader;
+                //this.dataGridViewDetail.Columns.Add(colCB);
             }
         }
 

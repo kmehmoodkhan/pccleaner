@@ -42,6 +42,8 @@
             this.InstallDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProgramSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LauncherPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Guid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.panelActionButtons.SuspendLayout();
             this.panelGrid.SuspendLayout();
@@ -79,6 +81,7 @@
             this.buttonUinstall.TabIndex = 2;
             this.buttonUinstall.Text = "Uninstall";
             this.buttonUinstall.UseVisualStyleBackColor = true;
+            this.buttonUinstall.Click += new System.EventHandler(this.buttonUinstall_Click);
             // 
             // buttonRepair
             // 
@@ -88,6 +91,7 @@
             this.buttonRepair.TabIndex = 3;
             this.buttonRepair.Text = "Repair";
             this.buttonRepair.UseVisualStyleBackColor = true;
+            this.buttonRepair.Click += new System.EventHandler(this.buttonRepair_Click);
             // 
             // buttonRename
             // 
@@ -106,6 +110,7 @@
             this.buttonDelete.TabIndex = 5;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // panelGrid
             // 
@@ -114,6 +119,7 @@
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(3, 18);
             this.panelGrid.Name = "panelGrid";
+            this.panelGrid.Padding = new System.Windows.Forms.Padding(5);
             this.panelGrid.Size = new System.Drawing.Size(891, 328);
             this.panelGrid.TabIndex = 4;
             // 
@@ -121,6 +127,8 @@
             // 
             this.dataGridViewDetail.AllowUserToAddRows = false;
             this.dataGridViewDetail.AllowUserToDeleteRows = false;
+            this.dataGridViewDetail.AllowUserToResizeColumns = false;
+            this.dataGridViewDetail.AllowUserToResizeRows = false;
             this.dataGridViewDetail.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -130,9 +138,11 @@
             this.Publisher,
             this.InstallDate,
             this.ProgramSize,
-            this.Version});
+            this.Version,
+            this.LauncherPath,
+            this.Guid});
             this.dataGridViewDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewDetail.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewDetail.Location = new System.Drawing.Point(5, 5);
             this.dataGridViewDetail.MultiSelect = false;
             this.dataGridViewDetail.Name = "dataGridViewDetail";
             this.dataGridViewDetail.ReadOnly = true;
@@ -140,8 +150,8 @@
             this.dataGridViewDetail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDetail.ShowEditingIcon = false;
-            this.dataGridViewDetail.Size = new System.Drawing.Size(891, 328);
-            this.dataGridViewDetail.TabIndex = 10;
+            this.dataGridViewDetail.Size = new System.Drawing.Size(881, 318);
+            this.dataGridViewDetail.TabIndex = 12;
             this.dataGridViewDetail.SelectionChanged += new System.EventHandler(this.dataGridViewDetail_SelectionChanged);
             // 
             // ProgramIcon
@@ -157,7 +167,7 @@
             this.Program.HeaderText = "Programs to Remove";
             this.Program.Name = "Program";
             this.Program.ReadOnly = true;
-            this.Program.Width = 600;
+            this.Program.Width = 450;
             // 
             // Publisher
             // 
@@ -165,6 +175,7 @@
             this.Publisher.HeaderText = "Publisher";
             this.Publisher.Name = "Publisher";
             this.Publisher.ReadOnly = true;
+            this.Publisher.Width = 200;
             // 
             // InstallDate
             // 
@@ -186,6 +197,22 @@
             this.Version.HeaderText = "Version";
             this.Version.Name = "Version";
             this.Version.ReadOnly = true;
+            // 
+            // LauncherPath
+            // 
+            this.LauncherPath.DataPropertyName = "UninstallString";
+            this.LauncherPath.HeaderText = "LauncherPath";
+            this.LauncherPath.Name = "LauncherPath";
+            this.LauncherPath.ReadOnly = true;
+            this.LauncherPath.Visible = false;
+            // 
+            // Guid
+            // 
+            this.Guid.DataPropertyName = "RegistryEntry";
+            this.Guid.HeaderText = "Guid";
+            this.Guid.Name = "Guid";
+            this.Guid.ReadOnly = true;
+            this.Guid.Visible = false;
             // 
             // UCUninstall
             // 
@@ -218,5 +245,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn InstallDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProgramSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn Version;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LauncherPath;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Guid;
     }
 }

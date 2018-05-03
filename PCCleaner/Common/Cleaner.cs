@@ -62,10 +62,17 @@ namespace PCCleaner.Common
                             registryKey.DeleteValue(file.FilePath);
                             registryKey.Close();
                         }
+                        else if (file.RegistryKey.StartsWith(@"HKCU\"))
+                        {
+                            var path = file.RegistryKey.Replace("HKCU\\", "");
+                            var registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(path, true);
+                            registryKey.DeleteValue(file.FilePath);
+                            registryKey.Close();
+                        }
                     }
                     catch (Exception ex)
                     {
-                        ;
+                        MessageBox.Show(ex.Message);
                     }
                     var progress = Helper.CompletionPercentage(areasCompleted, totalAreasToSearch);
                     backgroundWorker.ReportProgress(progress);

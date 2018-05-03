@@ -347,7 +347,7 @@ namespace PCCleaner
 
 
         public List<ResultDetail> SearchResult = null;
-        public void ProcessSearch()
+        public void ProcessSearch(bool afterSearch=false)
         {
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
@@ -410,7 +410,7 @@ namespace PCCleaner
 
                     CleanerApplicationContext.ResultSummary = overAllResult;
 
-                    this.ucResult.ShowResult(ResultView.Overall, overAllResult);
+                    this.ucResult.ShowResult(ResultView.Overall, overAllResult,afterSearch);
                     this.FilesFound = SearchResult;
                 }
                 catch (Exception ex)
@@ -846,6 +846,7 @@ namespace PCCleaner
                     {
                         SearchResult.Clear();
                     }
+                    
                 }
             }
 
@@ -870,8 +871,33 @@ namespace PCCleaner
 
             var searchCriteria = GetSearchCriteria();
             var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch, true);
+
             
+
+            if(SelectedItem == ApplicationItem.Registry)
+            {
+                var registryItems = filesFound;
+
+                var gridItems = new List<ResultDetail>();
+
+                UCResultRegistry result = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
+
+                var items = result.SelectedRegistryItems;
+            }
+            else
+            {
+
+            }
+
+            long totalSpaceCleanedUp = filesFound.Sum(t => t.FileSize);
+
+
             Cleaner.CleanUpSystem(searchCriteria, filesFound,SelectedItem, ref this.backgroundWorkerSearch);
+
+            Task.Factory.StartNew(() => ProcessSearch(true));
+
+
+            MessageBox.Show("Total space wiped is " + totalSpaceCleanedUp + " KB");
 
             this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;

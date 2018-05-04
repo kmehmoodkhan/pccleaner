@@ -29,12 +29,18 @@
         private void InitializeComponent()
         {
             this.panelActionButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.buttonUinstall = new System.Windows.Forms.Button();
-            this.buttonRename = new System.Windows.Forms.Button();
+            this.buttonEnable = new System.Windows.Forms.Button();
+            this.buttonDisable = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.tabControlStartup = new System.Windows.Forms.TabControl();
             this.tabWindows = new System.Windows.Forms.TabPage();
             this.dataGridViewWindows = new System.Windows.Forms.DataGridView();
+            this.Col_Enable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Program = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPageScheduledTasks = new System.Windows.Forms.TabPage();
             this.dataGridViewScheduledTasks = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,12 +55,6 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Enable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Program = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelActionButtons.SuspendLayout();
             this.tabControlStartup.SuspendLayout();
             this.tabWindows.SuspendLayout();
@@ -67,8 +67,8 @@
             // 
             // panelActionButtons
             // 
-            this.panelActionButtons.Controls.Add(this.buttonUinstall);
-            this.panelActionButtons.Controls.Add(this.buttonRename);
+            this.panelActionButtons.Controls.Add(this.buttonEnable);
+            this.panelActionButtons.Controls.Add(this.buttonDisable);
             this.panelActionButtons.Controls.Add(this.buttonDelete);
             this.panelActionButtons.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelActionButtons.Location = new System.Drawing.Point(562, 0);
@@ -76,23 +76,25 @@
             this.panelActionButtons.Size = new System.Drawing.Size(200, 355);
             this.panelActionButtons.TabIndex = 6;
             // 
-            // buttonUinstall
+            // buttonEnable
             // 
-            this.buttonUinstall.Location = new System.Drawing.Point(3, 3);
-            this.buttonUinstall.Name = "buttonUinstall";
-            this.buttonUinstall.Size = new System.Drawing.Size(194, 45);
-            this.buttonUinstall.TabIndex = 2;
-            this.buttonUinstall.Text = "Uninstall";
-            this.buttonUinstall.UseVisualStyleBackColor = true;
+            this.buttonEnable.Location = new System.Drawing.Point(3, 3);
+            this.buttonEnable.Name = "buttonEnable";
+            this.buttonEnable.Size = new System.Drawing.Size(194, 45);
+            this.buttonEnable.TabIndex = 2;
+            this.buttonEnable.Text = "Enable";
+            this.buttonEnable.UseVisualStyleBackColor = true;
+            this.buttonEnable.Click += new System.EventHandler(this.buttonEnable_Click);
             // 
-            // buttonRename
+            // buttonDisable
             // 
-            this.buttonRename.Location = new System.Drawing.Point(3, 54);
-            this.buttonRename.Name = "buttonRename";
-            this.buttonRename.Size = new System.Drawing.Size(194, 45);
-            this.buttonRename.TabIndex = 4;
-            this.buttonRename.Text = "Rename";
-            this.buttonRename.UseVisualStyleBackColor = true;
+            this.buttonDisable.Location = new System.Drawing.Point(3, 54);
+            this.buttonDisable.Name = "buttonDisable";
+            this.buttonDisable.Size = new System.Drawing.Size(194, 45);
+            this.buttonDisable.TabIndex = 4;
+            this.buttonDisable.Text = "Disable";
+            this.buttonDisable.UseVisualStyleBackColor = true;
+            this.buttonDisable.Click += new System.EventHandler(this.buttonDisable_Click);
             // 
             // buttonDelete
             // 
@@ -102,6 +104,7 @@
             this.buttonDelete.TabIndex = 5;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // tabControlStartup
             // 
@@ -130,7 +133,7 @@
             // 
             // dataGridViewWindows
             // 
-            this.dataGridViewWindows.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            this.dataGridViewWindows.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewWindows.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridViewWindows.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewWindows.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -149,6 +152,50 @@
             this.dataGridViewWindows.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewWindows.Size = new System.Drawing.Size(548, 320);
             this.dataGridViewWindows.TabIndex = 0;
+            this.dataGridViewWindows.SelectionChanged += new System.EventHandler(this.dataGridViewWindows_SelectionChanged);
+            // 
+            // Col_Enable
+            // 
+            this.Col_Enable.DataPropertyName = "IsEnabledText";
+            this.Col_Enable.HeaderText = "Enable";
+            this.Col_Enable.Name = "Col_Enable";
+            this.Col_Enable.ReadOnly = true;
+            // 
+            // Col_Key
+            // 
+            this.Col_Key.DataPropertyName = "RegistryKey";
+            this.Col_Key.HeaderText = "Key";
+            this.Col_Key.Name = "Col_Key";
+            this.Col_Key.ReadOnly = true;
+            // 
+            // Col_Program
+            // 
+            this.Col_Program.DataPropertyName = "ProgramName";
+            this.Col_Program.HeaderText = "Program";
+            this.Col_Program.Name = "Col_Program";
+            this.Col_Program.ReadOnly = true;
+            // 
+            // Col_Publisher
+            // 
+            this.Col_Publisher.DataPropertyName = "Publisher";
+            this.Col_Publisher.HeaderText = "Publisher";
+            this.Col_Publisher.Name = "Col_Publisher";
+            this.Col_Publisher.ReadOnly = true;
+            // 
+            // Col_File
+            // 
+            this.Col_File.DataPropertyName = "LauncherFile";
+            this.Col_File.HeaderText = "File";
+            this.Col_File.Name = "Col_File";
+            this.Col_File.ReadOnly = true;
+            this.Col_File.Width = 500;
+            // 
+            // Col_IsEnabled
+            // 
+            this.Col_IsEnabled.DataPropertyName = "IsEnabled";
+            this.Col_IsEnabled.HeaderText = "Column1";
+            this.Col_IsEnabled.Name = "Col_IsEnabled";
+            this.Col_IsEnabled.Visible = false;
             // 
             // tabPageScheduledTasks
             // 
@@ -273,49 +320,6 @@
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 500;
             // 
-            // Col_Enable
-            // 
-            this.Col_Enable.DataPropertyName = "IsEnabledText";
-            this.Col_Enable.HeaderText = "Enable";
-            this.Col_Enable.Name = "Col_Enable";
-            this.Col_Enable.ReadOnly = true;
-            // 
-            // Col_Key
-            // 
-            this.Col_Key.DataPropertyName = "RegistryKey";
-            this.Col_Key.HeaderText = "Key";
-            this.Col_Key.Name = "Col_Key";
-            this.Col_Key.ReadOnly = true;
-            // 
-            // Col_Program
-            // 
-            this.Col_Program.DataPropertyName = "ProgramName";
-            this.Col_Program.HeaderText = "Program";
-            this.Col_Program.Name = "Col_Program";
-            this.Col_Program.ReadOnly = true;
-            // 
-            // Col_Publisher
-            // 
-            this.Col_Publisher.DataPropertyName = "Publisher";
-            this.Col_Publisher.HeaderText = "Publisher";
-            this.Col_Publisher.Name = "Col_Publisher";
-            this.Col_Publisher.ReadOnly = true;
-            // 
-            // Col_File
-            // 
-            this.Col_File.DataPropertyName = "LauncherFile";
-            this.Col_File.HeaderText = "File";
-            this.Col_File.Name = "Col_File";
-            this.Col_File.ReadOnly = true;
-            this.Col_File.Width = 500;
-            // 
-            // Col_IsEnabled
-            // 
-            this.Col_IsEnabled.DataPropertyName = "IsEnabled";
-            this.Col_IsEnabled.HeaderText = "Column1";
-            this.Col_IsEnabled.Name = "Col_IsEnabled";
-            this.Col_IsEnabled.Visible = false;
-            // 
             // UCStartup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -339,8 +343,8 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel panelActionButtons;
-        private System.Windows.Forms.Button buttonUinstall;
-        private System.Windows.Forms.Button buttonRename;
+        private System.Windows.Forms.Button buttonEnable;
+        private System.Windows.Forms.Button buttonDisable;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.TabControl tabControlStartup;
         private System.Windows.Forms.TabPage tabWindows;

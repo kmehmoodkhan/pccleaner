@@ -278,8 +278,15 @@ namespace PCCleaner.Controls
                 string subKey = this.dataGridViewDetail.SelectedRows[0].Cells[this.dataGridViewDetail.SelectedRows[0].Cells.Count - 1].Value.ToString();
                 using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",true))
                 {
-                    key.DeleteSubKey(subKey);
-                    MessageBox.Show("Program key is deleted from registry.");
+                    try
+                    {
+                        key.DeleteSubKey(subKey);
+                        MessageBox.Show("Program key is deleted from registry.");
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }

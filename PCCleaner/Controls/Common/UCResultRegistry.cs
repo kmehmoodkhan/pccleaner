@@ -19,48 +19,27 @@ namespace PCCleaner.Controls.Common
         {
             InitializeComponent();
             selectedRegistryItems = new List<ResultDetail>();
+            
         }
 
+        private List<ResultDetail> RegistryResult
+        {
+            get;
+            set;
+        }
         private List<ResultDetail> selectedRegistryItems = null;
 
         public List<ResultDetail> SelectedRegistryItems
         {
             get
             {
-                foreach(DataGridViewRow row in this.dataGridViewDetail.Rows )
+                foreach( DataGridViewRow row in this.dataGridViewDetail.Rows)
                 {
-                    /*
                     DataGridViewCheckBoxCell cell = row.Cells[0] as DataGridViewCheckBoxCell;
-
-                    //We don't want a null exception!
-                    if (cell.Value != null)
-                    {
-                        if (Convert.ToBoolean(cell.Value)== true)
-                        {
-                            DataGridViewTextBoxCell data = row.Cells[2] as DataGridViewTextBoxCell;
-                            DataGridViewTextBoxCell regKey = as DataGridViewTextBoxCell;
-
-                            ///////////////////////////////////
-                       
-
-                            ResultDetail detail = new ResultDetail();
-
-                            if(data.Value!=null)
-                                detail.Data = data.Value.ToString();
-
-                            if (regKey.Value != null)
-                                detail.RegistryKey = regKey.Value.ToString();
-
-                            selectedRegistryItems.Add(detail);
-                        }
-                    }
-                    */
-
-                    selectedRegistryItems = new List<ResultDetail>();
-                    if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                    if (cell.Value == cell.TrueValue)
                     {
                         ResultDetail detail = new ResultDetail();
-                        if(row.Cells[2].Value!=null && !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
+                        if (row.Cells[2].Value != null && !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
                         {
                             detail.Data = row.Cells[2].Value.ToString();
                         }
@@ -70,7 +49,6 @@ namespace PCCleaner.Controls.Common
                         }
                         selectedRegistryItems.Add(detail);
                     }
-
                 }
                 return selectedRegistryItems;
             }
@@ -83,7 +61,9 @@ namespace PCCleaner.Controls.Common
             {
                 //this.dataGridViewDetail.Rows.Clear();
                 //this.dataGridViewDetail.DataBindings.Clear();
-                
+
+                RegistryResult = summary.DetailResult;
+                selectedRegistryItems = summary.DetailResult;
 
                 this.dataGridViewDetail.AutoGenerateColumns = false;
                 this.dataGridViewDetail.RowHeadersVisible = false;
@@ -139,6 +119,49 @@ namespace PCCleaner.Controls.Common
             {
                 row.Cells[0].Value = checkBoxCheckAll.Checked;
             }
+        }
+
+
+
+        private void dataGridViewDetail_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            /*
+            if (e.ColumnIndex == 0)
+            {
+                var temp = Convert.ToBoolean(this.dataGridViewDetail[0,e.RowIndex].Value);
+                var value = ((DataGridViewCheckBoxColumn)dataGridViewDetail.Columns["checkBoxSelect"]).TrueValue;
+
+                var cbxCell = (DataGridViewCheckBoxCell)dataGridViewDetail.Rows[e.RowIndex].Cells["checkBoxSelect"];
+                var result = ((bool)cbxCell.Value);
+
+                var isChecked = this.dataGridViewDetail.Rows[e.RowIndex].Cells[0].Value;
+                if (Convert.ToBoolean(isChecked))
+                {
+                    ResultDetail detail = new ResultDetail();
+                    if (this.dataGridViewDetail.Rows[e.RowIndex].Cells[2].Value != null && !string.IsNullOrEmpty(this.dataGridViewDetail.Rows[e.RowIndex].Cells[2].Value.ToString()))
+                    {
+                        detail.Data = this.dataGridViewDetail.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    }
+                    if (this.dataGridViewDetail.Rows[e.RowIndex].Cells[3].Value != null && !string.IsNullOrEmpty(this.dataGridViewDetail.Rows[e.RowIndex].Cells[3].Value.ToString()))
+                    {
+                        detail.RegistryKey = this.dataGridViewDetail.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    }
+                    selectedRegistryItems.Add(detail);
+                }
+                else
+                {
+                    var data = this.dataGridViewDetail.Rows[e.RowIndex].Cells[2].Value.ToString();
+                    var registryKey = this.dataGridViewDetail.Rows[e.RowIndex].Cells[3].Value.ToString();
+                    registryKey = registryKey.Replace("HKCU\\", "");
+
+                    registryKey = registryKey.Replace("HKLM\\", "");
+
+                    int index = selectedRegistryItems.FindIndex(t => t.RegistryKey == registryKey && t.Data == data);
+                    if (index > 0)
+                        selectedRegistryItems.RemoveAt(index);
+                }
+            }
+            */
         }
     }
 }

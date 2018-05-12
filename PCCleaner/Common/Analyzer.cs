@@ -12,13 +12,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using System.Linq;
+using System.Windows.Forms;
 
 namespace PCCleaner.Common
 {
     public static class Analyzer
     {
-        public static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria, ref BackgroundWorker backgroundWorker, bool isCleanerCall = false)
+        public static List<ResultDetail> GetSearchResults(List<SearchCriteria> searchCriteria,ref System.Windows.Forms.Label labelProgress, ref BackgroundWorker backgroundWorker, bool isCleanerCall = false)
         {
 
             List<ResultDetail> result = new List<ResultDetail>();
@@ -58,7 +58,23 @@ namespace PCCleaner.Common
                                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                                 {
                                                     if (!fl.ToLower().Contains("cryptnet"))
+                                                    {
+                                                        Label lblTemp = labelProgress;
+                                                        if (lblTemp.InvokeRequired)
+                                                        {
+                                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                                            {
+                                                                lblTemp.Text = fl;
+                                                            }));
+                                                        }
+                                                        else
+                                                        {
+                                                            lblTemp.Text = fl;
+                                                        }
+
+                                                        
                                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cache });
+                                                    }
                                                 }
                                             }
                                         }
@@ -82,6 +98,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.InternetHistory });
                                 }
 
@@ -98,6 +126,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Cookies });
                                 }
 
@@ -115,6 +155,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.DownloadHistory });
                                 }
 
@@ -132,6 +184,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.LastDownloadLocation });
                                 }
 
@@ -149,6 +213,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Edge, FeatureArea = FeatureArea.Session });
                                 }
 
@@ -186,6 +262,18 @@ namespace PCCleaner.Common
                                 {
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cache });
                                     }
                                 }
@@ -209,6 +297,18 @@ namespace PCCleaner.Common
                                 {
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.InternetHistory });
                                     }
                                 }
@@ -232,6 +332,18 @@ namespace PCCleaner.Common
                                 {
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Cookies });
                                     }
                                 }
@@ -254,6 +366,18 @@ namespace PCCleaner.Common
 
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.DownloadHistory });
                                 }
 
@@ -275,6 +399,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.LastDownloadLocation });
                                 }
 
@@ -296,6 +432,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.IE, FeatureArea = FeatureArea.Session });
                                 }
 
@@ -328,6 +476,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Cache });
                                 }
 
@@ -428,6 +588,18 @@ namespace PCCleaner.Common
                                         files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).ToList().ToArray();
                                         foreach (var fl in files ?? Enumerable.Empty<string>())
                                         {
+                                            Label lblTemp = labelProgress;
+                                            if (lblTemp.InvokeRequired)
+                                            {
+                                                lblTemp.Invoke(new MethodInvoker(delegate
+                                                {
+                                                    lblTemp.Text = fl;
+                                                }));
+                                            }
+                                            else
+                                            {
+                                                lblTemp.Text = fl;
+                                            }
                                             result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.LastDownloadLocation });
                                         }
                                     }
@@ -473,6 +645,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Chrome, FeatureArea = FeatureArea.Session });
                                 }
 
@@ -524,6 +708,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
                                 }
 
@@ -544,6 +740,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Cache });
                                 }
 
@@ -613,6 +821,18 @@ namespace PCCleaner.Common
 
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.LastDownloadLocation });
                                     }
                                 }
@@ -633,6 +853,18 @@ namespace PCCleaner.Common
                                         files = Directory.GetFiles(parentPath, "*.*", SearchOption.AllDirectories).Where(p => p.ToLower().Contains("session")).ToList().ToArray();
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Firefox, FeatureArea = FeatureArea.Session });
                                     }
 
@@ -696,6 +928,18 @@ namespace PCCleaner.Common
 
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowExplorer, FeatureArea = FeatureArea.RecentDocuments });
                                 }
 
@@ -724,6 +968,18 @@ namespace PCCleaner.Common
                                     var items = recycleBin.Items();
                                     foreach (FolderItem2 recfile in recycleBin.Items())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = recfile.Name;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = recfile.Name;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = recfile.Name, FileSize = 1, SearchArea = SearchArea.System, FeatureArea = FeatureArea.EmptyRecycleBin });
                                     }
 
@@ -752,6 +1008,18 @@ namespace PCCleaner.Common
 
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.TemporaryFiles });
                                 }
 
@@ -770,6 +1038,18 @@ namespace PCCleaner.Common
 
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.TemporaryFiles });
                                 }
 
@@ -794,6 +1074,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.MemoryDumps });
                                 }
 
@@ -814,6 +1106,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.WindowsLogFiles });
                                     }
                                     catch (Exception ex)
@@ -839,6 +1143,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.WindowErrorReporting });
                                     }
                                     catch (Exception ex)
@@ -880,6 +1196,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.StartMenuShortCuts });
                                     }
                                     catch (Exception ex)
@@ -905,6 +1233,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.System, FeatureArea = FeatureArea.DesktopShortCuts });
                                     }
                                     catch (Exception ex)
@@ -939,6 +1279,18 @@ namespace PCCleaner.Common
                                     }
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.WindowsEventLogs });
                                     }
 
@@ -963,6 +1315,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.OldPrefetchedData });
                                 }
 
@@ -983,6 +1347,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.IISLogFiles });
                                 }
 
@@ -1002,6 +1378,18 @@ namespace PCCleaner.Common
                                 }
                                 foreach (var fl in files ?? Enumerable.Empty<string>())
                                 {
+                                    Label lblTemp = labelProgress;
+                                    if (lblTemp.InvokeRequired)
+                                    {
+                                        lblTemp.Invoke(new MethodInvoker(delegate
+                                        {
+                                            lblTemp.Text = fl;
+                                        }));
+                                    }
+                                    else
+                                    {
+                                        lblTemp.Text = fl;
+                                    }
                                     result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Advanced, FeatureArea = FeatureArea.OldWindowsInstallation });
                                 }
 
@@ -1031,6 +1419,18 @@ namespace PCCleaner.Common
                                     }
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.WindowsStore, FeatureArea = FeatureArea.WindowsEventLogs });
                                     }
                                 }
@@ -1088,6 +1488,18 @@ namespace PCCleaner.Common
 
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.AdobeReader });
 
                                     }
@@ -1110,6 +1522,18 @@ namespace PCCleaner.Common
 
                                     foreach (var fl in files ?? Enumerable.Empty<string>())
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Applications, FeatureArea = FeatureArea.McAFee });
 
                                     }
@@ -1214,6 +1638,19 @@ namespace PCCleaner.Common
                                     {
                                         if (fl.Contains(".tvc"))
                                             result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Utilities, FeatureArea = FeatureArea.Teamviewer });
+
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                     }
                                     catch
                                     {
@@ -1240,6 +1677,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Utilities, FeatureArea = FeatureArea.WindowsDefender });
 
                                     }
@@ -1277,6 +1726,18 @@ namespace PCCleaner.Common
                                 {
                                     try
                                     {
+                                        Label lblTemp = labelProgress;
+                                        if (lblTemp.InvokeRequired)
+                                        {
+                                            lblTemp.Invoke(new MethodInvoker(delegate
+                                            {
+                                                lblTemp.Text = fl;
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            lblTemp.Text = fl;
+                                        }
                                         result.Add(new ResultDetail() { FilePath = fl, FileSize = new FileInfo(fl).Length, SearchArea = SearchArea.Windows, FeatureArea = FeatureArea.RemoteDesktop });
                                     }
                                     catch

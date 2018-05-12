@@ -30,10 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.panelStatus = new System.Windows.Forms.Panel();
-            this.labelTimeTaken = new System.Windows.Forms.Label();
-            this.labelResultHeading = new System.Windows.Forms.Label();
-            this.pictureBoxResult = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonBack = new System.Windows.Forms.Button();
             this.lineTop = new System.Windows.Forms.Label();
@@ -55,56 +51,28 @@
             this.col_Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panelStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
+            this.panelStatus = new System.Windows.Forms.Panel();
+            this.pictureBoxResult = new System.Windows.Forms.PictureBox();
+            this.labelResultHeading = new System.Windows.Forms.Label();
+            this.labelTimeTaken = new System.Windows.Forms.Label();
+            this.panelSearchComplete = new System.Windows.Forms.Panel();
+            this.panelSearchProgress = new System.Windows.Forms.Panel();
+            this.labelProgressBar = new System.Windows.Forms.Label();
+            this.pictureBoxLoader = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOverall)).BeginInit();
             this.contextMenuStripResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetail)).BeginInit();
+            this.panelStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
+            this.panelSearchComplete.SuspendLayout();
+            this.panelSearchProgress.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoader)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panelStatus
-            // 
-            this.panelStatus.Controls.Add(this.labelTimeTaken);
-            this.panelStatus.Controls.Add(this.labelResultHeading);
-            this.panelStatus.Controls.Add(this.pictureBoxResult);
-            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelStatus.Location = new System.Drawing.Point(0, 0);
-            this.panelStatus.Name = "panelStatus";
-            this.panelStatus.Size = new System.Drawing.Size(614, 44);
-            this.panelStatus.TabIndex = 0;
-            // 
-            // labelTimeTaken
-            // 
-            this.labelTimeTaken.AutoSize = true;
-            this.labelTimeTaken.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeTaken.Location = new System.Drawing.Point(211, 12);
-            this.labelTimeTaken.Name = "labelTimeTaken";
-            this.labelTimeTaken.Size = new System.Drawing.Size(88, 16);
-            this.labelTimeTaken.TabIndex = 2;
-            this.labelTimeTaken.Text = "[Time Taken]";
-            // 
-            // labelResultHeading
-            // 
-            this.labelResultHeading.AutoSize = true;
-            this.labelResultHeading.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResultHeading.Location = new System.Drawing.Point(39, 10);
-            this.labelResultHeading.Name = "labelResultHeading";
-            this.labelResultHeading.Size = new System.Drawing.Size(145, 16);
-            this.labelResultHeading.TabIndex = 1;
-            this.labelResultHeading.Text = "Analysis Complete -";
-            // 
-            // pictureBoxResult
-            // 
-            this.pictureBoxResult.Image = global::PCCleaner.Properties.Resources.Tick;
-            this.pictureBoxResult.Location = new System.Drawing.Point(12, 10);
-            this.pictureBoxResult.Name = "pictureBoxResult";
-            this.pictureBoxResult.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxResult.TabIndex = 0;
-            this.pictureBoxResult.TabStop = false;
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.buttonBack);
             this.panel1.Controls.Add(this.lineTop);
             this.panel1.Controls.Add(this.lineBottom);
@@ -114,7 +82,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(614, 79);
             this.panel1.TabIndex = 1;
-            this.panel1.Visible = false;
             // 
             // buttonBack
             // 
@@ -298,6 +265,90 @@
             this.contextMenuStripDetail.Name = "contextMenuStripDetail";
             this.contextMenuStripDetail.Size = new System.Drawing.Size(61, 4);
             // 
+            // panelStatus
+            // 
+            this.panelStatus.Controls.Add(this.panelSearchProgress);
+            this.panelStatus.Controls.Add(this.panelSearchComplete);
+            this.panelStatus.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelStatus.Location = new System.Drawing.Point(0, 0);
+            this.panelStatus.Name = "panelStatus";
+            this.panelStatus.Size = new System.Drawing.Size(614, 44);
+            this.panelStatus.TabIndex = 0;
+            // 
+            // pictureBoxResult
+            // 
+            this.pictureBoxResult.Image = global::PCCleaner.Properties.Resources.Tick;
+            this.pictureBoxResult.Location = new System.Drawing.Point(10, 11);
+            this.pictureBoxResult.Name = "pictureBoxResult";
+            this.pictureBoxResult.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxResult.TabIndex = 3;
+            this.pictureBoxResult.TabStop = false;
+            // 
+            // labelResultHeading
+            // 
+            this.labelResultHeading.AutoSize = true;
+            this.labelResultHeading.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResultHeading.Location = new System.Drawing.Point(37, 11);
+            this.labelResultHeading.Name = "labelResultHeading";
+            this.labelResultHeading.Size = new System.Drawing.Size(145, 16);
+            this.labelResultHeading.TabIndex = 4;
+            this.labelResultHeading.Text = "Analysis Complete -";
+            // 
+            // labelTimeTaken
+            // 
+            this.labelTimeTaken.AutoSize = true;
+            this.labelTimeTaken.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTimeTaken.Location = new System.Drawing.Point(209, 13);
+            this.labelTimeTaken.Name = "labelTimeTaken";
+            this.labelTimeTaken.Size = new System.Drawing.Size(88, 16);
+            this.labelTimeTaken.TabIndex = 5;
+            this.labelTimeTaken.Text = "[Time Taken]";
+            // 
+            // panelSearchComplete
+            // 
+            this.panelSearchComplete.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSearchComplete.Controls.Add(this.labelTimeTaken);
+            this.panelSearchComplete.Controls.Add(this.labelResultHeading);
+            this.panelSearchComplete.Controls.Add(this.pictureBoxResult);
+            this.panelSearchComplete.Location = new System.Drawing.Point(0, 0);
+            this.panelSearchComplete.Name = "panelSearchComplete";
+            this.panelSearchComplete.Size = new System.Drawing.Size(331, 44);
+            this.panelSearchComplete.TabIndex = 0;
+            // 
+            // panelSearchProgress
+            // 
+            this.panelSearchProgress.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSearchProgress.Controls.Add(this.labelProgressBar);
+            this.panelSearchProgress.Controls.Add(this.pictureBoxLoader);
+            this.panelSearchProgress.Location = new System.Drawing.Point(77, 0);
+            this.panelSearchProgress.Name = "panelSearchProgress";
+            this.panelSearchProgress.Size = new System.Drawing.Size(461, 44);
+            this.panelSearchProgress.TabIndex = 9;
+            // 
+            // labelProgressBar
+            // 
+            this.labelProgressBar.AutoSize = true;
+            this.labelProgressBar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelProgressBar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProgressBar.Location = new System.Drawing.Point(42, 0);
+            this.labelProgressBar.Name = "labelProgressBar";
+            this.labelProgressBar.Padding = new System.Windows.Forms.Padding(0, 17, 0, 0);
+            this.labelProgressBar.Size = new System.Drawing.Size(154, 37);
+            this.labelProgressBar.TabIndex = 5;
+            this.labelProgressBar.Text = "Loading file system";
+            // 
+            // pictureBoxLoader
+            // 
+            this.pictureBoxLoader.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pictureBoxLoader.Image = global::PCCleaner.Properties.Resources.Loader;
+            this.pictureBoxLoader.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxLoader.MinimumSize = new System.Drawing.Size(24, 24);
+            this.pictureBoxLoader.Name = "pictureBoxLoader";
+            this.pictureBoxLoader.Size = new System.Drawing.Size(42, 44);
+            this.pictureBoxLoader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxLoader.TabIndex = 4;
+            this.pictureBoxLoader.TabStop = false;
+            // 
             // UCResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -308,24 +359,23 @@
             this.Controls.Add(this.panelStatus);
             this.Name = "UCResult";
             this.Size = new System.Drawing.Size(614, 385);
-            this.panelStatus.ResumeLayout(false);
-            this.panelStatus.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOverall)).EndInit();
             this.contextMenuStripResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetail)).EndInit();
+            this.panelStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).EndInit();
+            this.panelSearchComplete.ResumeLayout(false);
+            this.panelSearchComplete.PerformLayout();
+            this.panelSearchProgress.ResumeLayout(false);
+            this.panelSearchProgress.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoader)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelStatus;
-        private System.Windows.Forms.PictureBox pictureBoxResult;
-        private System.Windows.Forms.Label labelResultHeading;
-        private System.Windows.Forms.Label labelTimeTaken;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridViewOverall;
         private System.Windows.Forms.DataGridView dataGridViewDetail;
@@ -347,5 +397,13 @@
         private System.Windows.Forms.DataGridViewImageColumn AreaIcon;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Size;
+        public System.Windows.Forms.Panel panelStatus;
+        public System.Windows.Forms.Panel panelSearchComplete;
+        private System.Windows.Forms.Label labelTimeTaken;
+        private System.Windows.Forms.Label labelResultHeading;
+        private System.Windows.Forms.PictureBox pictureBoxResult;
+        public System.Windows.Forms.Panel panelSearchProgress;
+        public System.Windows.Forms.Label labelProgressBar;
+        private System.Windows.Forms.PictureBox pictureBoxLoader;
     }
 }

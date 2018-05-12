@@ -43,6 +43,9 @@ namespace PCCleaner.Controls.Common
         {
             InitializeComponent();
             resultSummary = new ResultSummary();
+            this.panelStatus.Show(); 
+            //this.panelSearchComplete.Visible = true;
+            this.panelSearchProgress.Show();
         }
 
         public void ResetView()
@@ -53,7 +56,19 @@ namespace PCCleaner.Controls.Common
 
         public void ShowResult(ResultView view, ResultSummary summary,bool afterSearch=false)
         {
-            if( afterSearch)
+            if (this.panelSearchProgress.InvokeRequired)
+            {
+                this.panelSearchProgress.Invoke(new MethodInvoker(delegate
+                {
+                    this.panelSearchProgress.Show();
+                }));
+            }
+            else
+            {
+                this.panelSearchProgress.Show();
+            }
+
+            if ( afterSearch)
             {
                 if (this.labelResultHeading.InvokeRequired)
                 {
@@ -74,11 +89,13 @@ namespace PCCleaner.Controls.Common
                     this.labelResultHeading.Invoke(new MethodInvoker(delegate
                     {
                         labelResultHeading.Text = "Analysis Complete";
+                        panelSearchProgress.Hide();
                     }));
                 }
                 else
                 {
                     labelResultHeading.Text = "Analysis Complete";
+                    panelSearchProgress.Hide();
                 }
             }
             var registryItemExists = false;
@@ -134,6 +151,19 @@ namespace PCCleaner.Controls.Common
 
         private void ShowOverallResult(ResultSummary summary,bool afterSearch=false)
         {
+            if (this.panelSearchProgress.InvokeRequired)
+            {
+                this.panelSearchProgress.Invoke(new MethodInvoker(delegate
+                {
+                    this.panelSearchProgress.Show();
+                }));
+            }
+            else
+            {
+                this.panelSearchProgress.Show();
+            }
+            //this.panelSearchProgress.BackColor = Color.Green;
+
             if (afterSearch)
             {
                 if (this.labelResultHeading.InvokeRequired)
@@ -150,6 +180,30 @@ namespace PCCleaner.Controls.Common
             }
             else
             {
+                if (this.panelSearchComplete.InvokeRequired)
+                {
+                    this.panelSearchComplete.Invoke(new MethodInvoker(delegate
+                    {
+                        panelSearchComplete.Visible = true;
+                    }));
+                }
+                else
+                {
+                    panelSearchComplete.Visible = true;
+                }
+
+                if (this.panelSearchProgress.InvokeRequired)
+                {
+                    this.panelSearchProgress.Invoke(new MethodInvoker(delegate
+                    {
+                        panelSearchProgress.Visible = false;
+                    }));
+                }
+                else
+                {
+                    panelSearchProgress.Visible = false;
+                }
+
                 if (this.labelResultHeading.InvokeRequired)
                 {
                     this.labelResultHeading.Invoke(new MethodInvoker(delegate
@@ -181,6 +235,7 @@ namespace PCCleaner.Controls.Common
             this.buttonBack.Visible = false;
             this.lineBottom.Visible = true;
             this.lineTop.Visible = true;
+            panelSearchProgress.Hide();
         }
 
 

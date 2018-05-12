@@ -19,6 +19,13 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
+        private ref Label ProgressBarLabel
+        {
+            get
+            {
+                return ref this.ucResult.labelProgressBar;
+            }
+        }
 
 
         bool IsCleanerCall = false;
@@ -398,13 +405,69 @@ namespace PCCleaner
                     this.ucResult.Visible = true;
                 }
 
+               
+
+
+                if (this.ucResult.panelSearchComplete.InvokeRequired)
+                {
+                    this.ucResult.panelSearchComplete.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.panelSearchComplete.Hide();
+                    }));
+                }
+                else
+                {
+                    this.ucResult.panelSearchComplete.Hide();
+                }
+
+                if (this.ucResult.panelStatus.InvokeRequired)
+                {
+                    this.ucResult.panelStatus.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.panelStatus.Show();
+                    }));
+                }
+                else
+                {
+                    this.ucResult.panelStatus.Show();
+                }
+
+
+
+                if (this.ucResult.panelSearchProgress.InvokeRequired)
+                {
+                    this.ucResult.panelSearchProgress.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.panelSearchProgress.Dock = DockStyle.Fill;
+                        this.ucResult.panelSearchProgress.Show();
+                    }));
+                }
+                else
+                {
+                    this.ucResult.panelSearchProgress.Dock = DockStyle.Fill;
+                    this.ucResult.panelSearchProgress.Show();
+                }
+
+                if (this.ucResult.labelProgressBar.InvokeRequired)
+                {
+                    this.ucResult.labelProgressBar.Invoke(new MethodInvoker(delegate
+                    {
+                        this.ucResult.labelProgressBar.Visible = true;
+                    }));
+                }
+                else
+                {
+                    this.ucResult.labelProgressBar.Visible = true;
+                }
+
+                
 
                 try
                 {
                     List<SearchCriteria> searchCriteria = GetSearchCriteria();
 
 
-                    SearchResult = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                    SearchResult = Analyzer.GetSearchResults(searchCriteria, ref this.ProgressBarLabel, ref this.backgroundWorkerSearch);
 
                     var overAllResult = Analyzer.GetOverallResult(SearchResult);
 
@@ -434,7 +497,7 @@ namespace PCCleaner
 
 
                 List<SearchCriteria> searchCriteria = GetSearchCriteria();
-                SearchResult = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch);
+                SearchResult = Analyzer.GetSearchResults(searchCriteria,ref this.ProgressBarLabel, ref this.backgroundWorkerSearch);
                 var overAllResult = Analyzer.GetOverallResult(SearchResult);
 
                 UCResultRegistry registryControl = null;
@@ -870,7 +933,7 @@ namespace PCCleaner
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
 
             var searchCriteria = GetSearchCriteria();
-            var filesFound = Analyzer.GetSearchResults(searchCriteria, ref this.backgroundWorkerSearch, true);
+            var filesFound = Analyzer.GetSearchResults(searchCriteria,ref ProgressBarLabel, ref this.backgroundWorkerSearch ,true);
 
             
 
@@ -892,7 +955,7 @@ namespace PCCleaner
             long totalSpaceCleanedUp = filesFound.Sum(t => t.FileSize);
 
 
-            Cleaner.CleanUpSystem(searchCriteria, filesFound,SelectedItem, ref this.backgroundWorkerSearch);
+            Cleaner.CleanUpSystem(searchCriteria, filesFound, SelectedItem, ref this.backgroundWorkerSearch);
 
             Task.Factory.StartNew(() => ProcessSearch(true));
 

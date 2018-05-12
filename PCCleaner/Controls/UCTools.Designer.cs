@@ -90,6 +90,7 @@
             this.buttonPlugins.TabIndex = 2;
             this.buttonPlugins.Text = "Plugins";
             this.buttonPlugins.UseVisualStyleBackColor = true;
+            this.buttonPlugins.Visible = false;
             this.buttonPlugins.Click += new System.EventHandler(this.buttonPlugins_Click);
             // 
             // buttonDisk
@@ -110,6 +111,7 @@
             this.buttonDuplicate.TabIndex = 4;
             this.buttonDuplicate.Text = "Duplicate Finder";
             this.buttonDuplicate.UseVisualStyleBackColor = true;
+            this.buttonDuplicate.Visible = false;
             // 
             // buttonSystemRestore
             // 
@@ -129,6 +131,7 @@
             this.buttonDriveWiper.TabIndex = 6;
             this.buttonDriveWiper.Text = "Drive Wiper";
             this.buttonDriveWiper.UseVisualStyleBackColor = true;
+            this.buttonDriveWiper.Visible = false;
             this.buttonDriveWiper.Click += new System.EventHandler(this.buttonDriveWiper_Click);
             // 
             // panelInfoBar

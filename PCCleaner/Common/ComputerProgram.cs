@@ -39,5 +39,10 @@ namespace PCCleaner.Common
             get;
             set;
         }
+        public string Level
+        {
+            get;
+            set;
+        }
     }
 }

@@ -6,16 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PCCleaner.Tools
 {
     public class ToolsLibrary
     {
         List<DiskFileInfo> files = new List<DiskFileInfo>();
-        public List<DiskFileInfo> SearchFiles(List<int> fileTypes, List<string> drives)
+        public List<DiskFileInfo> SearchFiles(List<int> fileTypes, List<string> drives,ref Label labelProgressBar)
         {
 
-
+            var lableStatus = labelProgressBar;
             Parallel.ForEach(drives, drive =>
             {
                 try
@@ -28,20 +29,23 @@ namespace PCCleaner.Tools
                             {
                                 case (int)FileTypes.Pictures:
                                     {
-                                        List<string> pictureExtensions = new List<string>();
-                                        pictureExtensions.Add("jpeg");
-                                        pictureExtensions.Add("png");
-                                        pictureExtensions.Add("gif");
-                                        pictureExtensions.Add("png");
-                                        pictureExtensions.Add("tiff");
-
-                                        string[] extensions = { "*.jpeg", "*.png", "*.gif", "*.png", "*.tiff" };
+                                        string[] extensions = { ".jpeg", ".png", ".gif", ".png", ".tiff" };
 
                                         List<string> searchResult = new List<string>();
+                                       
                                         searchResult = DirSearch(drive,extensions);
 
                                         foreach (var file in searchResult)
                                         {
+                                            if (lableStatus.InvokeRequired)
+                                            {
+                                                lableStatus.Invoke(new MethodInvoker(delegate
+                                                {
+                                                    lableStatus.Text = file;
+                                                }));
+                                            }
+
+                                            
                                             DiskFileInfo fileDetail = new DiskFileInfo();
                                             fileDetail.FileName = Path.GetFileName(file);
                                             fileDetail.FilePath = file;
@@ -112,7 +116,7 @@ namespace PCCleaner.Tools
                     {
                         var files = Directory.GetFiles(d).ToList();
                         Parallel.ForEach(files, (f) =>
-                        {
+                        {                           
                             if (extensions.Contains(Path.GetExtension(f).ToLower()))
                                 result.Add(f);
                         });

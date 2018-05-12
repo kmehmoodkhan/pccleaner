@@ -29,6 +29,7 @@ namespace PCCleaner.Controls.Common
             {
                 foreach(DataGridViewRow row in this.dataGridViewDetail.Rows )
                 {
+                    /*
                     DataGridViewCheckBoxCell cell = row.Cells[0] as DataGridViewCheckBoxCell;
 
                     //We don't want a null exception!
@@ -37,7 +38,7 @@ namespace PCCleaner.Controls.Common
                         if (Convert.ToBoolean(cell.Value)== true)
                         {
                             DataGridViewTextBoxCell data = row.Cells[2] as DataGridViewTextBoxCell;
-                            DataGridViewTextBoxCell regKey = row.Cells[3] as DataGridViewTextBoxCell;
+                            DataGridViewTextBoxCell regKey = as DataGridViewTextBoxCell;
 
                             ///////////////////////////////////
                        
@@ -53,6 +54,23 @@ namespace PCCleaner.Controls.Common
                             selectedRegistryItems.Add(detail);
                         }
                     }
+                    */
+
+                    selectedRegistryItems = new List<ResultDetail>();
+                    if (Convert.ToBoolean(row.Cells[0].Value) == true)
+                    {
+                        ResultDetail detail = new ResultDetail();
+                        if(row.Cells[2].Value!=null && !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
+                        {
+                            detail.Data = row.Cells[2].Value.ToString();
+                        }
+                        if (row.Cells[3].Value != null && !string.IsNullOrEmpty(row.Cells[3].Value.ToString()))
+                        {
+                            detail.RegistryKey = row.Cells[3].Value.ToString();
+                        }
+                        selectedRegistryItems.Add(detail);
+                    }
+
                 }
                 return selectedRegistryItems;
             }
@@ -72,10 +90,10 @@ namespace PCCleaner.Controls.Common
                 this.dataGridViewDetail.ColumnHeadersVisible = true;
                 this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-                //BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(summary.DetailResult);
-                //BindingSource source = new BindingSource(bindingList, null);
-                
-                this.dataGridViewDetail.DataSource = tempSummary.DetailResult;
+                BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(summary.DetailResult);
+                BindingSource source = new BindingSource(bindingList, null);
+
+                this.dataGridViewDetail.DataSource = source;// tempSummary.DetailResult;
 
                 //DataGridViewCheckBoxColumn colCB = new DataGridViewCheckBoxColumn();
                 //DataGridViewCheckBoxHeaderCell cbHeader = new DatagridViewCheckBoxHeaderCell();
@@ -112,6 +130,14 @@ namespace PCCleaner.Controls.Common
                 {
                     File.WriteAllText(fbd.SelectedPath, filesData);
                 }
+            }
+        }
+
+        private void checkBoxCheckAll_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in this.dataGridViewDetail.Rows)
+            {
+                row.Cells[0].Value = checkBoxCheckAll.Checked;
             }
         }
     }

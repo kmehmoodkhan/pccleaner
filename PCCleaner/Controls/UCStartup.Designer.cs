@@ -35,12 +35,6 @@
             this.tabControlStartup = new System.Windows.Forms.TabControl();
             this.tabWindows = new System.Windows.Forms.TabPage();
             this.dataGridViewWindows = new System.Windows.Forms.DataGridView();
-            this.Col_Enable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Program = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_IsEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tabPageScheduledTasks = new System.Windows.Forms.TabPage();
             this.dataGridViewScheduledTasks = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,11 +44,17 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPageContextMenu = new System.Windows.Forms.TabPage();
             this.dataGridViewContextMenu = new System.Windows.Forms.DataGridView();
+            this.Col_Enable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Key = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Program = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_File = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_RegistryKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelActionButtons.SuspendLayout();
             this.tabControlStartup.SuspendLayout();
             this.tabWindows.SuspendLayout();
@@ -141,8 +141,7 @@
             this.Col_Key,
             this.Col_Program,
             this.Col_Publisher,
-            this.Col_File,
-            this.Col_IsEnabled});
+            this.Col_File});
             this.dataGridViewWindows.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewWindows.Location = new System.Drawing.Point(3, 3);
             this.dataGridViewWindows.Name = "dataGridViewWindows";
@@ -153,6 +152,105 @@
             this.dataGridViewWindows.Size = new System.Drawing.Size(548, 320);
             this.dataGridViewWindows.TabIndex = 0;
             this.dataGridViewWindows.SelectionChanged += new System.EventHandler(this.dataGridViewWindows_SelectionChanged);
+            // 
+            // tabPageScheduledTasks
+            // 
+            this.tabPageScheduledTasks.Controls.Add(this.dataGridViewScheduledTasks);
+            this.tabPageScheduledTasks.Location = new System.Drawing.Point(4, 25);
+            this.tabPageScheduledTasks.Name = "tabPageScheduledTasks";
+            this.tabPageScheduledTasks.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageScheduledTasks.Size = new System.Drawing.Size(554, 326);
+            this.tabPageScheduledTasks.TabIndex = 1;
+            this.tabPageScheduledTasks.Text = "Scheduled Tasks";
+            this.tabPageScheduledTasks.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewScheduledTasks
+            // 
+            this.dataGridViewScheduledTasks.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewScheduledTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridViewScheduledTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewScheduledTasks.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewScheduledTasks.Location = new System.Drawing.Point(3, 3);
+            this.dataGridViewScheduledTasks.Name = "dataGridViewScheduledTasks";
+            this.dataGridViewScheduledTasks.RowHeadersVisible = false;
+            this.dataGridViewScheduledTasks.RowTemplate.Height = 24;
+            this.dataGridViewScheduledTasks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewScheduledTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewScheduledTasks.Size = new System.Drawing.Size(548, 320);
+            this.dataGridViewScheduledTasks.TabIndex = 1;
+            this.dataGridViewScheduledTasks.SelectionChanged += new System.EventHandler(this.dataGridViewScheduledTasks_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "IsEnabledText";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Enable";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "RegistryKey";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Key";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "ProgramName";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Program";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Publisher";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Publisher";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "LauncherFile";
+            this.dataGridViewTextBoxColumn5.HeaderText = "File";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 500;
+            // 
+            // tabPageContextMenu
+            // 
+            this.tabPageContextMenu.Controls.Add(this.dataGridViewContextMenu);
+            this.tabPageContextMenu.Location = new System.Drawing.Point(4, 25);
+            this.tabPageContextMenu.Name = "tabPageContextMenu";
+            this.tabPageContextMenu.Size = new System.Drawing.Size(554, 326);
+            this.tabPageContextMenu.TabIndex = 2;
+            this.tabPageContextMenu.Text = "Context Menu";
+            this.tabPageContextMenu.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewContextMenu
+            // 
+            this.dataGridViewContextMenu.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewContextMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridViewContextMenu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.Col_RegistryKey});
+            this.dataGridViewContextMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewContextMenu.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewContextMenu.Name = "dataGridViewContextMenu";
+            this.dataGridViewContextMenu.RowHeadersVisible = false;
+            this.dataGridViewContextMenu.RowTemplate.Height = 24;
+            this.dataGridViewContextMenu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewContextMenu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewContextMenu.Size = new System.Drawing.Size(554, 326);
+            this.dataGridViewContextMenu.TabIndex = 2;
             // 
             // Col_Enable
             // 
@@ -190,135 +288,51 @@
             this.Col_File.ReadOnly = true;
             this.Col_File.Width = 500;
             // 
-            // Col_IsEnabled
-            // 
-            this.Col_IsEnabled.DataPropertyName = "IsEnabled";
-            this.Col_IsEnabled.HeaderText = "Column1";
-            this.Col_IsEnabled.Name = "Col_IsEnabled";
-            this.Col_IsEnabled.Visible = false;
-            // 
-            // tabPageScheduledTasks
-            // 
-            this.tabPageScheduledTasks.Controls.Add(this.dataGridViewScheduledTasks);
-            this.tabPageScheduledTasks.Location = new System.Drawing.Point(4, 25);
-            this.tabPageScheduledTasks.Name = "tabPageScheduledTasks";
-            this.tabPageScheduledTasks.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageScheduledTasks.Size = new System.Drawing.Size(554, 326);
-            this.tabPageScheduledTasks.TabIndex = 1;
-            this.tabPageScheduledTasks.Text = "Scheduled Tasks";
-            this.tabPageScheduledTasks.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewScheduledTasks
-            // 
-            this.dataGridViewScheduledTasks.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewScheduledTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridViewScheduledTasks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridViewScheduledTasks.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewScheduledTasks.Location = new System.Drawing.Point(3, 3);
-            this.dataGridViewScheduledTasks.Name = "dataGridViewScheduledTasks";
-            this.dataGridViewScheduledTasks.RowHeadersVisible = false;
-            this.dataGridViewScheduledTasks.RowTemplate.Height = 24;
-            this.dataGridViewScheduledTasks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewScheduledTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewScheduledTasks.Size = new System.Drawing.Size(548, 320);
-            this.dataGridViewScheduledTasks.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Enable";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Key";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Program";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Publisher";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "File";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 500;
-            // 
-            // tabPageContextMenu
-            // 
-            this.tabPageContextMenu.Controls.Add(this.dataGridViewContextMenu);
-            this.tabPageContextMenu.Location = new System.Drawing.Point(4, 25);
-            this.tabPageContextMenu.Name = "tabPageContextMenu";
-            this.tabPageContextMenu.Size = new System.Drawing.Size(554, 326);
-            this.tabPageContextMenu.TabIndex = 2;
-            this.tabPageContextMenu.Text = "Context Menu";
-            this.tabPageContextMenu.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewContextMenu
-            // 
-            this.dataGridViewContextMenu.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridViewContextMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridViewContextMenu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-            this.dataGridViewContextMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewContextMenu.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewContextMenu.Name = "dataGridViewContextMenu";
-            this.dataGridViewContextMenu.RowHeadersVisible = false;
-            this.dataGridViewContextMenu.RowTemplate.Height = 24;
-            this.dataGridViewContextMenu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridViewContextMenu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewContextMenu.Size = new System.Drawing.Size(554, 326);
-            this.dataGridViewContextMenu.TabIndex = 2;
-            // 
             // dataGridViewTextBoxColumn6
             // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "IsEnabledText";
             this.dataGridViewTextBoxColumn6.HeaderText = "Enable";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 250;
             // 
             // dataGridViewTextBoxColumn7
             // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Level";
             this.dataGridViewTextBoxColumn7.HeaderText = "Key";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 250;
             // 
             // dataGridViewTextBoxColumn8
             // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "ProgramName";
             this.dataGridViewTextBoxColumn8.HeaderText = "Program";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 350;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.HeaderText = "Publisher";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Visible = false;
             // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.HeaderText = "File";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Visible = false;
             this.dataGridViewTextBoxColumn10.Width = 500;
+            // 
+            // Col_RegistryKey
+            // 
+            this.Col_RegistryKey.DataPropertyName = "RegistryKey";
+            this.Col_RegistryKey.HeaderText = "RegistryKey";
+            this.Col_RegistryKey.Name = "Col_RegistryKey";
+            this.Col_RegistryKey.Visible = false;
             // 
             // UCStartup
             // 
@@ -352,22 +366,22 @@
         private System.Windows.Forms.TabPage tabPageContextMenu;
         private System.Windows.Forms.DataGridView dataGridViewWindows;
         private System.Windows.Forms.DataGridView dataGridViewScheduledTasks;
+        private System.Windows.Forms.DataGridView dataGridViewContextMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridView dataGridViewContextMenu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Enable;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Key;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Program;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Publisher;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_File;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Col_IsEnabled;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Col_RegistryKey;
     }
 }

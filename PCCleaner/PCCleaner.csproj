@@ -96,8 +96,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.108.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.IO.Compression">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.IO.Compression.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\System.IO.Compression.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
@@ -408,6 +407,7 @@
     <Content Include="Images\Brush.png" />
     <Content Include="Images\Exe.png" />
     <Content Include="Images\Internet.png" />
+    <Content Include="Images\Loader.gif" />
     <Content Include="Images\Multimedia.png" />
     <Content Include="Images\Registry_Left.png" />
     <Content Include="Images\Search.png" />

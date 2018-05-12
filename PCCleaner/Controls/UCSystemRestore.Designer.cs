@@ -57,6 +57,9 @@
             // 
             // dataGridViewBackups
             // 
+            this.dataGridViewBackups.AllowUserToDeleteRows = false;
+            this.dataGridViewBackups.AllowUserToResizeRows = false;
+            this.dataGridViewBackups.BackgroundColor = System.Drawing.Color.White;
             this.dataGridViewBackups.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewBackups.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Col_Date,
@@ -65,19 +68,21 @@
             this.dataGridViewBackups.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewBackups.Margin = new System.Windows.Forms.Padding(15);
             this.dataGridViewBackups.Name = "dataGridViewBackups";
-            this.dataGridViewBackups.RowHeadersVisible = false;
             this.dataGridViewBackups.RowTemplate.Height = 24;
+            this.dataGridViewBackups.ShowRowErrors = false;
             this.dataGridViewBackups.Size = new System.Drawing.Size(913, 357);
             this.dataGridViewBackups.TabIndex = 0;
             // 
             // Col_Date
             // 
+            this.Col_Date.DataPropertyName = "CreatedOn";
             this.Col_Date.HeaderText = "Date and Time";
             this.Col_Date.Name = "Col_Date";
             this.Col_Date.Width = 150;
             // 
             // Col_Description
             // 
+            this.Col_Description.DataPropertyName = "Description";
             this.Col_Description.HeaderText = "Description";
             this.Col_Description.Name = "Col_Description";
             this.Col_Description.Width = 300;

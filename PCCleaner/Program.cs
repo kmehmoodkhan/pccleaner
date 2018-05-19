@@ -23,6 +23,7 @@ namespace PCCleaner
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                //System.Diagnostics.Process.Start(Application.ExecutablePath);                
             }
         }
     }

@@ -215,6 +215,9 @@ namespace PCCleaner
                     ctrl.Visible = false;
                 }
                 this.gboxResult.Controls.Add(tools);
+
+                Task.Delay(500);
+                Task.Factory.StartNew(() => tools.LoadPrograms());
             }
 
             ShowHideControls(ApplicationItem.Tools);
@@ -932,12 +935,12 @@ namespace PCCleaner
             this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
 
+
             var searchCriteria = GetSearchCriteria();
-            var filesFound = Analyzer.GetSearchResults(searchCriteria,ref ProgressBarLabel, ref this.backgroundWorkerSearch ,true);
+            var filesFound = Analyzer.GetSearchResults(searchCriteria, ref ProgressBarLabel, ref this.backgroundWorkerSearch, true);
 
-            
 
-            if(SelectedItem == ApplicationItem.Registry)
+            if (SelectedItem == ApplicationItem.Registry)
             {
                 var registryItems = filesFound;
 
@@ -945,23 +948,26 @@ namespace PCCleaner
 
                 UCResultRegistry result = this.gboxResult.Controls.Find("UCResultRegistry", true)[0] as UCResultRegistry;
 
-                var items = result.SelectedRegistryItems;
+                var items = result.SelectedRows;
+
+                Cleaner.CleanUpSystem(searchCriteria, items, SelectedItem, ref this.backgroundWorkerSearch);
+
+                Task.Factory.StartNew(() => ProcessSearch(true));
+                MessageBox.Show($"{items.Count} registry items deleted successfully.");
+                result.SelectedRows.Clear();
             }
             else
             {
 
+                long totalSpaceCleanedUp = filesFound.Sum(t => t.FileSize);
+
+
+                Cleaner.CleanUpSystem(searchCriteria, filesFound, SelectedItem, ref this.backgroundWorkerSearch);
+
+                Task.Factory.StartNew(() => ProcessSearch(true));
+                MessageBox.Show("Total space wiped is " + totalSpaceCleanedUp + " KB");
             }
-
-            long totalSpaceCleanedUp = filesFound.Sum(t => t.FileSize);
-
-
-            Cleaner.CleanUpSystem(searchCriteria, filesFound, SelectedItem, ref this.backgroundWorkerSearch);
-
-            Task.Factory.StartNew(() => ProcessSearch(true));
-
-
-            MessageBox.Show("Total space wiped is " + totalSpaceCleanedUp + " KB");
-
+            
             this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
             this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
         }

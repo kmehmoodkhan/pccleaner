@@ -118,8 +118,9 @@
             this.panelGrid.Controls.Add(this.dataGridViewDetail);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelGrid.Location = new System.Drawing.Point(3, 18);
+            this.panelGrid.Margin = new System.Windows.Forms.Padding(10);
             this.panelGrid.Name = "panelGrid";
-            this.panelGrid.Padding = new System.Windows.Forms.Padding(5);
+            this.panelGrid.Padding = new System.Windows.Forms.Padding(10, 10, 200, 10);
             this.panelGrid.Size = new System.Drawing.Size(891, 328);
             this.panelGrid.TabIndex = 4;
             // 
@@ -131,6 +132,7 @@
             this.dataGridViewDetail.AllowUserToResizeRows = false;
             this.dataGridViewDetail.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridViewDetail.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridViewDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ProgramIcon,
@@ -142,7 +144,7 @@
             this.LauncherPath,
             this.Guid});
             this.dataGridViewDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewDetail.Location = new System.Drawing.Point(5, 5);
+            this.dataGridViewDetail.Location = new System.Drawing.Point(10, 10);
             this.dataGridViewDetail.MultiSelect = false;
             this.dataGridViewDetail.Name = "dataGridViewDetail";
             this.dataGridViewDetail.ReadOnly = true;
@@ -150,8 +152,8 @@
             this.dataGridViewDetail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDetail.ShowEditingIcon = false;
-            this.dataGridViewDetail.Size = new System.Drawing.Size(881, 318);
-            this.dataGridViewDetail.TabIndex = 12;
+            this.dataGridViewDetail.Size = new System.Drawing.Size(681, 308);
+            this.dataGridViewDetail.TabIndex = 13;
             this.dataGridViewDetail.SelectionChanged += new System.EventHandler(this.dataGridViewDetail_SelectionChanged);
             // 
             // ProgramIcon
@@ -167,7 +169,7 @@
             this.Program.HeaderText = "Programs to Remove";
             this.Program.Name = "Program";
             this.Program.ReadOnly = true;
-            this.Program.Width = 450;
+            this.Program.Width = 470;
             // 
             // Publisher
             // 

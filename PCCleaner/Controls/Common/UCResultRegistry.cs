@@ -18,80 +18,82 @@ namespace PCCleaner.Controls.Common
         public UCResultRegistry()
         {
             InitializeComponent();
-            selectedRegistryItems = new List<ResultDetail>();
-            
+            _RegistryResult = new List<ResultDetail>();
+            _SelectedRows = new List<ResultDetail>();
+
+            Point headerCellLocation = this.dataGridViewDetail.GetCellDisplayRectangle(0, -1, true).Location;
+
+            //Place the Header CheckBox in the Location of the Header Cell.
+            //checkBoxCheckAll.Location = new Point(headerCellLocation.X + 8, headerCellLocation.Y + 2);
+            checkBoxCheckAll.BackColor = Color.White;
+            checkBoxCheckAll.Size = new Size(18, 18);
+
+            //Assign Click event to the Header CheckBox.
+            this.dataGridViewDetail.Controls.Add(checkBoxCheckAll);
         }
 
+        private List<ResultDetail> _RegistryResult = null;
         private List<ResultDetail> RegistryResult
-        {
-            get;
-            set;
-        }
-        private List<ResultDetail> selectedRegistryItems = null;
-
-        public List<ResultDetail> SelectedRegistryItems
         {
             get
             {
-                foreach( DataGridViewRow row in this.dataGridViewDetail.Rows)
-                {
-                    DataGridViewCheckBoxCell cell = row.Cells[0] as DataGridViewCheckBoxCell;
-                    if (cell.Value == cell.TrueValue)
-                    {
-                        ResultDetail detail = new ResultDetail();
-                        if (row.Cells[2].Value != null && !string.IsNullOrEmpty(row.Cells[2].Value.ToString()))
-                        {
-                            detail.Data = row.Cells[2].Value.ToString();
-                        }
-                        if (row.Cells[3].Value != null && !string.IsNullOrEmpty(row.Cells[3].Value.ToString()))
-                        {
-                            detail.RegistryKey = row.Cells[3].Value.ToString();
-                        }
-                        selectedRegistryItems.Add(detail);
-                    }
-                }
-                return selectedRegistryItems;
+                return _RegistryResult;
+            }
+            set
+            {
+                _RegistryResult = value;
             }
         }
+
+        private List<ResultDetail> _SelectedRows = null;
+        public List<ResultDetail> SelectedRows
+        {
+            get
+            {
+                return _SelectedRows;
+            }
+            set
+            {
+                _SelectedRows = value;
+            }
+        }
+
+        private void BindGrid()
+        {
+            this.dataGridViewDetail.DataSource = null;
+
+            this.dataGridViewDetail.AutoGenerateColumns = false;
+            this.dataGridViewDetail.RowHeadersVisible = false;
+            this.dataGridViewDetail.ColumnHeadersVisible = true;
+            this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+            BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(RegistryResult);
+            BindingSource source = new BindingSource(bindingList, null);
+
+            this.dataGridViewDetail.DataSource = bindingList;
+        }
+
+
         public void ShowResult(ResultView view, ResultSummary summary)
         {
-            var tempSummary = summary;
+            _RegistryResult = summary.DetailResult;
 
             if (view == ResultView.Detail)
             {
-                //this.dataGridViewDetail.Rows.Clear();
-                //this.dataGridViewDetail.DataBindings.Clear();
-
-                RegistryResult = summary.DetailResult;
-                selectedRegistryItems = summary.DetailResult;
-
-                this.dataGridViewDetail.AutoGenerateColumns = false;
-                this.dataGridViewDetail.RowHeadersVisible = false;
-                this.dataGridViewDetail.ColumnHeadersVisible = true;
-                this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
-
-                BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(summary.DetailResult);
-                BindingSource source = new BindingSource(bindingList, null);
-
-                this.dataGridViewDetail.DataSource = source;// tempSummary.DetailResult;
-
-                //DataGridViewCheckBoxColumn colCB = new DataGridViewCheckBoxColumn();
-                //DataGridViewCheckBoxHeaderCell cbHeader = new DatagridViewCheckBoxHeaderCell();
-                //colCB.HeaderCell = cbHeader;
-                //this.dataGridViewDetail.Columns.Add(colCB);
+                BindGrid();
             }
         }
 
         private void openInRegistryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void toolStripMenuItemRegedit_Click(object sender, EventArgs e)
         {
             var item = this.dataGridViewDetail.SelectedCells[3].Value;
-            
-            string filename = Application.ExecutablePath.Replace("PCCleaner.exe","") +@"\regjump.exe";
+
+            string filename = Application.ExecutablePath.Replace("PCCleaner.exe", "") + @"\regjump.exe";
             var proc = System.Diagnostics.Process.Start(filename, item.ToString());
         }
 
@@ -115,24 +117,86 @@ namespace PCCleaner.Controls.Common
 
         private void checkBoxCheckAll_CheckedChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in this.dataGridViewDetail.Rows)
+            try
             {
-                row.Cells[0].Value = checkBoxCheckAll.Checked;
+
+                if (checkBoxCheckAll.Checked)
+                {
+                    _SelectedRows = this._RegistryResult;
+                }
+                else
+                {
+                    _SelectedRows.Clear();
+                }
+
+                if (this.dataGridViewDetail.Rows.Count > 0)
+                {
+
+                    foreach (DataGridViewRow row in this.dataGridViewDetail.Rows)
+                    {
+                        if (row != null && row.Cells.Count > 0)
+                        {
+                            if (row.Cells.Count > 0)
+                            {
+                                row.Cells[0].Value = checkBoxCheckAll.Checked;
+                            }
+                        }
+                    }
+                    dataGridViewDetail.EndEdit();
+                }
+
+            }
+
+            catch (System.IndexOutOfRangeException ex)  // CS0168)
+            {
+                ;
+            }
+            catch (Exception ex)
+            {
+                ;
             }
         }
 
 
-
-        private void dataGridViewDetail_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridViewDetail_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            /*
+            if (dataGridViewDetail.IsCurrentCellDirty)
+            {
+                dataGridViewDetail.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                // BindGrid();
+            }
+        }
+
+        private void dataGridViewDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            this.dataGridViewDetail.EndEdit();
+
             if (e.ColumnIndex == 0)
             {
-                var temp = Convert.ToBoolean(this.dataGridViewDetail[0,e.RowIndex].Value);
-                var value = ((DataGridViewCheckBoxColumn)dataGridViewDetail.Columns["checkBoxSelect"]).TrueValue;
+                var temp = Convert.ToBoolean(this.dataGridViewDetail[0, e.RowIndex].Value);
+                var trueValue = ((DataGridViewCheckBoxColumn)dataGridViewDetail.Columns["checkBoxSelect"]).TrueValue;
+                var falseValue = ((DataGridViewCheckBoxColumn)dataGridViewDetail.Columns["checkBoxSelect"]).FalseValue;
 
                 var cbxCell = (DataGridViewCheckBoxCell)dataGridViewDetail.Rows[e.RowIndex].Cells["checkBoxSelect"];
                 var result = ((bool)cbxCell.Value);
+
+                DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dataGridViewDetail.Rows[e.RowIndex].Cells[0];
+
+                var dataGridView = sender as DataGridView;
+
+                if ((Convert.ToBoolean(chk.Value )== Convert.ToBoolean(chk.FalseValue)) || (chk.Value == null))
+                {
+                    chk.Value = chk.TrueValue;
+                }
+                else
+                {
+                    chk.Value = chk.FalseValue;
+                   
+                }
+
+
+
 
                 var isChecked = this.dataGridViewDetail.Rows[e.RowIndex].Cells[0].Value;
                 if (Convert.ToBoolean(isChecked))
@@ -146,7 +210,7 @@ namespace PCCleaner.Controls.Common
                     {
                         detail.RegistryKey = this.dataGridViewDetail.Rows[e.RowIndex].Cells[3].Value.ToString();
                     }
-                    selectedRegistryItems.Add(detail);
+                    SelectedRows.Add(detail);
                 }
                 else
                 {
@@ -156,12 +220,79 @@ namespace PCCleaner.Controls.Common
 
                     registryKey = registryKey.Replace("HKLM\\", "");
 
-                    int index = selectedRegistryItems.FindIndex(t => t.RegistryKey == registryKey && t.Data == data);
+                    int index = SelectedRows.FindIndex(t => t.RegistryKey == registryKey && t.Data == data);
                     if (index > 0)
-                        selectedRegistryItems.RemoveAt(index);
+                        SelectedRows.RemoveAt(index);
                 }
             }
-            */
+
+            //Loop and check and uncheck all row CheckBoxes based on Header Cell CheckBox.
+            //foreach (DataGridViewRow row in dataGridViewDetail.Rows)
+            //{
+            //    DataGridViewCheckBoxCell checkBox = (row.Cells["checkBoxSelect"] as DataGridViewCheckBoxCell);
+            //    checkBox.Value = this.checkBoxCheckAll.Checked;
+            //}
+
+           
+        }
+
+
+        private void dataGridViewDetail_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception != null)
+            {
+                BindGrid();
+            }
+        }
+
+        private void dataGridViewDetail_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex == checkBoxSelect.Index && e.RowIndex != -1)
+            {
+                //this.dataGridViewDetail.EndEdit();
+            }
+        }
+
+        private void dataGridViewDetail_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == 0)
+            {
+
+            }
+        }
+
+        private void checkBoxCheckAll_Click(object sender, EventArgs e)
+        {
+            this.dataGridViewDetail.EndEdit();
+
+
+            //Loop and check and uncheck all row CheckBoxes based on Header Cell CheckBox.
+            foreach (DataGridViewRow row in dataGridViewDetail.Rows)
+            {
+                DataGridViewCheckBoxCell checkBox = (row.Cells["checkBoxSelect"] as DataGridViewCheckBoxCell);
+                checkBox.Value = this.checkBoxCheckAll.Checked;
+            }
+        }
+
+        private void dataGridViewDetail_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                DataGridViewCheckBoxCell cell = (sender as DataGridView).Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+
+                //if (cell != null)
+                //{
+                //    //if (cell.Value == cell.TrueValue)
+                //    //{
+                //    //    MessageBox.Show("Cell checked.");
+                //    //}
+                //    //else
+                //    //{
+                //    //    MessageBox.Show("Cell unchecked.");
+                //    //}
+                //}
+            }
         }
     }
 }
+

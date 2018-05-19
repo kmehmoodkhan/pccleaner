@@ -50,8 +50,11 @@ namespace PCCleaner.Common
 
             foreach (ExplorerFeatures feature in Enum.GetValues(typeof(ExplorerFeatures)))
             {
-                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("ExplorerFeature_" + Convert.ToInt32(feature)) };
-                list.Add(item);
+                if (feature != ExplorerFeatures.RecentDocuments)
+                {
+                    ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("ExplorerFeature_" + Convert.ToInt32(feature)) };
+                    list.Add(item);
+                }
             }
             return list;
         }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PCCleaner.Properties;
 
 namespace PCCleaner.Controls.Common
 {
@@ -93,14 +94,56 @@ namespace PCCleaner.Controls.Common
             _Uninstall = new UCUninstall();
             _Uninstall.Dock = DockStyle.Fill;
 
-            Task.Factory.StartNew(() => _Uninstall.ShowInstalledPrograms());
+            this.labelNotice.Text = "Loading Programs...";
+            this.pictureBox1.Image = Resources.Loader;
+
+           //
+           
 
             ShowHideControls(_Uninstall);
 
             ChangeButtonColor(buttonUninstall.Name);
 
             panelToolsMain.Controls.Add(_Uninstall);
-            this.labelInformation.Text = "Select a program from the list you want to remove from the computer";
+
+           //Task.Delay(1000);
+           //var programs = Task.Factory.StartNew(() => _Uninstall.ShowInstalledPrograms());
+           //programs.ContinueWith((t) => ChangeLabel());
+
+        }
+
+        public void LoadPrograms()
+        {
+            _Uninstall.ShowInstalledPrograms();
+            ChangeLabel();
+        }
+
+        private void ChangeLabel()
+        {
+            if (this.labelNotice.InvokeRequired)
+            {
+                this.labelNotice.Invoke(new MethodInvoker(delegate
+                {
+                    this.labelNotice.Text = "Select a program from the list you want to remove from the computer";
+                }));
+            }
+            else
+            {
+                this.labelNotice.Text = "Select a program from the list you want to remove from the computer";
+            }
+
+
+            if (this.pictureBox1.InvokeRequired)
+            {
+                this.pictureBox1.Invoke(new MethodInvoker(delegate
+                {
+                    this.pictureBox1.Image = Resources.Information;
+                }));
+            }
+            else
+            {
+                this.pictureBox1.Image = Resources.Information;
+            }
         }
 
         private void ChangeButtonColor(string buttonName)
@@ -122,9 +165,7 @@ namespace PCCleaner.Controls.Common
 
         private void buttonUninstall_Click(object sender, EventArgs e)
         {
-            ChangeButtonColor(buttonUninstall.Name);
-
-            Uninstall.ShowInstalledPrograms();
+            ChangeButtonColor(buttonUninstall.Name);       
 
             ShowHideControls(Uninstall);
         }

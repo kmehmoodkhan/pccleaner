@@ -83,21 +83,26 @@ namespace PCCleaner.Common
         {
             bool isEnabled = true;
             RegistryKey keyUser = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run");
-            var keyUserValues = keyUser.GetValueNames();
-
-            foreach (var ky in keyUserValues)
+            if (keyUser != null)
             {
-                if (ky == programName)
+                var keyUserValues = keyUser.GetValueNames();
+                if (keyUserValues != null)
                 {
-                    var path = keyUser.GetValue(ky);
-                    if (((byte[])keyUser.GetValue(ky))[0] == 3)
+                    foreach (var ky in keyUserValues)
                     {
-                        isEnabled = false;
+                        if (ky == programName)
+                        {
+                            var path = keyUser.GetValue(ky);
+                            if (((byte[])keyUser.GetValue(ky))[0] == 3)
+                            {
+                                isEnabled = false;
+                            }
+                        }
                     }
+
+                    keyUser.Close();
                 }
             }
-
-            keyUser.Close();
             return isEnabled;
 
         }

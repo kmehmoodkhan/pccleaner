@@ -22,8 +22,7 @@ namespace PCCleaner.Controls
             InitializeComponent();
         }
 
-
-        public void ShowInstalledPrograms()
+        private BindingSource GetPrograms()
         {
             List<PCCleaner.Common.Program> prog = new List<PCCleaner.Common.Program>();
             string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
@@ -156,7 +155,7 @@ namespace PCCleaner.Controls
                 }
             }
 
-            var bindingList = new BindingList<PCCleaner.Common.Program>(prog.OrderBy(t=>t.ProgramName).ToList());
+            var bindingList = new BindingList<PCCleaner.Common.Program>(prog.OrderBy(t => t.ProgramName).ToList());
             var source = new BindingSource(bindingList, null);
 
             if (this.dataGridViewDetail.InvokeRequired)
@@ -170,14 +169,13 @@ namespace PCCleaner.Controls
                     this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
                 }));
             }
-            else
-            {
-                this.dataGridViewDetail.AutoGenerateColumns = false;
-                this.dataGridViewDetail.DataSource = source;
-                this.dataGridViewDetail.RowHeadersVisible = false;
-                this.dataGridViewDetail.ColumnHeadersVisible = true;
-                this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
-            }
+
+
+            return source;
+        }
+        public void ShowInstalledPrograms()
+        {
+            GetPrograms();
         }
 
         bool _IsRowSelected = false;

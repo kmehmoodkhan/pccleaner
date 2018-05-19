@@ -38,12 +38,6 @@
             this.Col_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Col_ModifiedTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panelSpaceCategories = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridViewSummary = new System.Windows.Forms.DataGridView();
-            this.Col_FileType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_TotalFiles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Col_FileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelAllCategories = new System.Windows.Forms.Label();
             this.panelBackButton = new System.Windows.Forms.Panel();
             this.panelLoader = new System.Windows.Forms.Panel();
@@ -54,9 +48,6 @@
             this.panelMain.SuspendLayout();
             this.panelGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResult)).BeginInit();
-            this.panelSpaceCategories.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummary)).BeginInit();
             this.panelBackButton.SuspendLayout();
             this.panelLoader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoader)).BeginInit();
@@ -65,7 +56,6 @@
             // panelMain
             // 
             this.panelMain.Controls.Add(this.panelGrid);
-            this.panelMain.Controls.Add(this.panelSpaceCategories);
             this.panelMain.Controls.Add(this.labelAllCategories);
             this.panelMain.Controls.Add(this.panelBackButton);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -80,10 +70,10 @@
             // 
             this.panelGrid.Controls.Add(this.dataGridViewResult);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelGrid.Location = new System.Drawing.Point(10, 461);
+            this.panelGrid.Location = new System.Drawing.Point(10, 124);
             this.panelGrid.Name = "panelGrid";
             this.panelGrid.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
-            this.panelGrid.Size = new System.Drawing.Size(817, 262);
+            this.panelGrid.Size = new System.Drawing.Size(817, 586);
             this.panelGrid.TabIndex = 8;
             // 
             // dataGridViewResult
@@ -99,14 +89,14 @@
             this.Col_Size,
             this.Col_Category,
             this.Col_ModifiedTime});
-            this.dataGridViewResult.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridViewResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewResult.Location = new System.Drawing.Point(0, 15);
             this.dataGridViewResult.Name = "dataGridViewResult";
             this.dataGridViewResult.RowHeadersVisible = false;
             this.dataGridViewResult.RowTemplate.Height = 24;
             this.dataGridViewResult.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewResult.Size = new System.Drawing.Size(817, 245);
+            this.dataGridViewResult.Size = new System.Drawing.Size(817, 571);
             this.dataGridViewResult.TabIndex = 0;
             // 
             // Col_Select
@@ -162,64 +152,6 @@
             this.Col_ModifiedTime.HeaderText = "Modified Time";
             this.Col_ModifiedTime.Name = "Col_ModifiedTime";
             // 
-            // panelSpaceCategories
-            // 
-            this.panelSpaceCategories.Controls.Add(this.panel2);
-            this.panelSpaceCategories.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSpaceCategories.Location = new System.Drawing.Point(10, 124);
-            this.panelSpaceCategories.Name = "panelSpaceCategories";
-            this.panelSpaceCategories.Padding = new System.Windows.Forms.Padding(0, 15, 0, 0);
-            this.panelSpaceCategories.Size = new System.Drawing.Size(817, 337);
-            this.panelSpaceCategories.TabIndex = 7;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.dataGridViewSummary);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 15);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(817, 316);
-            this.panel2.TabIndex = 7;
-            // 
-            // dataGridViewSummary
-            // 
-            this.dataGridViewSummary.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewSummary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSummary.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Col_FileType,
-            this.Col_TotalFiles,
-            this.Col_FileSize});
-            this.dataGridViewSummary.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewSummary.GridColor = System.Drawing.Color.White;
-            this.dataGridViewSummary.Location = new System.Drawing.Point(0, 0);
-            this.dataGridViewSummary.Name = "dataGridViewSummary";
-            this.dataGridViewSummary.RowTemplate.Height = 24;
-            this.dataGridViewSummary.Size = new System.Drawing.Size(815, 314);
-            this.dataGridViewSummary.TabIndex = 0;
-            // 
-            // Col_FileType
-            // 
-            this.Col_FileType.DataPropertyName = "FileType";
-            this.Col_FileType.HeaderText = "File Type";
-            this.Col_FileType.Name = "Col_FileType";
-            this.Col_FileType.Width = 200;
-            // 
-            // Col_TotalFiles
-            // 
-            this.Col_TotalFiles.DataPropertyName = "FilesCount";
-            this.Col_TotalFiles.HeaderText = "No of Files";
-            this.Col_TotalFiles.Name = "Col_TotalFiles";
-            this.Col_TotalFiles.Width = 150;
-            // 
-            // Col_FileSize
-            // 
-            this.Col_FileSize.DataPropertyName = "FileSize";
-            this.Col_FileSize.HeaderText = "File Size";
-            this.Col_FileSize.Name = "Col_FileSize";
-            this.Col_FileSize.Width = 150;
-            // 
             // labelAllCategories
             // 
             this.labelAllCategories.AutoSize = true;
@@ -230,6 +162,7 @@
             this.labelAllCategories.Size = new System.Drawing.Size(95, 57);
             this.labelAllCategories.TabIndex = 5;
             this.labelAllCategories.Text = "All Categories";
+            this.labelAllCategories.Visible = false;
             // 
             // panelBackButton
             // 
@@ -299,9 +232,6 @@
             this.panelMain.PerformLayout();
             this.panelGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResult)).EndInit();
-            this.panelSpaceCategories.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSummary)).EndInit();
             this.panelBackButton.ResumeLayout(false);
             this.panelLoader.ResumeLayout(false);
             this.panelLoader.PerformLayout();
@@ -325,15 +255,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col_ModifiedTime;
-        private System.Windows.Forms.Panel panelSpaceCategories;
         private System.Windows.Forms.Panel panelLoader;
         private System.Windows.Forms.Label labelProgressBar;
         private System.Windows.Forms.PictureBox pictureBoxLoader;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelAllCategories;
-        private System.Windows.Forms.DataGridView dataGridViewSummary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col_FileType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col_TotalFiles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Col_FileSize;
     }
 }

@@ -37,7 +37,7 @@ namespace PCCleaner.Controls
         {
             InitializeComponent();
             panelGrid.Hide();
-            panelSpaceCategories.Hide();
+            //panelSpaceCategories.Hide();
             labelAllCategories.Hide();
         }
 
@@ -156,7 +156,7 @@ namespace PCCleaner.Controls
             panelGrid.Show();
             this.buttonBack.Show();
             this.panelLoader.Hide();
-            this.panelSpaceCategories.Show();
+           // this.panelSpaceCategories.Show();
             labelAllCategories.Show();
         }
     }

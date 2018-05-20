@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonBack = new System.Windows.Forms.Button();
             this.lineTop = new System.Windows.Forms.Label();
@@ -52,22 +52,22 @@
             this.Col_Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStripDetail = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panelStatus = new System.Windows.Forms.Panel();
-            this.pictureBoxResult = new System.Windows.Forms.PictureBox();
-            this.labelResultHeading = new System.Windows.Forms.Label();
-            this.labelTimeTaken = new System.Windows.Forms.Label();
-            this.panelSearchComplete = new System.Windows.Forms.Panel();
             this.panelSearchProgress = new System.Windows.Forms.Panel();
             this.labelProgressBar = new System.Windows.Forms.Label();
             this.pictureBoxLoader = new System.Windows.Forms.PictureBox();
+            this.panelSearchComplete = new System.Windows.Forms.Panel();
+            this.labelTimeTaken = new System.Windows.Forms.Label();
+            this.labelResultHeading = new System.Windows.Forms.Label();
+            this.pictureBoxResult = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOverall)).BeginInit();
             this.contextMenuStripResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetail)).BeginInit();
             this.panelStatus.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
-            this.panelSearchComplete.SuspendLayout();
             this.panelSearchProgress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoader)).BeginInit();
+            this.panelSearchComplete.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -124,8 +124,8 @@
             // dataGridViewOverall
             // 
             this.dataGridViewOverall.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
-            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(228)))), ((int)(((byte)(228)))));
+            this.dataGridViewOverall.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewOverall.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewOverall.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridViewOverall.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -275,46 +275,6 @@
             this.panelStatus.Size = new System.Drawing.Size(614, 44);
             this.panelStatus.TabIndex = 0;
             // 
-            // pictureBoxResult
-            // 
-            this.pictureBoxResult.Image = global::PCCleaner.Properties.Resources.Tick;
-            this.pictureBoxResult.Location = new System.Drawing.Point(10, 11);
-            this.pictureBoxResult.Name = "pictureBoxResult";
-            this.pictureBoxResult.Size = new System.Drawing.Size(25, 25);
-            this.pictureBoxResult.TabIndex = 3;
-            this.pictureBoxResult.TabStop = false;
-            // 
-            // labelResultHeading
-            // 
-            this.labelResultHeading.AutoSize = true;
-            this.labelResultHeading.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelResultHeading.Location = new System.Drawing.Point(37, 11);
-            this.labelResultHeading.Name = "labelResultHeading";
-            this.labelResultHeading.Size = new System.Drawing.Size(145, 16);
-            this.labelResultHeading.TabIndex = 4;
-            this.labelResultHeading.Text = "Analysis Complete -";
-            // 
-            // labelTimeTaken
-            // 
-            this.labelTimeTaken.AutoSize = true;
-            this.labelTimeTaken.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTimeTaken.Location = new System.Drawing.Point(209, 13);
-            this.labelTimeTaken.Name = "labelTimeTaken";
-            this.labelTimeTaken.Size = new System.Drawing.Size(88, 16);
-            this.labelTimeTaken.TabIndex = 5;
-            this.labelTimeTaken.Text = "[Time Taken]";
-            // 
-            // panelSearchComplete
-            // 
-            this.panelSearchComplete.BackColor = System.Drawing.SystemColors.Control;
-            this.panelSearchComplete.Controls.Add(this.labelTimeTaken);
-            this.panelSearchComplete.Controls.Add(this.labelResultHeading);
-            this.panelSearchComplete.Controls.Add(this.pictureBoxResult);
-            this.panelSearchComplete.Location = new System.Drawing.Point(0, 0);
-            this.panelSearchComplete.Name = "panelSearchComplete";
-            this.panelSearchComplete.Size = new System.Drawing.Size(331, 44);
-            this.panelSearchComplete.TabIndex = 0;
-            // 
             // panelSearchProgress
             // 
             this.panelSearchProgress.BackColor = System.Drawing.SystemColors.Control;
@@ -349,6 +309,46 @@
             this.pictureBoxLoader.TabIndex = 4;
             this.pictureBoxLoader.TabStop = false;
             // 
+            // panelSearchComplete
+            // 
+            this.panelSearchComplete.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSearchComplete.Controls.Add(this.labelTimeTaken);
+            this.panelSearchComplete.Controls.Add(this.labelResultHeading);
+            this.panelSearchComplete.Controls.Add(this.pictureBoxResult);
+            this.panelSearchComplete.Location = new System.Drawing.Point(0, 0);
+            this.panelSearchComplete.Name = "panelSearchComplete";
+            this.panelSearchComplete.Size = new System.Drawing.Size(331, 44);
+            this.panelSearchComplete.TabIndex = 0;
+            // 
+            // labelTimeTaken
+            // 
+            this.labelTimeTaken.AutoSize = true;
+            this.labelTimeTaken.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTimeTaken.Location = new System.Drawing.Point(209, 13);
+            this.labelTimeTaken.Name = "labelTimeTaken";
+            this.labelTimeTaken.Size = new System.Drawing.Size(88, 16);
+            this.labelTimeTaken.TabIndex = 5;
+            this.labelTimeTaken.Text = "[Time Taken]";
+            // 
+            // labelResultHeading
+            // 
+            this.labelResultHeading.AutoSize = true;
+            this.labelResultHeading.Font = new System.Drawing.Font("Arial", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelResultHeading.Location = new System.Drawing.Point(37, 11);
+            this.labelResultHeading.Name = "labelResultHeading";
+            this.labelResultHeading.Size = new System.Drawing.Size(145, 16);
+            this.labelResultHeading.TabIndex = 4;
+            this.labelResultHeading.Text = "Analysis Complete -";
+            // 
+            // pictureBoxResult
+            // 
+            this.pictureBoxResult.Image = global::PCCleaner.Properties.Resources.Tick;
+            this.pictureBoxResult.Location = new System.Drawing.Point(10, 11);
+            this.pictureBoxResult.Name = "pictureBoxResult";
+            this.pictureBoxResult.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxResult.TabIndex = 3;
+            this.pictureBoxResult.TabStop = false;
+            // 
             // UCResult
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -365,12 +365,12 @@
             this.contextMenuStripResult.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDetail)).EndInit();
             this.panelStatus.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).EndInit();
-            this.panelSearchComplete.ResumeLayout(false);
-            this.panelSearchComplete.PerformLayout();
             this.panelSearchProgress.ResumeLayout(false);
             this.panelSearchProgress.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoader)).EndInit();
+            this.panelSearchComplete.ResumeLayout(false);
+            this.panelSearchComplete.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxResult)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelActivated = new System.Windows.Forms.Label();
             this.groupBoxSubscripton = new System.Windows.Forms.GroupBox();
@@ -48,9 +49,11 @@
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             this.groupBoxSubscripton.SuspendLayout();
             this.groupBoxRequest.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -261,6 +264,10 @@
             this.label1.TabIndex = 13;
             this.label1.Text = "First Name";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // UCSubsciption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -274,6 +281,7 @@
             this.groupBoxSubscripton.PerformLayout();
             this.groupBoxRequest.ResumeLayout(false);
             this.groupBoxRequest.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,5 +308,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

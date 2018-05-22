@@ -60,11 +60,26 @@ namespace PCCleaner.Controls
                 }
                 catch(Exception ex)
                 {
+                    errorProvider1.SetError(textBoxEmail, "Please provide valid email address");
                     isValid = false;
                     ;
                 }
             }
+            
+            if(this.textBoxFirstName.Text.Trim().Length<1)
+            {
+                errorProvider1.SetError(textBoxFirstName, "Please enter First Name");
+            }
 
+            if (this.textBoxLastName.Text.Trim().Length < 1)
+            {
+                errorProvider1.SetError(textBoxLastName, "Please enter Last Name");
+            }
+
+            if (this.textBoxEmail.Text.Trim().Length < 1)
+            {
+                errorProvider1.SetError(textBoxEmail, "Please enter Email Address");
+            }
 
             if (isValid)
             {

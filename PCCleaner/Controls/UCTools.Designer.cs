@@ -68,7 +68,7 @@
             this.buttonUninstall.Name = "buttonUninstall";
             this.buttonUninstall.Size = new System.Drawing.Size(205, 45);
             this.buttonUninstall.TabIndex = 0;
-            this.buttonUninstall.Text = "Uninstall";
+            this.buttonUninstall.Text = "Programs";
             this.buttonUninstall.UseVisualStyleBackColor = true;
             this.buttonUninstall.Click += new System.EventHandler(this.buttonUninstall_Click);
             // 

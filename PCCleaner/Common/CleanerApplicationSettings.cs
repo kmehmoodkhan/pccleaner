@@ -6,12 +6,35 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace PCCleaner.Common
 {
     public static class CleanerApplicationSettings
     {
-        public static string SubscriptionURL => System.Configuration.ConfigurationSettings.AppSettings["SubscriptionURL"];
+        //public static string SubscriptionURL => System.Configuration.ConfigurationSettings.AppSettings["SubscriptionURL"];
+
+        public static string SubscriptionURL
+        {
+            
+            get
+            {
+                string apiUrl = string.Empty;
+                string appBasePath = CleanerApplicationSettings.ApplicationBasePath;
+                string url = $@"{appBasePath}DB\API.xml";
+
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(url);
+
+                apiUrl = xmlDoc.InnerText;
+                if(!string.IsNullOrEmpty(apiUrl))
+                {
+                    apiUrl = apiUrl.Replace("\r\n", "").Trim();
+                }
+
+                return apiUrl;
+            }
+        }
         public static string ApplicationBasePath
         {
             get

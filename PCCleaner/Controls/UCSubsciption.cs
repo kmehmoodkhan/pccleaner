@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using PCCleaner.DataAccess;
 using RestSharp;
+using System.Net.Mail;
 
 namespace PCCleaner.Controls
 {
@@ -52,8 +53,18 @@ namespace PCCleaner.Controls
                 (!string.IsNullOrEmpty(this.textBoxLastName.Text))
                 )
             {
-                isValid = true;
+                try
+                {
+                    string email = new MailAddress(this.textBoxEmail.Text).Address;
+                    isValid = true;
+                }
+                catch(Exception ex)
+                {
+                    isValid = false;
+                    ;
+                }
             }
+
 
             if (isValid)
             {

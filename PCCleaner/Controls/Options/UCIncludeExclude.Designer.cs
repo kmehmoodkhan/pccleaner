@@ -53,33 +53,37 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(706, 546);
             this.panel1.TabIndex = 0;
             // 
             // listBoxSelections
             // 
+            this.listBoxSelections.AllowUserToAddRows = false;
             this.listBoxSelections.AllowUserToResizeRows = false;
+            this.listBoxSelections.BackgroundColor = System.Drawing.Color.White;
             this.listBoxSelections.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Path,
             this.ItemType,
             this.Id});
             this.listBoxSelections.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxSelections.Location = new System.Drawing.Point(0, 27);
+            this.listBoxSelections.Location = new System.Drawing.Point(5, 42);
+            this.listBoxSelections.Margin = new System.Windows.Forms.Padding(5);
             this.listBoxSelections.Name = "listBoxSelections";
             this.listBoxSelections.RowHeadersVisible = false;
             this.listBoxSelections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.listBoxSelections.ShowRowErrors = false;
-            this.listBoxSelections.Size = new System.Drawing.Size(704, 517);
+            this.listBoxSelections.Size = new System.Drawing.Size(694, 497);
             this.listBoxSelections.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Location = new System.Drawing.Point(5, 5);
             this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.label1.Size = new System.Drawing.Size(268, 27);
+            this.label1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            this.label1.Size = new System.Drawing.Size(268, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Custom Files to delete and Folders empty";
             // 
@@ -137,8 +141,9 @@
             // Path
             // 
             this.Path.HeaderText = "Path";
+            this.Path.MinimumWidth = 900;
             this.Path.Name = "Path";
-            this.Path.Width = 900;
+            this.Path.Width = 1200;
             // 
             // ItemType
             // 

@@ -402,6 +402,7 @@
     <Content Include="bin\Debug\x64\SQLite.Interop.dll" />
     <Content Include="bin\Debug\x86\e_sqlite3.dll" />
     <Content Include="bin\Debug\x86\SQLite.Interop.dll" />
+    <Content Include="DB\API.xml" />
     <Content Include="Images\Applications.png" />
     <Content Include="Images\App_Icon.ico" />
     <Content Include="Images\Brush.png" />

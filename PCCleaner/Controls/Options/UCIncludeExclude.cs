@@ -98,22 +98,28 @@ namespace PCCleaner.Controls.Options
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            var item = this.listBoxSelections.SelectedRows[0].Cells[0].Value.ToString();
-            var itemType = this.listBoxSelections.SelectedRows[0].Cells[1].Value.ToString();
-            FrmAddItem frmAddItem = new FrmAddItem();
+            if (this.listBoxSelections.SelectedRows.Count > 0)
+            {
+                var item = this.listBoxSelections.SelectedRows[0].Cells[0].Value.ToString();
+                var itemType = this.listBoxSelections.SelectedRows[0].Cells[1].Value.ToString();
+                FrmAddItem frmAddItem = new FrmAddItem();
 
-            frmAddItem.ItemType = Convert.ToInt32(itemType);
-            frmAddItem.IsInclude = IsInclude;
-            frmAddItem.ItemPath = item.ToString();
-            frmAddItem.StartPosition = FormStartPosition.CenterParent;
-            frmAddItem.ShowDialog(this);
+                frmAddItem.ItemType = Convert.ToInt32(itemType);
+                frmAddItem.IsInclude = IsInclude;
+                frmAddItem.ItemPath = item.ToString();
+                frmAddItem.StartPosition = FormStartPosition.CenterParent;
+                frmAddItem.ShowDialog(this);
+            }
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            var item = this.listBoxSelections.SelectedRows[0].Cells[2].Value.ToString();
-            CleanerApplicationSettings.RemoveItem(item);
-            ShowListing();
+            if (this.listBoxSelections.SelectedRows.Count > 0)
+            {
+                var item = this.listBoxSelections.SelectedRows[0].Cells[2].Value.ToString();
+                CleanerApplicationSettings.RemoveItem(item);
+                ShowListing();
+            }
         }
     }
 }

@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelDescription = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelCopyRights = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -40,6 +41,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelCopyRights);
             this.panel1.Controls.Add(this.labelDescription);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -49,6 +51,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(669, 405);
             this.panel1.TabIndex = 0;
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.AutoSize = true;
+            this.labelDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescription.Location = new System.Drawing.Point(122, 100);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(0, 18);
+            this.labelDescription.TabIndex = 6;
             // 
             // label2
             // 
@@ -65,9 +76,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(111, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 26);
+            this.label1.Size = new System.Drawing.Size(148, 26);
             this.label1.TabIndex = 4;
-            this.label1.Text = "PCCleaner";
+            this.label1.Text = "PCOptimizer";
             // 
             // pictureBox1
             // 
@@ -78,13 +89,16 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // labelDescription
+            // labelCopyRights
             // 
-            this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(119, 100);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(0, 17);
-            this.labelDescription.TabIndex = 6;
+            this.labelCopyRights.AutoSize = true;
+            this.labelCopyRights.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCopyRights.Location = new System.Drawing.Point(122, 137);
+            this.labelCopyRights.Name = "labelCopyRights";
+            this.labelCopyRights.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.labelCopyRights.Size = new System.Drawing.Size(46, 28);
+            this.labelCopyRights.TabIndex = 7;
+            this.labelCopyRights.Text = "label3";
             // 
             // UCAbout
             // 
@@ -107,5 +121,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Label labelCopyRights;
     }
 }

@@ -15,7 +15,9 @@ namespace PCCleaner.Controls
         public UCAbout()
         {
             InitializeComponent();
-            this.labelDescription.Text = "PC-Cleaner is a premium PC cleaning tool, it keeps your PC smooth and light and secure. It's a useful tool to remove unncecessary files from your sytem and keep registry clean.";
+            this.labelDescription.Text = "PCOptimizer is a premium PC cleaning tool, it keeps your PC smooth and light and secure."+Environment.NewLine+"It's a useful tool to remove unncecessary files from your sytem and keep registry clean.";
+
+            this.labelCopyRights.Text = "Copyright © 2018 ComputerSolutionsLab.com Inc." + Environment.NewLine + "All rights reserved.";
         }
     }
 }

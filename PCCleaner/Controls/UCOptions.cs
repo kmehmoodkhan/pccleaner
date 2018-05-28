@@ -159,6 +159,11 @@ namespace PCCleaner.Controls
 
         private void buttonSubscription_Click(object sender, EventArgs e)
         {
+            ShowSubscriptionForm();
+        }
+
+        public void ShowSubscriptionForm(bool showSubscription = false)
+        {
             ChangeButtonColor(buttonSubscription.Name);
             HideAllControls();
             UCSubsciption UCSubsciption = null;
@@ -173,6 +178,15 @@ namespace PCCleaner.Controls
             {
                 UCSubsciption = panelToolsMain.Controls.Find("UCSubsciption", false)[0] as UCSubsciption;
                 UCSubsciption.Show();
+            }
+
+            if(showSubscription)
+            {
+                buttonSettings.Enabled = false;
+                buttonCookies.Enabled = false;
+                buttonInclude.Enabled = false;
+                buttonExclude.Enabled = false;
+                buttonAdvanced.Enabled = false;
             }
         }
 

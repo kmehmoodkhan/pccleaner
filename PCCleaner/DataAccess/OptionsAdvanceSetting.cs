@@ -59,6 +59,7 @@ namespace PCCleaner.DataAccess
             access.ExecuteNonQuery(query);
         }
 
+
         public static void AddSubscriptionInfo(string fullName,string emailAddress,string activationCode,string macAddress)
         {
             string createdOn = DateTime.Now.ToString();
@@ -115,6 +116,8 @@ namespace PCCleaner.DataAccess
                 if (jsonResult.Contains("1"))
                 {
                     form.Controls.Find("labelProductActivation", true)[0].Visible = false;
+                    form.Controls.Find("labelTrialPeriodLeft", true)[0].Visible = false;
+                    
                     isValidSub = true;
                 }
             }
@@ -276,6 +279,32 @@ namespace PCCleaner.DataAccess
             set
             {
                 SetAttributeValue("Opt_Adv_EnableWindowJumpListTak", value);
+            }
+        }
+
+        public static void StartTrialPeriod()
+        {
+            try
+            {
+                string TrialPeriod = GetAttributeValue("TrialStartDate");
+                if (string.IsNullOrEmpty(TrialPeriod))
+                {
+                    string query = "INSERT INTO ApplicationSettings(Setting,Value,IsDefault) values('TrialStartDate','" + DateTime.Now.ToString() + "','0')";
+                    DBAccess access = new DBAccess();
+                    access.ExecuteNonQuery(query);
+                }               
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        public static string GetTrialPeriodStartDate
+        {
+            get
+            {
+                return GetAttributeValue("TrialStartDate");
             }
         }
     }

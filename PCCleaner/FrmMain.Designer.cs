@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.labelTrialPeriodLeft = new System.Windows.Forms.Label();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.labelClientInfo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,6 +67,7 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+            this.panelTop.Controls.Add(this.labelTrialPeriodLeft);
             this.panelTop.Controls.Add(this.panelLogo);
             this.panelTop.Controls.Add(this.labelProductActivation);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -74,6 +76,18 @@
             this.panelTop.Size = new System.Drawing.Size(1051, 109);
             this.panelTop.TabIndex = 0;
             // 
+            // labelTrialPeriodLeft
+            // 
+            this.labelTrialPeriodLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTrialPeriodLeft.AutoSize = true;
+            this.labelTrialPeriodLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTrialPeriodLeft.ForeColor = System.Drawing.Color.White;
+            this.labelTrialPeriodLeft.Location = new System.Drawing.Point(879, 76);
+            this.labelTrialPeriodLeft.Name = "labelTrialPeriodLeft";
+            this.labelTrialPeriodLeft.Size = new System.Drawing.Size(160, 25);
+            this.labelTrialPeriodLeft.TabIndex = 6;
+            this.labelTrialPeriodLeft.Text = "[Trial Period Left]";
+            // 
             // panelLogo
             // 
             this.panelLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -81,9 +95,9 @@
             this.panelLogo.Controls.Add(this.label2);
             this.panelLogo.Controls.Add(this.label1);
             this.panelLogo.Controls.Add(this.pictureBoxLogo);
-            this.panelLogo.Location = new System.Drawing.Point(327, 3);
+            this.panelLogo.Location = new System.Drawing.Point(189, 3);
             this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(397, 103);
+            this.panelLogo.Size = new System.Drawing.Size(672, 103);
             this.panelLogo.TabIndex = 5;
             // 
             // labelClientInfo
@@ -102,7 +116,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(237, 24);
+            this.label2.Location = new System.Drawing.Point(250, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 17);
             this.label2.TabIndex = 6;
@@ -115,9 +129,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(116, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 24);
+            this.label1.Size = new System.Drawing.Size(128, 24);
             this.label1.TabIndex = 5;
-            this.label1.Text = "PC Cleaner";
+            this.label1.Text = "PCOptimizer";
             // 
             // pictureBoxLogo
             // 
@@ -158,7 +172,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 109);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.RowCount = 1;
-            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.panelLeft.Size = new System.Drawing.Size(1051, 80);
             this.panelLeft.TabIndex = 1;
             // 
@@ -174,7 +188,7 @@
             this.buttonCleaner.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCleaner.Location = new System.Drawing.Point(4, 4);
             this.buttonCleaner.Name = "buttonCleaner";
-            this.buttonCleaner.Size = new System.Drawing.Size(255, 73);
+            this.buttonCleaner.Size = new System.Drawing.Size(255, 84);
             this.buttonCleaner.TabIndex = 4;
             this.buttonCleaner.Text = "Cleaner";
             this.buttonCleaner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -193,7 +207,7 @@
             this.buttonOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOptions.Location = new System.Drawing.Point(790, 4);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(257, 73);
+            this.buttonOptions.Size = new System.Drawing.Size(257, 84);
             this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -212,7 +226,7 @@
             this.buttonTools.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonTools.Location = new System.Drawing.Point(528, 4);
             this.buttonTools.Name = "buttonTools";
-            this.buttonTools.Size = new System.Drawing.Size(255, 73);
+            this.buttonTools.Size = new System.Drawing.Size(255, 84);
             this.buttonTools.TabIndex = 2;
             this.buttonTools.Text = "Tools";
             this.buttonTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -231,7 +245,7 @@
             this.buttonRegistry.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonRegistry.Location = new System.Drawing.Point(266, 4);
             this.buttonRegistry.Name = "buttonRegistry";
-            this.buttonRegistry.Size = new System.Drawing.Size(255, 73);
+            this.buttonRegistry.Size = new System.Drawing.Size(255, 84);
             this.buttonRegistry.TabIndex = 1;
             this.buttonRegistry.Text = "Registry";
             this.buttonRegistry.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -366,8 +380,9 @@
             this.Controls.Add(this.panelTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
-            this.Text = "PC-Cleaner";
+            this.Text = "PCOptimizer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.panelTop.ResumeLayout(false);
             this.panelTop.PerformLayout();
             this.panelLogo.ResumeLayout(false);
@@ -408,5 +423,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Button buttonCleaner;
+        private System.Windows.Forms.Label labelTrialPeriodLeft;
     }
 }

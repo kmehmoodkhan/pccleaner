@@ -19,6 +19,9 @@ namespace PCCleaner
 {
     public partial class FrmMain : Form
     {
+
+        bool IsTrialExpired = false;
+
         private ref Label ProgressBarLabel
         {
             get
@@ -64,8 +67,28 @@ namespace PCCleaner
             }
             catch (Exception ex)
             {
-                ;
+                OptionsAdvanceSetting.StartTrialPeriod();
+                
             }
+        }
+
+        public void ShowSubscriptionForm()
+        {
+            if (panelCleanerComponents.Controls.Find("ucCleaner1", false).Count() > 0)
+            {
+                UCCleaner registry = panelCleanerComponents.Controls.Find("ucCleaner1", false)[0] as UCCleaner;
+                registry.Hide();
+            }
+
+            UCOptions tools = new UCOptions();
+            tools.Name = "Options";
+            tools.Dock = DockStyle.Fill;
+            foreach (Control ctrl in this.gboxResult.Controls)
+            {
+                ctrl.Visible = false;
+            }
+            this.gboxResult.Controls.Add(tools);
+            
         }
 
         private void buttonRegistry_Click(object sender, EventArgs e)
@@ -261,6 +284,12 @@ namespace PCCleaner
 
         private void buttonOptions_Click(object sender, EventArgs e)
         {
+            ShowOptionForm();
+        }
+
+
+        public void ShowOptionForm(bool showSubscription=false)
+        {
             this.panelProgress.Visible = false;
             this.panelActionButtons.Hide();
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
@@ -301,7 +330,6 @@ namespace PCCleaner
                 }
                 UCOptions options = gboxResult.Controls.Find("Options", false)[0] as UCOptions;
                 options.Show();
-
             }
             else
             {
@@ -313,6 +341,11 @@ namespace PCCleaner
                     ctrl.Visible = false;
                 }
                 this.gboxResult.Controls.Add(tools);
+
+                if (showSubscription)
+                {
+                    tools.ShowSubscriptionForm(showSubscription);
+                }
             }
 
             ShowHideControls(ApplicationItem.Options);
@@ -320,6 +353,13 @@ namespace PCCleaner
             SelectedItem = ApplicationItem.Options;
 
             this.panelActionButtons.Hide();
+
+            if(showSubscription)
+            {
+                buttonCleaner.Enabled = false;
+                buttonRegistry.Enabled = false;
+                buttonTools.Enabled = false;
+            }
         }
 
         private void buttonAnalyze_Click(object sender, EventArgs e)
@@ -980,6 +1020,27 @@ namespace PCCleaner
                 IsCleanerCall = false;
                 ProcessSearch();
             }
+        }
+
+        private void FrmMain_Shown(object sender, EventArgs e)
+        {
+            string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
+            if (!string.IsNullOrEmpty(startDate))
+            {
+                DateTime startFrom = Convert.ToDateTime(startDate);
+                DateTime endDate = startFrom.AddDays(7);
+
+                TimeSpan trialPeriod = endDate.Subtract(startFrom);
+
+                this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + "Days Left]";
+
+                if( trialPeriod.Days == 0)
+                {
+                    TrialExpired form = new TrialExpired(this);
+                    form.ShowDialog();
+                }
+            }
+
         }
     }
 }

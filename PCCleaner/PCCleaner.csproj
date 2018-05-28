@@ -294,6 +294,12 @@
     </Compile>
     <Compile Include="Tools\DiskFileInfo.cs" />
     <Compile Include="Tools\ToolsLibrary.cs" />
+    <Compile Include="TrialExpired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrialExpired.Designer.cs">
+      <DependentUpon>TrialExpired.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Controls\Cleaner\UCCleaner.resx">
       <DependentUpon>UCCleaner.cs</DependentUpon>
     </EmbeddedResource>
@@ -378,6 +384,9 @@
     </Compile>
     <EmbeddedResource Include="SubscriptionMessage.resx">
       <DependentUpon>SubscriptionMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrialExpired.resx">
+      <DependentUpon>TrialExpired.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="DB\CleanerDB.db" />
     <None Include="packages.config" />

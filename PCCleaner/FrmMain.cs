@@ -38,6 +38,9 @@ namespace PCCleaner
             set;
         }
         private List<ResultDetail> FilesFound = null;
+
+        private bool IsSubValid = false;
+        private bool IsSubscriptionExists = false;
         public FrmMain()
         {
             InitializeComponent();
@@ -63,7 +66,8 @@ namespace PCCleaner
 
             try
             {
-               OptionsAdvanceSetting.IsSubscriptionValid(this);
+              IsSubValid= OptionsAdvanceSetting.IsSubscriptionValid(this);
+                IsSubscriptionExists = true;
             }
             catch (Exception ex)
             {
@@ -288,8 +292,10 @@ namespace PCCleaner
         }
 
 
-        public void ShowOptionForm(bool showSubscription=false)
+        public void ShowOptionForm(bool showSubscription=false, bool showAboutFormOnly=false)
         {
+            
+
             this.panelProgress.Visible = false;
             this.panelActionButtons.Hide();
             buttonTools.BackColor = ApplicationSettings.NormalButtonColor;
@@ -346,6 +352,11 @@ namespace PCCleaner
                 {
                     tools.ShowSubscriptionForm(showSubscription);
                 }
+
+                if (showAboutFormOnly)
+                {
+                    tools.ShowAboutUs(true);
+                }
             }
 
             ShowHideControls(ApplicationItem.Options);
@@ -354,8 +365,13 @@ namespace PCCleaner
 
             this.panelActionButtons.Hide();
 
-            if(showSubscription)
+            if(showSubscription || showAboutFormOnly)
             {
+                if (this.OwnedForms.Count() > 0)
+                {
+                    this.OwnedForms[0].Hide();
+                }
+                
                 buttonCleaner.Enabled = false;
                 buttonRegistry.Enabled = false;
                 buttonTools.Enabled = false;
@@ -1024,23 +1040,43 @@ namespace PCCleaner
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
-            string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
-            if (!string.IsNullOrEmpty(startDate))
+            if(IsSubscriptionExists && !IsSubValid)
             {
-                DateTime startFrom = Convert.ToDateTime(startDate);
-                DateTime endDate = startFrom.AddDays(7);
+                this.Controls.Find("labelProductActivation", true)[0].Visible = true;
+                this.Controls.Find("labelTrialPeriodLeft", true)[0].Visible = false;
+                (this.Controls.Find("labelProductActivation", true)[0] as Label).Text = "Subscription Expired";
 
-                TimeSpan trialPeriod = endDate.Subtract(startFrom);
+                var messageBox = new SubscriptionMessage(this);
 
-                this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + "Days Left]";
+                Overlay.ShowOverlay(this, messageBox);//this: parent form
 
-                if( trialPeriod.Days == 0)
+                messageBox.ShowDialog();
+
+                
+
+            }
+            else
+            {
+                string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
+                if (!string.IsNullOrEmpty(startDate))
                 {
-                    TrialExpired form = new TrialExpired(this);
-                    form.ShowDialog();
+                    DateTime startFrom = Convert.ToDateTime(startDate);
+                    DateTime endDate = startFrom.AddDays(7);
+
+                    TimeSpan trialPeriod = endDate.Subtract(startFrom);
+
+                    this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + " Days Left]";
+
+                    if (trialPeriod.Days == 0)
+                    {
+                        TrialExpired form = new TrialExpired(this);
+
+                        Overlay.ShowOverlay(this, form);//this: parent form
+
+                        form.ShowDialog();
+                    }
                 }
             }
-
         }
     }
 }

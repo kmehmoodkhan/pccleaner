@@ -190,7 +190,7 @@ namespace PCCleaner.Controls
             }
         }
 
-        private void buttonAboutUs_Click(object sender, EventArgs e)
+        public void ShowAboutUs(bool showAboutUs = false)
         {
             this.panelInfoBar.Visible = false;
             ChangeButtonColor(buttonAboutUs.Name);
@@ -208,6 +208,21 @@ namespace PCCleaner.Controls
                 UCAbout = panelToolsMain.Controls.Find("UCAbout", false)[0] as UCAbout;
                 UCAbout.Show();
             }
+
+            if (showAboutUs)
+            {
+                buttonSettings.Enabled = false;
+                buttonCookies.Enabled = false;
+                buttonInclude.Enabled = false;
+                buttonExclude.Enabled = false;
+                buttonAdvanced.Enabled = false;
+                buttonSubscription.Enabled = false;
+            }
+        }
+
+        private void buttonAboutUs_Click(object sender, EventArgs e)
+        {
+            ShowAboutUs();
         }
     }
 }

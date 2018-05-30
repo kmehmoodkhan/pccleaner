@@ -13,10 +13,12 @@ namespace PCCleaner
 {
     public partial class SubscriptionMessage : Form
     {
-        public SubscriptionMessage()
+        FrmMain ParentForm = null;
+        public SubscriptionMessage(FrmMain frmMain)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            ParentForm = (FrmMain)frmMain;
         }
 
         private const int CP_NOCLOSE_BUTTON = 0x200;
@@ -28,6 +30,12 @@ namespace PCCleaner
                 myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
                 return myCp;
             }
+        }
+
+        private void buttonAbout_Click(object sender, EventArgs e)
+        {
+            ParentForm.ShowOptionForm(false,true);
+            this.Hide();
         }
     }
 }

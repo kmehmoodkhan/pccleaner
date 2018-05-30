@@ -124,6 +124,9 @@
     <Compile Include="Common\IBrowserFeature.cs" />
     <Compile Include="Common\KeyFolders.cs" />
     <Compile Include="Common\Navgiators.cs" />
+    <Compile Include="Common\Overlay.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Common\Program.cs" />
     <Compile Include="Common\Result.cs" />
     <Compile Include="Common\ResultDetail.cs" />

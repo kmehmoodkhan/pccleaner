@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 using PCCleaner.DataAccess;
 using RestSharp;
 using System.Net.Mail;
+using System.Diagnostics;
 
 namespace PCCleaner.Controls
 {
@@ -166,7 +167,15 @@ namespace PCCleaner.Controls
 
                     OptionsAdvanceSetting.AddSubscriptionInfo(firstName+" "+lastName, emailAddress, activationCode, Helper.GetMacId());
 
-                    MessageBox.Show("Product is activated successfully.");
+                    MessageBox.Show("Product is activated successfully. It will be restarted.");
+
+                    System.Threading.Thread.Sleep(2000);
+                    Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                    Process.GetCurrentProcess().Kill();
+                }
+                else
+                {
+                    MessageBox.Show("Activation code provided is incorrect, please try again with correct one.");
                 }
             }
         }

@@ -80,9 +80,10 @@ namespace PCCleaner.DataAccess
             return null;
         }
 
-        public static void IsSubscriptionValid(Form form) 
+        
+        public static bool IsSubscriptionValid(Form form) 
         {
-            bool isValidSub = false;
+            bool IsValidSub = false;
             DataTable dataTable = GetSubscriptionInfo();
 
             string clientFullName = string.Empty;
@@ -117,16 +118,16 @@ namespace PCCleaner.DataAccess
                 {
                     form.Controls.Find("labelProductActivation", true)[0].Visible = false;
                     form.Controls.Find("labelTrialPeriodLeft", true)[0].Visible = false;
-                    
-                    isValidSub = true;
+
+                    IsValidSub = true;
                 }
             }
-            if (!isValidSub)
-            {
-                var messageBox = new SubscriptionMessage();
-                messageBox.ShowDialog();
-            }
-                
+            //if (!IsValidSub)
+            //{
+            //    var messageBox = new SubscriptionMessage();
+            //    messageBox.ShowDialog();
+            //}
+            return IsValidSub;
         }
 
         public static void AddSubscriptionRequest(string firstName,string lastName,string EmailAddress,string macId)

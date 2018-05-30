@@ -172,7 +172,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 109);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.RowCount = 1;
-            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
             this.panelLeft.Size = new System.Drawing.Size(1051, 80);
             this.panelLeft.TabIndex = 1;
             // 
@@ -188,7 +188,7 @@
             this.buttonCleaner.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCleaner.Location = new System.Drawing.Point(4, 4);
             this.buttonCleaner.Name = "buttonCleaner";
-            this.buttonCleaner.Size = new System.Drawing.Size(255, 84);
+            this.buttonCleaner.Size = new System.Drawing.Size(255, 85);
             this.buttonCleaner.TabIndex = 4;
             this.buttonCleaner.Text = "Cleaner";
             this.buttonCleaner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -207,7 +207,7 @@
             this.buttonOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOptions.Location = new System.Drawing.Point(790, 4);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(257, 84);
+            this.buttonOptions.Size = new System.Drawing.Size(257, 85);
             this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -226,7 +226,7 @@
             this.buttonTools.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonTools.Location = new System.Drawing.Point(528, 4);
             this.buttonTools.Name = "buttonTools";
-            this.buttonTools.Size = new System.Drawing.Size(255, 84);
+            this.buttonTools.Size = new System.Drawing.Size(255, 85);
             this.buttonTools.TabIndex = 2;
             this.buttonTools.Text = "Tools";
             this.buttonTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -245,7 +245,7 @@
             this.buttonRegistry.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonRegistry.Location = new System.Drawing.Point(266, 4);
             this.buttonRegistry.Name = "buttonRegistry";
-            this.buttonRegistry.Size = new System.Drawing.Size(255, 84);
+            this.buttonRegistry.Size = new System.Drawing.Size(255, 85);
             this.buttonRegistry.TabIndex = 1;
             this.buttonRegistry.Text = "Registry";
             this.buttonRegistry.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

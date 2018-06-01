@@ -37,11 +37,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 78);
+            this.label1.Location = new System.Drawing.Point(139, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(475, 25);
+            this.label1.Size = new System.Drawing.Size(297, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Trial Period expired, Please subscribe to paid version.";
+            this.label1.Text = "Please subscribe to paid version.";
             // 
             // buttonSubscribe
             // 
@@ -65,7 +65,7 @@
             this.MinimizeBox = false;
             this.Name = "TrialExpired";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "PC Cleaner";
+            this.Text = "PCOptimizer";
             this.ResumeLayout(false);
             this.PerformLayout();
 

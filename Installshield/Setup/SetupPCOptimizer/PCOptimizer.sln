@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "PCOptimizer", "SetupPCOptimizer\PCOptimizer.isproj", "{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Default = CD_ROM|Default
+		DVD-5|Default = DVD-5|Default
+		SingleImage|Default = SingleImage|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Default.ActiveCfg = CD_ROM
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Default.Build.0 = CD_ROM
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Default.ActiveCfg = DVD-5
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Default.Build.0 = DVD-5
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Default.ActiveCfg = SingleImage
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Default.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -27,11 +27,35 @@ namespace PCCleaner.DataAccess
         static DataView DVOptionSettings = null;
         static OptionsAdvanceSetting()
         {
-            DataSet dataSet = CleanerApplicationSettings.GetApplicationSettings();
-            DataView defaultView = dataSet.Tables[0].DefaultView;
-            defaultView.RowFilter = "IsDefault=0";
-            DVOptionSettings = defaultView;
+            try
+            {
+                DataSet dataSet = CleanerApplicationSettings.GetApplicationSettings();
+                DataView defaultView = dataSet.Tables[0].DefaultView;
+                defaultView.RowFilter = "IsDefault=0";
+                DVOptionSettings = defaultView;
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+       public static void ReloadSettings()
+        {
+            try
+            {
+                DataSet dataSet = CleanerApplicationSettings.GetApplicationSettings();
+                DataView defaultView = dataSet.Tables[0].DefaultView;
+                defaultView.RowFilter = "IsDefault=0";
+                DVOptionSettings = defaultView;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private static string GetAttributeValue(string attribute)

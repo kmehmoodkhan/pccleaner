@@ -18,11 +18,19 @@ namespace PCCleaner.DataAccess
             get
             {
                 string appBasePath = CleanerApplicationSettings.ApplicationBasePath;
-                if(!appBasePath.EndsWith("\\"))
+                if (!appBasePath.EndsWith("\\"))
                 {
                     appBasePath += "\\";
                 }
-                return $@"Data Source={appBasePath}DB\CleanerDB.db;Version=3;";
+
+#if DEBUG
+                return $@"Data Source={appBasePath}\DB\CleanerDB.db;Version=3;";
+#else
+                    return $@"Data Source={appBasePath}\Database\CleanerDB.db;Version=3;";
+#endif
+
+
+
             }
         }
 
@@ -38,21 +46,24 @@ namespace PCCleaner.DataAccess
             bool isSuccess = true;
             try
             {
-                if(! new FileInfo(DBFileName).Exists)
+                //if (!new FileInfo(DBFileName).Exists)
+                //{
+                //    SQLiteConnection.CreateFile(DBFileName);
+                //}
+
+                using (SQLiteConnection m_dbConnection = new SQLiteConnection(ConnectionString))
                 {
-                    SQLiteConnection.CreateFile(DBFileName);
-                }                
+                    m_dbConnection.Open();
 
-                SQLiteConnection m_dbConnection = new SQLiteConnection(ConnectionString);
-                m_dbConnection.Open();
+                    SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
+                    command.ExecuteNonQuery();
 
-                SQLiteCommand command = new SQLiteCommand(query, m_dbConnection);
-                command.ExecuteNonQuery();
-
-                m_dbConnection.Close();
+                    m_dbConnection.Close();
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 isSuccess = false;
             }
             return isSuccess;
@@ -63,19 +74,24 @@ namespace PCCleaner.DataAccess
             DataSet dataSet = new DataSet();
             try
             {
-                SQLiteConnection connection = new SQLiteConnection(ConnectionString);
-                connection.Open();
 
-                var command = connection.CreateCommand();
+                using (SQLiteConnection connection = new SQLiteConnection(ConnectionString))
+                {
+                    connection.Open();
 
-                var adapter = new SQLiteDataAdapter(Query, connection);                
+                    var command = connection.CreateCommand();
 
-                adapter.Fill(dataSet);
+                    var adapter = new SQLiteDataAdapter(Query, connection);
 
-                connection.Close();
+                    adapter.Fill(dataSet);
+
+                    connection.Close();
+                }
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 ;
             }
             return dataSet;

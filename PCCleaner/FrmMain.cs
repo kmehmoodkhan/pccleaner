@@ -1021,7 +1021,15 @@ namespace PCCleaner
                 Cleaner.CleanUpSystem(searchCriteria, filesFound, SelectedItem, ref this.backgroundWorkerSearch);
 
                 Task.Factory.StartNew(() => ProcessSearch(true));
-                MessageBox.Show("Total space wiped is " + totalSpaceCleanedUp + " KB");
+
+                double mb = 0;
+
+                if (totalSpaceCleanedUp > 0)
+                {
+                    mb = (totalSpaceCleanedUp * 1.0 / 1000);
+                }
+
+                MessageBox.Show("Total space wiped is " + Math.Round( mb,2) + " MB");
             }
             
             this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
@@ -1057,17 +1065,20 @@ namespace PCCleaner
             }
             else
             {
+                OptionsAdvanceSetting.ReloadSettings();
                 string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
                 if (!string.IsNullOrEmpty(startDate))
                 {
                     DateTime startFrom = Convert.ToDateTime(startDate);
                     DateTime endDate = startFrom.AddDays(7);
 
-                    TimeSpan trialPeriod = endDate.Subtract(startFrom);
+                   // TimeSpan trialPeriod = endDate.Subtract(DateTime.Now);
 
-                    this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + " Days Left]";
+                    //this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + " Days Left]";
 
-                    if (trialPeriod.Days == 0)
+                    this.labelTrialPeriodLeft.Text = "[0 Days Left]";
+
+                    //if (trialPeriod.Days == 0)
                     {
                         TrialExpired form = new TrialExpired(this);
 

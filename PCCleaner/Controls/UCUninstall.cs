@@ -26,7 +26,7 @@ namespace PCCleaner.Controls
         {
             List<PCCleaner.Common.Program> prog = new List<PCCleaner.Common.Program>();
             string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (var baseKey = Microsoft.Win32.RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+            using (var baseKey = Microsoft.Win32.RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default))
             {
                 using (var key = baseKey.OpenSubKey(registry_key))
                 {

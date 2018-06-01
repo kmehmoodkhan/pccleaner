@@ -9,6 +9,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupPCCleaner", "SetupPCCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanerService", "CleanerService\CleanerService.csproj", "{8C5E5B4D-2F15-4118-A64E-240B9489F825}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupPCOptimizer1", "SetupPCOptimizer1\SetupPCOptimizer1.vdproj", "{B071A489-27B4-4454-97AA-215F51007D65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,8 @@ Global
 		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C5E5B4D-2F15-4118-A64E-240B9489F825}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B071A489-27B4-4454-97AA-215F51007D65}.Debug|Any CPU.ActiveCfg = Debug
+		{B071A489-27B4-4454-97AA-215F51007D65}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

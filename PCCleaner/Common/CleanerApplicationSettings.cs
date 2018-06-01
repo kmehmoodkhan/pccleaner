@@ -21,7 +21,17 @@ namespace PCCleaner.Common
             {
                 string apiUrl = string.Empty;
                 string appBasePath = CleanerApplicationSettings.ApplicationBasePath;
-                string url = $@"{appBasePath}DB\API.xml";
+
+                string url = string.Empty;
+                if (!appBasePath.EndsWith(@"\"))
+                {
+                    url = $@"{appBasePath}\DB\API.xml";
+                }
+                else
+                {
+                    url = $@"{appBasePath}DB\API.xml";
+                }
+
 
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(url);
@@ -42,9 +52,9 @@ namespace PCCleaner.Common
                 string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location).ToLower();
 
                 path = path.Replace("\\bin\\debug", "\\");
+                path = path.Replace("\\bin\\release", "\\");
 
                 return path;
-                //return @"C:\Users\kausar\source\repos\PCCleaner\PCCleaner\";
             }
         }
         public static DataSet GetApplicationSettings()

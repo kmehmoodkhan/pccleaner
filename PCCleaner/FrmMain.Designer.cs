@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelProductActivation = new System.Windows.Forms.Label();
             this.labelTrialPeriodLeft = new System.Windows.Forms.Label();
             this.panelLogo = new System.Windows.Forms.Panel();
             this.labelClientInfo = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
-            this.labelProductActivation = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.TableLayoutPanel();
             this.buttonCleaner = new System.Windows.Forms.Button();
             this.buttonOptions = new System.Windows.Forms.Button();
@@ -44,16 +45,17 @@
             this.buttonRegistry = new System.Windows.Forms.Button();
             this.panelRightInfo = new System.Windows.Forms.Panel();
             this.gboxResult = new System.Windows.Forms.GroupBox();
-            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
             this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
+            this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
             this.panelTop.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.panelLeft.SuspendLayout();
@@ -67,14 +69,33 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-            this.panelTop.Controls.Add(this.labelTrialPeriodLeft);
+            this.panelTop.Controls.Add(this.panel1);
             this.panelTop.Controls.Add(this.panelLogo);
-            this.panelTop.Controls.Add(this.labelProductActivation);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1051, 109);
+            this.panelTop.Size = new System.Drawing.Size(1182, 109);
             this.panelTop.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.labelProductActivation);
+            this.panel1.Controls.Add(this.labelTrialPeriodLeft);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(916, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(266, 109);
+            this.panel1.TabIndex = 6;
+            // 
+            // labelProductActivation
+            // 
+            this.labelProductActivation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelProductActivation.ForeColor = System.Drawing.Color.Red;
+            this.labelProductActivation.Location = new System.Drawing.Point(94, 21);
+            this.labelProductActivation.Name = "labelProductActivation";
+            this.labelProductActivation.Size = new System.Drawing.Size(160, 34);
+            this.labelProductActivation.TabIndex = 7;
+            this.labelProductActivation.Text = "[Not Activated]";
             // 
             // labelTrialPeriodLeft
             // 
@@ -82,10 +103,10 @@
             this.labelTrialPeriodLeft.AutoSize = true;
             this.labelTrialPeriodLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTrialPeriodLeft.ForeColor = System.Drawing.Color.White;
-            this.labelTrialPeriodLeft.Location = new System.Drawing.Point(879, 76);
+            this.labelTrialPeriodLeft.Location = new System.Drawing.Point(94, 67);
             this.labelTrialPeriodLeft.Name = "labelTrialPeriodLeft";
             this.labelTrialPeriodLeft.Size = new System.Drawing.Size(160, 25);
-            this.labelTrialPeriodLeft.TabIndex = 6;
+            this.labelTrialPeriodLeft.TabIndex = 8;
             this.labelTrialPeriodLeft.Text = "[Trial Period Left]";
             // 
             // panelLogo
@@ -95,7 +116,7 @@
             this.panelLogo.Controls.Add(this.label2);
             this.panelLogo.Controls.Add(this.label1);
             this.panelLogo.Controls.Add(this.pictureBoxLogo);
-            this.panelLogo.Location = new System.Drawing.Point(189, 3);
+            this.panelLogo.Location = new System.Drawing.Point(255, 3);
             this.panelLogo.Name = "panelLogo";
             this.panelLogo.Size = new System.Drawing.Size(672, 103);
             this.panelLogo.TabIndex = 5;
@@ -142,19 +163,6 @@
             this.pictureBoxLogo.TabIndex = 4;
             this.pictureBoxLogo.TabStop = false;
             // 
-            // labelProductActivation
-            // 
-            this.labelProductActivation.AutoSize = true;
-            this.labelProductActivation.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelProductActivation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelProductActivation.ForeColor = System.Drawing.Color.White;
-            this.labelProductActivation.Location = new System.Drawing.Point(783, 0);
-            this.labelProductActivation.Name = "labelProductActivation";
-            this.labelProductActivation.Padding = new System.Windows.Forms.Padding(0, 40, 5, 0);
-            this.labelProductActivation.Size = new System.Drawing.Size(268, 65);
-            this.labelProductActivation.TabIndex = 4;
-            this.labelProductActivation.Text = "[The product is not activated]";
-            // 
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
@@ -172,8 +180,8 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 109);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.RowCount = 1;
-            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.panelLeft.Size = new System.Drawing.Size(1051, 80);
+            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.panelLeft.Size = new System.Drawing.Size(1182, 80);
             this.panelLeft.TabIndex = 1;
             // 
             // buttonCleaner
@@ -188,7 +196,7 @@
             this.buttonCleaner.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCleaner.Location = new System.Drawing.Point(4, 4);
             this.buttonCleaner.Name = "buttonCleaner";
-            this.buttonCleaner.Size = new System.Drawing.Size(255, 85);
+            this.buttonCleaner.Size = new System.Drawing.Size(288, 90);
             this.buttonCleaner.TabIndex = 4;
             this.buttonCleaner.Text = "Cleaner";
             this.buttonCleaner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -205,9 +213,9 @@
             this.buttonOptions.ForeColor = System.Drawing.Color.White;
             this.buttonOptions.Image = global::PCCleaner.Properties.Resources.Options;
             this.buttonOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonOptions.Location = new System.Drawing.Point(790, 4);
+            this.buttonOptions.Location = new System.Drawing.Point(889, 4);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(257, 85);
+            this.buttonOptions.Size = new System.Drawing.Size(289, 90);
             this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -224,9 +232,9 @@
             this.buttonTools.ForeColor = System.Drawing.Color.White;
             this.buttonTools.Image = global::PCCleaner.Properties.Resources.Tools;
             this.buttonTools.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonTools.Location = new System.Drawing.Point(528, 4);
+            this.buttonTools.Location = new System.Drawing.Point(594, 4);
             this.buttonTools.Name = "buttonTools";
-            this.buttonTools.Size = new System.Drawing.Size(255, 85);
+            this.buttonTools.Size = new System.Drawing.Size(288, 90);
             this.buttonTools.TabIndex = 2;
             this.buttonTools.Text = "Tools";
             this.buttonTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -243,9 +251,9 @@
             this.buttonRegistry.ForeColor = System.Drawing.Color.White;
             this.buttonRegistry.Image = global::PCCleaner.Properties.Resources.Registry_Left;
             this.buttonRegistry.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonRegistry.Location = new System.Drawing.Point(266, 4);
+            this.buttonRegistry.Location = new System.Drawing.Point(299, 4);
             this.buttonRegistry.Name = "buttonRegistry";
-            this.buttonRegistry.Size = new System.Drawing.Size(255, 85);
+            this.buttonRegistry.Size = new System.Drawing.Size(288, 90);
             this.buttonRegistry.TabIndex = 1;
             this.buttonRegistry.Text = "Registry";
             this.buttonRegistry.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -260,7 +268,7 @@
             this.panelRightInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelRightInfo.Location = new System.Drawing.Point(302, 189);
             this.panelRightInfo.Name = "panelRightInfo";
-            this.panelRightInfo.Size = new System.Drawing.Size(749, 866);
+            this.panelRightInfo.Size = new System.Drawing.Size(880, 866);
             this.panelRightInfo.TabIndex = 3;
             // 
             // gboxResult
@@ -272,18 +280,9 @@
             this.gboxResult.Location = new System.Drawing.Point(0, 46);
             this.gboxResult.Margin = new System.Windows.Forms.Padding(40);
             this.gboxResult.Name = "gboxResult";
-            this.gboxResult.Size = new System.Drawing.Size(749, 820);
+            this.gboxResult.Size = new System.Drawing.Size(880, 820);
             this.gboxResult.TabIndex = 2;
             this.gboxResult.TabStop = false;
-            // 
-            // ucResult
-            // 
-            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucResult.Location = new System.Drawing.Point(3, 18);
-            this.ucResult.Name = "ucResult";
-            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
-            this.ucResult.Size = new System.Drawing.Size(743, 732);
-            this.ucResult.TabIndex = 2;
             // 
             // panelActionButtons
             // 
@@ -292,7 +291,7 @@
             this.panelActionButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelActionButtons.Location = new System.Drawing.Point(3, 750);
             this.panelActionButtons.Name = "panelActionButtons";
-            this.panelActionButtons.Size = new System.Drawing.Size(743, 67);
+            this.panelActionButtons.Size = new System.Drawing.Size(874, 67);
             this.panelActionButtons.TabIndex = 1;
             // 
             // buttonCleaner1
@@ -301,7 +300,7 @@
             this.buttonCleaner1.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.buttonCleaner1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCleaner1.ForeColor = System.Drawing.Color.White;
-            this.buttonCleaner1.Location = new System.Drawing.Point(448, 14);
+            this.buttonCleaner1.Location = new System.Drawing.Point(710, 14);
             this.buttonCleaner1.Name = "buttonCleaner1";
             this.buttonCleaner1.Size = new System.Drawing.Size(153, 38);
             this.buttonCleaner1.TabIndex = 1;
@@ -329,7 +328,7 @@
             this.panelProgress.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelProgress.Location = new System.Drawing.Point(0, 0);
             this.panelProgress.Name = "panelProgress";
-            this.panelProgress.Size = new System.Drawing.Size(749, 46);
+            this.panelProgress.Size = new System.Drawing.Size(880, 46);
             this.panelProgress.TabIndex = 1;
             // 
             // progressBar1
@@ -339,7 +338,7 @@
             this.progressBar1.ForeColor = System.Drawing.Color.Transparent;
             this.progressBar1.Location = new System.Drawing.Point(0, 21);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(749, 25);
+            this.progressBar1.Size = new System.Drawing.Size(880, 25);
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
@@ -354,13 +353,6 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 866);
             this.panelCleanerComponents.TabIndex = 2;
             // 
-            // ucCleaner1
-            // 
-            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
-            this.ucCleaner1.Name = "ucCleaner1";
-            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
-            this.ucCleaner1.TabIndex = 0;
-            // 
             // backgroundWorkerSearch
             // 
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
@@ -369,22 +361,40 @@
             this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
             // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(874, 732);
+            this.ucResult.TabIndex = 2;
+            // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1051, 1055);
+            this.ClientSize = new System.Drawing.Size(1182, 1055);
             this.Controls.Add(this.panelRightInfo);
             this.Controls.Add(this.panelCleanerComponents);
             this.Controls.Add(this.panelLeft);
             this.Controls.Add(this.panelTop);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1200, 800);
             this.Name = "FrmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PCOptimizer";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Shown += new System.EventHandler(this.FrmMain_Shown);
             this.panelTop.ResumeLayout(false);
-            this.panelTop.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panelLogo.ResumeLayout(false);
             this.panelLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
@@ -416,13 +426,14 @@
         public System.ComponentModel.BackgroundWorker backgroundWorkerSearch;
         private System.Windows.Forms.Panel panelProgress;
         private Controls.Common.UCResult ucResult;
-        private System.Windows.Forms.Label labelProductActivation;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Label labelClientInfo;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Button buttonCleaner;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelProductActivation;
         private System.Windows.Forms.Label labelTrialPeriodLeft;
     }
 }

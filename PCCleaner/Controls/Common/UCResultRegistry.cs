@@ -93,7 +93,7 @@ namespace PCCleaner.Controls.Common
         {
             var item = this.dataGridViewDetail.SelectedCells[3].Value;
 
-            string filename = Application.ExecutablePath.Replace("PCCleaner.exe", "") + @"\regjump.exe";
+            string filename = Application.ExecutablePath.Replace("PCOptimizer.exe", "") + @"\regjump.exe";
             var proc = System.Diagnostics.Process.Start(filename, item.ToString());
         }
 

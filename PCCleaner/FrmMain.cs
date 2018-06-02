@@ -1048,6 +1048,7 @@ namespace PCCleaner
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
+            /*
             if(IsSubscriptionExists && !IsSubValid)
             {
                 this.Controls.Find("labelProductActivation", true)[0].Visible = true;
@@ -1059,11 +1060,8 @@ namespace PCCleaner
                 Overlay.ShowOverlay(this, messageBox);//this: parent form
 
                 messageBox.ShowDialog();
-
-                
-
             }
-            else
+            else if(!IsSubscriptionExists)
             {
                 OptionsAdvanceSetting.ReloadSettings();
                 string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
@@ -1088,6 +1086,7 @@ namespace PCCleaner
                     }
                 }
             }
+            */
         }
     }
 }

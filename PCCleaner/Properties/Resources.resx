@@ -269,7 +269,7 @@
     <value>Microsoft Office Picture Manager</value>
   </data>
   <data name="Applications_4" xml:space="preserve">
-    <value>Notepad++</value>
+    <value>Notepad</value>
   </data>
   <data name="Applications_5" xml:space="preserve">
     <value>Microsoft Office</value>
@@ -323,7 +323,7 @@
     <value>Remote Desktop</value>
   </data>
   <data name="Applications_2" xml:space="preserve">
-    <value>McAfee Antivirus</value>
+    <value>Antivirus</value>
   </data>
   <data name="Applications" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\applications.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -79,8 +79,11 @@ namespace PCCleaner.Common
 
             foreach (BrowserFeatures feature in Enum.GetValues(typeof(BrowserFeatures)))
             {
-                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("BrowserFeature_" + Convert.ToInt32(feature)) };
-                list.Add(item);
+                if( feature!= BrowserFeatures.LastDownloadLocation)
+                {
+                    ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("BrowserFeature_" + Convert.ToInt32(feature)) };
+                    list.Add(item);
+                }                
             }
             return list;
         }

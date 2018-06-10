@@ -57,7 +57,26 @@ namespace PCCleaner.Controls.Common
             this.EdgeHeading.HeadingLabel = headingTitle;
             this.EdgeHeading.HeadingImage = headingImage;
 
-            if (headingTitle == "Explorer")
+            if( headingTitle == "Edge")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight+20;
+            }
+            else if (headingTitle == "Internet Explorer")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 20;
+                //this.Height = this.chkListEdge.PreferredHeight + this.EdgeHeading.Height + 20;
+            }
+            else if (headingTitle == "Google Chrome")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 20;
+                //this.Height = this.chkListEdge.PreferredHeight + this.EdgeHeading.Height + 20;
+            }
+            else if (headingTitle == "Mozilla Firefox")
+            {
+                this.chkListEdge.Height = this.chkListEdge.PreferredHeight + 20;
+                //this.Height = this.chkListEdge.PreferredHeight + this.EdgeHeading.Height + 20;
+            }
+            else  if (headingTitle == "Explorer")
             {
                 this.chkListEdge.Height = this.chkListEdge.PreferredHeight+20;
                 //this.Height = this.chkListEdge.PreferredHeight + this.EdgeHeading.Height + 20;

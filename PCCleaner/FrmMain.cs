@@ -1048,8 +1048,7 @@ namespace PCCleaner
 
         private void FrmMain_Shown(object sender, EventArgs e)
         {
-            /*
-            if(IsSubscriptionExists && !IsSubValid)
+            if (IsSubscriptionExists && !IsSubValid)
             {
                 this.Controls.Find("labelProductActivation", true)[0].Visible = true;
                 this.Controls.Find("labelTrialPeriodLeft", true)[0].Visible = false;
@@ -1061,7 +1060,7 @@ namespace PCCleaner
 
                 messageBox.ShowDialog();
             }
-            else if(!IsSubscriptionExists)
+            else if (!IsSubscriptionExists)
             {
                 OptionsAdvanceSetting.ReloadSettings();
                 string startDate = OptionsAdvanceSetting.GetTrialPeriodStartDate;
@@ -1070,7 +1069,7 @@ namespace PCCleaner
                     DateTime startFrom = Convert.ToDateTime(startDate);
                     DateTime endDate = startFrom.AddDays(7);
 
-                   // TimeSpan trialPeriod = endDate.Subtract(DateTime.Now);
+                    // TimeSpan trialPeriod = endDate.Subtract(DateTime.Now);
 
                     //this.labelTrialPeriodLeft.Text = "[" + trialPeriod.Days + " Days Left]";
 
@@ -1086,7 +1085,6 @@ namespace PCCleaner
                     }
                 }
             }
-            */
         }
     }
 }

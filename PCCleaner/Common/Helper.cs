@@ -65,8 +65,11 @@ namespace PCCleaner.Common
 
             foreach (SystemFeatures feature in Enum.GetValues(typeof(SystemFeatures)))
             {
-                ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("SystemFeature_" + Convert.ToInt32(feature)) };
-                list.Add(item);
+                if(feature!= SystemFeatures.DesktopShortCuts && feature!= SystemFeatures.StartMenuShortCuts)
+                {
+                    ListItem item = new ListItem() { ItemId = Convert.ToInt32(feature), ItemText = Resources.ResourceManager.GetString("SystemFeature_" + Convert.ToInt32(feature)) };
+                    list.Add(item);
+                }
             }
             return list;
         }

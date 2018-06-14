@@ -45,15 +45,15 @@
             this.buttonRegistry = new System.Windows.Forms.Button();
             this.panelRightInfo = new System.Windows.Forms.Panel();
             this.gboxResult = new System.Windows.Forms.GroupBox();
+            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.panelActionButtons = new System.Windows.Forms.Panel();
             this.buttonCleaner1 = new System.Windows.Forms.Button();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.panelProgress = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panelCleanerComponents = new System.Windows.Forms.FlowLayoutPanel();
-            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
-            this.ucResult = new PCCleaner.Controls.Common.UCResult();
             this.ucCleaner1 = new PCCleaner.Controls.UCCleaner();
+            this.backgroundWorkerSearch = new System.ComponentModel.BackgroundWorker();
             this.panelTop.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -180,7 +180,7 @@
             this.panelLeft.Location = new System.Drawing.Point(0, 109);
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.RowCount = 1;
-            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.panelLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.panelLeft.Size = new System.Drawing.Size(1182, 80);
             this.panelLeft.TabIndex = 1;
             // 
@@ -196,7 +196,7 @@
             this.buttonCleaner.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonCleaner.Location = new System.Drawing.Point(4, 4);
             this.buttonCleaner.Name = "buttonCleaner";
-            this.buttonCleaner.Size = new System.Drawing.Size(288, 90);
+            this.buttonCleaner.Size = new System.Drawing.Size(288, 91);
             this.buttonCleaner.TabIndex = 4;
             this.buttonCleaner.Text = "Cleaner";
             this.buttonCleaner.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -215,7 +215,7 @@
             this.buttonOptions.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonOptions.Location = new System.Drawing.Point(889, 4);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(289, 90);
+            this.buttonOptions.Size = new System.Drawing.Size(289, 91);
             this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -234,7 +234,7 @@
             this.buttonTools.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonTools.Location = new System.Drawing.Point(594, 4);
             this.buttonTools.Name = "buttonTools";
-            this.buttonTools.Size = new System.Drawing.Size(288, 90);
+            this.buttonTools.Size = new System.Drawing.Size(288, 91);
             this.buttonTools.TabIndex = 2;
             this.buttonTools.Text = "Tools";
             this.buttonTools.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -253,7 +253,7 @@
             this.buttonRegistry.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonRegistry.Location = new System.Drawing.Point(299, 4);
             this.buttonRegistry.Name = "buttonRegistry";
-            this.buttonRegistry.Size = new System.Drawing.Size(288, 90);
+            this.buttonRegistry.Size = new System.Drawing.Size(288, 91);
             this.buttonRegistry.TabIndex = 1;
             this.buttonRegistry.Text = "Registry";
             this.buttonRegistry.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -283,6 +283,15 @@
             this.gboxResult.Size = new System.Drawing.Size(880, 820);
             this.gboxResult.TabIndex = 2;
             this.gboxResult.TabStop = false;
+            // 
+            // ucResult
+            // 
+            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucResult.Location = new System.Drawing.Point(3, 18);
+            this.ucResult.Name = "ucResult";
+            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
+            this.ucResult.Size = new System.Drawing.Size(874, 732);
+            this.ucResult.TabIndex = 2;
             // 
             // panelActionButtons
             // 
@@ -353,6 +362,13 @@
             this.panelCleanerComponents.Size = new System.Drawing.Size(302, 866);
             this.panelCleanerComponents.TabIndex = 2;
             // 
+            // ucCleaner1
+            // 
+            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
+            this.ucCleaner1.Name = "ucCleaner1";
+            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
+            this.ucCleaner1.TabIndex = 0;
+            // 
             // backgroundWorkerSearch
             // 
             this.backgroundWorkerSearch.WorkerReportsProgress = true;
@@ -360,22 +376,6 @@
             this.backgroundWorkerSearch.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerSearch_DoWork);
             this.backgroundWorkerSearch.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorkerSearch_ProgressChanged);
             this.backgroundWorkerSearch.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerSearch_RunWorkerCompleted);
-            // 
-            // ucResult
-            // 
-            this.ucResult.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucResult.Location = new System.Drawing.Point(3, 18);
-            this.ucResult.Name = "ucResult";
-            this.ucResult.ResultView = PCCleaner.Common.ResultView.Overall;
-            this.ucResult.Size = new System.Drawing.Size(874, 732);
-            this.ucResult.TabIndex = 2;
-            // 
-            // ucCleaner1
-            // 
-            this.ucCleaner1.Location = new System.Drawing.Point(3, 3);
-            this.ucCleaner1.Name = "ucCleaner1";
-            this.ucCleaner1.Size = new System.Drawing.Size(276, 1124);
-            this.ucCleaner1.TabIndex = 0;
             // 
             // FrmMain
             // 

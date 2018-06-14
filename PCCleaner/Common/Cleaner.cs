@@ -59,14 +59,14 @@ namespace PCCleaner.Common
                         {
                             var path = file.RegistryKey.Replace("HKLM\\","");
                             var registryKey = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(path,true);
-                            registryKey.DeleteValue(file.FilePath);
+                            registryKey.DeleteValue(file.Data);
                             registryKey.Close();
                         }
                         else if (file.RegistryKey.StartsWith(@"HKCU\"))
                         {
                             var path = file.RegistryKey.Replace("HKCU\\", "");
                             var registryKey = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(path, true);
-                            registryKey.DeleteValue(file.FilePath);
+                            registryKey.DeleteValue(file.Data);
                             registryKey.Close();
                         }
                     }

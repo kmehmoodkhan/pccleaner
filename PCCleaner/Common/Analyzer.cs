@@ -1776,6 +1776,7 @@ namespace PCCleaner.Common
                                         ;
                                     }
                                 }
+                                key.Close();
                                 break;
 
                             case RegistryOptions.UnUsedFileExtensions:
@@ -1802,6 +1803,7 @@ namespace PCCleaner.Common
                                     {
                                         result.Add(new ResultDetail() { FilePath = subkey, FileSize = 0, SearchArea = SearchArea.Registry, FeatureArea = FeatureArea.UnUsedFileExtensions, RegistryKey = @"HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts" });
                                     }
+                                    fileKey.Close();
                                 }
                                 break;
                             case RegistryOptions.ActivexAndClassIssues:

@@ -415,8 +415,16 @@ namespace PCCleaner
         public List<ResultDetail> SearchResult = null;
         public void ProcessSearch(bool afterSearch=false)
         {
-            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
-            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+           if(afterSearch)
+            {
+                this.backgroundWorkerSearch = new BackgroundWorker();
+                this.backgroundWorkerSearch.WorkerReportsProgress = true;
+                this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
+
+                this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
+                this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+                this.backgroundWorkerSearch.RunWorkerCompleted += backgroundWorkerSearch_RunWorkerCompleted;
+            }
 
 
             if (this.progressBar1.InvokeRequired)
@@ -581,7 +589,7 @@ namespace PCCleaner
                     }
                     else
                     {
-                        registryControl.Visible = false;
+                        registryControl.Visible = true;
                     }
                 }
 
@@ -930,6 +938,12 @@ namespace PCCleaner
 
         private void buttonCleaner1_Click(object sender, EventArgs e)
         {
+            this.backgroundWorkerSearch.DoWork -= backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged -= backgroundWorkerSearch_ProgressChanged;
+
+            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
+            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+
             IsCleanerCall = true;
 
 
@@ -961,15 +975,6 @@ namespace PCCleaner
                     stopwatch.Stop();
                     ucResult.ShowExecutionTimke(stopwatch.Elapsed.TotalMilliseconds);
                 }
-                finally
-                {
-
-                    if (SearchResult != null && SearchResult.Count > 0)
-                    {
-                        SearchResult.Clear();
-                    }
-                    
-                }
             }
 
         }
@@ -983,13 +988,7 @@ namespace PCCleaner
                     this.progressBar1.Visible = true;
                 }));
             };
-
-            this.backgroundWorkerSearch = new BackgroundWorker();
-            this.backgroundWorkerSearch.WorkerReportsProgress = true;
-            this.backgroundWorkerSearch.WorkerSupportsCancellation = true;
-
-            this.backgroundWorkerSearch.DoWork += backgroundWorkerSearch_DoWork;
-            this.backgroundWorkerSearch.ProgressChanged += backgroundWorkerSearch_ProgressChanged;
+            
 
 
             var searchCriteria = GetSearchCriteria();
@@ -1008,7 +1007,6 @@ namespace PCCleaner
 
                 Cleaner.CleanUpSystem(searchCriteria, items, SelectedItem, ref this.backgroundWorkerSearch);
 
-                Task.Factory.StartNew(() => ProcessSearch(true));
                 MessageBox.Show($"{items.Count} registry items deleted successfully.");
                 result.SelectedRows.Clear();
             }
@@ -1041,8 +1039,9 @@ namespace PCCleaner
             if(IsCleanerCall)
             {
                 backgroundWorkerSearch.Dispose();
+               
+                ProcessSearch(true);
                 IsCleanerCall = false;
-                ProcessSearch();
             }
         }
 

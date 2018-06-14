@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PCCleaner.Common;
 using System.IO;
+using System.Diagnostics;
 
 namespace PCCleaner.Controls.Common
 {
@@ -60,17 +61,51 @@ namespace PCCleaner.Controls.Common
 
         private void BindGrid()
         {
-            this.dataGridViewDetail.DataSource = null;
+            ProcessThreadCollection currentThreads = Process.GetCurrentProcess().Threads;
+            
 
-            this.dataGridViewDetail.AutoGenerateColumns = false;
-            this.dataGridViewDetail.RowHeadersVisible = false;
-            this.dataGridViewDetail.ColumnHeadersVisible = true;
-            this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            if (dataGridViewDetail.InvokeRequired)
+            {
+                this.dataGridViewDetail.Invoke(new MethodInvoker(delegate
+                {
+                    this.dataGridViewDetail.DataSource = null;
 
-            BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(RegistryResult);
-            BindingSource source = new BindingSource(bindingList, null);
+                    this.dataGridViewDetail.AutoGenerateColumns = false;
+                    this.dataGridViewDetail.RowHeadersVisible = false;
+                    this.dataGridViewDetail.ColumnHeadersVisible = true;
+                    this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
 
-            this.dataGridViewDetail.DataSource = bindingList;
+                    //BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(RegistryResult);
+                    //BindingSource source = new BindingSource(bindingList, null);
+
+                    this.dataGridViewDetail.DataSource = RegistryResult;
+                }));
+            }
+            else
+            {
+                this.dataGridViewDetail.DataSource = null;
+
+                this.dataGridViewDetail.AutoGenerateColumns = false;
+                this.dataGridViewDetail.RowHeadersVisible = false;
+                this.dataGridViewDetail.ColumnHeadersVisible = true;
+                this.dataGridViewDetail.CellBorderStyle = DataGridViewCellBorderStyle.None;
+
+                //BindingList<ResultDetail> bindingList = new BindingList<ResultDetail>(RegistryResult);
+                //BindingSource source = new BindingSource(bindingList, null);
+
+                //source.CurrencyManager.Refresh();
+
+                try
+                {
+                    this.dataGridViewDetail.DataSource = RegistryResult;
+                    this.dataGridViewDetail.EndEdit();
+                    this.dataGridViewDetail.Refresh();
+                }
+                catch(Exception ex)
+                {
+                    ;
+                }
+            }
         }
 
 
@@ -283,8 +318,7 @@ namespace PCCleaner.Controls.Common
                 //if (cell != null)
                 //{
                 //    //if (cell.Value == cell.TrueValue)
-                //    //{
-                //    //    MessageBox.Show("Cell checked.");
+                    //    //{                   //    //    MessageBox.Show("Cell checked.");
                 //    //}
                 //    //else
                 //    //{
@@ -293,6 +327,8 @@ namespace PCCleaner.Controls.Common
                 //}
             }
         }
+
+       
     }
 }
 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridViewDetail = new System.Windows.Forms.DataGridView();
             this.checkBoxSelect = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ColProblem = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,18 +71,17 @@
             this.dataGridViewDetail.Size = new System.Drawing.Size(614, 385);
             this.dataGridViewDetail.TabIndex = 4;
             this.dataGridViewDetail.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetail_CellContentClick);
-            this.dataGridViewDetail.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewDetail_CellMouseUp);
-            this.dataGridViewDetail.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetail_CellValueChanged);
             this.dataGridViewDetail.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewDetail_DataError);
             this.dataGridViewDetail.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewDetail_RowEnter);
+           
             // 
             // checkBoxSelect
             // 
             this.checkBoxSelect.DataPropertyName = "IsSelected";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.NullValue = false;
-            this.checkBoxSelect.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.NullValue = false;
+            this.checkBoxSelect.DefaultCellStyle = dataGridViewCellStyle1;
             this.checkBoxSelect.FalseValue = false;
             this.checkBoxSelect.HeaderText = "";
             this.checkBoxSelect.Name = "checkBoxSelect";
@@ -95,8 +94,8 @@
             // ColProblem
             // 
             this.ColProblem.DataPropertyName = "Problem";
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            this.ColProblem.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            this.ColProblem.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColProblem.HeaderText = "Problem";
             this.ColProblem.Name = "ColProblem";
             this.ColProblem.ReadOnly = true;
@@ -105,8 +104,8 @@
             // ColData
             // 
             this.ColData.DataPropertyName = "FilePath";
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            this.ColData.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            this.ColData.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColData.HeaderText = "Data";
             this.ColData.Name = "ColData";
             this.ColData.ReadOnly = true;
@@ -115,8 +114,8 @@
             // ColKey
             // 
             this.ColKey.DataPropertyName = "RegistryKey";
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            this.ColKey.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            this.ColKey.DefaultCellStyle = dataGridViewCellStyle4;
             this.ColKey.HeaderText = "Registry Key";
             this.ColKey.Name = "ColKey";
             this.ColKey.ReadOnly = true;

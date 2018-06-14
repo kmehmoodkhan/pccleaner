@@ -7,19 +7,41 @@ Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "PCOptimizer", "SetupPCOptim
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		CD_ROM|Default = CD_ROM|Default
-		DVD-5|Default = DVD-5|Default
-		SingleImage|Default = SingleImage|Default
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		DVD-5|Any CPU = DVD-5|Any CPU
+		SingleImage|Any CPU = SingleImage|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Default.ActiveCfg = CD_ROM
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Default.Build.0 = CD_ROM
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Default.ActiveCfg = DVD-5
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Default.Build.0 = DVD-5
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Default.ActiveCfg = SingleImage
-		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Default.Build.0 = SingleImage
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Any CPU.ActiveCfg = SingleImage
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.CD_ROM|Any CPU.Build.0 = SingleImage
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.DVD-5|Any CPU.Build.0 = DVD-5
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{93BD4C0B-10FA-48F1-A0AB-1C4E0B699ED7}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Any CPU = CD_ROM|Any CPU
+		CD_ROM|Default = CD_ROM|Default
+		CD_ROM|Itanium = CD_ROM|Itanium
+		CD_ROM|Mixed Platforms = CD_ROM|Mixed Platforms
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Default = Debug|Default
+		Debug|Itanium = Debug|Itanium
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Default = Release|Default
+		Release|Itanium = Release|Itanium
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|Default = CD_ROM|Default
+		DVD-5|Default = DVD-5|Default
+		SingleImage|Default = SingleImage|Default
 	EndGlobalSection
 EndGlobal

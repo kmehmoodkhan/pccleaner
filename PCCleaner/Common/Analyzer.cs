@@ -1758,6 +1758,7 @@ namespace PCCleaner.Common
                         RegistryOptions registry = (RegistryOptions)item.FeatureId;
                         switch (registry)
                         {
+                            //test code
                             case RegistryOptions.MissingSharedDlls:
 
                                 RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDLLs");

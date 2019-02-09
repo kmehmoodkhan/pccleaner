@@ -115,7 +115,7 @@ namespace PCCleaner.DataAccess
             string clientActivationCode = string.Empty;
             string clientMacAddress = string.Empty;
 
-            if (dataTable != null && dataTable.Rows.Count>0)
+            if (dataTable != null)
             {
                 clientFullName = dataTable.Rows[0]["FullName"].ToString();
                 clientEmailAddress = dataTable.Rows[0]["EmailAddress"].ToString();

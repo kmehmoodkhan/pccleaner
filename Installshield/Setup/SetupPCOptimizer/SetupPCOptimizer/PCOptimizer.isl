@@ -3201,7 +3201,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>ComputerSolutionsLab.com</td><td>0</td><td/><td>1395055758</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>ComputerSolutionsLab.com</td><td>0</td><td/><td>1931906034</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-89723657</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-89723657</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-89723657</td></row>
@@ -4310,8 +4310,8 @@
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-89723657</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-89723657</td></row>
 		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-89783017</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>http://www.ComputerSolutionsLab.com.com</td><td>0</td><td/><td>1395055758</td></row>
-		<row><td>ID_STRING3</td><td>1033</td><td>ComputerSolutionsLab.com</td><td>0</td><td/><td>1395055758</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.ComputerSolutionsLab.com.com</td><td>0</td><td/><td>1931906034</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>ComputerSolutionsLab.com</td><td>0</td><td/><td>1931906034</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>LAUNCH~1.EXE|Launch PCOptimizer.exe</td><td>0</td><td/><td>-89750153</td></row>
 		<row><td>ID_STRING5</td><td>1033</td><td>PCOptimizer</td><td>0</td><td/><td>187098752</td></row>
 		<row><td>ID_STRING6</td><td>1033</td><td>PCOptimizer</td><td>0</td><td/><td>187090001</td></row>

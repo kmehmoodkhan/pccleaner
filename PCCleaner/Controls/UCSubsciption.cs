@@ -30,13 +30,13 @@ namespace PCCleaner.Controls
         private void CheckSubscriptionRequest()
         {
             DataTable dt = OptionsAdvanceSetting.GetRequestUserInfo();
-            if( dt!=null && dt.Rows.Count>0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 this.groupBoxRequest.Visible = false;
             }
 
             DataTable subscriptionInfo = OptionsAdvanceSetting.GetSubscriptionInfo();
-            if( subscriptionInfo!=null && subscriptionInfo.Rows.Count > 0)
+            if (subscriptionInfo != null && subscriptionInfo.Rows.Count > 0)
             {
                 this.groupBoxSubscripton.Hide();
                 this.labelActivated.Show();
@@ -48,8 +48,8 @@ namespace PCCleaner.Controls
         {
             bool isValid = false;
 
-            if(
-                (!string.IsNullOrEmpty(this.textBoxFirstName.Text)) && 
+            if (
+                (!string.IsNullOrEmpty(this.textBoxFirstName.Text)) &&
                 (!string.IsNullOrEmpty(this.textBoxEmail.Text)) &&
                 (!string.IsNullOrEmpty(this.textBoxLastName.Text))
                 )
@@ -59,15 +59,15 @@ namespace PCCleaner.Controls
                     string email = new MailAddress(this.textBoxEmail.Text).Address;
                     isValid = true;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     errorProvider1.SetError(textBoxEmail, "Please provide valid email address");
                     isValid = false;
                     ;
                 }
             }
-            
-            if(this.textBoxFirstName.Text.Trim().Length<1)
+
+            if (this.textBoxFirstName.Text.Trim().Length < 1)
             {
                 errorProvider1.SetError(textBoxFirstName, "Please enter First Name");
             }
@@ -85,11 +85,11 @@ namespace PCCleaner.Controls
             if (isValid)
             {
                 OptionsAdvanceSetting.AddSubscriptionRequest(this.textBoxFirstName.Text, this.textBoxLastName.Text, this.textBoxEmail.Text, Helper.GetMacId());
-                
-                string fullName = this.textBoxFirstName.Text+" "+ this.textBoxLastName.Text;
+
+                string fullName = this.textBoxFirstName.Text + " " + this.textBoxLastName.Text;
 
                 string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=create";
-                
+
 
                 var client = new RestClient(subscriptionUrl);
                 var request = new RestRequest(Method.POST);
@@ -116,14 +116,14 @@ namespace PCCleaner.Controls
                         MessageBox.Show("Request sent successfully. You will receive activation code email shortly.");
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Application failed to connect to Subscription service, please try later on.");
-                }                
+                }
             }
         }
 
-        
+
 
         private async void button2_Click(object sender, EventArgs e)
         {
@@ -137,46 +137,55 @@ namespace PCCleaner.Controls
             if (isValid)
             {
 
-                DataTable dt = OptionsAdvanceSetting.GetRequestUserInfo();
+                //DataTable dt = OptionsAdvanceSetting.GetRequestUserInfo();
 
-                string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=create";
+                //if (dt.Rows.Count < 1)
+                //{
+                //    MessageBox.Show("Please request for subscription.");
+                //}
+                //else
+                //{
 
-                string firstName = dt.Rows[0]["FirstName"].ToString();
-                string lastName = dt.Rows[0]["LastName"].ToString();
-                string emailAddress = dt.Rows[0]["EmailAddress"].ToString();
+                //    string subscriptionUrl = CleanerApplicationSettings.SubscriptionURL + "api/subscription/action.php?page_key=create";
 
-                string activationCode = this.textBoxActKey.Text;
+                //    string firstName = dt.Rows[0]["FirstName"].ToString();
+                //    string lastName = dt.Rows[0]["LastName"].ToString();
+                //    string emailAddress = dt.Rows[0]["EmailAddress"].ToString();
 
-                var client = new RestClient(subscriptionUrl);
-                var request = new RestRequest(Method.POST);
-                request.AddHeader("cache-control", "no-cache");
-                request.AddHeader("accept", "application/json");
-                
+                //    string activationCode = this.textBoxActKey.Text;
 
-                request.AddParameter("EmailAddress", emailAddress);
-                request.AddParameter("MacId", Helper.GetMacId());
-                request.AddParameter("ActivationCode", activationCode);
+                //    var client = new RestClient(subscriptionUrl);
+                //    var request = new RestRequest(Method.POST);
+                //    request.AddHeader("cache-control", "no-cache");
+                //    request.AddHeader("accept", "application/json");
 
-                 IRestResponse response = client.Execute(request);
 
-                
+                //    request.AddParameter("EmailAddress", emailAddress);
+                //    request.AddParameter("MacId", Helper.GetMacId());
+                //    request.AddParameter("ActivationCode", activationCode);
 
-                if (response.IsSuccessful)
-                {
-                    string jsonResult = response.Content;
+                //    IRestResponse response = client.Execute(request);
 
-                    OptionsAdvanceSetting.AddSubscriptionInfo(firstName+" "+lastName, emailAddress, activationCode, Helper.GetMacId());
 
-                    MessageBox.Show("Product is activated successfully. It will be restarted.");
 
-                    System.Threading.Thread.Sleep(2000);
-                    Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                    Process.GetCurrentProcess().Kill();
-                }
-                else
-                {
-                    MessageBox.Show("Activation code provided is incorrect, please try again with correct one.");
-                }
+                //    if (response.IsSuccessful)
+                //    {
+                //        string jsonResult = response.Content;
+
+                //        OptionsAdvanceSetting.AddSubscriptionInfo(firstName + " " + lastName, emailAddress, activationCode, Helper.GetMacId());
+
+                //        MessageBox.Show("Product is activated successfully. It will be restarted.");
+
+                //        System.Threading.Thread.Sleep(2000);
+                //        Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                //        Process.GetCurrentProcess().Kill();
+                //    }
+                //    else
+                //    {
+                //        MessageBox.Show("Activation code provided is incorrect, please try again with correct one.");
+                //    }
+
+                //}
             }
         }
     }
